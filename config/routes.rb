@@ -6,8 +6,11 @@ SciencegamereviewsOrg::Application.routes.draw do
   match '/privacy', to: 'static_pages#privacy'
 
   match '/signup', to: 'users#new'
+  match '/login', to: 'sessions#new'
+  match '/logout', to: 'sessions#destroy', via: :delete
 
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
