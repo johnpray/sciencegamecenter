@@ -1,0 +1,12 @@
+  user:
+  	signup:
+  		name: "Name"
+  		name_description: "Real or imagined. This is how you will appear to other site visitors, so if you value your privacy, don’t use your real name!"
+  		email: "Email"
+  		email_description: "Your email address. You’ll use this to log in, and we’ll use it in case we need to contact you. It won’t appear anywhere on the site."
+  		password: "Password"
+  		password_description: "A super-secret, unique password. (You are using different passwords for everything, right?)"
+  		password_confirmation: "Confirm Password"
+  		password_confirmation_description: "That same password again, just in case you mis-typed it."
+  		captcha: "Captcha"
+  		captcha_description: "Answer this question so we know you’re a human and not a spambot."
