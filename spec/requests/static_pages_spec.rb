@@ -2,35 +2,34 @@ require 'spec_helper'
 
 describe "Static pages" do
 
-  describe "Home page" do
+  subject { page }
 
-    it "should have the content 'Science Game Reviews'" do
-      visit '/static_pages/home'
-      page.should have_content('Science Game Reviews')
-    end
+  describe "Home page" do
+    before { visit root_path }
+
+    it { should have_selector('h1',    text: 'Science Game Reviews') }
+    it { should have_selector('title', text: full_title('Helping to bring science games to the classroom')) }
+    it { should_not have_selector 'title', text: '| Home' }
   end
 
   describe "About page" do
+    before { visit about_path }
 
-    it "should have the content 'About'" do
-      visit '/static_pages/about'
-      page.should have_content('About')
-    end
+    it { should have_selector('h1',    text: 'About') }
+    it { should have_selector('title', text: full_title('About')) }
   end
 
   describe "Contact page" do
+    before { visit contact_path }
 
-    it "should have the content 'Contact'" do
-      visit '/static_pages/contact'
-      page.should have_content('Contact')
-    end
+    it { should have_selector('h1',    text: 'Contact') }
+    it { should have_selector('title', text: full_title('Contact')) }
   end
 
   describe "Privacy page" do
+    before { visit privacy_path }
 
-    it "should have the content 'Privacy'" do
-      visit '/static_pages/privacy'
-      page.should have_content('Privacy')
-    end
+    it { should have_selector('h1',    text: 'Privacy') }
+    it { should have_selector('title', text: full_title('Privacy')) }
   end
 end
