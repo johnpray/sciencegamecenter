@@ -7,4 +7,6 @@ class Platform < ActiveRecord::Base
   validates :short_name,	presence: true,
 													length: { maximum: 10 },
 													uniqueness: true
+
+	default_scope order: 'platforms.name ASC'
 end
