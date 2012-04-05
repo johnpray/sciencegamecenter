@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
 	force_ssl except: :show
-  # before_filter :signed_in_user, only: [:edit, :update]
+  before_filter :signed_in_user,  only: [:edit, :update]
+  before_filter :correct_user,    only: [:edit, :update]
 
 	def show
 		@user = User.find(params[:id])
@@ -23,11 +24,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     flash_message = "Profile and password updated."
     if params[:user][:password].empty?
       params[:user][:password] = params[:current][:password]
@@ -47,5 +46,14 @@ class UsersController < ApplicationController
     end
   end
 
-  
+  private
+
+    def signed_in_user
+      redirect_to login_path, notice: "Please log in." unless signed_in?
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to(root_path) unless current_user?(@user)
+    end
 end
