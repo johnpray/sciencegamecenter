@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
 	force_ssl except: :show
-  before_filter :signed_in_user,  only: [:edit, :update]
-  before_filter :correct_user,    only: [:edit, :update]
-  before_filter :admin_user,      only: [:index, :destroy]
+  before_filter :signed_in_user,        only: [:edit, :update]
+  before_filter :block_signed_in_user,  only: [:new, :create]
+  before_filter :correct_user,          only: [:edit, :update]
+  before_filter :admin_user,            only: [:index, :destroy]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
 	end
 
   def new
-  	@user = User.new
+    @user = User.new
   end
 
   def create
@@ -68,6 +69,10 @@ class UsersController < ApplicationController
     def signed_in_user
       store_location
       redirect_to login_path, notice: "Please log in." unless signed_in?
+    end
+
+    def block_signed_in_user
+      redirect_to root_path if signed_in?
     end
 
     def correct_user
