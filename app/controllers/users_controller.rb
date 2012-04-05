@@ -53,9 +53,14 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    User.find(params[:id]).destroy
-    flash[:success] = "User #{user.name} (#{user.email}) has been destroyed now and forever...unless they sign up again."
-    redirect_to users_path
+    if current_user?(user)
+      flash[:error] = "Sorry, but you can't destroy your own account."
+      redirect_to users_path
+    else
+      User.find(params[:id]).destroy
+      flash[:success] = "User #{user.name} (#{user.email}) has been destroyed now and forever...unless they sign up again."
+      redirect_to users_path
+    end
   end
 
   private
