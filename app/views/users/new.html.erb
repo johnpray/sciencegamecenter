@@ -4,7 +4,10 @@
 <div class="row">
   <div class="span6 offset3">
 
-    <p>If you create an account, you'll be able to post reviews and comments. Just fill out the form below. It's quick and easy!</p>
+    <div class="form-description">
+      <p>If you create an account, you'll be able to post reviews and comments. Just fill out the form below. It's quick and easy!</p>
+      <p>Already have an account? <%= link_to "Log in.", login_path %></p>
+    </div>
 
     <%= form_for(@user) do |f| %>
 

@@ -173,6 +173,10 @@ label {
   }
 }
 
+.form-description {
+  margin-bottom: 20px;
+}
+
 .field_with_errors {
   @extend .control-group;
   @extend .error;
