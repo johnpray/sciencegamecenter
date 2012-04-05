@@ -27,8 +27,8 @@
     <% end %>
 
     <hr />
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">Change your Gravatar</a>
-    <p class="form-help">We use external service <%= link_to "Gravatar", 'http://gravatar.com' %> to let you easily use a universal avatar. If you'd like to change it, do so at the link above. You'll need to sign up for a free Gravatar account associated with the email address you're using here, if you haven't already.</p>
+    <a href="http://gravatar.com/emails"><%= gravatar_for @user %>
+    Change your Gravatar</a>
+    <p class="form-help">We use external service <%= link_to "Gravatar", 'http://gravatar.com' %> to provide your picture based on your email address. If you'd like to change it, do so at the link above. You'll need to sign up for a free Gravatar account and associate it with the email address you're using here, if you don't already have one.</p>
   </div>
 </div>

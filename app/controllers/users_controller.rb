@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
 	force_ssl except: :show
-  before_filter :signed_in_user,  only: [:edit, :update]
+  before_filter :signed_in_user,  only: [:index, :edit, :update]
   before_filter :correct_user,    only: [:edit, :update]
+
+  def index
+    @users = User.paginate(page: params[:page])
+  end
 
 	def show
 		@user = User.find(params[:id])
