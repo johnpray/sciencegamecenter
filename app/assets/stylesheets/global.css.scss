@@ -94,14 +94,15 @@ footer {
     }
   }  
   small { 
-    float: left; 
+    float: right; 
   }
   ul {
-    float: right;
+    float: left;
     list-style: none;
+    margin-left: 0;
     li {
       float: left;
-      margin-left: 10px;
+      margin-right: 10px;
     }
   }
 }

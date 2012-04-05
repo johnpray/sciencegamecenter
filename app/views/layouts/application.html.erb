@@ -5,7 +5,10 @@
     <%= render 'layouts/header' %>
     <div class="container">
     	<% flash.each do |key, value| %>
-        <%= content_tag(:div, value, class: "alert alert-#{key}") %>
+        <div class="alert alert-<%= key %>">
+          <%= value %>
+          <a class='close' data-dismiss='alert' href='#'>&times;</a>
+        </div>
       <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
