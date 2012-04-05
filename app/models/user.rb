@@ -11,7 +11,7 @@
 #
 
 class User < ActiveRecord::Base
-	attr_accessible :name, :email, :is_admin, :password, :password_confirmation
+	attr_accessible :name, :email, :is_admin, :password
 	before_save :create_remember_token
 
 	validates :name,	presence: true,
@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 	validates :password,	length: { minimum: 6 }
-	validates :password_confirmation,	presence: true
 
 	private
 

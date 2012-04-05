@@ -152,8 +152,17 @@ input, textarea, select, .uneditable-input {
   width: 100%;
   padding: 10px;
   height: auto;
-  margin-bottom: 15px;
+  margin-bottom: 0;
   @include box_sizing;
+}
+
+.date select {
+  width: 32.8%;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 #error_explanation {
@@ -168,3 +177,15 @@ input, textarea, select, .uneditable-input {
   @extend .control-group;
   @extend .error;
  }
+
+.form-help {
+  color: $grayLight;
+  font-size: 0.9em;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+#submit-help {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
