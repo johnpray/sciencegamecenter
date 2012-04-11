@@ -1,0 +1,17 @@
+<% provide(:title, "Create a new password") %> 
+<h1>Create a new password</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+  <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+      <%= render 'shared/error_messages', :object => f.object %>
+
+      <%= f.label :password, "New password (if desired)" %>
+      <%= f.password_field :password %>
+      <p class="form-help">Enter your new password here. It must be at least 6 characters long.</p>
+
+      <p class="form-help" id="submit-help"></p>
+      <%= f.submit "Update password", :class => "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>

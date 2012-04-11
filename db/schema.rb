@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405203125) do
+ActiveRecord::Schema.define(:version => 20120411202423) do
 
   create_table "platforms", :force => true do |t|
     t.string   "name"
@@ -23,14 +23,16 @@ ActiveRecord::Schema.define(:version => 20120405203125) do
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "is_admin",        :default => false
+    t.boolean  "is_admin",               :default => false
     t.date     "birth_date"
-    t.boolean  "disabled",        :default => false
+    t.boolean  "disabled",               :default => false
     t.string   "parent_email"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

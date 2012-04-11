@@ -10,4 +10,9 @@ class UserMailer < ActionMailer::Base
   	@user = user
   	mail(to: "#{user.name} <#{user.email}>", cc: user.parent_email, subject: "Your ScienceGameReviews.org account has been activated!")
   end
+
+  def password_reset(user)
+  	@user = user
+  	mail to:  "#{user.name} <#{user.email}>", subject: "Password reset instructions for ScienceGameReviews.org"
+  end
 end
