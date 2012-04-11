@@ -7,11 +7,20 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by_email(params[:session][:email])
-    if user && user.authenticate(params[:session][:password])
-      sign_in user
-      redirect_back_or user
+    if !user.disabled?
+      if user && user.authenticate(params[:session][:password])
+        sign_in user
+        redirect_back_or user
+      else
+        flash.now[:error] = "That email/password combination isn't quite right."
+        # TODO add Forgot Password link here
+        render 'new'
+      end
     else
-      flash.now[:error] = "That email/password combination isn't quite right." # TODO add Forgot Password link here
+      flash.now[:error] = "Your account is currently disabled.
+        If you are waiting for a parent to confirm your account,
+        ask them to click the link in the email they received."
+      # TODO add Resend Email link here
       render 'new'
     end
   end
