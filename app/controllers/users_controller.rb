@@ -73,6 +73,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # Action for sending the parental confirmation email again
   def resend_parent_email
     user = User.find(params[:id])
     if user.disabled?
@@ -84,6 +85,7 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  # Action for activating a child's account through a link in an email to the parent
   def confirm_child_account
     @user = User.find(params[:id])
     user_code = Digest::MD5::hexdigest(@user.email.downcase)

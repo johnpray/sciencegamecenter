@@ -7,7 +7,7 @@ SciencegamereviewsOrg::Application.routes.draw do
 
   resources :users do
     member do
-      post 'resend_parent_email'
+      get 'resend_parent_email'
       get 'confirm_child_account'
     end
   end

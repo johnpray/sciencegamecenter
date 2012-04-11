@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
       else
         flash.now[:error] = "Your account is currently disabled.
           If you are waiting for a parent to confirm your account,
-          ask them to click the link in the email they received."
+          ask them to click the link in the email they received.
+          #{ view_context.link_to("Re-send the email", resend_parent_email_user_path(user)).html_safe }".html_safe
         # TODO add Resend Email link here
         render 'new'
       end
