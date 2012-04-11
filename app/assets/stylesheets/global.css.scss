@@ -157,6 +157,11 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
+input[type=checkbox] {
+  float: left;
+  margin-right: 5px;
+}
+
 .date select {
   width: 32.8%;
 }
