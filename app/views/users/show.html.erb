@@ -7,5 +7,7 @@
         <%= @user.name %>
       </h1>
     </section>
+
+    <%= link_to("DO IT", resend_parent_email_user_path(User.find(params[:id])), method: :post) if Rails.env.development? %>
   </aside>
 </div>

@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
 	attr_accessible :name, :email, :is_admin, :password, :birth_date,
 									:disabled, :parent_email
 	before_save :create_remember_token
-	before_save :get_parental_confirmation
 
 	validates :name,	presence: true,
 										length: { maximum: 50 },
@@ -36,23 +35,20 @@ class User < ActiveRecord::Base
 		13.years.ago < self.birth_date
 	end
 
+	def enable
+		self.disabled = false
+		self.save(validate: false)
+	end
+
 	private
 
 		def create_remember_token
 			self.remember_token = SecureRandom.urlsafe_base64
 		end
 
-		# If a user is under thirteen, email their parent for account activation
-		def get_parental_confirmation
-			if is_under_thirteen?
-				self.disabled = true
-				# send email to parent_email
-			end
-		end
-
 		def parent_email_differs_from_email
     if email == parent_email
-      errors.add(:parent_email, " must be different from your own.") 
+      errors.add(:parent_email, "must be different from your own.") 
     end
   end
 end

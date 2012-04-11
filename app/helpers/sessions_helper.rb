@@ -35,10 +35,6 @@ module SessionsHelper
     session[:return_to] = request.fullpath
   end
 
-  def link_to_resend_parent_email
-    # todo
-  end
-
   private
 
   	def user_from_remember_token

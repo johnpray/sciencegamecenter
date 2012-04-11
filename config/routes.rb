@@ -5,7 +5,12 @@ SciencegamereviewsOrg::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   match '/privacy', to: 'static_pages#privacy'
 
-  resources :users
+  resources :users do
+    member do
+      post 'resend_parent_email'
+      get 'confirm_child_account'
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/signup',  to: 'users#new'

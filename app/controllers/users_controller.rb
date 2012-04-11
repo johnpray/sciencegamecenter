@@ -20,10 +20,19 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(params[:user])
+    @user.disabled = true if @user.is_under_thirteen?
   	if @user.save
-  		sign_in @user
-  		flash[:success] = "You're all signed up!"
-  		redirect_to @user
+      if @user.disabled? && @user.parent_email
+        UserMailer.parent_confirmation(@user).deliver
+        flash[:success] = "Your account has been created.
+          Please have your parent confirm your account by
+          clicking the link in the email they receive from us."
+        redirect_to root_path
+      else
+    		sign_in @user
+    		flash[:success] = "You're all signed up!"
+    		redirect_to @user
+      end
   	else
   		render 'new'
   	end
@@ -61,6 +70,37 @@ class UsersController < ApplicationController
       User.find(params[:id]).destroy
       flash[:success] = "User #{user.name} (#{user.email}) has been destroyed now and forever...unless they sign up again."
       redirect_to users_path
+    end
+  end
+
+  def resend_parent_email
+    user = User.find(params[:id])
+    if user.disabled?
+      UserMailer.parent_confirmation(user).deliver
+      flash[:success] = "The email has been re-sent to your parent.
+        Please have them confirm your account by
+        clicking the link in the email they receive from us."
+    end
+    redirect_to root_path
+  end
+
+  def confirm_child_account
+    @user = User.find(params[:id])
+    user_code = Digest::MD5::hexdigest(@user.email.downcase)
+    url_code = params[:code]
+    if @user.disabled? && user_code == url_code
+      if @user.update_attribute(:disabled, false)
+        flash[:success] = "Thank you! Your child's account has been
+          activated. They can now log in with the Name and Password they chose
+          when signing up."
+        redirect_to login_path
+      else
+        flash[:failure] = "There was a problem activating this account.
+          Please contact us at sciencegamereviews@fas.org"
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
     end
   end
 
