@@ -20,8 +20,8 @@ class SessionsController < ApplicationController
         render 'new'
       end
     else
-      flash.now[:error] = "That email/password combination isn't quite right."
-      # TODO add Forgot Password link here
+      flash.now[:error] = "That email/password combination isn't quite right.
+      #{view_context.link_to "Forget your password?", new_password_reset_path}".html_safe
       render 'new'
     end
   end
