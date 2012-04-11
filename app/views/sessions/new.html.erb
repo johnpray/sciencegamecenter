@@ -11,6 +11,9 @@
       <%= f.label :password %>
       <%= f.password_field :password %>
 
+      <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+      <%= label_tag :remember_me %>
+
       <p class="form-help" id="submit-help"></p>
       <%= f.submit "Sign in", :class => "btn btn-large btn-primary" %>
     <% end %>

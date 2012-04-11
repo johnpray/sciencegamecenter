@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       if !user.disabled?
-        sign_in user
+        sign_in user, params[:remember_me]
         redirect_back_or user
       else
         flash.now[:error] = "Your account is currently disabled.
