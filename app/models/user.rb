@@ -43,7 +43,13 @@ class User < ActiveRecord::Base
 	private
 
 		def create_remember_token
-			self.remember_token = SecureRandom.urlsafe_base64
+			generate_token(:remember_token)
+		end
+
+		def generate_token(column)
+		  begin
+		    self[column] = SecureRandom.urlsafe_base64
+		  end while User.exists?(column => self[column])
 		end
 
 		def parent_email_differs_from_email
