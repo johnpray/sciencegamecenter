@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 									:disabled, :parent_email
 	before_save :create_remember_token
 
+	has_many :player_reviews, dependent: :nullify
+
 	validates :name,	presence: true,
 										length: { maximum: 50 },
 										exclusion: { in: %w(admin superuser administrator fasadmin) }

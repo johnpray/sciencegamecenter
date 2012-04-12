@@ -3,6 +3,8 @@ class Game < ActiveRecord::Base
   								:boxart_file_name, :boxart_file_size,
   								:boxart_content_type, :boxart_updated_at
 
+  has_many :player_reviews, dependent: :destroy
+
   has_attached_file :boxart,
   									styles: { large: '500x500>', medium: '300x300>', small: '100x100>'},
   									storage: :s3,
