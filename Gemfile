@@ -5,10 +5,12 @@ gem 'jquery-rails', '~> 2.0.0'
 gem 'sass-rails',   '~> 3.2.4'
 gem 'bootstrap-sass', '~> 2.0.2'
 gem 'bcrypt-ruby', '~> 3.0.1'
-gem 'faker', '~> 1.0.1'
+gem 'faker', '~> 1.0.1' # generate test data
 gem 'will_paginate', '~> 3.0.3'
 gem 'bootstrap-will_paginate', '~> 0.0.7'
-gem 'redcarpet', '~> 2.1.1'
+gem 'redcarpet', '~> 2.1.1' # markdown
+gem 'paperclip', '~> 3.0.2' # uploads
+gem 'aws-sdk', '~> 1.3.4'
 
 group :development, :test do
 	gem 'sqlite3'

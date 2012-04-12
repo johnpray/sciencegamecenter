@@ -4,7 +4,7 @@
   <%= render 'games/admin_tools', game: game %>
   <% end %>
 
-	<%= link_to image_tag("rails.png", class: :boxart), game %>
+	<%= link_to image_tag(game.boxart.url(:small), class: :boxart), game %>
   <p class="title"><%= link_to game.title, game %></p>
   <p class="info_line">Topics: <a href="#">Biology</a>, <a href="#">Chemistry</a>, <a href="#">Immunology</a></p>
   <p class="info_line">Available on: <a href="#">PC (Windows)</a>, <a href="#">Game Boy</a></p>

@@ -84,7 +84,8 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     if user.disabled?
       UserMailer.parent_confirmation(user).deliver
-      flash[:success] = "The email has been re-sent to your parent.
+      flash[:success] = "The confirmation email has been re-sent to your parent or guardian at
+        #{user.parent_email}.
         Please have them confirm your account by
         clicking the link in the email they receive from us."
     end
