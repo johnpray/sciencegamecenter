@@ -1,12 +1,14 @@
 <%= provide(:title, @game.title) %>
 
+<p class="breadcrumbs"><%= link_to "Games", games_path %> &raquo;</p>
+
 <%= image_tag @game.boxart.url(:large), class: :boxart %>
 
 <% if signed_in? && current_user.is_admin? %>
 <%= render 'games/admin_tools', game: @game %>
 <% end %>
 
-<h2><%= @game.title %></h2>
+<h1 class="left"><%= @game.title %></h1>
 
 <p class="topics info_line">Topics: <a href="#">Biology</a>, <a href="#">Chemistry</a>, <a href="#">Immunology</a></p>
 <p class="platforms info_line">Available on: <a href="#">PC (Windows)</a>, <a href="#">Game Boy</a></p>
