@@ -25,6 +25,17 @@ module SessionsHelper
     user == current_user
   end
 
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to login_path, notice: "Please log in first."
+    end
+  end
+
+  def admin_user
+    redirect_to(root_path) unless current_user.is_admin?
+  end
+
   def sign_out
   	current_user = nil
   	cookies.delete(:remember_token)

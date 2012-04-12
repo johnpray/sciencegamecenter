@@ -13,6 +13,7 @@ SciencegamereviewsOrg::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
+  resources :games
 
   match '/signup',  to: 'users#new'
   match '/login',   to: 'sessions#new'

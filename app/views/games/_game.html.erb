@@ -1,0 +1,6 @@
+<li>
+  <%= link_to game.name, game %>
+  <% if current_user.is_admin? %>
+  	| <%= link_to "[Delete]", user, method: :delete, confirm: "Are you sure you want to destroy this game now and for the rest of time, with no going back?" %>
+  <% end %>
+</li>

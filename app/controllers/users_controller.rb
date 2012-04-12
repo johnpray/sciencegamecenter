@@ -108,11 +108,6 @@ class UsersController < ApplicationController
 
   private
 
-    def signed_in_user
-      store_location
-      redirect_to login_path, notice: "Please log in." unless signed_in?
-    end
-
     def block_signed_in_user
       redirect_to root_path if signed_in?
     end
@@ -120,9 +115,5 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
-    end
-
-    def admin_user
-      redirect_to(root_path) unless current_user.is_admin?
     end
 end
