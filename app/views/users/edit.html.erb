@@ -12,7 +12,7 @@
 
       <%= f.label :email %>
       <%= f.text_field :email %>
-      <p class="form-help">Your email address. You’ll use this to log in, but it won’t appear on the site.</p>
+      <p class="form-help">Your email address. You’ll use this to log in, but it won’t appear on the site. It'll also be used if you forget your password, so make sure it's real.</p>
 
       <%= label_tag :current_password, "Current password" %>
       <%= password_field :current, :password %>
@@ -20,7 +20,7 @@
 
       <%= f.label :password, "New password (if desired)" %>
       <%= f.password_field :password %>
-      <p class="form-help">If you'd like to change your password, enter the new one here. Else, leave it blank.</p>
+      <p class="form-help">If you'd like to change your password, enter the new one here. Else, leave it blank. It must be at least 6 characters long.</p>
 
       <p class="form-help" id="submit-help"></p>
       <%= f.submit "Save changes", :class => "btn btn-large btn-primary" %>

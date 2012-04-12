@@ -57,6 +57,6 @@ class User < ActiveRecord::Base
 		def parent_email_differs_from_email
     if email == parent_email
       errors.add(:parent_email, "must be different from your own.") 
-    end
-  end
+	    end
+	  end
 end
