@@ -51,8 +51,8 @@ h1 {
 h2 {
   font-size: 1.7em;
   letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
   font-weight: normal;
   color: $grayLight;
 }
@@ -205,7 +205,7 @@ label {
 .users {
   list-style: none;
   margin: 0;
-  li {
+  li.user {
     overflow: auto;
     padding: 10px 0;
     border-top: 1px solid $grayLighter;
@@ -221,8 +221,9 @@ ul.games {
   list-style: none;
   margin: 0;
   color: $gray;
+}
 
-  li.game {
+.game {
     overflow: auto;
     padding: 10px 0;
     border-top: 1px solid $grayLighter;
@@ -233,11 +234,29 @@ ul.games {
     .title {
       font-size: 18px;
     }
-
-  }
-  img.boxart {
+    img.boxart {
     width: 75px;
     margin-right: 10px;
     float: left;
+  }
+}
+
+.info_line {
+  color: $gray;
+}
+
+/* admin tools */
+.admin_tools {
+  float: right;
+  width: 100px;
+  @include box_sizing;
+  @include border_radius;
+  background: $grayLighter;
+  padding: 10px;
+
+  ul {
+    list-style: none;
+    margin:0;
+    padding: 0;
   }
 }

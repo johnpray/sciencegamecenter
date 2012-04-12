@@ -1,2 +1,28 @@
-<h1>Games#edit</h1>
-<p>Find me in app/views/games/edit.html.erb</p>
+<% provide(:title, "Edit game") %> 
+<h1>Edit game</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+
+    <%= form_for(@game) do |f| %>
+
+    	<%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+      <p class="form-help">The game's full title.</p>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, rows: 10 %>
+      <p class="form-help">A description of the game. Facts only. Save opinions for the reviews.<br/>Format using HTML tags or Markdown: **bold** _italics_ - list item</p>
+
+      <%= f.label :website_url, "Website URL" %>
+      <%= f.text_field :website_url %>
+      <p class="form-help">The full address (including <i>http://</i>) for the game's official web site.</p>
+
+      <p class="form-help" id="submit-help"><b>Be aware:</b> Upon saving, this game will immediately be visible on the site.</p>
+      <%= f.submit "Update game", :class => "btn btn-large btn-primary" %>
+      
+    <% end %>
+  </div>
+</div>

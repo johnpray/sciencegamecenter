@@ -1,4 +1,8 @@
-<li>
+<li class="user">
+  <% if signed_in? && current_user.is_admin? %>
+  	<%= render 'users/admin_tools', user: user %>
+  <% end %>
+
   <%= gravatar_for user, :size => 52 %>
   <%= link_to user.name, user %>
 
@@ -9,11 +13,4 @@
 	Player
 	<% end %>
 	<% if user.disabled? %> (Disabled)<% end %>
-
-  <% if current_user.is_admin? && !current_user?(user) %>
-  <br />
-  Admin:
-  	<%= link_to "Edit", edit_user_path(user) %>
-  	<%= link_to "Delete", user, method: :delete, confirm: "Are you sure you want to destroy this user now and for the rest of time, with no going back?" %>
-  <% end %>
 </li>

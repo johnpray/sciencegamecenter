@@ -1,2 +1,13 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<%= provide(:title, @game.title) %>
+<h1><%= @game.title %></h1>
+
+<% if signed_in? && current_user.is_admin? %>
+<%= render 'games/admin_tools', game: @game %>
+<% end %>
+
+<p class="topics info_line">Topics: <a href="#">Biology</a>, <a href="#">Chemistry</a>, <a href="#">Immunology</a></p>
+<p class="platforms info_line">Available on: <a href="#">PC (Windows)</a>, <a href="#">Game Boy</a></p>
+<br />
+<div class="description">
+	<%= markdown @game.description %>
+</div>

@@ -1,13 +1,11 @@
 <li class="game">
+
+	<% if signed_in? && current_user.is_admin? %>
+  <%= render 'games/admin_tools', game: game %>
+  <% end %>
+
 	<%= link_to image_tag("rails.png", class: :boxart), game %>
   <p class="title"><%= link_to game.title, game %></p>
   <p class="info_line">Topics: <a href="#">Biology</a>, <a href="#">Chemistry</a>, <a href="#">Immunology</a></p>
   <p class="info_line">Available on: <a href="#">PC (Windows)</a>, <a href="#">Game Boy</a></p>
-  <% if signed_in? && current_user.is_admin? %>
-  <p>
-  	<b>Admin Tools:</b>
-  	<%= link_to "Edit", edit_game_path(game) %>, 
-  	<%= link_to "Delete", game, method: :delete, confirm: "Are you sure you want to destroy this game now and for the rest of time, with no going back?" %>
-  </p>
-  <% end %>
 </li>
