@@ -16,5 +16,9 @@ namespace :db do
                    password: password,
                    birth_date: birth_date)
     end
+    50.times do |n|
+      title = Faker::Lorem.words(1 + Random.rand(5)).join(" ").titleize
+      Game.create(title: title)
+    end
   end
 end

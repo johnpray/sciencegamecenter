@@ -47,10 +47,16 @@ class UsersController < ApplicationController
       params[:user][:password] = params[:current][:password]
       flash_message = "Profile updated."
     end
-    if @user.authenticate(params[:current][:password])
-      if @user.update_attributes(params[:user])
+    if @user.authenticate(params[:current][:password]) || current_user.is_admin?
+      if current_user.is_admin?
+        @user.attributes = params[:user]
+        result = @user.save(validate: false)
+      else
+        result = @user.update_attributes(params[:user])
+      end
+      if result
         flash[:success] = flash_message
-        sign_in @user
+        sign_in @user unless current_user.is_admin? && !current_user?(@user)
         redirect_to @user
       else
         render 'edit'
@@ -114,6 +120,6 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_path) unless current_user?(@user)
+      redirect_to(root_path) unless current_user?(@user) || current_user.is_admin?
     end
 end
