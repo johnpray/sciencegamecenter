@@ -1,8 +1,9 @@
 <%= provide(:title, 'Games') %>
 <h1>Games</h1>
 
-<ul class="games">
-  <%= render @games %>
-</ul>
-
+<div class="row">
+	<ul class="games span12">
+	  <%= render @games %>
+	</ul>
+</div>
 <%= will_paginate %>

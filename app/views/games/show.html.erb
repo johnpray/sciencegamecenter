@@ -2,7 +2,7 @@
 
 <p class="breadcrumbs"><%= link_to "Games", games_path %> &raquo;</p>
 
-<%= image_tag @game.boxart.url(:large), class: :boxart %>
+<%= link_to image_tag(@game.boxart.url(:medium), class: :boxart), @game.boxart.url(:large) %>
 
 <% if signed_in? && current_user.is_admin? %>
 <%= render 'games/admin_tools', game: @game %>
@@ -10,35 +10,54 @@
 
 <h1 class="left"><%= @game.title %></h1>
 
-<p class="topics info_line">Topics: <a href="#">Biology</a>, <a href="#">Chemistry</a>, <a href="#">Immunology</a></p>
-<p class="platforms info_line">Available on: <a href="#">PC (Windows)</a>, <a href="#">Game Boy</a></p>
+<p class="topics info_line">Subjects:</p>
+<p class="platforms info_line">Available on:</p>
+<% if !@game.website_url.empty? %>
+<p class="website info_line">Official website: <a href="<%= @game.website_url %>"><%= @game.website_url %></a></p>
+<% end %>
 <br />
 <div class="description">
 	<%= markdown @game.description %>
 </div>
+<div id="player_reviews">
 <hr />
-<h1 class="left">Player Reviews of <%= @game.title %></h1>
-<div class="player_reviews">
+<h2 class="left">Player Reviews of <i><%= @game.title %></i></h2>
 <% @player_reviews.each do |review| %>
-	<h4><%= review.user ? review.user.name : "Someone" %> says</h4>
-	<h2><%= review.title %></h2>
-	<p><%= markdown review.content %></p>
-	<% if current_user?(review.user) || @user.is_admin? %>
-	<p><%= link_to "Edit your review of #{@game.title}", edit_player_review_path(review) %></p>
-	<% end %>
+	<div class="player_review" id="<%= current_user?(review.user) ? 'new_player_review' : '' %>">
+		<% if @current_user ? @current_user.is_admin? : false %>
+			<%= render 'player_reviews/admin_tools', player_review: review %>
+		<% end %>
+
+		<% if review.user %>
+		<%= gravatar_for review.user %>
+		<% end %>
+		<h3><%= review.title %></h3>
+		<p><i>by <%= review.user ? review.user.name : "someone" %> on <%= review.created_at.to_date.to_formatted_s(:long) %></i></p>
+		<p><%= markdown review.content %></p>
+		<% if current_user?(review.user) %>
+		<p><%= link_to "Edit your review of #{@game.title}", edit_player_review_path(review) %></p>
+		<% end %>
+	</div>
 	<hr />
 <% end %>
 </div>
 
 <% if signed_in? %>
-<div class="row" id="add_player_review">
+<div class="row" id="new_player_review">
   <div class="span12">
 
     <div class="form-description">
       <p>Have you played this game? Share your experience by leaving a review!</p>
     </div>
 
-    <%= form_for(@player_review) do |f| %>
+    <%= gravatar_for @current_user %>
+    <p>
+	    <b><%= @current_user.name %></b><br />
+	    <%= Time.zone.now.to_date.to_formatted_s(:long) %>
+  	</p>
+  	<br />
+
+    <%= form_for @player_review, url: player_reviews_path(method: :post, anchor: :new_player_review) do |f| %>
 
     	<%= render 'shared/error_messages', object: f.object %>
 
@@ -51,7 +70,7 @@
       <p class="form-help">Tell us all about this game and what you think of it.</p>
 
       <%= f.hidden_field :game_id, value: @game.id %>
-      <%= f.hidden_field :user_id, value: @user.id %>
+      <%= f.hidden_field :user_id, value: @current_user.id %>
 
       <p class="form-help" id="submit-help">After submitting, a site administrator will need to approve your review before it shows up. We're usually pretty prompt about it.</p>
       <%= f.submit "Submit review", :class => "btn btn-large btn-primary" %>
@@ -60,11 +79,9 @@
   </div>
 </div>
 <% else %>
-<div>
-<div class="row" id="add_player_review">
+<div class="row" id="new_player_review">
   <div class="span12">
 		<p><%= link_to "Sign up", signup_path %> or <%= link_to "log in", login_path %> to post a review of your own!</p>
 	</div>
 </div>
 <% end %>
-</div>

@@ -12,7 +12,6 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @player_reviews = @game.player_reviews
     @player_review = PlayerReview.new
-    @user = current_user
   end
 
   def new

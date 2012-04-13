@@ -1,2 +1,38 @@
-<h1>PlayerReviews#edit</h1>
-<p>Find me in app/views/player_reviews/edit.html.erb</p>
+<h1 class="left">Editing a review for <%= @player_review.game.title %></h1>
+<% if @player_review.user %>
+	<div class="user_info">
+		<%= gravatar_for @player_review.user %>
+		<h2>by <%= @player_review.user.name %></h2>
+		<% if @current_user.is_admin? %>
+		<p>Email: <%= link_to @player_review.user.email, @player_review.user.email %></p>
+		<% end %>
+	</div>
+<% else %>
+	<h2>by a user that has since been deleted</h2>
+<% end %>
+
+<div class="row">
+	<div class="span12">
+		<%= form_for(@player_review) do |f| %>
+
+			<%= render 'shared/error_messages', object: f.object %>
+
+		  <%= f.label :title, "Review title" %>
+		  <%= f.text_field :title %>
+		  <p class="form-help">A title for this review</p>
+
+		  <%= f.label :content %>
+		  <%= f.text_area :content %>
+		  <p class="form-help">Tell us all about this game and what you think of it.</p>
+
+		  <%= f.hidden_field :game_id, value: @player_review.game.id %>
+		  <% if @player_review.user %>
+		  <%= f.hidden_field :user_id, value:  @player_review.user.id %>
+		 	<% end %>
+
+		  <p class="form-help" id="submit-help">After submitting, a site administrator will need to approve your review before it shows up. We're usually pretty prompt about it.</p>
+		  <%= f.submit "Submit review", :class => "btn btn-large btn-primary" %>
+
+		<% end %>
+	</div>
+</div>

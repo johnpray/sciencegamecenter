@@ -11,12 +11,13 @@ class PlayerReviewsController < ApplicationController
 
   def create
     @game = Game.find(params[:player_review][:game_id])
-    @player_review = @game.player_reviews.new(params[:player_review])
+    @player_reviews = @game.player_reviews
+    @player_review = PlayerReview.new(params[:player_review])
     if @player_review.save
       flash[:success] = "Player review #{@player_review.title} for #{@player_review.game.title} created."
       redirect_to @game
     else
-      redirect_to @game
+      render template: 'games/show'
     end
   end
 

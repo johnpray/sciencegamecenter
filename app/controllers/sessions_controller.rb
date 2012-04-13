@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       if !user.disabled?
         sign_in user, params[:remember_me]
         flash[:success] = "You've logged in as #{user.name}."
-        redirect_back_or user
+        redirect_back_or root_path
       else
         flash.now[:error] = "Your account is currently disabled.
           If you are waiting for a parent to confirm your account,

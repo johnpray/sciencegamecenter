@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  /*padding-top: 60px;*/
 }
 
 section {
@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: center;
 
   &.left {
@@ -53,10 +53,14 @@ h1 {
 }
 
 h2 {
+  margin-bottom: 15px;
+}
+
+h3 {
   font-size: 1.7em;
   letter-spacing: -1px;
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-weight: normal;
   color: $grayLight;
 }
@@ -237,9 +241,7 @@ ul.games {
       font-size: 18px;
     }
     img.boxart {
-      width: 75px;
-      margin-right: 10px;
-      float: left;
+      width: 100%;
     }
   }
 }
