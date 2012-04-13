@@ -21,7 +21,12 @@
 </div>
 <div id="player_reviews">
 <hr />
+
+<%= render 'games/scorecard', game: @game %>
+
+<hr />
 <h2 class="left">Player Reviews of <i><%= @game.title %></i></h2>
+
 <% @player_reviews.each do |review| %>
 	<%= render 'player_reviews/player_review', review: review %>
 	<hr />
@@ -43,37 +48,8 @@
   	</p>
   	<br />
 
-    <%= form_for @player_review, url: player_reviews_path(method: :post, anchor: :new_player_review) do |f| %>
-
-    	<%= render 'shared/error_messages', object: f.object %>
-
-      <%= f.label :title, "Review title" %>
-      <%= f.text_field :title %>
-      <p class="form-help">A title for this review</p>
-
-      <%= f.label :content %>
-      <%= f.text_area :content %>
-      <p class="form-help">Tell us all about this game and what you think of it.<br/>Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
-
-      <%= f.label :fun_rating %>
-		  <%= f.text_field :fun_rating %>
-		  <p class="form-help">A number out of five, where 5 is the most fun.</p>
-
-		  <%= f.label :accuracy_rating %>
-		  <%= f.text_field :accuracy_rating %>
-		  <p class="form-help">A number out of five, where 5 is the most scientifically accurate.</p>
-
-		  <%= f.label :effectiveness_rating %>
-		  <%= f.text_field :effectiveness_rating %>
-		  <p class="form-help">A number out of five, where 5 is the most effective at teaching.</p>
-
-      <%= f.hidden_field :game_id, value: @game.id %>
-      <%= f.hidden_field :user_id, value: @current_user.id %>
-
-      <p class="form-help" id="submit-help">After submitting, a site administrator will need to approve your review before it shows up. We're usually pretty prompt about it.</p>
-      <%= f.submit "Submit review", :class => "btn btn-large btn-primary" %>
+    <%= render 'games/new_player_review', player_review: @player_review %>
       
-    <% end %>
   </div>
 </div>
 <% elsif signed_in? %>
