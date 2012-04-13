@@ -1,7 +1,4 @@
 <li class="user">
-  <% if signed_in? && current_user.is_admin? %>
-  	<%= render 'users/admin_tools', user: user %>
-  <% end %>
 
   <%= gravatar_for user, :size => 52 %>
   <%= link_to user.name, user %>
@@ -13,4 +10,9 @@
 	Player
 	<% end %>
 	<% if user.disabled? %> (Disabled)<% end %>
+
+  <% if signed_in? && current_user.is_admin? %>
+  	<br /><%= render 'users/admin_tools', user: user %>
+  <% end %>
+
 </li>
