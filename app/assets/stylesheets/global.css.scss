@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  /*padding-top: 60px;*/
+  padding-top: 60px;
 }
 
 section {
@@ -261,16 +261,5 @@ img.boxart {
 
 /* admin tools */
 .admin_tools {
-  float: right;
-  width: 100px;
-  @include box_sizing;
-  @include border_radius;
-  background: $grayLighter;
-  padding: 10px;
-
-  ul {
-    list-style: none;
-    margin:0;
-    padding: 0;
-  }
+  margin-top: -10px;
 }

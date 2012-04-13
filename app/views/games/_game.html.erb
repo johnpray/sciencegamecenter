@@ -10,11 +10,6 @@
 			  <p class="info_line">Available on:</p>
 			  <p class="info_line">Reviews: <%= link_to pluralize(game.player_reviews.count, "player review"), game_path(game, anchor: "player_reviews") %>, 0 expert reviews</p>
 			</div>
-			<% if signed_in? && current_user.is_admin? %>
-			<div class="span1">
-				<%= render 'games/admin_tools', game: game %>
-			</div>
-			<% end %>
 		 </div>
 	</li>
 </div>
