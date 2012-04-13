@@ -1,9 +1,18 @@
 <%= provide(:title, 'Games') %>
-<h1>Games</h1>
 
 <div class="row">
-	<ul class="games span12">
-	  <%= render @games %>
-	</ul>
+	<div class="span12">
+
+		<h1>Games</h1>
+
+		<ul class="games">
+		  <%= render @games %>
+		</ul>
+
+		<%= will_paginate %>
+
+		<% if signed_in? && @current_user.is_admin? %>
+		<p><%= link_to "Create a new game", new_game_path %></p>
+		<% end %>
+	</div>
 </div>
-<%= will_paginate %>
