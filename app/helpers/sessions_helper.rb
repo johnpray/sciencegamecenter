@@ -51,7 +51,7 @@ module SessionsHelper
   end
 
   def store_previous_location
-    session[:return_to] = request.env['HTTP_REFERER']
+    session[:return_to] = request.env['HTTP_REFERER'] || root_path
   end
 
   private

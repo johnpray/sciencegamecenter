@@ -65,5 +65,21 @@ SciencegamereviewsOrg::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  config.action_mailer.default_url_options = { :host => "sciencegamereviews.org" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => "fas.org",
+    :user_name            => "testuser@fas.org",
+    :password             => "itsabigsecret12345",
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+
+  config.action_mailer.default_url_options = { :host => "growing-flower-9598.herokuapp.com" }
+
+
 end
