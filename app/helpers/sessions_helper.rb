@@ -50,13 +50,21 @@ module SessionsHelper
     session[:return_to] = request.fullpath
   end
 
+  def store_previous_location
+    session[:return_to] = request.env['HTTP_REFERER']
+  end
+
   private
 
   	def user_from_remember_token
   		remember_token = cookies[:remember_token]
       unless remember_token.nil?
     		user = User.find_by_remember_token(remember_token)
-        user unless user.disabled?
+        if user && !user.disabled?
+          user
+        else
+          nil
+        end
       end
   	end
 

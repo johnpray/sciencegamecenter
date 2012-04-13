@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
 	force_ssl
 
 	def new
+    store_previous_location
   end
 
   def create
@@ -10,6 +11,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       if !user.disabled?
         sign_in user, params[:remember_me]
+        flash[:success] = "You've logged in as #{user.name}."
         redirect_back_or user
       else
         flash.now[:error] = "Your account is currently disabled.
@@ -27,7 +29,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    store_previous_location
   	sign_out
-  	redirect_to root_path
+    flash[:success] = "You've been logged out. #{view_context.link_to "Log in.", login_path}".html_safe
+  	redirect_back_or root_path
   end
 end

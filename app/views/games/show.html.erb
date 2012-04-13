@@ -16,3 +16,55 @@
 <div class="description">
 	<%= markdown @game.description %>
 </div>
+<hr />
+<h1 class="left">Player Reviews of <%= @game.title %></h1>
+<div class="player_reviews">
+<% @player_reviews.each do |review| %>
+	<h4><%= review.user ? review.user.name : "Someone" %> says</h4>
+	<h2><%= review.title %></h2>
+	<p><%= markdown review.content %></p>
+	<% if current_user?(review.user) || @user.is_admin? %>
+	<p><%= link_to "Edit your review of #{@game.title}", edit_player_review_path(review) %></p>
+	<% end %>
+	<hr />
+<% end %>
+</div>
+
+<% if signed_in? %>
+<div class="row" id="add_player_review">
+  <div class="span12">
+
+    <div class="form-description">
+      <p>Have you played this game? Share your experience by leaving a review!</p>
+    </div>
+
+    <%= form_for(@player_review) do |f| %>
+
+    	<%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :title, "Review title" %>
+      <%= f.text_field :title %>
+      <p class="form-help">A title for this review</p>
+
+      <%= f.label :content %>
+      <%= f.text_area :content %>
+      <p class="form-help">Tell us all about this game and what you think of it.</p>
+
+      <%= f.hidden_field :game_id, value: @game.id %>
+      <%= f.hidden_field :user_id, value: @user.id %>
+
+      <p class="form-help" id="submit-help">After submitting, a site administrator will need to approve your review before it shows up. We're usually pretty prompt about it.</p>
+      <%= f.submit "Submit review", :class => "btn btn-large btn-primary" %>
+      
+    <% end %>
+  </div>
+</div>
+<% else %>
+<div>
+<div class="row" id="add_player_review">
+  <div class="span12">
+		<p><%= link_to "Sign up", signup_path %> or <%= link_to "log in", login_path %> to post a review of your own!</p>
+	</div>
+</div>
+<% end %>
+</div>

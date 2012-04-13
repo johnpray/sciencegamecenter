@@ -10,6 +10,9 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    @player_reviews = @game.player_reviews
+    @player_review = PlayerReview.new
+    @user = current_user
   end
 
   def new
@@ -41,5 +44,9 @@ class GamesController < ApplicationController
   end
 
   def destroy
+    game = Game.find(params[:id])
+    Game.find(params[:id]).destroy
+    flash[:success] = "Game #{game.title} and all its reviews and comments have been destroyed now and forever."
+    redirect_to users_path
   end
 end

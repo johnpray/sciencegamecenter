@@ -14,6 +14,7 @@ SciencegamereviewsOrg::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
   resources :games
+  resources :player_reviews
 
   match '/signup',  to: 'users#new'
   match '/login',   to: 'sessions#new'
