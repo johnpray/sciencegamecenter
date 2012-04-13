@@ -7,11 +7,12 @@ namespace :db do
                  birth_date: Date.new(1989, 01, 30),
                  disabled: false)
     admin.toggle!(:is_admin)
-    User.create!(name: "Melanie Stegman",
+    melanie = User.create!(name: "Melanie Stegman",
                  email: "mstegman@fas.org",
                  password: "fas@20036",
                  birth_date: Date.new(1989, 01, 30),
                  disabled: false)
+    melanie.toggle!(:is_admin)
     User.create!(name: "Mickey Mouse",
                  email: "jpray+mickey@fas.org",
                  password: "pikachu",
