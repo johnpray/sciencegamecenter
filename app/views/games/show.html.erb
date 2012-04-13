@@ -23,26 +23,12 @@
 <hr />
 <h2 class="left">Player Reviews of <i><%= @game.title %></i></h2>
 <% @player_reviews.each do |review| %>
-	<div class="player_review" id="<%= current_user?(review.user) ? 'new_player_review' : '' %>">
-		<% if @current_user ? @current_user.is_admin? : false %>
-			<%= render 'player_reviews/admin_tools', player_review: review %>
-		<% end %>
-
-		<% if review.user %>
-		<%= gravatar_for review.user %>
-		<% end %>
-		<h3><%= review.title %></h3>
-		<p><i>by <%= review.user ? review.user.name : "someone" %> on <%= review.created_at.to_date.to_formatted_s(:long) %></i></p>
-		<p><%= markdown review.content %></p>
-		<% if current_user?(review.user) %>
-		<p><%= link_to "Edit your review of #{@game.title}", edit_player_review_path(review) %></p>
-		<% end %>
-	</div>
+	<%= render 'player_reviews/player_review', review: review %>
 	<hr />
 <% end %>
 </div>
 
-<% if signed_in? %>
+<% if signed_in? && @player_reviews.where(user_id: @current_user.id).count < 1 %>
 <div class="row" id="new_player_review">
   <div class="span12">
 
@@ -77,6 +63,12 @@
       
     <% end %>
   </div>
+</div>
+<% elsif signed_in? %>
+<div class="row" id="new_player_review">
+  <div class="span12">
+		<p>Thanks for reviewing! You can only review each game once. If you'd like, you are welcome to edit your existing review above.</p>
+	</div>
 </div>
 <% else %>
 <div class="row" id="new_player_review">

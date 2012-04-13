@@ -34,9 +34,10 @@ class PlayerReviewsController < ApplicationController
   end
 
   def destroy
-    @player_review.find(params[:id]).destroy
+    player_review = PlayerReview.find(params[:id])
+    PlayerReview.find(params[:id]).destroy
     flash[:success] = "Player review #{@player_review.title} for #{@player_review.game.title} and all its reviews and comments have been destroyed now and forever."
-    redirect_to users_path
+    redirect_to game_path(player_review.game)
   end
 
 

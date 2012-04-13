@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   before_filter :admin_user,      except: [:index, :show]
 
   def index
-    @games = Game.paginate(page: params[:page])
+    @games = Game.paginate(page: params[:page], per_page: 10)
   end
 
   def show

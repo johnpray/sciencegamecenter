@@ -25,13 +25,25 @@
 		  <%= f.text_area :content %>
 		  <p class="form-help">Tell us all about this game and what you think of it.</p>
 
+		  <%= f.label :fun_rating %>
+		  <%= f.text_field :fun_rating %>
+		  <p class="form-help">A number out of five, where 5 is the most fun.</p>
+
+		  <%= f.label :accuracy_rating %>
+		  <%= f.text_field :accuracy_rating %>
+		  <p class="form-help">A number out of five, where 5 is the most scientifically accurate.</p>
+
+		  <%= f.label :effectiveness_rating %>
+		  <%= f.text_field :effectiveness_rating %>
+		  <p class="form-help">A number out of five, where 5 is the most effective at teaching.</p>
+
 		  <%= f.hidden_field :game_id, value: @player_review.game.id %>
 		  <% if @player_review.user %>
 		  <%= f.hidden_field :user_id, value:  @player_review.user.id %>
 		 	<% end %>
 
 		  <p class="form-help" id="submit-help">After submitting, a site administrator will need to approve your review before it shows up. We're usually pretty prompt about it.</p>
-		  <%= f.submit "Submit review", :class => "btn btn-large btn-primary" %>
+		  <%= f.submit "Update review", :class => "btn btn-large btn-primary" %>
 
 		<% end %>
 	</div>
