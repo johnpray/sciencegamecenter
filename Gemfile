@@ -10,7 +10,8 @@ gem 'will_paginate', '~> 3.0.3'
 gem 'bootstrap-will_paginate', '~> 0.0.7'
 gem 'redcarpet', '~> 2.1.1' # markdown
 gem 'paperclip', '~> 3.0.2' # uploads
-gem 'aws-sdk', '~> 1.3.4'
+gem 'aws-sdk', '~> 1.3.4' # storage
+gem 'acts-as-taggable-on', '~> 2.2.2' # tags
 
 group :development, :test do
 	gem 'sqlite3'

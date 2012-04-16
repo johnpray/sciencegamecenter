@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416160625) do
+ActiveRecord::Schema.define(:version => 20120416172018) do
 
   create_table "games", :force => true do |t|
     t.string   "title"
@@ -40,6 +40,23 @@ ActiveRecord::Schema.define(:version => 20120416160625) do
   end
 
   add_index "player_reviews", ["game_id", "user_id", "created_at"], :name => "index_player_reviews_on_game_id_and_user_id_and_created_at"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       :limit => 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"

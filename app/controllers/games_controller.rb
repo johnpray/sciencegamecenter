@@ -5,7 +5,11 @@ class GamesController < ApplicationController
   before_filter :admin_user,      except: [:index, :show]
 
   def index
-    @games = Game.paginate(page: params[:page], per_page: 10)
+    if !params[:platform].blank? || !params[:subject].blank?
+     @games = Game.tagged_with("#{params[:platform]}, #{params[:subject]}").paginate(page: params[:page], per_page: 10)
+    else
+      @games = Game.paginate(page: params[:page], per_page: 10)
+    end
   end
 
   def show

@@ -7,8 +7,8 @@
 <% if !game.developer.empty? %>
 <p class="developer info_line"><b>Developer:</b> <%= markdown_inline game.developer %></p>
 <% end %>
-<p class="subjects info_line"><b>Subjects:</b> </p>
-<p class="platforms info_line"><b>Available on:</b> </p>
+<p class="subjects info_line"><b>Subjects:</b> <%= subject_links_list %></p>
+<p class="platforms info_line"><b>Available on:</b> <%= platform_links_list %></p>
 <p class="info_line"><b>Description: </b></p>
 <div class="description">
 	<%= markdown game.description %>
