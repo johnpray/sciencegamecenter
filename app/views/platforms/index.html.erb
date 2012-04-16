@@ -1,0 +1,11 @@
+<%= provide(:title, 'Platforms') %>
+<h1>Platforms</h1>
+
+<p>Click a platform name below to see all games available for that platform.</p>
+
+<ul class="taggings">
+	<% @taggings.each do |t| %>
+	<li><%= link_to t.tag.name, games_path(platform: t.tag.name) %></li>
+	<% end %>
+</ul>
+

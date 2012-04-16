@@ -1,9 +1,9 @@
-<%= provide(:title, 'All users') %>
-<h1>All subjects</h1>
+<%= provide(:title, 'Subjects') %>
+<h1>Subjects</h1>
 
 <p>Click a subject name below to see all games that cover that subject.</p>
 
-<ul class="subjects">
+<ul class="taggings">
 	<% @taggings.each do |t| %>
 	<li><%= link_to t.tag.name, games_path(subject: t.tag.name) %></li>
 	<% end %>

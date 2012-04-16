@@ -1,5 +1,7 @@
 SciencegamereviewsOrg::Application.routes.draw do
 
+  get "platforms/index"
+
   get "subjects/index"
 
   root :to => 'static_pages#home'
@@ -18,6 +20,7 @@ SciencegamereviewsOrg::Application.routes.draw do
   resources :games
   resources :player_reviews
   resources :subjects, only: :index
+  resources :platforms, only: :index
 
   match '/signup',  to: 'users#new'
   match '/login',   to: 'sessions#new'
