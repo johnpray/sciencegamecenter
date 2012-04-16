@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       else
     		sign_in @user
     		flash[:success] = "You're all signed up!"
-    		redirect_to @user
+    		redirect_to root_path
       end
   	else
   		render 'new'

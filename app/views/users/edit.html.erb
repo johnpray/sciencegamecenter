@@ -22,6 +22,17 @@
       <%= f.password_field :password %>
       <p class="form-help">If you'd like to change your password, enter the new one here. Else, leave it blank. It must be at least 6 characters long.</p>
 
+      <% if @current_user.is_admin? %>
+      <%= f.label :disabled, "#{f.check_box :disabled} Account disabled".html_safe %>
+      <p class="form-help">Whether this account is disabled, preventing the user from logging in. If this is an underage user waiting on parental confirmation, their account will be disabled until approved. Only admins can see and change this value directly.</p>
+      <% end %>
+
+      <div class="date">
+        <%= f.label :birth_date %>
+        <%= f.date_select :birth_date, start_year: Time.now.year-150, end_year: Time.now.year %>
+        <p class="form-help">The day you were born. We required this when signing up to check if we needed parental consent to activate your account.</p>
+      </div>
+
       <p class="form-help" id="submit-help"></p>
       <%= f.submit "Save changes", :class => "btn btn-large btn-primary" %>
     <% end %>
