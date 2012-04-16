@@ -39,7 +39,7 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     if @game.update_attributes(params[:game])
-      flash[:success] = "Game #{@game.title} updated."
+      flash[:success] = view_context.sanitize "Game <i>#{@game.title}</i> updated."
       redirect_to @game
     else
       render 'edit'
@@ -49,7 +49,7 @@ class GamesController < ApplicationController
   def destroy
     game = Game.find(params[:id])
     Game.find(params[:id]).destroy
-    flash[:success] = "Game #{game.title} and all its reviews and comments have been destroyed now and forever."
-    redirect_to users_path
+    flash[:success] = view_context.sanitize "Game <i>#{game.title}</i> and all its reviews and comments have been destroyed now and forever."
+    redirect_to games_path
   end
 end

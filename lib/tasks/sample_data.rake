@@ -11,8 +11,8 @@ namespace :db do
                  email: "mstegman@fas.org",
                  password: "fas@20036",
                  birth_date: Date.new(1989, 01, 30),
-                 disabled: false)
-    melanie.toggle!(:is_admin)
+                 disabled: false,
+                 is_admin: true)
     User.create!(name: "Mickey Mouse",
                  email: "jpray+mickey@fas.org",
                  password: "pikachu",

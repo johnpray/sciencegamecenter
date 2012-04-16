@@ -3,12 +3,8 @@
 <% end %>
 <p class="subjects info_line"><b>Subjects:</b> <%= subject_links_list %></p>
 <p class="platforms info_line"><b>Available on:</b> <%= platform_links_list %></p>
-<% if !game.website_url.empty? %>
 <p class="website info_line"><b>Official website:</b> <a href="<%= game.website_url %>"><%= game.website_url %></a></p>
-<% end %>
-<% if !game.developer.empty? %>
 <p class="developer info_line"><b>Developer:</b> <%= markdown_inline game.developer %></p>
-<% end %>
 <p class="info_line"><b>Description: </b></p>
 <div class="description">
 	<%= markdown game.description %>

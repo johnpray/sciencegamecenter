@@ -12,14 +12,17 @@
 			</li>
 			<% if !params[:subject].blank? %>
 			<li>
-				<span class="divider">&raquo;</span> <%= params[:subject] %>
+				<span class="divider">&raquo;</span> <strong><%= params[:subject] %></strong>
 			</li>
 			<% end %>
 			<% if !params[:platform].blank? %>
 			<li>
-				<span class="divider">&raquo;</span> <%= params[:platform] %>
+				<span class="divider">&raquo;</span> <strong><%= params[:platform] %></strong>
 			</li>
 			<% end %>
+			<li>
+				&nbsp;&nbsp;&nbsp;<%= link_to "View all games", games_path %>
+			</li>
 		</ul>
 		<% end %>
 
