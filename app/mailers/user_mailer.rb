@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "sciencegamereviews@fas.org"
+  default from: "ScienceGameReviews.org@fas.org"
 
   def inform_of_signup(user)
     @user = user
