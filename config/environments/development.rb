@@ -43,8 +43,8 @@ SciencegamereviewsOrg::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => "fas.org",
-    :user_name            => "testuser@fas.org",
-    :password             => "itsabigsecret12345",
+    :user_name            => GMAIL_USERNAME,
+    :password             => GMAIL_PASSWORD,
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
