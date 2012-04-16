@@ -1,7 +1,8 @@
 <% if signed_in? && current_user.is_admin? %>
 <%= render 'games/admin_tools', game: game %>
 <% end %>
-<p class="topics info_line">Subjects:</p>
+<p class="developer info_line">Developer: <%= markdown_inline game.developer %></p>
+<p class="subjects info_line">Subjects:</p>
 <p class="platforms info_line">Available on:</p>
 <% if !game.website_url.empty? %>
 <p class="website info_line">Official website: <a href="<%= game.website_url %>"><%= game.website_url %></a></p>

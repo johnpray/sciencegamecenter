@@ -26,12 +26,14 @@ namespace :db do
     Game.create(
       title: "Immune Attack",
       description: "Immune Attack is funded by the National Science Foundation and jointly developed by the Federation of American Scientists, the University of Southern California, Brown University, and Escape Hatch Entertainment. It teaches immunology in a fun and engaging way that is different from the traditional classroom setting, making use of the challenge and reward paradigm found in most video games.",
-      website_url: "http://www.immuneattack.org/"
+      website_url: "http://www.immuneattack.org/",
+      developer: "[Learning Technologies at FAS](http://www.fas.org/blog/learningtech/)"
       )
     Game.create(
       title: "Science Pirates: The Curse of Brownbeard",
       description: "Science Pirates: The Curse of Brownbeard is a 3D educational computer game that communicates food safety knowledge in an environment of scientific exploration. The USDA awarded NMSU a grant to develop interactive games that help mid-school youth learn about food safety procedures, such as hand washing, cooking food to the proper temperature, keeping raw meat and cooked food separate, and washing surfaces. NMSU's Media Productions unit has a strong history in developing food safety materials, including an effective games site for younger children in 3rd - 5th grades, The Food Detectives Fight BAC!.",
-      website_url: "http://sciencepirates.com/"
+      website_url: "http://sciencepirates.com/",
+      developer: "[NMSU Learning Games Lab](http://learninggames.nmsu.edu/)"
       )
     Game.all.each do |game|
       game.player_reviews.create(

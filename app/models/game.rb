@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  attr_accessible :title, :description, :website_url, :boxart,
+  attr_accessible :title, :description, :website_url, :developer, :boxart,
   								:boxart_file_name, :boxart_file_size,
   								:boxart_content_type, :boxart_updated_at
 

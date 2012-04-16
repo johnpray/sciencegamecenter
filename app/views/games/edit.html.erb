@@ -20,6 +20,10 @@
       <%= f.text_field :website_url %>
       <p class="form-help">The full address (including <i>http://</i>) for the game's official web site.</p>
 
+      <%= f.label :developer, "Developer" %>
+      <%= f.text_field :developer %>
+      <p class="form-help">Name and link to developer's website<br />using Markdown, something like [FAS](http://www.fas.org/)</p>
+
       <%= f.label :boxart %>
       <% if @game.boxart.file? %>
       <%= image_tag @game.boxart.url %>
