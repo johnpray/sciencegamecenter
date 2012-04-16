@@ -1,6 +1,6 @@
 if Rails.env == "production"
   # set credentials from ENV hash
-  GMAIL_USERNAME = ENV['GMAIL_USERNAME']
+  GMAIL_USERNAME = "ScienceGameReviews.org@fas.org"
   GMAIL_PASSWORD = ENV['GMAIL_PASSWORD']
 else
   # get credentials from YML file
