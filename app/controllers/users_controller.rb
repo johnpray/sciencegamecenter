@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
     @user.disabled = true if @user.is_under_thirteen?
   	if @user.save
+      UserMailer.inform_of_signup(@user).deliver
       if @user.disabled? && @user.parent_email
         UserMailer.parent_confirmation(@user).deliver
         flash[:success] = "Your account has been created.
@@ -100,12 +101,13 @@ class UsersController < ApplicationController
     if @user.disabled? && user_code == url_code
       if @user.update_attribute(:disabled, false)
         flash[:success] = "Thank you! Your child's account has been
-          activated. They can now log in with the Name and Password they chose
+          activated. They can now log in with the Email and Password they chose
           when signing up."
+          UserMailer.inform_of_activation(@user).deliver
         redirect_to login_path
       else
         flash[:failure] = "There was a problem activating this account.
-          Please contact us at sciencegamereviews@fas.org"
+          Please contact us at <a href='mailto:sciencegamereviews@fas.org'>sciencegamereviews@fas.org</a>".html_safe
         redirect_to root_path
       end
     else
