@@ -1,13 +1,15 @@
 <% if signed_in? && current_user.is_admin? %>
 <%= render 'games/admin_tools', game: game %>
 <% end %>
-<p class="developer info_line">Developer: <%= markdown_inline game.developer %></p>
-<p class="subjects info_line">Subjects:</p>
-<p class="platforms info_line">Available on:</p>
 <% if !game.website_url.empty? %>
-<p class="website info_line">Official website: <a href="<%= game.website_url %>"><%= game.website_url %></a></p>
+<p class="website info_line"><b>Official website:</b> <a href="<%= game.website_url %>"><%= game.website_url %></a></p>
 <% end %>
-<br />
+<% if !game.developer.empty? %>
+<p class="developer info_line"><b>Developer:</b> <%= markdown_inline game.developer %></p>
+<% end %>
+<p class="subjects info_line"><b>Subjects:</b> </p>
+<p class="platforms info_line"><b>Available on:</b> </p>
+<p class="info_line"><b>Description: </b></p>
 <div class="description">
 	<%= markdown game.description %>
 </div>
