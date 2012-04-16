@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  /* padding-top: 60px; */
 }
 
 section {
@@ -30,9 +30,9 @@ textarea {
 
 .center {
   text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
+}
+h1.center {
+  margin-bottom: 10px;
 }
 
 /* typography */
@@ -264,3 +264,20 @@ img.boxart {
   margin-top: -10px;
 }
 
+/* scorecards */
+#scorecards {
+  th {
+    font-weight: normal;
+    vertical-align: top;
+  }
+
+  .score_total_cell {
+    text-align: right;
+  }
+
+  .score_total {
+    font-size: 28px;
+    line-height: 1;
+    font-weight: bold;
+  }
+}

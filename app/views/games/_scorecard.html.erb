@@ -1,13 +1,15 @@
-<div class="row" id="scorecard"><div class="span12">
+<div class="row" id="scorecards"><div class="span12">
 
 <h2>Scorecards</h2>
 
 <div class="row">
 
+<!-- AUTHORITATIVE -->
 <div class="span4"><table class="table table-bordered">
 <thead>
 <tr>
-	<th colspan="2">Authoritative Review<br/><small>Our official review</small></th>
+	<th colspan="2"><strong>Authoritative Review</strong><br/>
+		Our official review</th>
 	<th>&mdash;</th>
 </tr>
 </thead>
@@ -20,10 +22,12 @@
 </tbody>
 </table></div>
 
+<!-- EXPERT -->
 <div class="span4"><table class="table table-bordered">
 <thead>
 <tr>
-	<th colspan="2">Expert Reviews<br/><small>By scientists and teachers</small></th>
+	<th colspan="2"><strong>Expert Reviews</strong><br/>
+		By scientists and teachers</th>
 	<th>&mdash;</th>
 </tr>
 </thead>
@@ -37,13 +41,25 @@
 </tbody>
 </table></div>
 
+<!-- PLAYER -->
 <div class="span4"><table class="table table-bordered">
 <thead>
 <tr>
-	<th colspan="2">Player Reviews<br/><small>By everyone else</small></th>
-	<th><%= game.player_averages_total %></th>
+	<th colspan="2"><strong><%= link_to "Player Reviews", game_path(@game, anchor: 'player_reviews') %></strong><br/>
+		By everyone else (and you!)</th>
+
+	<% if game.player_averages_total >= 0 %>
+	<th class="score_total_cell">
+		<span class="score_total"><%= game.player_averages_total %></span><br />
+		/ 15
+	</th>
+	<% else %>
+	<th>&mdash;</th>
+	<% end %>
+
 </tr>
 </thead>
+<% if game.player_averages_total >= 0 %>
 <tbody>
 <tr>
 	<td width="50px">Fun?</td>
@@ -79,6 +95,17 @@
 	</td>
 </tr>
 </tbody>
+<% else %>
+<tbody>
+<tr>
+	<td colspan="3" rowspan="3">
+		No players have left any reviews yet for <i><%= @game.title %></i>.<br />
+		Have you played this game? <%= link_to "Share your experience below!", game_path(@game, anchor: 'new_player_review') %>
+	</td>
+</tr>
+</tbody>
+<% end %>
+
 </table></div>
 
 </div>

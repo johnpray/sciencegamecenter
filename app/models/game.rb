@@ -16,7 +16,9 @@ class Game < ActiveRecord::Base
   										 content_type: ['image/jpeg', 'image/png', 'image/gif'] }
 
 	def player_fun_average(round = true)
-		if @player_fun_rating_average
+		if self.player_reviews.count < 1
+			-1
+		elsif @player_fun_rating_average
 			round ? @player_fun_rating_average.round(1) : @player_fun_rating_average
 		else
 			total = 0
@@ -29,7 +31,9 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_accuracy_average(round = true)
-		if @player_accuracy_rating_average
+		if self.player_reviews.count < 1
+			-1
+		elsif @player_accuracy_rating_average
 			round ? @player_accuracy_rating_average.round(1) : @player_accuracy_rating_average
 		else
 			total = 0
@@ -42,7 +46,9 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_effectiveness_average(round = true)
-		if @player_effectiveness_rating_average
+		if self.player_reviews.count < 1
+			-1
+		elsif @player_effectiveness_rating_average
 			round ? @player_effectiveness_rating_average.round(1) : @player_effectiveness_rating_average
 		else
 			total = 0
@@ -55,7 +61,9 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_averages_total
-		if @player_rating_averages_total
+		if self.player_reviews.count < 1
+			-1
+		elsif @player_rating_averages_total
 			@player_rating_averages_total.round(1)
 		else
 			@player_rating_averages_total =
