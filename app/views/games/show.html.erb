@@ -5,24 +5,12 @@
 <%= link_to image_tag(@game.boxart.url(:medium), class: :boxart), @game.boxart.url(:large) %>
 
 <h1 class="left"><%= @game.title %></h1>
-<% if signed_in? && current_user.is_admin? %>
-<%= render 'games/admin_tools', game: @game %>
-<% end %>
+<%= render 'games/game_info', game: @game %>
 
-<p class="topics info_line">Subjects:</p>
-<p class="platforms info_line">Available on:</p>
-<% if !@game.website_url.empty? %>
-<p class="website info_line">Official website: <a href="<%= @game.website_url %>"><%= @game.website_url %></a></p>
-<% end %>
-<br />
-<div class="description">
-	<%= markdown @game.description %>
-	<a id="player_reviews"></a>
-</div>
-<div id="player_reviews">
 <hr />
-
 <%= render 'games/scorecard', game: @game %>
+
+<div id="player_reviews">
 
 <hr />
 <h2 class="left">Player Reviews of <i><%= @game.title %></i></h2>

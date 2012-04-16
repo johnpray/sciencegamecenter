@@ -8,6 +8,39 @@
 <thead>
 <tr>
 	<th colspan="2">Authoritative Review<br/><small>Our official review</small></th>
+	<th>&mdash;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td colspan="3" rowspan="3">
+		We haven't published our authoritative review of <i><%= @game.title %></i> quite yet. Rest assured that we'll have it up shortly!
+	</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="span4"><table class="table table-bordered">
+<thead>
+<tr>
+	<th colspan="2">Expert Reviews<br/><small>By scientists and teachers</small></th>
+	<th>&mdash;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td colspan="3" rowspan="3">
+		We don't have any expert reviews yet for <i><%= @game.title %></i>.<br />
+		Are you a scientist who has played this game or a teacher who has used it in the classroom? <%= link_to "Contact us about writing an expert review today.", contact_path %>
+	</td>
+</tr>
+</tbody>
+</table></div>
+
+<div class="span4"><table class="table table-bordered">
+<thead>
+<tr>
+	<th colspan="2">Player Reviews<br/><small>By everyone else</small></th>
 	<th><%= game.player_averages_total %></th>
 </tr>
 </thead>
@@ -43,94 +76,6 @@
 	</td>
 	<td>
 		<%= game.player_effectiveness_average %>
-	</td>
-</tr>
-</tbody>
-</table></div>
-
-<div class="span4"><table class="table table-bordered">
-<thead>
-<tr>
-	<th colspan="2">Expert Reviews<br/><small>By scientists and teachers</small></th>
-	<th>15</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-	<td width="50px">Fun?</td>
-	<td width="*%">
-		<div class="progress progress-success">
-			<div class="bar" style="width: <%= 5 * 20 %>%;"></div>
-		</div>
-	</td>
-	<td width="30px">
-		5
-	</td>
-</tr>
-<tr>
-	<td>Accurate?</td>
-	<td width="*%">
-		<div class="progress progress-success">
-			<div class="bar" style="width: <%= 5 * 20 %>%;"></div>
-		</div>
-	</td>
-	<td>
-		5
-	</td>
-</tr>
-<tr>
-	<td>Effective?</td>
-	<td width="*%">
-		<div class="progress progress-success">
-			<div class="bar" style="width: <%= 5 * 20 %>%;"></div>
-		</div>
-	</td>
-	<td>
-		5
-	</td>
-</tr>
-</tbody>
-</table></div>
-
-<div class="span4"><table class="table table-bordered">
-<thead>
-<tr>
-	<th colspan="2">Player Reviews<br/><small>By everyone else</small></th>
-	<th>15</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-	<td width="50px">Fun?</td>
-	<td width="*%">
-		<div class="progress progress-success">
-			<div class="bar" style="width: <%= 5 * 20 %>%;"></div>
-		</div>
-	</td>
-	<td width="30px">
-		5
-	</td>
-</tr>
-<tr>
-	<td>Accurate?</td>
-	<td width="*%">
-		<div class="progress progress-success">
-			<div class="bar" style="width: <%= 5 * 20 %>%;"></div>
-		</div>
-	</td>
-	<td>
-		5
-	</td>
-</tr>
-<tr>
-	<td>Effective?</td>
-	<td width="*%">
-		<div class="progress progress-success">
-			<div class="bar" style="width: <%= 5 * 20 %>%;"></div>
-		</div>
-	</td>
-	<td>
-		5
 	</td>
 </tr>
 </tbody>
