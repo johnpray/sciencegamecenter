@@ -6,7 +6,7 @@ class GamesController < ApplicationController
 
   def index
     if !params[:platform].blank? || !params[:subject].blank?
-     @games = Game.tagged_with("#{params[:platform]}, #{params[:subject]}").paginate(page: params[:page], per_page: 10)
+      @games = Game.tagged_with("#{params[:platform]}, #{params[:subject]}").paginate(page: params[:page], per_page: 10)
     else
       @games = Game.paginate(page: params[:page], per_page: 10)
     end

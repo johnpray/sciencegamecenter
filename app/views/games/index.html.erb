@@ -5,9 +5,30 @@
 
 		<h1>Games</h1>
 
+		<% if !params[:platform].blank? || !params[:subject].blank? %>
+		<ul class="breadcrumb">
+			<li>
+				<%= link_to "Games", games_path %>
+			</li>
+			<% if !params[:subject].blank? %>
+			<li>
+				<span class="divider">&raquo;</span> <%= params[:subject] %>
+			</li>
+			<% end %>
+			<% if !params[:platform].blank? %>
+			<li>
+				<span class="divider">&raquo;</span> <%= params[:platform] %>
+			</li>
+			<% end %>
+		</ul>
+		<% end %>
+
 		<ul class="games">
 		  <%= render @games %>
 		</ul>
+		<% if @games.count < 1 %>
+			<p>No games matching that criteria were found. <%= link_to "View all games.", games_path %></p>
+		<% end %>
 
 		<%= will_paginate %>
 

@@ -1,3 +1,6 @@
+<% if signed_in? && current_user.is_admin? %>
+<%= render 'games/admin_tools', game: game %>
+<% end %>
 <p class="subjects info_line"><b>Subjects:</b> <%= subject_links_list %></p>
 <p class="platforms info_line"><b>Available on:</b> <%= platform_links_list %></p>
 <% if !game.website_url.empty? %>
@@ -6,11 +9,6 @@
 <% if !game.developer.empty? %>
 <p class="developer info_line"><b>Developer:</b> <%= markdown_inline game.developer %></p>
 <% end %>
-
-<% if signed_in? && current_user.is_admin? %>
-<%= render 'games/admin_tools', game: game %>
-<% end %>
-
 <p class="info_line"><b>Description: </b></p>
 <div class="description">
 	<%= markdown game.description %>
