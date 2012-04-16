@@ -286,3 +286,24 @@ img.boxart {
     font-weight: bold;
   }
 }
+
+/* subjects index */
+
+.subjects {
+  list-style: none;
+  margin: 0;
+  li {
+    a {
+      display: block;
+      overflow: auto;
+      padding: 10px;
+      border-top: 1px solid $grayLighter;
+      &:hover {
+        background: #fffeee;
+      }
+    }
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}

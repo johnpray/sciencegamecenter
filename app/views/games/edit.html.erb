@@ -12,17 +12,13 @@
       <%= f.text_field :title %>
       <p class="form-help">The game's full title.</p>
 
-      <%= f.label :platform_list, "Available on" %>
-      <%= f.text_field :platform_list %>
-      <p class="form-help">The platforms this game has been released for, separated by commas. (e.g. PC (Windows), Mac, Game Boy Color)</p>
-
       <%= f.label :subject_list, "Subjects" %>
       <%= f.text_field :subject_list %>
       <p class="form-help">The subjects this game deals with, separated by commas. (e.g. Biology, Chemistry, Pokémon Battling)</p>
 
-      <%= f.label :description %>
-      <%= f.text_area :description, rows: 10 %>
-      <p class="form-help">A description of the game. Facts only. Save opinions for the reviews.<br/>Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
+      <%= f.label :platform_list, "Available on" %>
+      <%= f.text_field :platform_list %>
+      <p class="form-help">The platforms this game has been released for, separated by commas. (e.g. PC (Windows), Mac, Game Boy Color)</p>
 
       <%= f.label :website_url, "Website URL" %>
       <%= f.text_field :website_url %>
@@ -31,6 +27,10 @@
       <%= f.label :developer, "Developer" %>
       <%= f.text_field :developer %>
       <p class="form-help">Name and link to developer's website<br />using Markdown, something like [FAS](http://www.fas.org/)</p>
+
+      <%= f.label :description %>
+      <%= f.text_area :description, rows: 10 %>
+      <p class="form-help">A description of the game. Facts only. Save opinions for the reviews.<br/>Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
 
       <%= f.label :boxart %>
       <% if @game.boxart.file? %>

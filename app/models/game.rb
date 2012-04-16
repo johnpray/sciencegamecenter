@@ -18,6 +18,8 @@ class Game < ActiveRecord::Base
   validates_attachment :boxart, content_type: {
   										 content_type: ['image/jpeg', 'image/png', 'image/gif'] }
 
+  default_scope order: 'games.title ASC'
+
 	def player_fun_average(round = true)
 		if self.player_reviews.count < 1
 			-1

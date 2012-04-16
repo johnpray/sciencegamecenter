@@ -1,5 +1,7 @@
 SciencegamereviewsOrg::Application.routes.draw do
 
+  get "subjects/index"
+
   root :to => 'static_pages#home'
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
@@ -15,6 +17,7 @@ SciencegamereviewsOrg::Application.routes.draw do
   resources :password_resets
   resources :games
   resources :player_reviews
+  resources :subjects, only: :index
 
   match '/signup',  to: 'users#new'
   match '/login',   to: 'sessions#new'
