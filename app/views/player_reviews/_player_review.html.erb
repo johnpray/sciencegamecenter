@@ -19,7 +19,7 @@
 
 	<% if (current_user?(review.user) || @current_user.is_admin?) && review.pending? %>
 	<div class="alert">
-		<strong>This review is awaiting administrator approval before it appears on the site.</strong>
+		<strong>Pending.</strong> This review is awaiting administrator approval before it appears on the site.
 	</div>
 	<% end %>
 

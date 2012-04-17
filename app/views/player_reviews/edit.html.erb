@@ -39,7 +39,7 @@
 
 		  <% if @current_user.is_admin? %>
 		  <%= f.label :status, "Approval status" %>
-		  <%= f.select :status, ["Pending", "Approved", "Rejected"] %>
+		  <%= f.select :status, ["Pending", "Approved"] %>
 		  <p class="form-help">Whether this review appears to the public. Only administrators can change this value.</p>
 		  <% end %>
 

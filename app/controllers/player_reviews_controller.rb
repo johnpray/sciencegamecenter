@@ -19,7 +19,7 @@ class PlayerReviewsController < ApplicationController
         @player_review.approve!
         flash[:success] = "Player review created."
       else
-        @player_review.set_pending!
+        @player_review.make_pending!
         PlayerReviewMailer.notify_for_approval(@player_review).deliver
         flash[:success] = "Your review has been submitted and will show up on the site once it is approved. Thank you!"
       end
@@ -34,8 +34,15 @@ class PlayerReviewsController < ApplicationController
 
   def update
     if @player_review.update_attributes(params[:player_review])
-      flash[:success] = "Player review #{@player_review.title} for #{@player_review.game.title} updated."
-      redirect_to @player_review.game
+      if current_user.is_admin?
+        @player_review.approve!
+        flash[:success] = "Player review updated."
+      else
+        @player_review.make_pending!
+        PlayerReviewMailer.notify_for_approval(@player_review).deliver
+        flash[:success] = "Your revised review has been submitted and will show up on the site once it is approved. Thank you!"
+      end
+      redirect_to game_path(@player_review.game, anchor: :player_reviews)
     else
       render 'edit'
     end

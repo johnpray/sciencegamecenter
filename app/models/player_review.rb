@@ -40,19 +40,11 @@ class PlayerReview < ActiveRecord::Base
   	self.update_attribute(:status, 'Approved')
   end
 
-  def rejected?
-  	self.status == 'Rejected'
-  end
-
-  def reject!
-  	self.update_attribute(:status, 'Rejected')
-  end
-
   def pending?
   	self.status == 'Pending' || self.status.nil?
   end
 
-  def set_pending!
+  def make_pending!
   	self.update_attribute(:status, 'Pending')
   end
 end
