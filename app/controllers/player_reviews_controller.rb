@@ -14,7 +14,7 @@ class PlayerReviewsController < ApplicationController
     @player_reviews = @game.player_reviews
     @player_review = PlayerReview.new(params[:player_review])
     if @player_review.save
-      if @current_user.is_admin?
+      if current_user.is_admin?
         @player_review.approve!
         flash[:success] = "Player review created."
       else

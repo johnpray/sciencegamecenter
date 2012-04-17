@@ -6,10 +6,10 @@ Here's the review:
 
 ===
 Game: <%= @player_review.game.title %>
-User: <%= "#{@player_review.user.name} <#{@player_review.email}>" %>
+User: <%= "#{@player_review.user.name} (#{@player_review.user.email})" %>
 
-Title: <%= @player_review.title %>
-Content:
+## <%= @player_review.title %> ##
+
 <%= @player_review.content %>
 
 Fun rating: <%= @player_review.fun_rating %> / 5

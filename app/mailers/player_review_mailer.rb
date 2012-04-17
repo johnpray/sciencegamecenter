@@ -4,7 +4,7 @@ class PlayerReviewMailer < ActionMailer::Base
 
   def notify_for_approval(player_review)
     @player_review = player_review
-    admin = "ScienceGameReviews Admins <sciencegamereviews@fas.org>"
+    admin = "ScienceGameReviews Admins <administrator@fas.org>"
     mail(
       to: admin,
       subject: "A new player review is awaiting approval"

@@ -37,6 +37,12 @@
 		  <%= f.text_field :effectiveness_rating %>
 		  <p class="form-help">A number out of five, where 5 is the most effective at teaching.</p>
 
+		  <% if @current_user.is_admin? %>
+		  <%= f.label :status, "Approval status" %>
+		  <%= f.select :status, ["Pending", "Approved", "Rejected"] %>
+		  <p class="form-help">Whether this review appears to the public. Only administrators can change this value.</p>
+		  <% end %>
+
 		  <%= f.hidden_field :game_id, value: @player_review.game.id %>
 		  <% if @player_review.user %>
 		  <%= f.hidden_field :user_id, value:  @player_review.user.id %>
