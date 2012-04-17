@@ -31,4 +31,28 @@ class PlayerReview < ActiveRecord::Base
   validates :game_id, presence: true
 
   default_scope order: 'player_reviews.created_at DESC'
+
+  def approved?
+  	self.status == 'approved'
+  end
+
+  def approve!
+  	self.update_attribute(:status, 'approved')
+  end
+
+  def rejected?
+  	self.status == 'rejected'
+  end
+
+  def reject!
+  	self.update_attribute(:status, 'rejected')
+  end
+
+  def pending?
+  	self.status == 'pending' || self.status.nil?
+  end
+
+  def set_pending!
+  	self.update_attribute(:status, 'pending')
+  end
 end
