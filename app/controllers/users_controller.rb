@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user])
     @user.disabled = true if @user.is_under_thirteen?
-  	if @user.save
+  	if verify_recaptcha(model: @user) && @user.save
       UserMailer.inform_of_signup(@user).deliver
       if @user.disabled? && @user.parent_email
         UserMailer.parent_confirmation(@user).deliver

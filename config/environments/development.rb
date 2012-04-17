@@ -43,8 +43,8 @@ SciencegamereviewsOrg::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => "fas.org",
-    :user_name            => Rails.root.join("config/gmail_username.txt"),
-    :password             => Rails.root.join("config/gmail_password.txt"),
+    :user_name            => Rails.root.join("config/gmail_username.txt").read,
+    :password             => Rails.root.join("config/gmail_password.txt").read,
     :authentication       => "plain",
     :enable_starttls_auto => true
   }

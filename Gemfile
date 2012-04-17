@@ -12,6 +12,7 @@ gem 'redcarpet', '~> 2.1.1' # markdown
 gem 'paperclip', '~> 3.0.2' # uploads
 gem 'aws-sdk', '~> 1.3.4' # storage
 gem 'acts-as-taggable-on', '~> 2.2.2' # tags
+gem 'recaptcha', require: 'recaptcha/rails'
 
 group :development, :test do
 	gem 'sqlite3'
