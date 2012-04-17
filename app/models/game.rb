@@ -21,8 +21,8 @@ class Game < ActiveRecord::Base
   default_scope order: 'games.title ASC'
 
 	def player_fun_average(round = true)
-		if self.player_reviews.count < 1
-			0
+		if self.approved_player_reviews_count < 1
+			-1
 		elsif @player_fun_rating_average
 			round ? @player_fun_rating_average.round(1) : @player_fun_rating_average
 		else
@@ -38,8 +38,8 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_accuracy_average(round = true)
-		if self.player_reviews.count < 1
-			0
+		if self.approved_player_reviews_count < 1
+			-1
 		elsif @player_accuracy_rating_average
 			round ? @player_accuracy_rating_average.round(1) : @player_accuracy_rating_average
 		else
@@ -55,8 +55,8 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_effectiveness_average(round = true)
-		if self.player_reviews.count < 1
-			0
+		if self.approved_player_reviews_count < 1
+			-1
 		elsif @player_effectiveness_rating_average
 			round ? @player_effectiveness_rating_average.round(1) : @player_effectiveness_rating_average
 		else
@@ -72,8 +72,8 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_averages_total
-		if self.player_reviews.count < 1
-			0
+		if self.approved_player_reviews_count < 1
+			-1
 		elsif @player_rating_averages_total
 			@player_rating_averages_total.round(1)
 		else
@@ -83,5 +83,15 @@ class Game < ActiveRecord::Base
 				player_effectiveness_average(false)
 			@player_rating_averages_total.round(1)
 		end
+	end
+
+	def approved_player_reviews_count
+		count = 0
+		unless self.player_reviews.nil?
+			self.player_reviews.each do |r|
+				count += 1 if r.approved?
+			end
+		end
+		count
 	end
 end
