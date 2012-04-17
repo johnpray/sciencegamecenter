@@ -6,18 +6,18 @@
 	<h3><%= review.title %></h3>
 	<p>
 		<i>by <%= review.user ? review.user.name : "someone" %> on <%= review.created_at.to_date.to_formatted_s(:long) %></i>
-		<% if signed_in? && @current_user.is_admin? %>
+		<% if signed_in? && admin? %>
 			 - 
 			<%= link_to "Edit review", edit_player_review_path(review) %>,
 			<%= link_to "Delete review", review, method: :delete, confirm: "Are you sure you want to destroy this review now and for the rest of time, with no going back?" %>
 		<% end %>
-		<% if signed_in? && current_user?(review.user) && !@current_user.is_admin? %>
+		<% if signed_in? && current_user?(review.user) && !admin? %>
 		 - 
 		 <%= link_to "Edit your review", edit_player_review_path(review) %>
 	<% end %>
 	</p>
 
-	<% if (current_user?(review.user) || @current_user.is_admin?) && review.pending? %>
+	<% if (current_user?(review.user) || admin?) && review.pending? %>
 	<div class="alert">
 		<strong>Pending.</strong> This review is awaiting administrator approval before it appears on the site.
 	</div>

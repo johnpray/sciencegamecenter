@@ -22,13 +22,13 @@ class Game < ActiveRecord::Base
 
 	def player_fun_average(round = true)
 		if self.player_reviews.count < 1
-			-1
+			0
 		elsif @player_fun_rating_average
 			round ? @player_fun_rating_average.round(1) : @player_fun_rating_average
 		else
 			total = 0
 			self.player_reviews.each do |r|
-				total += r.fun_rating.to_f
+				total += r.fun_rating.to_f if r.approved?
 			end
 			@player_fun_rating_average = total / self.player_reviews.count
 			round ? @player_fun_rating_average.round(1) : @player_fun_rating_average
@@ -37,13 +37,13 @@ class Game < ActiveRecord::Base
 
 	def player_accuracy_average(round = true)
 		if self.player_reviews.count < 1
-			-1
+			0
 		elsif @player_accuracy_rating_average
 			round ? @player_accuracy_rating_average.round(1) : @player_accuracy_rating_average
 		else
 			total = 0
 			self.player_reviews.each do |r|
-				total += r.accuracy_rating.to_f
+				total += r.accuracy_rating.to_f if r.approved?
 			end
 			@player_accuracy_rating_average = total / self.player_reviews.count
 			round ? @player_accuracy_rating_average.round(1) : @player_accuracy_rating_average
@@ -52,13 +52,13 @@ class Game < ActiveRecord::Base
 
 	def player_effectiveness_average(round = true)
 		if self.player_reviews.count < 1
-			-1
+			0
 		elsif @player_effectiveness_rating_average
 			round ? @player_effectiveness_rating_average.round(1) : @player_effectiveness_rating_average
 		else
 			total = 0
 			self.player_reviews.each do |r|
-				total += r.effectiveness_rating.to_f
+				total += r.effectiveness_rating.to_f if r.approved?
 			end
 			@player_effectiveness_rating_average = total / self.player_reviews.count
 			round ? @player_effectiveness_rating_average.round(1) : @player_effectiveness_rating_average
@@ -67,7 +67,7 @@ class Game < ActiveRecord::Base
 
 	def player_averages_total
 		if self.player_reviews.count < 1
-			-1
+			0
 		elsif @player_rating_averages_total
 			@player_rating_averages_total.round(1)
 		else
