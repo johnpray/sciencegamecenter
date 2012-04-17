@@ -50,7 +50,10 @@
 
 		  <p class="form-help" id="submit-help">After submitting, a site administrator will need to approve your review before it shows up. We're usually pretty prompt about it.</p>
 		  <%= f.submit "Update review", :class => "btn btn-large btn-primary" %>
-
 		<% end %>
+
+		<p>
+	  	<%= link_to "Delete review", @player_review, method: :delete, confirm: "Are you sure you want to destroy this review now and for the rest of time, with no going back?" %>
+	  </p>
 	</div>
 </div>

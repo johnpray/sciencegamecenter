@@ -6,7 +6,8 @@ class PlayerReviewsController < ApplicationController
   
 
   def index
-    @player_reviews = PlayerReview.paginate(page: params[:page])
+    # @player_reviews = PlayerReview.paginate(page: params[:page])
+    redirect_to games_path
   end
 
   def create

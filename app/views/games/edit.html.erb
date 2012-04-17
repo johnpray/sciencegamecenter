@@ -42,5 +42,9 @@
       <%= f.submit "Update game", :class => "btn btn-large btn-primary" %>
       
     <% end %>
+
+    <p>
+      <%= link_to "Delete game", @game, method: :delete, confirm: "Are you sure you want to destroy this game now and for the rest of time, with no going back?" %>
+    </p>
   </div>
 </div>

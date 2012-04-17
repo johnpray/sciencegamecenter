@@ -23,8 +23,10 @@
 <h2 class="left">Player Reviews of <i><%= @game.title %></i></h2>
 
 <% @player_reviews.each do |review| %>
+	<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && @current_user.is_admin? %>
 	<%= render 'player_reviews/player_review', review: review %>
 	<hr />
+	<% end %>
 <% end %>
 </div>
 

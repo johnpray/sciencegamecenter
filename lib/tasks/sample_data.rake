@@ -43,7 +43,8 @@ namespace :db do
         game_id: game.id,
         fun_rating: 5,
         accuracy_rating: 3,
-        effectiveness_rating: 1
+        effectiveness_rating: 1,
+        status: "Approved"
         )
       game.player_reviews.create(
         title: "Well, golly.",
@@ -52,7 +53,8 @@ namespace :db do
         game_id: game.id,
         fun_rating: 5,
         accuracy_rating: 4,
-        effectiveness_rating: 2
+        effectiveness_rating: 2,
+        status: "Approved"
         )
       game.player_reviews.create(
         title: "What's up, doc?",
@@ -61,7 +63,8 @@ namespace :db do
         game_id: game.id,
         fun_rating: 2,
         accuracy_rating: 3,
-        effectiveness_rating: 5
+        effectiveness_rating: 5,
+        status: "Approved"
         )
     end
   end
