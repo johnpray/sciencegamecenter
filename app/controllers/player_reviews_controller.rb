@@ -14,7 +14,14 @@ class PlayerReviewsController < ApplicationController
     @player_reviews = @game.player_reviews
     @player_review = PlayerReview.new(params[:player_review])
     if @player_review.save
-      flash[:success] = "Player review #{@player_review.title} for #{@player_review.game.title} created."
+      if @current_user.is_admin?
+        @player_review.approve!
+        flash[:success] = "Player review created."
+      else
+        @player_review.set_pending!
+        PlayerReviewMailer.notify_for_approval(@player_review).deliver
+        flash[:success] = "Your review has been submitted and will show up on the site once it is approved. Thank you!"
+      end
       redirect_to @game
     else
       render template: 'games/show'

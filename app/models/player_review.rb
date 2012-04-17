@@ -33,26 +33,26 @@ class PlayerReview < ActiveRecord::Base
   default_scope order: 'player_reviews.created_at DESC'
 
   def approved?
-  	self.status == 'approved'
+  	self.status == 'Approved'
   end
 
   def approve!
-  	self.update_attribute(:status, 'approved')
+  	self.update_attribute(:status, 'Approved')
   end
 
   def rejected?
-  	self.status == 'rejected'
+  	self.status == 'Rejected'
   end
 
   def reject!
-  	self.update_attribute(:status, 'rejected')
+  	self.update_attribute(:status, 'Rejected')
   end
 
   def pending?
-  	self.status == 'pending' || self.status.nil?
+  	self.status == 'Pending' || self.status.nil?
   end
 
   def set_pending!
-  	self.update_attribute(:status, 'pending')
+  	self.update_attribute(:status, 'Pending')
   end
 end
