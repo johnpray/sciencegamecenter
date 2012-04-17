@@ -19,7 +19,7 @@
 
 	<% if (current_user?(review.user) || admin?) && review.pending? %>
 	<div class="alert">
-		<strong>Pending.</strong> This review is awaiting administrator approval before it appears on the site.
+		<strong>Pending.</strong> This review is awaiting administrator approval before it appears to other site visitors.
 	</div>
 	<% end %>
 
