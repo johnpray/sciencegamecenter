@@ -27,10 +27,12 @@ class Game < ActiveRecord::Base
 			round ? @player_fun_rating_average.round(1) : @player_fun_rating_average
 		else
 			total = 0
+			count = 0
 			self.player_reviews.each do |r|
 				total += r.fun_rating.to_f if r.approved?
+				count += 1 if r.approved?
 			end
-			@player_fun_rating_average = total / self.player_reviews.count
+			@player_fun_rating_average = total / count
 			round ? @player_fun_rating_average.round(1) : @player_fun_rating_average
 		end
 	end
@@ -42,10 +44,12 @@ class Game < ActiveRecord::Base
 			round ? @player_accuracy_rating_average.round(1) : @player_accuracy_rating_average
 		else
 			total = 0
+			count = 0
 			self.player_reviews.each do |r|
 				total += r.accuracy_rating.to_f if r.approved?
+				count += 1 if r.approved?
 			end
-			@player_accuracy_rating_average = total / self.player_reviews.count
+			@player_accuracy_rating_average = total / count
 			round ? @player_accuracy_rating_average.round(1) : @player_accuracy_rating_average
 		end
 	end
@@ -57,10 +61,12 @@ class Game < ActiveRecord::Base
 			round ? @player_effectiveness_rating_average.round(1) : @player_effectiveness_rating_average
 		else
 			total = 0
+			count = 0
 			self.player_reviews.each do |r|
 				total += r.effectiveness_rating.to_f if r.approved?
+				count += 1 if r.approved?
 			end
-			@player_effectiveness_rating_average = total / self.player_reviews.count
+			@player_effectiveness_rating_average = total / count
 			round ? @player_effectiveness_rating_average.round(1) : @player_effectiveness_rating_average
 		end
 	end
