@@ -8,7 +8,7 @@
 			  <p class="title"><%= link_to game.title, game %></p>
 			  <p class="subjects info_line"><b>Subjects:</b> <%= subject_links_list(game) %></p>
 				<p class="platforms info_line"><b>Available on:</b> <%= platform_links_list(game) %></p>
-			  <p class="info_line">Reviews: <%= link_to pluralize(game.player_reviews.count, "player review"), game_path(game, anchor: "player_reviews") %>, 0 expert reviews</p>
+			  <p class="info_line">Reviews: <%= link_to pluralize(game.player_reviews.count, "player review"), game_path(game, anchor: "player_reviews") %>, no expert reviews, no authoritative reviews</p>
 			</div>
 		</div>
 	</div>
