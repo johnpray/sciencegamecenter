@@ -1,7 +1,7 @@
 <%= provide(:title, 'Games') %>
 
 <div class="row">
-	<div class="span12">
+	<div class="span10">
 
 		<h1 class="left">Games</h1>
 
@@ -38,5 +38,12 @@
 		<% if signed_in? && @current_user.is_admin? %>
 		<p><%= link_to "Create a new game", new_game_path %></p>
 		<% end %>
+	</div>
+
+	<div class="span2">
+		<img src="http://placehold.it/140x140" style="margin-bottom: 10px;" />
+		<img src="http://placehold.it/140x140" style="margin-bottom: 10px;" />
+		<img src="http://placehold.it/140x140" style="margin-bottom: 10px;" />
+		<img src="http://placehold.it/140x140" style="margin-bottom: 10px;" />
 	</div>
 </div>
