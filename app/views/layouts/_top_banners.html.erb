@@ -1,11 +1,11 @@
-<div id="top_banners_wrapper" style="background: #1C1C1C;">
+<div id="top_banners_wrapper">
 	<div class="container" id="top_banners">
 		<div class="row">
 			<div class="span9" id="leading_banner">
-				<img src="http://placehold.it/700x90" />
+				<%= link_to image_tag('http://placehold.it/700x90', style: 'border-left: 1px solid #999; border-right: 1px solid #999;'), '#' %>
 			</div>
 			<div class="span3" id="top_corner_banner">
-				<%= link_to image_tag('fas_corner_banner.png'), 'http://www.fas.org/' %>
+				<%= link_to image_tag('fas_corner_banner.png', style: 'border-left: 1px solid #999; border-right: 1px solid #999;'), 'http://www.fas.org/' %>
 			</div>
 		</div>
 	</div>
