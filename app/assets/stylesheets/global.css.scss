@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "bootstrap-responsive-custom";
 
 /* mixins, variables, etc. */
 
@@ -36,7 +37,7 @@ h1.center {
 }
 
 .navbar-inner .container {
-  width: 940px;
+  max-width: 940px;
 }
 
 /* typography */
@@ -316,6 +317,14 @@ img.boxart {
 }
 
 /* top ad banners */
-#top_banners_wrapper {
+#top_banners_wrapper, {
   background: #d3d3d3 url(image_path('stripe-bg-repeats.png')) repeat left top;
+
+  img {
+    width: 100%;
+  }
+}
+
+body {
+  padding: 0 !important;
 }

@@ -9,7 +9,7 @@ class Game < ActiveRecord::Base
   acts_as_taggable_on :subjects, :platforms
 
   has_attached_file :boxart,
-  									styles: { large: '500x500>', medium: '300x300>', small: '100x100>'},
+  									styles: { large: '500x500>', medium: '300x300>', small: '100x100>', huge: '1000x1000>'},
   									storage: :s3,
   									s3_credentials: S3_CREDENTIALS,
   									default_url: 'no_box.png'

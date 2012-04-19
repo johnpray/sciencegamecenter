@@ -1,8 +1,15 @@
 <header class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "Science Games Hub", root_path, id: "logo" %>
-      <nav>
+      <%= link_to "Science Game Center", root_path, class: "brand" %>
+
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <nav class="nav-collapse">
         <ul class="nav pull-right">
           <li><%= link_to "Games", games_path %></li>
           <li><%= link_to "By Subject", subjects_path %></li>

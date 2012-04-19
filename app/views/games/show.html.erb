@@ -9,7 +9,14 @@
 	</li>
 </ul>
 
-<%= link_to image_tag(@game.boxart.url(:medium), class: :boxart), @game.boxart.url(:large) %>
+<%= link_to image_tag(@game.boxart.url(:medium), class: :boxart), @game.boxart.url(:huge) %>
+
+<style>
+	#top_banners_wrapper {
+		background: #d3d3d3 url('<%= @game.boxart.url(:large) %>') repeat center !important;
+		background-size: cover;
+	}
+</style>
 
 <h1 class="left"><%= @game.title %></h1>
 <%= render 'games/game_info', game: @game %>
