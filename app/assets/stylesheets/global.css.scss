@@ -278,12 +278,19 @@ img.boxart {
 
   .score_total_cell {
     text-align: right;
+    vertical-align: middle;
   }
 
   .score_total {
-    font-size: 28px;
+    font-size: 30px;
     line-height: 1;
     font-weight: bold;
+  }
+  .percent_sign {
+    font-size: 30px;
+  }
+  div.progress {
+    margin: 0;
   }
 }
 

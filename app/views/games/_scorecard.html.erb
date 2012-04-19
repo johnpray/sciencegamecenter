@@ -50,8 +50,7 @@
 
 	<% if game.player_averages_total >= 0 %>
 	<th class="score_total_cell">
-		<span class="score_total"><%= game.player_averages_total %></span><br />
-		/ 15
+		<span class="score_total"><%= ((game.player_averages_total / 15) * 100).to_i %></span><span class="percent_sign">%</span>
 	</th>
 	<% else %>
 	<th>&mdash;</th>
