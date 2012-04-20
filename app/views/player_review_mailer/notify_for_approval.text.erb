@@ -1,4 +1,4 @@
-Hello, ScienceGameReview Admins!
+Hello, Science Game Center Admins!
 
 A new player review has been posted and needs your approval before it shows up on the site.
 
@@ -8,17 +8,18 @@ Here's the review:
 Game: <%= @player_review.game.title %>
 User: <%= "#{@player_review.user.name} (#{@player_review.user.email})" %>
 
-## <%= @player_review.title %> ##
+Title: <%= @player_review.title %>
 
 <%= @player_review.content %>
 
 Fun rating: <%= @player_review.fun_rating %> / 5
 Accuracy rating: <%= @player_review.accuracy_rating %> / 5
 Effectiveness rating: <%= @player_review.effectiveness_rating %> / 5
+Total Score: <%= @player_review.ratings_total_percentage %>%
 ===
 
 To approve or reject this review, visit this link:
 <%= edit_player_review_url(@player_review) %>
 
 Very sincerely,
-The SGR Bot
+SGCBot

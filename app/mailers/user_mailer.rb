@@ -1,12 +1,13 @@
 class UserMailer < ActionMailer::Base
-  default from: "ScienceGameReviews.org@fas.org",
-          reply_to: 'sciencegamereviews@fas.org'
+  default from: "ScienceGameCenter.org@fas.org",
+          reply_to: 'sciencegamecenter@fas.org'
 
   def inform_of_signup(user)
     @user = user
     mail(
       to: "#{user.name} <#{user.email}>",
-      subject: "Your ScienceGameReviews.org account has been created!"
+      bcc: 'sciencegamecenter@fas.org',
+      subject: "Your Science Game Center account has been created!"
     )
   end
 
@@ -14,7 +15,7 @@ class UserMailer < ActionMailer::Base
   	@user = user
   	mail(
       to: user.parent_email,
-      subject: "Please confirm your child's account on ScienceGameReviews.org"
+      subject: "Please confirm your child's account at the Science Game Center"
     )
   end
 
@@ -22,8 +23,9 @@ class UserMailer < ActionMailer::Base
   	@user = user
   	mail(
       to: "#{user.name} <#{user.email}>", 
-      cc: user.parent_email, 
-      subject: "Your ScienceGameReviews.org account has been activated!"
+      cc: user.parent_email,
+      bcc: 'sciencegamecenter@fas.org',
+      subject: "Your Science Game center account has been activated!"
     )
   end
 
@@ -31,7 +33,7 @@ class UserMailer < ActionMailer::Base
   	@user = user
   	mail(
       to:  "#{user.name} <#{user.email}>", 
-      subject: "Password reset instructions for ScienceGameReviews.org"
+      subject: "Password reset instructions for your Science Game Center account"
     )
   end
 end
