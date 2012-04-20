@@ -40,7 +40,7 @@
       <%= recaptcha_tags ssl: Rails.env.production? %>
       <p class="form-help">Finally, help us fight spam by demonstrating that you're human.</p>
 
-      <p class="form-help" id="submit-help">By signing up, you agree to our <%= link_to "privacy policy", privacy_path %>.</p>
+      <p class="form-help" id="submit-help">By signing up, you agree to our <%= link_to "privacy policy", privacy_path, target: '_blank' %>.</p>
       <%= f.submit "Create my account", :class => "btn btn-large btn-primary" %>
       
     <% end %>
