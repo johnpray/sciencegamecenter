@@ -16,10 +16,3 @@
 //= require bootstrap-alert
 //= require bootstrap-collapse
 //= require_tree .
-
-// Fix for mobile menu on Opera Mini
-$(document).ready(function() {
-	if(operamini) {
-		$('#menuButton').click(function() {});
-	}
-});
