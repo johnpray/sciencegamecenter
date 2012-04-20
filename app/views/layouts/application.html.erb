@@ -25,14 +25,5 @@
       <%= debug(params) if Rails.env.development? %>
       <%= render 'layouts/analytics' if Rails.env.production? %>
     </div>
-
-    <script>
-      // Fix for mobile menu on Opera Mini
-      $(document).ready(function() {
-        if(operamini) {
-          $('#menuButton').click(function() {});
-        }
-      });
-    </script>
   </body>
 </html>
