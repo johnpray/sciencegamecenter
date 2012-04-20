@@ -10,6 +10,10 @@ class PlayerReviewsController < ApplicationController
     redirect_to games_path
   end
 
+  def show
+    @player_review = PlayerReview.find(params[:id])
+  end
+
   def create
     @game = Game.find(params[:player_review][:game_id])
     @player_reviews = @game.player_reviews

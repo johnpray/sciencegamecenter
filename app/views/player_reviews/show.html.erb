@@ -1,0 +1,15 @@
+<% provide(:title, "#{@player_review.title} - A review for #{@player_review.game.title}") %>
+
+<div class="row">
+	<div class="span2">
+		<%= link_to image_tag(@player_review.game.boxart.url(:medium), class: :boxart), @player_review.game %>
+	</div>
+	<div class="span8">
+		<h1 class="left">A review of <i><%= link_to @player_review.game.title, @player_review.game %></i></h1>
+	</div>
+</div>
+
+<%= render 'player_reviews/player_review', review: @player_review %>
+
+<hr />
+<h2 id="comments">Comments on this review</h2>
