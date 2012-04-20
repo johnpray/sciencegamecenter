@@ -29,9 +29,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    store_previous_location
   	sign_out
     flash[:success] = "You've been logged out. #{view_context.link_to "Log in.", login_path}".html_safe
-  	redirect_back_or root_path
+  	redirect_to root_path
   end
 end

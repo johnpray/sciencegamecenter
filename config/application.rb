@@ -55,5 +55,8 @@ module SciencegamereviewsOrg
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Don't initiazline on assets:precompile to try and work around a heroku problem
+    config.assets.initialize_on_precompile = false
   end
 end
