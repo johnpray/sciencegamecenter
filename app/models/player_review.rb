@@ -47,4 +47,12 @@ class PlayerReview < ActiveRecord::Base
   def make_pending!
   	self.update_attribute(:status, 'Pending')
   end
+
+  def ratings_total
+    self.fun_rating + self.accuracy_rating + self.effectiveness_rating
+  end
+
+  def ratings_total_percentage
+    ((self.ratings_total.to_f / 15) * 100).to_i
+  end
 end

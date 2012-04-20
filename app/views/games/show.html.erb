@@ -50,7 +50,7 @@
 
 <% if signed_in? && @player_reviews.where(user_id: @current_user.id).count < 1 %>
 <div class="row" id="new_player_review">
-  <div class="span12">
+  <div class="span10">
 
     <div class="form-description">
       <p>Have you played this game? Share your experience by leaving a review!</p>
@@ -69,13 +69,13 @@
 </div>
 <% elsif signed_in? %>
 <div class="row" id="new_player_review">
-  <div class="span12">
+  <div class="span10">
 		<p>Thanks for reviewing! You can only review each game once. If you'd like, you are welcome to edit your existing review above.</p>
 	</div>
 </div>
 <% else %>
 <div class="row" id="new_player_review">
-  <div class="span12">
+  <div class="span10">
 		<p><%= link_to "Sign up", signup_path %> or <%= link_to "log in", login_path %> to post a review of your own!</p>
 	</div>
 </div>
