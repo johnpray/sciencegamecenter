@@ -14,11 +14,15 @@ class SessionsController < ApplicationController
         flash[:success] = "You've logged in as #{user.name}."
         redirect_back_or root_path
       else
-        flash.now[:error] = "Your account is currently disabled.
-          If you are waiting for a parent to confirm your account,
-          ask them to click the link in the email they received.
-          #{ view_context.link_to("Re-send the email",
-          resend_parent_email_user_path(user)).html_safe }".html_safe
+        if !user.parent_email.blank?
+          flash.now[:error] = "Your account is currently disabled.
+            If you are waiting for a parent to confirm your account,
+            ask them to click the link in the email they received.
+            #{ view_context.link_to("Re-send the email",
+            resend_parent_email_user_path(user)).html_safe }".html_safe
+        else
+          flash.now[:error] = "Your account is currently disabled."
+        end
         render 'new'
       end
     else

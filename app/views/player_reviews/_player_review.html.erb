@@ -50,5 +50,5 @@
 		</div>
 	</div>
 	<% end %>
-	<p>This review has <%= link_to pluralize(review.comments.count, "comment"), player_review_path(review, anchor: :comments) %>. <%= link_to "Leave a comment.", player_review_path(review, anchor: :new_comment) %></p>
+	<p class="comment_count">This review has <%= link_to pluralize(review.comments.count, "comment"), player_review_path(review, anchor: :comments) %>.</p>
 </div>
