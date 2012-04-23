@@ -1,5 +1,12 @@
 <% provide(:title, "#{@player_review.title} - A review for #{@player_review.game.title}") %>
 
+<style>
+	#top_banners_wrapper {
+		background: #d3d3d3 url('<%= random_screenshot_image(@player_review.game).url(:banner) %>') repeat center !important;
+		background-size: cover;
+	}
+</style>
+
 <div class="row">
 	<div class="span2">
 		<%= link_to image_tag(@player_review.game.boxart.url(:medium), class: :boxart), @player_review.game %>

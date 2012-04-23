@@ -1,0 +1,15 @@
+<hr />
+<div class="screenshots_wrapper">
+	<h2>Screenshots of <i><%= @game.title %></i></h2>
+	<div class="screenshots row">
+		<% @game.screenshots.each do |screenshot| %>
+			<%= link_to(
+				image_tag(screenshot.image.url(:small)),
+				screenshot.image.url(:large),
+				class: 'screenshot span2') %>
+		<% end %>
+	</div>
+	<% if admin? %>
+		<p><%= link_to "Manage screenshots", game_screenshots_path(@game) %></p>
+	<% end %>
+</div>
