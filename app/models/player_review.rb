@@ -4,6 +4,7 @@ class PlayerReview < ActiveRecord::Base
 
   belongs_to :game
   belongs_to :user
+  has_many :comments, as: :commentable
 
   validates :title,		presence: true
   validates :content, presence: true
