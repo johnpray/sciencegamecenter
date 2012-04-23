@@ -18,5 +18,7 @@
     <p>
       <%= link_to "Delete game", @game, method: :delete, confirm: "Are you sure you want to destroy this game now and for the rest of time, with no going back?" %>
     </p>
+
+    <p><%= link_to "Manage this game's screenshots", game_screenshots_path(@game) %></p>
   </div>
 </div>
