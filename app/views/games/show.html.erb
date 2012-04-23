@@ -49,6 +49,7 @@
 <% end %>
 </div>
 
+<h3>Leave a review</h3>
 <% if signed_in? && @player_reviews.where(user_id: @current_user.id).count < 1 %>
 <div class="row" id="new_player_review">
   <div class="span10">
