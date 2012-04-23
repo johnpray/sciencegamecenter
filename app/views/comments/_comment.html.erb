@@ -1,0 +1,22 @@
+<div class="comment row">
+	<div class="span1">
+		<%= gravatar_for comment.user, size: 60 %>
+	</div>
+	<div class="span9">
+		<p class="comment_user"><b><%= comment.user ? comment.user.name : "Someone" %></b> on <%= comment.created_at.to_formatted_s(:long) %> said</p>
+		<% if (current_user?(comment.user) || admin?) && comment.pending? %>
+			<div class="alert">
+				<strong>Pending.</strong> This comment is awaiting administrator approval before it appears to other site visitors.
+			</div>
+		<% end %>
+		<div>
+			<%= markdown comment.content %>
+		</div>
+		<% if signed_in? && (current_user?(comment.user) || admin?) %>
+			<p>
+				<%= link_to "Delete comment", comment, method: :delete, confirm: "Are you sure you want to destroy this comment now and for the rest of time, with no going back?" %>
+			</p>
+		<% end %>
+		<hr />
+	</div>
+</div>

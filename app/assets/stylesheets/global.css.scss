@@ -330,3 +330,8 @@ img.boxart {
 .navbar-inner {
   @include border-radius(0px);
 }
+
+/* comments */
+.comment_user {
+  color: $grayLight;
+}

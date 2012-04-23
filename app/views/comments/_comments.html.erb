@@ -2,11 +2,7 @@
 	<p>There are no comments on this review.</p>
 <% else %>
 	<% commentable.comments.each do |c| %>
-		<p><%= c.user ? c.user.name : "Someone" %> said on <%= c.created_at %>:</p>
-		<div>
-			<%= c.content %>
-		</div>
-		<hr />
+		<%= render 'comments/comment', comment: c %>
 	<% end %>
 <% end %>
 
@@ -15,12 +11,15 @@
 	<p><%= link_to "Sign up", signup_path %> or <%= link_to "log in", login_path %> to leave a comment.</p>
 <% else %>
 
-	<%= form_for Comment.new do |f| %>
+	<%= form_for comment do |f| %>
 
 	  <%= render 'shared/error_messages', object: f.object %>
 
 	  <%= f.text_area :content, rows: 5 %>
 	  <p class="form-help">Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics" target="_blank">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
+
+	  <%= f.hidden_field :commentable_id, value: commentable.id %>
+	  <%= f.hidden_field :commentable_type, value: commentable.class.name %>
 
 	  <p class="form-help" id="submit-help">After submitting, a site administrator will need to approve your comment before it shows up. We're usually pretty prompt about it.</p>
 	  <%= f.submit "Submit comment", :class => "btn btn-large btn-primary" %>

@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(params[:comment])
+    @comment.user = current_user
     if @comment.save
       if current_user.is_admin?
         @comment.approve!
@@ -16,7 +17,8 @@ class CommentsController < ApplicationController
       end
       redirect_to @comment.commentable
     else
-      render template: "#{@comment.commentable_type}/show"
+    	@player_review = @comment.commentable
+    	render "#{@comment.commentable_type.underscore.pluralize}/show"
     end
   end
 

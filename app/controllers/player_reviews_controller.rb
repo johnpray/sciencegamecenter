@@ -11,6 +11,7 @@ class PlayerReviewsController < ApplicationController
 
   def show
     @player_review = PlayerReview.find(params[:id])
+    @comment = Comment.new
   end
 
   def create
