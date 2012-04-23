@@ -1,9 +1,9 @@
 class Game < ActiveRecord::Base
   attr_accessible :title, :description, :website_url, :developer,
-  								:boxart, :screenshot_1, :screenshot_2, :screenshot_3, :screenshot_4, :screenshot_5,
-  								:platform_list, :subject_list
+  								:boxart, :platform_list, :subject_list
 
   has_many :player_reviews, dependent: :destroy
+  has_many :screenshots,		dependent: :destroy
 
   acts_as_taggable_on :subjects, :platforms
 
@@ -20,30 +20,9 @@ class Game < ActiveRecord::Base
   									s3_credentials: S3_CREDENTIALS,
   									default_url: 'no_box.png'
 
-  has_attached_file :screenshot_1,
-  									styles: {
-  										large: '800x800>',
-  										medium: '500x500>',
-  										small: '300x300>',
-  										thumb: '148x148>',
-  										banner: '2000x90#'
-  									},
-  									convert_options: { banner: "-blur 0x8" },
-  									storage: :s3,
-  									s3_credentials: S3_CREDENTIALS
-  has_attached_file :screenshot_2, styles: { large: '800x800>', medium: '500x500>', small: '300x300>', thumb: '148x148>', banner: '2000x90#' }, convert_options: { banner: "-blur 0x8" }, storage: :s3, s3_credentials: S3_CREDENTIALS
-  has_attached_file :screenshot_3, styles: { large: '800x800>', medium: '500x500>', small: '300x300>', thumb: '148x148>', banner: '2000x90#' }, convert_options: { banner: "-blur 0x8" }, storage: :s3, s3_credentials: S3_CREDENTIALS
-  has_attached_file :screenshot_4, styles: { large: '800x800>', medium: '500x500>', small: '300x300>', thumb: '148x148>', banner: '2000x90#' }, convert_options: { banner: "-blur 0x8" }, storage: :s3, s3_credentials: S3_CREDENTIALS
-  has_attached_file :screenshot_5, styles: { large: '800x800>', medium: '500x500>', small: '300x300>', thumb: '148x148>', banner: '2000x90#' }, convert_options: { banner: "-blur 0x8" }, storage: :s3, s3_credentials: S3_CREDENTIALS
-
   validates :title,	presence: true
   validates_attachment :boxart, content_type: {
   										 content_type: ['image/jpeg', 'image/png', 'image/gif'] }
-  validates_attachment :screenshot_1, content_type: { content_type: ['image/jpeg', 'image/png', 'image/gif'] }
-  validates_attachment :screenshot_2, content_type: { content_type: ['image/jpeg', 'image/png', 'image/gif'] }
-  validates_attachment :screenshot_3, content_type: { content_type: ['image/jpeg', 'image/png', 'image/gif'] }
-  validates_attachment :screenshot_4, content_type: { content_type: ['image/jpeg', 'image/png', 'image/gif'] }
-  validates_attachment :screenshot_5, content_type: { content_type: ['image/jpeg', 'image/png', 'image/gif'] }
 
   default_scope order: 'games.title ASC'
 

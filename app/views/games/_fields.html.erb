@@ -27,33 +27,3 @@
 <%= image_tag f.object.boxart.url(:large) %>
 <% end %>
 <%= f.file_field :boxart %>
-
-<%= f.label :screenshot_1 %>
-<% if f.object.screenshot_1.file? %>
-<%= image_tag f.object.screenshot_1.url(:medium) %>
-<% end %>
-<%= f.file_field :screenshot_1 %>
-
-<%= f.label :screenshot_2 %>
-<% if f.object.screenshot_2.file? %>
-<%= image_tag f.object.screenshot_2.url(:medium) %>
-<% end %>
-<%= f.file_field :screenshot_2 %>
-
-<%= f.label :screenshot_3 %>
-<% if f.object.screenshot_3.file? %>
-<%= image_tag f.object.screenshot_3.url(:medium) %>
-<% end %>
-<%= f.file_field :screenshot_3 %>
-
-<%= f.label :screenshot_4 %>
-<% if f.object.screenshot_4.file? %>
-<%= image_tag f.object.screenshot_4.url(:medium) %>
-<% end %>
-<%= f.file_field :screenshot_4 %>
-
-<%= f.label :screenshot_5 %>
-<% if f.object.screenshot_5.file? %>
-<%= image_tag f.object.screenshot_5.url(:medium) %>
-<% end %>
-<%= f.file_field :screenshot_5 %>

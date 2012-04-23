@@ -1,0 +1,10 @@
+<h1 class="left">Screenshots of <i><%= @game.title %></i></h1>
+
+<% @screenshots.each do |s| %>
+	<div>
+	<%= s.image.url(:large) %>
+	<p><%= link_to "Edit", edit_game_screenshot_path(@game, @screenshot) %></p>
+	</div>
+<% end %>
+
+<p><%= link_to "Upload a new screenshot", new_game_screenshot_path %></p>
