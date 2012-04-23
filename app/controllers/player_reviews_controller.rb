@@ -18,6 +18,7 @@ class PlayerReviewsController < ApplicationController
     @game = Game.find(params[:player_review][:game_id])
     @player_reviews = @game.player_reviews
     @player_review = PlayerReview.new(params[:player_review])
+    @player_review.user = current_user
     if @player_review.save
       if current_user.is_admin?
         @player_review.approve!

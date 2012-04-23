@@ -1,6 +1,6 @@
 class PlayerReview < ActiveRecord::Base
   attr_accessible :accuracy_rating, :content, :effectiveness_rating,
-  								:fun_rating, :game_id, :status, :title, :user_id
+  								:fun_rating, :game_id, :title
 
   belongs_to :game
   belongs_to :user

@@ -23,7 +23,6 @@
       <p class="form-help">A number out of five, where 5 is the most effective at teaching.</p>
 
       <%= f.hidden_field :game_id, value: @game.id %>
-      <%= f.hidden_field :user_id, value: @current_user.id %>
 
       <p class="form-help" id="submit-help">After submitting, a site administrator will need to approve your review before it shows up. We're usually pretty prompt about it.</p>
       <%= f.submit "Submit review", :class => "btn btn-large btn-primary" %>
