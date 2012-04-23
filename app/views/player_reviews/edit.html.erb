@@ -6,7 +6,7 @@
 		<%= gravatar_for @player_review.user %>
 		<h2>by <%= @player_review.user.name %></h2>
 		<% if @current_user.is_admin? %>
-		<p>Email: <%= link_to @player_review.user.email, @player_review.user.email %></p>
+		<p>Email this user: <%= link_to @player_review.user.email, @player_review.user.email %></p>
 		<% end %>
 	</div>
 <% else %>

@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 	force_ssl
 
 	def new
-    store_previous_location
+    location_stored? || store_previous_location
   end
 
   def create

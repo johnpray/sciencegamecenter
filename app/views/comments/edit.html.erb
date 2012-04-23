@@ -2,6 +2,18 @@
 
 <h1 class="left">Editing a comment</h1>
 
+<% if @comment.user %>
+	<div class="user_info">
+		<%= gravatar_for @comment.user %>
+		<h3>by <%= @comment.user.name %></h3>
+		<% if @current_user.is_admin? %>
+		<p>Email this user: <%= link_to @comment.user.email, @comment.user.email %></p>
+		<% end %>
+	</div>
+<% else %>
+	<h2>by a user that has since been deleted</h2>
+<% end %>
+
 <%= form_for @comment do |f| %>
 
   <%= render 'shared/error_messages', object: f.object %>

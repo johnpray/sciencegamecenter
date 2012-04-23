@@ -58,6 +58,10 @@ module SessionsHelper
     session[:return_to] = request.env['HTTP_REFERER'] || root_path
   end
 
+  def location_stored?
+    !session[:return_to].blank?
+  end
+
   private
 
   	def user_from_remember_token
