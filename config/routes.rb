@@ -15,10 +15,12 @@ SciencegamereviewsOrg::Application.routes.draw do
       get 'confirm_child_account'
     end
   end
+  resources :player_reviews do
+    resources :comments, only: [:create, :destroy]
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
   resources :games
-  resources :player_reviews
   resources :subjects, only: :index
   resources :platforms, only: :index
 

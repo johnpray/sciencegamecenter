@@ -1,0 +1,11 @@
+<% if commentable.comments.count < 1 %>
+	<p>There are no comments on this review.</p>
+<% else %>
+	<% commentable.comments.each do |c| %>
+		<p><%= c.user ? c.user.name : "Someone" %> said on <%= c.created_at %>:</p>
+		<div>
+			<%= c.content %>
+		</div>
+		<hr />
+	<% end %>
+<% end %>

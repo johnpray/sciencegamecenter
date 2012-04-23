@@ -13,6 +13,7 @@ gem 'paperclip', '~> 3.0.2' # uploads
 gem 'aws-sdk', '~> 1.3.4' # storage
 gem 'acts-as-taggable-on', '~> 2.2.2' # tags
 gem 'recaptcha', require: 'recaptcha/rails'
+#gem 'make_resourceful', '~> 1.0.1'
 
 group :development, :test do
 	gem 'sqlite3'
