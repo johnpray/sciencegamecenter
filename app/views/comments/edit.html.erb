@@ -1,0 +1,20 @@
+<% provide(:title, 'Editing a comment') %>
+
+<h1 class="left">Editing a comment</h1>
+
+<%= form_for @comment do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.text_area :content, rows: 10 %>
+  <p class="form-help">Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics" target="_blank">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
+
+  <% if @current_user.is_admin? %>
+  <%= f.label :status, "Approval status" %>
+  <%= f.select :status, ["Pending", "Approved"] %>
+  <p class="form-help">Whether this review appears to the public. Only administrators can change this value.</p>
+  <% end %>
+
+  <p class="form-help" id="submit-help">After submitting, a site administrator will need to approve your comment before it shows up. We're usually pretty prompt about it.</p>
+  <%= f.submit "Submit comment", :class => "btn btn-large btn-primary" %>
+<% end %>

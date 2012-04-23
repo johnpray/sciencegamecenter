@@ -1,0 +1,20 @@
+Hello, Science Game Center Admins!
+
+A new comment has been posted and needs your approval before it shows up on the site.
+
+Here's the comment:
+
+===
+<% if @comment.commentable_type == 'PlayerReview' %>
+Review: <%= player_review_url(@comment.commentable) %>
+<% end %>
+User: <%= "#{@comment.user.name} (#{@comment.user.email})" %>
+
+<%= @comment.content %>
+===
+
+To approve or reject this comment, visit this link:
+<%= edit_comment_url(@comment) %>
+
+Very sincerely,
+SGCBot

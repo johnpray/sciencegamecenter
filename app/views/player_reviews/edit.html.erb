@@ -46,9 +46,6 @@
 		  <% end %>
 
 		  <%= f.hidden_field :game_id, value: @player_review.game.id %>
-		  <% if @player_review.user %>
-		  <%= f.hidden_field :user_id, value:  @player_review.user.id %>
-		 	<% end %>
 
 		  <p class="form-help" id="submit-help">After submitting, a site administrator will need to approve your review before it shows up. We're usually pretty prompt about it.</p>
 		  <%= f.submit "Update review", :class => "btn btn-large btn-primary" %>

@@ -25,7 +25,7 @@ class UserMailer < ActionMailer::Base
       to: "#{user.name} <#{user.email}>", 
       cc: user.parent_email,
       bcc: 'sciencegamecenter@fas.org',
-      subject: "Your Science Game center account has been activated!"
+      subject: "Your Science Game Center account has been activated!"
     )
   end
 

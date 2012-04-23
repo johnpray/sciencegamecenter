@@ -13,9 +13,10 @@
 			<%= markdown comment.content %>
 		</div>
 		<% if signed_in? && (current_user?(comment.user) || admin?) %>
-			<p>
+			<p><b>
+				<%= link_to "Edit comment", edit_comment_path(comment) %>, 
 				<%= link_to "Delete comment", comment, method: :delete, confirm: "Are you sure you want to destroy this comment now and for the rest of time, with no going back?" %>
-			</p>
+			</b></p>
 		<% end %>
 		<hr />
 	</div>

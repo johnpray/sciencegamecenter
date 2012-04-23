@@ -26,7 +26,7 @@ SciencegamereviewsOrg::Application.routes.draw do
   resources :subjects, only: :index
   resources :platforms, only: :index
   resources :player_reviews
-  resources :comments, only: [:create, :destroy]
+  resources :comments
 
   match '/signup',  to: 'users#new'
   match '/login',   to: 'sessions#new'
