@@ -20,7 +20,7 @@ SciencegamereviewsOrg::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
   resources :games do
-    resources :screenshots
+    resources :screenshots, shallow: true
   end
   resources :subjects, only: :index
   resources :platforms, only: :index

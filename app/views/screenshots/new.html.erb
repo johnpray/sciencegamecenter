@@ -1,2 +1,16 @@
-<h1>Screenshots#new</h1>
-<p>Find me in app/views/screenshots/new.html.erb</p>
+<h1>Upload a screenshot for <i><%= @game.title %></i></h1>
+
+<%= form_for [@game, @screenshot], :html => { :multipart => true } do |f| %>
+
+	<%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :image %>
+	<% if f.object.image.file? %>
+	<%= image_tag f.object.image.url(:large) %>
+	<% end %>
+	<%= f.file_field :image %>
+
+  <p class="form-help" id="submit-help"><b>Be aware:</b> Upon saving, this screenshot will immediately be visible on the site.</p>
+  <%= f.submit "Upload screenshot", :class => "btn btn-large btn-primary" %>
+  
+<% end %>

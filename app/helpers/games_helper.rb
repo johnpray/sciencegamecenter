@@ -12,4 +12,11 @@ module GamesHelper
 		end
 	end
 
+	def random_screenshot_image(game = @game)
+  	if (c = game.screenshots.count) != 0
+      game.screenshots.find(:first, :offset =>rand(c)).image
+    else
+    	game.boxart
+    end
+	end
 end

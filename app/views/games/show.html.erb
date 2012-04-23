@@ -27,21 +27,14 @@
 
 <style>
 	#top_banners_wrapper {
-		background: #d3d3d3 url('<%= @game.boxart.url(:banner) %>') repeat center !important;
+		background: #d3d3d3 url('<%= random_screenshot_image(@game).url(:banner) %>') repeat center !important;
 		background-size: cover;
 	}
 </style>
 
-<hr />
-<div class="screenshots_wrapper">
-	<h2>Screenshots</h2>
-	<div class="screenshots row">
-		
-	</div>
-	<hr />
-</div>
-
 <%= render 'games/scorecard', game: @game %>
+
+<%= render 'games/screenshots' if @game.screenshots.count > 0 %>
 
 <div id="player_reviews">
 
