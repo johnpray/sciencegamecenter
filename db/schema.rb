@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423145257) do
+ActiveRecord::Schema.define(:version => 20120423183031) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -27,13 +27,33 @@ ActiveRecord::Schema.define(:version => 20120423145257) do
     t.string   "title"
     t.text     "description"
     t.string   "website_url"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "boxart_file_name"
     t.string   "boxart_content_type"
     t.integer  "boxart_file_size"
     t.datetime "boxart_updated_at"
     t.string   "developer"
+    t.string   "screenshot_1_file_name"
+    t.string   "screenshot_1_content_type"
+    t.integer  "screenshot_1_file_size"
+    t.datetime "screenshot_1_updated_at"
+    t.string   "screenshot_2_file_name"
+    t.string   "screenshot_2_content_type"
+    t.integer  "screenshot_2_file_size"
+    t.datetime "screenshot_2_updated_at"
+    t.string   "screenshot_3_file_name"
+    t.string   "screenshot_3_content_type"
+    t.integer  "screenshot_3_file_size"
+    t.datetime "screenshot_3_updated_at"
+    t.string   "screenshot_4_file_name"
+    t.string   "screenshot_4_content_type"
+    t.integer  "screenshot_4_file_size"
+    t.datetime "screenshot_4_updated_at"
+    t.string   "screenshot_5_file_name"
+    t.string   "screenshot_5_content_type"
+    t.integer  "screenshot_5_file_size"
+    t.datetime "screenshot_5_updated_at"
   end
 
   create_table "player_reviews", :force => true do |t|

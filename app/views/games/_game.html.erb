@@ -3,6 +3,9 @@
 		<div class="row">
 			<div class="span2">
 				<%= link_to image_tag(game.boxart.url(:medium), class: :boxart), game %>
+				<% if admin? %>
+				<p><%= link_to "Edit game", edit_game_path(game) %></p>
+				<% end %>
 			</div>
 			<div class="span8">
 			  <p class="title"><%= link_to game.title, game %></p>

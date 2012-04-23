@@ -1,5 +1,5 @@
 <%= provide(:title, @game.title) %>
-
+<!--
 <ul class="breadcrumb">
 	<li>
 		<%= link_to "Games", games_path %> <span class="divider">&raquo;</span>
@@ -8,7 +8,7 @@
 		<i><%= @game.title %></i>
 	</li>
 </ul>
-
+-->
 <div class="row">
 	<div class="span4">
 		<%= link_to image_tag(@game.boxart.url(:medium), class: :boxart), @game.boxart.url(:huge) %>
@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="span6">
-		<h1 class="left"><i><%= @game.title %></i></h1>
+		<h1 class="left"><%= @game.title %></h1>
 		<div class="description">
 			<%= markdown @game.description %>
 		</div>
@@ -27,12 +27,27 @@
 
 <style>
 	#top_banners_wrapper {
-		background: #d3d3d3 url('<%= @game.boxart.url(:banner) %>') repeat center !important;
+		background: #d3d3d3 url('<%= @game.screenshot_1.url(:banner) %>') repeat center !important;
 		background-size: cover;
 	}
 </style>
 
 <hr />
+<div class="screenshots_wrapper">
+	<h2>Screenshots</h2>
+	<div class="screenshots row">
+		<% for i in 1..5 %>
+			<% if @game.send("screenshot_#{i}?") %>
+			<%= link_to(
+						image_tag(@game.send("screenshot_#{i}").url(:small)),
+						@game.send("screenshot_#{i}").url(:large),
+						class: 'screenshot span2') %>
+			<% end %>
+		<% end %>
+	</div>
+	<hr />
+</div>
+
 <%= render 'games/scorecard', game: @game %>
 
 <div id="player_reviews">

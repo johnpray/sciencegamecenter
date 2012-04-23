@@ -264,6 +264,20 @@ img.boxart {
   color: $gray;
 }
 
+.screenshots {
+  .screenshot {
+    img {
+      margin: 0;
+      width: 100%;
+    }
+  }
+}
+.screenshots_wrapper {
+  hr {
+    clear: both;
+  }
+}
+
 /* admin tools */
 .admin_tools {
   margin-top: -10px;
