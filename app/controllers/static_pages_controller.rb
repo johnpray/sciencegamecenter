@@ -12,7 +12,11 @@ class StaticPagesController < ApplicationController
   end
 
   def robots
-  	filename = Rails.env.production? ? "config/robots.production.txt" : "config/robots.development.txt"
+  	if request.host.include?("sciencegamecenter.org") && !request.host.include?("heroku") && !request.host.include?("test.sciencegamecenter.org")
+	  	filename = "config/robots.production.txt"
+	  else
+  		filename = "config/robots.development.txt"
+  	end
   	robots = File.read(Rails.root + filename)
   	render text: robots, layout: false, content_type: 'text/plain'
   end
