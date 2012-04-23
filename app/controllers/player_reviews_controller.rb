@@ -1,10 +1,9 @@
 class PlayerReviewsController < ApplicationController
 
   force_ssl                       except: [:index]
-  before_filter :signed_in_user,  only: [:edit, :update, :destroy]
+  before_filter :signed_in_user,  only: [:create, :edit, :update, :destroy]
   before_filter :correct_user,    only: [:edit, :update, :destroy]
   
-
   def index
     # @player_reviews = PlayerReview.paginate(page: params[:page])
     redirect_to games_path
