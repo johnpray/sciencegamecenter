@@ -1,4 +1,4 @@
-<h1 class="left">Screenshots of <i><%= @game.title %></i></h1>
+<h1 class="left">Screenshots of <i><%= link_to @game.title, @game %></i></h1>
 
 <% @screenshots.each do |s| %>
 	<div>

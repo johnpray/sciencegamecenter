@@ -27,26 +27,26 @@
 	<% if review.fun_rating %>
 	<div class="row">
 		<div class="span3">
-			<h4>Fun rating: <%= review.fun_rating %></b> out of 5</h4>
+			<p><b>Fun</b> rating: <b><%= review.fun_rating %></b> out of 5</p>
 			<div class="progress <%= progress_color(review.fun_rating) %>">
 				<div class="bar" style="width: <%= review.fun_rating * 20 %>%;"></div>
 			</div>
 		</div>
 		<div class="span3">
-			<h4>Accuracy rating: <%= review.accuracy_rating %></b> out of 5</h4>
+			<p><b>Accuracy</b> rating: <b><%= review.accuracy_rating %></b> out of 5</h4>
 			<div class="progress <%= progress_color(review.accuracy_rating) %>">
 				<div class="bar" style="width: <%= review.accuracy_rating * 20 %>%;"></div>
 			</div>
 		</div>
 		<div class="span3">
-			<h4>Effectiveness rating: <%= review.effectiveness_rating %></b> out of 5</h4>
+			<p><b>Effectiveness</b> rating: <b><%= review.effectiveness_rating %></b> out of 5</h4>
 			<div class="progress <%= progress_color(review.effectiveness_rating) %>">
 				<div class="bar" style="width: <%= review.effectiveness_rating * 20 %>%;"></div>
 			</div>
 		</div>
 		<div class="span1">
-			<h4>Total:</h4>
-			<h2><%= review.ratings_total_percentage %>%</h2>
+			<p class="individual_score_label">Total:</p>
+			<p class="individual_score"><%= review.ratings_total_percentage %>%</p>
 		</div>
 	</div>
 	<% end %>
