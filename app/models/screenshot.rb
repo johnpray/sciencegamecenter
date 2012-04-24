@@ -1,5 +1,5 @@
 class Screenshot < ActiveRecord::Base
-  attr_accessible :game_id, :image
+  attr_accessible :game_id, :image, :description
 
   belongs_to :game
 

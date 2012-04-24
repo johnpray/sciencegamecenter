@@ -10,6 +10,10 @@
 	<% end %>
 	<%= f.file_field :image %>
 
+	<%= f.label :description %>
+  <%= f.text_area :description, rows: 10 %>
+  <p class="form-help">Describe what's going on in this screenshot. This gives a better understanding of what the game is like and helps with searching and accessibility.<br/>Format using <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
+
   <p class="form-help" id="submit-help"><b>Be aware:</b> Upon saving, this screenshot will immediately be visible on the site.</p>
   <%= f.submit "Update screenshot", :class => "btn btn-large btn-primary" %>
   

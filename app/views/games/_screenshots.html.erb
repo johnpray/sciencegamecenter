@@ -4,7 +4,7 @@
 	<div class="screenshots row">
 		<% @game.screenshots.each do |screenshot| %>
 			<%= link_to(
-				image_tag(screenshot.image.url(:small)),
+				image_tag(screenshot.image.url(:small), alt: screenshot.description, title: screenshot.description),
 				screenshot.image.url(:large),
 				class: 'screenshot span2') %>
 		<% end %>
