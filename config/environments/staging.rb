@@ -80,7 +80,7 @@ SciencegamereviewsOrg::Application.configure do
   }
 
   config.action_mailer.default_url_options = {
-    :host => "growing-flower-9598.herokuapp.com"
+    :host => "staging.sciencegamecenter.org"
   }
 
 

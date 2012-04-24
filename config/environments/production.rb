@@ -80,7 +80,7 @@ SciencegamereviewsOrg::Application.configure do
   }
 
   config.action_mailer.default_url_options = {
-    :host => "science-game-center.herokuapp.com"
+    :host => "science-game-center.herokuapp.com" # "www.sciencegamecenter.org"
   }
 
 
