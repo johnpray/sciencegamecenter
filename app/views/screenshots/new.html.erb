@@ -1,3 +1,5 @@
+<% provide(:title, "Upload a screenshot") %>
+
 <h1>Upload a screenshot for <i><%= @game.title %></i></h1>
 
 <%= form_for [@game, @screenshot], :html => { :multipart => true } do |f| %>

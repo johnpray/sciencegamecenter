@@ -18,5 +18,8 @@ class Screenshot < ActiveRecord::Base
 									default_url: 'no_box.png'
 
   validates_attachment :image, content_type: {
-  										 content_type: ['image/jpeg', 'image/png', 'image/gif'] }
+  										 content_type: ['image/jpeg', 'image/png', 'image/gif'] },
+  										 presence: true
+
+  validates :description, presence: true
 end

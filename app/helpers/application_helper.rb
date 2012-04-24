@@ -2,11 +2,11 @@ module ApplicationHelper
 
 	# Returns the full title on a per-page basis.
   def full_title(page_title)
-    base_title = "Science Game Reviews"
+    base_title = "The Science Game Center"
     if page_title.empty?
       base_title
     else
-      "#{base_title} | #{page_title}"
+      "#{page_title} | #{base_title}"
     end
   end
 

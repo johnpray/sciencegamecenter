@@ -1,12 +1,17 @@
 class ScreenshotsController < ApplicationController
 
   #force_ssl except: :index
-  before_filter :signed_in_user
-  before_filter :admin_user
+  before_filter :signed_in_user, except: :show
+  before_filter :admin_user, except: :show
 
   def index
     @game = Game.find(params[:game_id])
     @screenshots = @game.screenshots
+  end
+
+  def show
+    @screenshot = Screenshot.find(params[:id])
+    @game = @screenshot.game
   end
 
   def new

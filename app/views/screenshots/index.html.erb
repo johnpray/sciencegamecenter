@@ -1,3 +1,5 @@
+<% provide(:title, "Managing screenshots of #{@game.title}") %>
+
 <h1 class="left">Managing Screenshots of <i><%= link_to @game.title, @game %></i></h1>
 
 <% @screenshots.each do |s| %>
