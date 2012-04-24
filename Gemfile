@@ -13,9 +13,10 @@ gem 'paperclip', '~> 3.0.2' # uploads
 gem 'aws-sdk', '~> 1.3.4' # storage
 gem 'acts-as-taggable-on', '~> 2.2.2' # tags
 gem 'recaptcha', require: 'recaptcha/rails'
-#gem 'make_resourceful', '~> 1.0.1'
+gem 'thin', '~> 1.3.1' # faster server 
 
 group :development, :test do
+	gem "eventmachine", "1.0.0.beta.4.1" # for thin
 	gem 'sqlite3'
 	gem 'rspec-rails', '~> 2.9.0'
 end
