@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 
+  #force_ssl
 	before_filter :signed_in_user,  only: [:create, :edit, :update, :destroy]
 	before_filter :correct_user,    only: [:edit, :update, :destroy]
 
