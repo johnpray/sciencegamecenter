@@ -1,11 +1,14 @@
-<h1 class="left">Screenshots of <i><%= link_to @game.title, @game %></i></h1>
+<h1 class="left">Managing Screenshots of <i><%= link_to @game.title, @game %></i></h1>
 
 <% @screenshots.each do |s| %>
 	<div>
 		<p><%= image_tag s.image.url(:medium), style: "width: 100%;" %></p>
-		<p><b><%= link_to "Edit screenshot", edit_screenshot_path(s) %></b></p>
+		<p>
+			<b><%= link_to "Edit screenshot", edit_screenshot_path(s) %></b> | 
+			<%= link_to "Delete screenshot", s, method: :delete, confirm: "Are you sure you want to delete this screenshot?" %>
+		</p>
 	</div>
 	<hr />
 <% end %>
 
-<p><br /><%= link_to "Upload a new screenshot", new_game_screenshot_path %></p>
+<p><br /><b><%= link_to "Upload a new screenshot", new_game_screenshot_path %></b></p>
