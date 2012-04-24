@@ -16,7 +16,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'thin', '~> 1.3.1' # faster server 
 
 group :development, :test do
-	gem "eventmachine", "1.0.0.beta.4.1" # for thin
+	# gem 'eventmachine', '1.0.0.beta.4.1' # for thin locally / commented out for heroku
 	gem 'sqlite3'
 	gem 'rspec-rails', '~> 2.9.0'
 end
