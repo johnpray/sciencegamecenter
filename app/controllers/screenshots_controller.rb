@@ -35,7 +35,7 @@ class ScreenshotsController < ApplicationController
     @screenshot = Screenshot.find(params[:id])
     if @screenshot.update_attributes(params[:screenshot])
       flash[:success] = "Screenshot uploaded."
-      redirect_to game_screenshots_path(@game)
+      redirect_to game_screenshots_path(@screenshot.game)
     else
       flash[:error] = "Screenshot could not be saved. See error messages below and try again."
       render 'edit'
