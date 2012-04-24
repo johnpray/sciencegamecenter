@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	force_ssl except: :show
+	#force_ssl except: :show
   before_filter :signed_in_user,        only: [:edit, :update]
   before_filter :block_signed_in_user,  only: [:new, :create]
   before_filter :correct_user,          only: [:edit, :update]

@@ -1,6 +1,6 @@
 class ScreenshotsController < ApplicationController
 
-  force_ssl except: :index
+  #force_ssl except: :index
   before_filter :signed_in_user
   before_filter :admin_user
 

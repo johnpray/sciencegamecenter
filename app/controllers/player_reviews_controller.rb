@@ -1,6 +1,6 @@
 class PlayerReviewsController < ApplicationController
 
-  force_ssl                       except: [:index]
+  #force_ssl                       except: [:index]
   before_filter :signed_in_user,  only: [:create, :edit, :update, :destroy]
   before_filter :correct_user,    only: [:edit, :update, :destroy]
   
