@@ -12,7 +12,7 @@ class StaticPagesController < ApplicationController
   end
 
   def robots
-  	if request.host.include?("sciencegamecenter.org") && !request.host.include?("heroku") && !request.host.include?("staging.sciencegamecenter.org")
+  	if Rails.env.production? && request.host.include?("sciencegamecenter.org")
 	  	filename = "config/robots.production.txt"
 	  else
   		filename = "config/robots.development.txt"
