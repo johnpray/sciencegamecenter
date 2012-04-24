@@ -5,7 +5,7 @@
 <script>
  CFInstall.check({
    mode: "overlay",
-   destination: "http://<%= request.host_with_port %>"
+   destination: "http://<%= "#{request.host_with_port}#{request.fullpath}" %>"
  });
 </script>
 <![endif]-->
