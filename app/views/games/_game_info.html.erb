@@ -1,7 +1,41 @@
+<table class="table table-condensed game_info">
+
+	<tbody>
+		<tr>
+			<td class="info-key">
+				<b>Subjects</b>
+			</td>
+			<td class="info-value">
+				<%= subject_links_list(game) %>
+			</td>
+		</tr>
+		<tr>
+			<td class="info-key">
+				<b>Available on</b>
+			</td>
+			<td class="info-value">
+				<%= platform_links_list(game) %>
+			</td>
+		</tr>
+		<tr>
+			<td class="info-key">
+				<b>Developed by</b>
+			</td>
+			<td class="info-value">
+				<%= markdown_inline game.developer %>
+			</td>
+		</tr>
+		<tr>
+			<td class="info-key">
+				<b>Website</b>
+			</td>
+			<td class="info-value">
+				<%= tracked_link_to game.website_url, "#{game.website_url}?utm-source=sciencegamecenter.org" %>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
 <% if signed_in? && current_user.is_admin? %>
 <%= render 'games/admin_tools', game: game %>
 <% end %>
-<p class="subjects info_line"><b>Subjects:</b> <%= subject_links_list %></p>
-<p class="platforms info_line"><b>Available on:</b> <%= platform_links_list %></p>
-<p class="website info_line"><b>Official website:</b> <a href="<%= game.website_url %>"><%= game.website_url %></a></p>
-<p class="developer info_line"><b>Developed by:</b> <%= markdown_inline game.developer %></p>

@@ -266,6 +266,13 @@ img.boxart {
   margin-bottom: 5px;
 }
 
+table.game_info {
+  width: auto;
+  td.info-key {
+    font-weight: bold;
+  }
+}
+
 .screenshots {
   .screenshot {
     img {

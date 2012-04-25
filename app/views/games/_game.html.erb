@@ -9,9 +9,7 @@
 			</div>
 			<div class="span8">
 			  <p class="title"><%= link_to game.title, game %></p>
-			  <p class="subjects info_line">Subjects: <%= subject_links_list(game) %></p>
-				<p class="platforms info_line">Available on: <%= platform_links_list(game) %></p>
-			  <p class="info_line"><b>Reviews:</b> <%= link_to pluralize(game.player_reviews.count, "player review"), game_path(game, anchor: "player_reviews") %>, no expert reviews yet, no authoritative reviews yet</p>
+			  <%= render 'games/game_info', game: game, hide_title: true %>
 			</div>
 		</div>
 	</div>
