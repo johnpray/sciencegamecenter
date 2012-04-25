@@ -4,8 +4,8 @@
 <p>Click a subject name below to see all games that cover that subject.</p>
 
 <ul class="taggings">
-	<% @taggings.each do |t| %>
-	<li><%= link_to t.tag.name, games_path(subject: t.tag.name) %></li>
+	<% @tags.each do |t| %>
+	<li><%= link_to t.name, games_path(subject: t.name) %></li>
 	<% end %>
 </ul>
 

@@ -4,7 +4,7 @@
 <p>Click a platform name below to see all games available for that platform.</p>
 
 <ul class="taggings">
-	<% @taggings.each do |t| %>
+	<% @tags.each do |t| %>
 	<li><%= link_to t.name, games_path(platform: t.name) %></li>
 	<% end %>
 </ul>
