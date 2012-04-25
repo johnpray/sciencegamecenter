@@ -2,10 +2,10 @@
 	<div class="container" id="top_banners">
 		<div class="row">
 			<div class="span9" id="leading_banner">
-				<%= tracked_link_to image_tag('700x90.gif', height: '90', width: '700'), '#?source=sgc-top-banner', confirm: "You're about to leave the Science Game Center to visit one of our generous sponsors. Check them out! We hope to see you again soon." %>
+				<%= confirmed_tracked_link_to image_tag('700x90.gif', height: '90', width: '700'), '#?utm_source=sciencegamecenter.org&utm_medium=top_banner&utm_campaign=sciencegamecenter.org' %>
 			</div>
 			<div class="span3" id="top_corner_banner">
-				<%= tracked_link_to image_tag('fas_corner_banner.png', alt: "Federation of American Scientists", title: "Brought to you by the Federation of American Scientists"), 'http://www.fas.org/?source=sgc-top-banner', class: "hidden-phone" %>
+				<%= tracked_link_to image_tag('fas_corner_banner.png', alt: "Federation of American Scientists", title: "Brought to you by the Federation of American Scientists"), 'http://www.fas.org/?utm_source=sciencegamecenter.org&utm_medium=top_corner_banner&utm_campaign=sciencegamecenter.org', class: "hidden-phone" %>
 			</div>
 		</div>
 	</div>
