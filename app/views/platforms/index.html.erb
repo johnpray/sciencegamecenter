@@ -5,7 +5,7 @@
 
 <ul class="taggings">
 	<% @taggings.each do |t| %>
-	<li><%= link_to t.tag.name, games_path(platform: t.tag.name) %></li>
+	<li><%= link_to t.name, games_path(platform: t.name) %></li>
 	<% end %>
 </ul>
 
