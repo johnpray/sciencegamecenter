@@ -21,5 +21,5 @@ class Screenshot < ActiveRecord::Base
   										 content_type: ['image/jpeg', 'image/png', 'image/gif'] },
   										 presence: true
 
-  validates :description, presence: true
+  #validates :description, presence: true
 end
