@@ -281,6 +281,12 @@ table.game_info {
     font-weight: bold;
     width: 100px;
   }
+  margin-bottom: 5px;
+}
+
+.game-info {
+  background: $grayLighter;
+  @include border-radius();
 }
 
 .screenshots {
