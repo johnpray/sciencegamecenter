@@ -32,9 +32,9 @@
 	}
 </style>
 
-<%= render 'games/scorecard', game: @game %>
-
 <%= render 'games/screenshots' if @game.screenshots.count > 0 %>
+
+<%= render 'games/scorecard', game: @game %>
 
 <div id="player_reviews">
 

@@ -30,7 +30,7 @@
 				<b>Website</b>
 			</td>
 			<td class="info-value">
-				<%= tracked_link_to "#{game.website_url} #{external_link_icon}".html_safe, "#{game.website_url}?utm-source=sciencegamecenter.org", title: "Visit this game's website" %>
+				<%= tracked_link_to "Visit #{external_link_icon}".html_safe, "#{game.website_url}?utm-source=sciencegamecenter.org", title: "Visit this game's website at #{game.website_url}" %>
 			</td>
 		</tr>
 	</tbody>

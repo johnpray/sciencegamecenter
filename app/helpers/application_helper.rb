@@ -77,6 +77,6 @@ module ApplicationHelper
   end
 
   def external_link_icon
-    image_tag("external-link-icon.png", alt: "(external)", title: "This link leads to an external website.", style: "display: inline").html_safe
+    image_tag("external-link-icon.png", alt: "(external)", title: "This link leads to an external website.", style: "display: inline; vertical-align: text-top;").html_safe
   end
 end
