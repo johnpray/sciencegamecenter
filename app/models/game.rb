@@ -1,5 +1,6 @@
 class Game < ActiveRecord::Base
   attr_accessible :title, :description, :website_url, :developer,
+  								:intended_audience,
   								:boxart, :platform_list, :subject_list
 
   has_many :player_reviews, dependent: :destroy
