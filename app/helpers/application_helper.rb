@@ -75,4 +75,8 @@ module ApplicationHelper
       "<a #{href_attr}#{tag_options} onClick=\"if(confirm('#{message}')){recordOutboundLink(this, 'Tracked Links', '#{href || ERB::Util.html_escape(url)}');}return false;\">#{ERB::Util.html_escape(name || url)}</a>".html_safe
     end
   end
+
+  def external_link_icon
+    image_tag("external-link-icon.png", alt: "(external)", title: "This link leads to an external website.", style: "display: inline").html_safe
+  end
 end

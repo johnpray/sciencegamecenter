@@ -286,7 +286,11 @@ table.game_info {
 
 .game-info {
   background: $grayLighter;
+  padding: 10px 0;
   @include border-radius();
+  @media (max-width: 767px) {
+    margin-bottom: 20px !important;
+  }
 }
 
 .screenshots {
@@ -388,4 +392,21 @@ table.game_info {
 }
 .comment_count {
   color: $grayLight;
+}
+
+/* print styles */
+@media print {
+  .boxart {
+    max-width: 25% !important;
+    float: left !important;
+    margin-right: 20px;
+  }
+  .screenshot {
+    width: 45% !important;
+    display: inline-block !important;
+    margin-right: 3% !important;
+    img {
+      display: inline-block;
+    }
+  }
 }

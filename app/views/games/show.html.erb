@@ -11,13 +11,13 @@
 -->
 <div class="row">
 	<div class="span4 game-info">
-		<%= image_tag(@game.boxart.url(:medium), class: :boxart) %>
+		<%= tracked_link_to image_tag(@game.boxart.url(:medium), class: :boxart), "#{@game.website_url}?utm-source=sciencegamecenter.org", title: "Visit this game's website" %>
 		<br />
 		<%= render 'games/game_info', game: @game %>
 	</div>
 
 	<div class="span6">
-		<h1 class="left"><%= @game.title %></h1>
+		<h1 class="left"><i><%= @game.title %></i></h1>
 		<div class="description">
 			<%= markdown @game.description %>
 		</div>
