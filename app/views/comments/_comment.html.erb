@@ -3,7 +3,14 @@
 		<%= gravatar_for comment.user, size: 60 %>
 	</div>
 	<div class="span9">
-		<p class="comment_user"><b><%= comment.user ? comment.user.name : "Someone" %></b> on <%= comment.created_at.to_formatted_s(:long) %> said</p>
+		<p class="comment_user"><b><%= comment.user ? comment.user.name : "Someone" %></b> on <%= comment.created_at.to_formatted_s(:long) %> said
+			<% if signed_in? && (current_user?(comment.user) || admin?) %>
+			<b><i> - 
+				<%= link_to "Edit comment", edit_comment_path(comment) %>, 
+				<%= link_to "Delete comment", comment, method: :delete, confirm: "Are you sure you want to destroy this comment now and for the rest of time, with no going back?" %>
+			</i></b>
+		<% end %>
+		</p>
 		<% if (current_user?(comment.user) || admin?) && comment.pending? %>
 			<div class="alert">
 				<strong>Pending.</strong> This comment is awaiting administrator approval before it appears to other site visitors.
@@ -12,12 +19,6 @@
 		<div>
 			<%= markdown comment.content %>
 		</div>
-		<% if signed_in? && (current_user?(comment.user) || admin?) %>
-			<p><b>
-				<%= link_to "Edit comment", edit_comment_path(comment) %>, 
-				<%= link_to "Delete comment", comment, method: :delete, confirm: "Are you sure you want to destroy this comment now and for the rest of time, with no going back?" %>
-			</b></p>
-		<% end %>
 		<hr />
 	</div>
 </div>

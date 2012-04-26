@@ -8,8 +8,7 @@
 		<i>by <%= review.user ? review.user.name : "someone" %> on <%= review.created_at.to_date.to_formatted_s(:long) %></i>
 		<% if signed_in? && admin? %>
 			 - 
-			<%= link_to "Edit review", edit_player_review_path(review) %>,
-			<%= link_to "Delete review", review, method: :delete, confirm: "Are you sure you want to destroy this review now and for the rest of time, with no going back?" %>
+			<%= render 'player_reviews/admin_tools', player_review: review %>
 		<% end %>
 		<% if signed_in? && current_user?(review.user) && !admin? %>
 		 - 
