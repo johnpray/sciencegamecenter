@@ -1,11 +1,19 @@
-<table class="table table-condensed game_info admin_tools">
+<table class="table table-condensed game_info admin_tools" style="margin-top: 1px;">
 	<tbody>
+		<tr>
+			<td class="info-key">
+				&nbsp;
+			</td>
+			<td class="info-value">
+				&nbsp;
+			</td>
+		</tr>
 		<tr>
 			<td class="info-key">
 				<b>Admin Tools</b>
 			</td>
 			<td class="info-value">
-				<%= link_to "Edit game", edit_game_path(game) %>, 
+				<b><%= link_to "Edit game", edit_game_path(game) %></b>, 
 				<%= link_to "Delete game", game, method: :delete, confirm: "Are you sure you want to destroy this game now and for the rest of time, with no going back?" %>, 
 				<%= link_to "Manage screenshots", game_screenshots_path(game) %>
 			</td>

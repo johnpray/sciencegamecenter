@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424182120) do
+ActiveRecord::Schema.define(:version => 20120426192611) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120424182120) do
     t.integer  "boxart_file_size"
     t.datetime "boxart_updated_at"
     t.string   "developer"
+    t.string   "intended_audience"
   end
 
   create_table "player_reviews", :force => true do |t|

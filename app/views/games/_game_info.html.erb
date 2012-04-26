@@ -3,10 +3,18 @@
 	<tbody>
 		<tr>
 			<td class="info-key">
-				<b>Subjects</b>
+				<b>Deals with</b>
 			</td>
 			<td class="info-value">
 				<%= subject_links_list(game) %>
+			</td>
+		</tr>
+		<tr>
+			<td class="info-key">
+				<b>Intended for</b>
+			</td>
+			<td class="info-value">
+				<%= game.intended_audience %>
 			</td>
 		</tr>
 		<tr>
@@ -19,10 +27,10 @@
 		</tr>
 		<tr>
 			<td class="info-key">
-				<b>Developed by</b>
+				&nbsp;
 			</td>
 			<td class="info-value">
-				<%= markdown_inline game.developer %>
+				&nbsp;
 			</td>
 		</tr>
 		<tr>
@@ -30,7 +38,15 @@
 				<b>Website</b>
 			</td>
 			<td class="info-value">
-				<%= tracked_link_to "Visit #{external_link_icon}".html_safe, "#{game.website_url}?utm-source=sciencegamecenter.org", title: "Visit this game's website at #{game.website_url}" %>
+				<%= tracked_link_to "Visit website #{external_link_icon}".html_safe, "#{game.website_url}?utm-source=sciencegamecenter.org", title: "Visit this game's website at #{game.website_url}" %>
+			</td>
+		</tr>
+		<tr>
+			<td class="info-key">
+				<b>Developed by</b>
+			</td>
+			<td class="info-value">
+				<%= markdown_inline game.developer %>
 			</td>
 		</tr>
 	</tbody>

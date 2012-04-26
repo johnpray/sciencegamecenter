@@ -2,13 +2,17 @@
 <%= f.text_field :title %>
 <p class="form-help">The game's full title.</p>
 
-<%= f.label :subject_list, "Subjects" %>
+<%= f.label :subject_list, "Deals with" %>
 <%= f.text_field :subject_list %>
 <p class="form-help">The subjects this game deals with, separated by commas. (e.g. Biology, Chemistry, Pokémon Battling)</p>
 
 <%= f.label :platform_list, "Available on" %>
 <%= f.text_field :platform_list %>
 <p class="form-help">The platforms this game has been released for, separated by commas. (e.g. PC (Windows), Mac, Game Boy Color)</p>
+
+<%= f.label :intended_audience, "Intended for" %>
+<%= f.text_field :intended_audience %>
+<p class="form-help">The grade levels, age group, or other group(s) this game was intended to be played by.</p>
 
 <%= f.label :website_url, "Website URL" %>
 <%= f.text_field :website_url %>
