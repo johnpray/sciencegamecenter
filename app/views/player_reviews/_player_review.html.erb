@@ -3,7 +3,7 @@
 	<%= gravatar_for review.user %>
 	<% end %>
 
-	<h3><%= review.title %></h3>
+	<h3><%= link_to review.title, review %></h3>
 	<p>
 		<i>by <%= review.user ? review.user.name : "someone" %> on <%= review.created_at.to_date.to_formatted_s(:long) %></i>
 		<% if signed_in? && admin? %>
