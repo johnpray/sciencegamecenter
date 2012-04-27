@@ -5,7 +5,7 @@
 				<%= link_to image_tag(game.boxart.url(:medium), class: :boxart), game %>
 			</div>
 			<div class="span8">
-			  <p class="title"><i><%= link_to game.title, game %></i></p>
+			  <p class="title"><i><%= link_to game.title, game %></i> <small><%= link_to "View this game's profile", game, style: "color: #ccc;" %></small></p>
 			  <%= render 'games/game_info', game: game, hide_title: true %>
 			</div>
 		</div>

@@ -4,15 +4,19 @@
 
 <%= f.label :subject_list, "Deals with" %>
 <%= f.text_field :subject_list %>
-<p class="form-help">The subjects this game deals with, separated by commas. (e.g. Biology, Chemistry, Pokémon Battling)</p>
+<p class="form-help">The general subjects or topics this game deals with, separated by commas. (e.g. biology, chemistry, Pokémon battling). Games can be sorted by these.</p>
+
+<%= f.label :concepts, "Concepts include" %>
+<%= f.text_field :concepts %>
+<p class="form-help">The deeper concepts this game deals with, separated by ' // '. This will show up in the description but cannot be sorted by.</p>
 
 <%= f.label :platform_list, "Available on" %>
 <%= f.text_field :platform_list %>
-<p class="form-help">The platforms this game has been released for, separated by commas. (e.g. PC (Windows), Mac, Game Boy Color)</p>
+<p class="form-help">The platforms this game has been released for, separated by commas. (e.g. Wordl Wide Web, Microsoft Windows, Mac OS X, Game Boy Color). Games can be sorted by these.</p>
 
 <%= f.label :intended_audience, "Intended for" %>
 <%= f.text_field :intended_audience %>
-<p class="form-help">The grade levels, age group, or other group(s) this game was intended to be played by.</p>
+<p class="form-help">The grade levels, age group, or other group(s) this game was intended to be played by, separated by ' // '. This will show up in the description but cannot be sorted by.</p>
 
 <%= f.label :website_url, "Website URL" %>
 <%= f.text_field :website_url %>
