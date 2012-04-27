@@ -5,6 +5,7 @@ class Game < ActiveRecord::Base
 
   has_many :player_reviews, dependent: :destroy
   has_many :screenshots,		dependent: :destroy
+  has_many :youtube_videos,	dependent: :destroy
 
   acts_as_taggable_on :subjects, :platforms
 
