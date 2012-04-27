@@ -21,6 +21,9 @@
 		<div class="description">
 			<%= markdown @game.description %>
 		</div>
+		<% if signed_in? && current_user.is_admin? %>
+		<%= render 'games/admin_tools', game: @game %>
+		<% end %>
 	</div>
 
 </div>

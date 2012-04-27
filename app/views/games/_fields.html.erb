@@ -6,9 +6,9 @@
 <%= f.text_field :subject_list %>
 <p class="form-help">The general subjects or topics this game deals with, separated by commas. (e.g. biology, chemistry, Pokémon battling). Games can be sorted by these.</p>
 
-<%= f.label :concepts, "Concepts include" %>
+<%= f.label :concepts, "Deeper concepts" %>
 <%= f.text_field :concepts %>
-<p class="form-help">The deeper concepts this game deals with, separated by ' // '. This will show up in the description but cannot be sorted by.</p>
+<p class="form-help">The deeper concepts this game deals with, separated by ' // '. This will show up in the description but cannot be used for sorting.</p>
 
 <%= f.label :platform_list, "Available on" %>
 <%= f.text_field :platform_list %>
@@ -30,8 +30,9 @@
 <%= f.text_area :description, rows: 10 %>
 <p class="form-help">A description of the game. Facts only. Save opinions for the reviews.<br/>Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
 
-<%= f.label :boxart %>
+<%= f.label :boxart, "Box art / logo" %>
 <% if f.object.boxart.file? %>
 <%= image_tag f.object.boxart.url(:large) %>
 <% end %>
 <%= f.file_field :boxart %>
+<p class="form-help">The box art, logo, or (if all that's available) screenshot of this game's title screen, in jpg, gif, or png format. Use as high a resolution as is available; smaller versions will be created automatically.</p>

@@ -9,6 +9,7 @@
 				<%= subject_links_list(game) %>
 			</td>
 		</tr>
+		<% if !game.concepts.blank? %>
 		<tr>
 			<td class="info-key">
 				<b>&nbsp;</b>
@@ -17,6 +18,7 @@
 				<%= game.concepts %>
 			</td>
 		</tr>
+		<% end %>
 		<tr>
 			<td class="info-key">
 				<b>Intended for</b>
@@ -59,7 +61,3 @@
 		</tr>
 	</tbody>
 </table>
-
-<% if signed_in? && current_user.is_admin? %>
-<%= render 'games/admin_tools', game: game %>
-<% end %>
