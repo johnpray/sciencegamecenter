@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @games = Game.all
+    @games = Game.order('updated_at DESC')
   end
 
   def about
