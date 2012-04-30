@@ -404,15 +404,6 @@ table.game_info {
   }
 }
 
-
-
-
-
-/* tweaks to default */
-.navbar-inner {
-  @include border-radius(0px);
-}
-
 /* comments */
 .comment_user {
   color: $grayLight;
@@ -420,6 +411,17 @@ table.game_info {
 .comment_count {
   color: $grayLight;
 }
+
+
+
+/* tweaks to default */
+.navbar-inner {
+  @include border-radius(0px);
+}
+.alert {
+  font-size: 18px;
+}
+
 
 /* print styles */
 @media print {
