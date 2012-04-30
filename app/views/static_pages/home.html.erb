@@ -10,6 +10,10 @@
 	    <div class="item <%= i == 0 ? 'active' : '' %>">
 	    	<%= link_to image_tag(game.screenshots.first.image.url(:carousel), width: '100%'), game_path(game) %>
 	    	<div class="carousel-caption">
+	    		<p class="visible-phone" style="font-size: 1em; line-height: 1.2">
+	    			<a href="#games_carousel" data-slide="prev">&lsaquo; Previous</a>
+  					<a style="float: right;" href="#games_carousel" data-slide="next">Next &rsaquo;</a>
+  				</p>
 	    		<p class="title"><span class="prefix">Game: </span><i><%= link_to game.title, game_path(game) %></i></p>
 	    		<p class="description">
 	    			<%= truncate(strip_tags(markdown(game.description)), length: 300).html_safe %>
@@ -22,11 +26,11 @@
     <% end %>
   </div>
   <!-- Carousel nav -->
-  <a class="carousel-control left" href="#games_carousel" data-slide="prev">&lsaquo;</a>
-  <a class="carousel-control right" href="#games_carousel" data-slide="next">&rsaquo;</a>
+  <a class="carousel-control left hidden-phone" href="#games_carousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right hidden-phone" href="#games_carousel" data-slide="next">&rsaquo;</a>
 </div>
 
-<div class="center hero-unit" style="padding: 5%">
+<div class="center hero-unit" style="padding: 40px 5%">
 	<h2>Welcome to the</h2>
   <h1>Science Game Center</h1>
   <br />
@@ -34,7 +38,7 @@
     Get info and read reviews for video games that teach science
   </h2>
   <br />
-  <p><%= link_to "What is this?", about_path, class: "btn btn-large btn-info" %> 
+  <p><%= link_to "What is this?", about_path, class: "btn btn-large btn-info", style: 'margin-bottom: 5px;' %> 
   <%= link_to "See the games!", games_path, class: "btn btn-large btn-primary" %></p>
 </div>
 
