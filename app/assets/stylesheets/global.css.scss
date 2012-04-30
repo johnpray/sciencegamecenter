@@ -385,12 +385,17 @@ table.game_info {
 
 /* carousel */
 .carousel {
+  a {
+      color: #ccc;
+  }
   .title {
     font-size: 1.7em;
     letter-spacing: -1px;
     font-weight: bold;
     color: white;
-    margin: 0;
+    line-height: 1.2;
+    margin: 5px 0;
+    
     a {
       color: white;
     }
@@ -431,7 +436,6 @@ table.game_info {
 .btn-large {
   font-size: 18px;
 }
-
 
 /* print styles */
 @media print {
