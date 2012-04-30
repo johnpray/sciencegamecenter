@@ -2,6 +2,8 @@ class PlayerReview < ActiveRecord::Base
   attr_accessible :accuracy_rating, :content, :effectiveness_rating,
   								:fun_rating, :game_id, :title, :status
 
+  default_scope order: 'created_at DESC'
+
   belongs_to :game
   belongs_to :user
   has_many :comments, as: :commentable
@@ -30,9 +32,7 @@ class PlayerReview < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :game_id, presence: true
-
-  default_scope order: 'player_reviews.created_at DESC'
-
+  
   def approved?
   	self.status == 'Approved'
   end

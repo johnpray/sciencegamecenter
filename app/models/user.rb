@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
 									:disabled, :parent_email
 	before_save :create_remember_token
 
+	default_scope order: 'name ASC'
+
 	has_many :player_reviews, dependent: :nullify
 
 	validates :name,	presence: true,

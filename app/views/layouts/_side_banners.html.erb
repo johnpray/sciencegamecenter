@@ -1,7 +1,7 @@
         <hr class="hidden-desktop" />
         <div class="span2" id="side_ads_container">
           <h3>SGC Sponsors</h3>
-          <% 2.times do %>
-          <%= confirmed_tracked_link_to image_tag('140x140.gif', height: 140, width: 140, style: "margin-bottom: 10px; border: 1px solid #999;"), "#?utm-source=sgc-side-banner" %>
+          <% 3.times do %>
+          <%= link_to image_tag('side_banner_advertise.png', height: 140, width: 140, style: "margin-bottom: 10px;"), contact_path %>
           <% end %>
         </div>

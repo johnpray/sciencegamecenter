@@ -3,6 +3,8 @@ class Game < ActiveRecord::Base
   								:intended_audience, :concepts,
   								:boxart, :platform_list, :subject_list
 
+  default_scope order: 'title ASC'
+
   has_many :player_reviews, dependent: :destroy
   has_many :screenshots,		dependent: :destroy
   has_many :youtube_videos,	dependent: :destroy
@@ -26,8 +28,6 @@ class Game < ActiveRecord::Base
   validates :title,	presence: true
   validates_attachment :boxart, content_type: {
   										 content_type: ['image/jpeg', 'image/png', 'image/gif'] }
-
-  default_scope order: 'games.title ASC'
 
 	def player_fun_average(round = true)
 		if self.approved_player_reviews_count < 1

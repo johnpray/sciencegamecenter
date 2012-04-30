@@ -383,6 +383,26 @@ table.game_info {
   }
 }
 
+/* carousel */
+.carousel {
+  .title {
+    font-size: 1.7em;
+    letter-spacing: -1px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+    a {
+      color: white;
+    }
+  }
+  .description {
+    color: $grayLight;
+  }
+}
+
+
+
+
 
 /* tweaks to default */
 .navbar-inner {
