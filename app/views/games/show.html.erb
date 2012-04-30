@@ -14,6 +14,10 @@
 		<%= tracked_link_to image_tag(@game.boxart.url(:medium), class: :boxart, alt: "Visit this game's website"), "#{@game.website_url}?utm-source=sciencegamecenter.org", title: "Visit this game's website" %>
 		<br />
 		<%= render 'games/game_info', game: @game %>
+		<% if signed_in? && current_user.is_admin? %>
+		<hr />
+		<div style="margin-left: 5px; margin-top: 10px;"><%= render 'games/admin_tools', game: @game %></div>
+		<% end %>
 	</div>
 
 	<div class="span6">
@@ -21,9 +25,6 @@
 		<div class="description">
 			<%= markdown @game.description %>
 		</div>
-		<% if signed_in? && current_user.is_admin? %>
-		<%= render 'games/admin_tools', game: @game %>
-		<% end %>
 	</div>
 
 </div>

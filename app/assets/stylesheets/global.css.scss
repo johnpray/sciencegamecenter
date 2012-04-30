@@ -421,6 +421,16 @@ table.game_info {
 .alert {
   font-size: 18px;
 }
+.hero-unit {
+  h2 {
+    color: $grayLight;
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
+}
+.btn-large {
+  font-size: 18px;
+}
 
 
 /* print styles */
