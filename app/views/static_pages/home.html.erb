@@ -22,7 +22,7 @@
 	    <div class="item <%= i == 0 ? 'active' : '' %>">
 	    	<%= link_to image_tag(game.screenshots.first.image.url(:carousel), width: '100%'), game_path(game) %>
 	    	<div class="carousel-caption">
-	    		<p class="title"><i><%= link_to game.title, game_path(game) %></i></p>
+	    		<p class="title"><span class="prefix">Game: </span><i><%= link_to game.title, game_path(game) %></i></p>
 	    		<p class="description">
 	    			<%= truncate strip_tags(markdown(game.description)), length: 300 %>
 	    			<%= link_to 'Read more &raquo;'.html_safe, game_path(game) %>

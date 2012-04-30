@@ -394,6 +394,10 @@ table.game_info {
     a {
       color: white;
     }
+    .prefix {
+      font-weight: normal;
+      color: $grayLight;
+    }
   }
   .description {
     color: $grayLight;
