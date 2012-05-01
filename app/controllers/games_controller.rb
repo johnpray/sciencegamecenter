@@ -16,6 +16,10 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @player_reviews = @game.player_reviews
     @player_review = PlayerReview.new
+
+    if request.path != game_path(@game)
+      redirect_to @game, status: :moved_permanently
+    end
   end
 
   def new

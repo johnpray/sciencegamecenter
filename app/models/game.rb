@@ -5,6 +5,9 @@ class Game < ActiveRecord::Base
 
   default_scope order: 'title ASC'
 
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
   has_many :player_reviews, dependent: :destroy
   has_many :screenshots,		dependent: :destroy
   has_many :youtube_videos,	dependent: :destroy
