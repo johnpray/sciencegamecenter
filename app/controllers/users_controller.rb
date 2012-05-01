@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    old_email = @user.email
     flash_message = "Profile and password updated."
     if params[:user][:password].empty?
       params[:user][:password] = params[:current][:password]
@@ -58,6 +59,9 @@ class UsersController < ApplicationController
       if result
         flash[:success] = flash_message
         sign_in @user unless current_user.is_admin? && !current_user?(@user)
+        if @user.email != old_email
+          UserMailer.inform_of_email_change(@user, old_email).deliver
+        end
         redirect_to @user
       else
         render 'edit'
