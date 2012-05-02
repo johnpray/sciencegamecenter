@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
 	default_scope order: 'name ASC'
 
 	has_many :player_reviews, dependent: :nullify
+	has_many :comments, dependent: :nullify
 
 	validates :name,	presence: true,
 										length: { maximum: 50 },

@@ -1,18 +1,29 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-      <p>
-      	<% if @user.is_admin? %>
-      	Administrator
-      	<% else %>
-      	Player
-      	<% end %>
-      </p>
-    </section>
-  </aside>
+  <div class="span3">
+    <h1 class="left">
+      <%= @user.name %>
+    </h1>
+    <p><%= gravatar_for @user %></p>
+    <p>
+    	<% if @user.is_admin? %>
+    	Administrator
+    	<% else %>
+    	Player
+    	<% end %>
+    </p>
+    <% if current_user?(@user) || admin? %>
+    <p>
+      <%= link_to "Edit profile", edit_user_path(@user) %>
+    </p>
+    <% end %>
+  </div>
+  <div class="span7">
+    <h2>Reviews</h2>
+    <% @user.player_reviews.each do |r| %>
+      <h4>Of <i><%= link_to r.game.title, r.game %></i>:</h4>
+      <%= render 'player_reviews/player_review', review: r %>
+      <hr />
+    <% end %>
+  </div>
 </div>

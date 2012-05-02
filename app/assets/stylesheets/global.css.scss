@@ -436,8 +436,13 @@ table.game_info {
 .btn-large {
   font-size: 18px;
 }
-.btn-navbar {
+.navbar .btn-navbar {
+  margin-top: 10px;
   margin-bottom: 10px;
+}
+.navbar .brand {
+  max-width: 70%;
+  margin-bottom: 8px;
 }
 
 /* print styles */

@@ -16,7 +16,7 @@
   				</p>
 	    		<p class="title"><span class="prefix">Game: </span><i><%= link_to game.title, game_path(game) %></i></p>
 	    		<p class="description">
-	    			<%= truncate(strip_tags(markdown(game.description)), length: 300).html_safe %>
+	    			<%= truncate(strip_tags(markdown(game.description)), length: 320).html_safe %>
 	    			<%= link_to 'Read more &raquo;'.html_safe, game_path(game) %>
 	    		</p>
 	    	</div>
@@ -32,7 +32,11 @@
 
 <div class="center hero-unit" style="padding: 40px 5%">
 	<h2>Welcome to the</h2>
-  <h1>Science Game Center</h1>
+  <h1>
+  	<%= image_tag 'sgc-logo-600_01.png', alt: "Science", style: 'max-width: 100%;' %>
+  	<%= image_tag 'sgc-logo-600_02.png', alt: "Game", style: 'max-width: 100%;' %>
+  	<%= image_tag 'sgc-logo-600_03.png', alt: "Center", style: 'max-width: 100%;' %>
+  </h1>
   <br />
   <h2>
     Get info and read reviews for <b>video games that teach science</b>
