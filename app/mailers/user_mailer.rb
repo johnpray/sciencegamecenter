@@ -47,4 +47,11 @@ class UserMailer < ActionMailer::Base
       subject: "Your email address at the Science Game Center has been changed"
     )
   end
+
+  def inform_of_password_change(user)
+    @user = user
+    mail(
+      to:  "#{user.name} <#{user.email}>", 
+      subject: "Your password at the Science Game Center has been changed"
+    )
 end
