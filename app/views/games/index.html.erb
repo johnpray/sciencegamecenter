@@ -9,21 +9,18 @@
 		<% if !params[:platform].blank? || !params[:subject].blank? %>
 		<ul class="breadcrumb" style="font-size: 18px;">
 			<li>
-				<%= link_to "Games", games_path %>
+				<%= link_to "All games", games_path %>
 			</li>
 			<% if !params[:subject].blank? %>
 			<li>
-				<span class="divider">&raquo;</span> <strong><%= params[:subject] %></strong>
+				<span class="divider">&raquo;</span>deals with <strong><%= params[:subject] %></strong>
 			</li>
 			<% end %>
 			<% if !params[:platform].blank? %>
 			<li>
-				<span class="divider">&raquo;</span> <strong><%= params[:platform] %></strong>
+				<span class="divider">&raquo;</span>available on <strong><%= params[:platform] %></strong>
 			</li>
 			<% end %>
-			<li>
-				&nbsp;&nbsp;&nbsp;<%= link_to "View all games", games_path %>
-			</li>
 		</ul>
 		<% end %>
 
