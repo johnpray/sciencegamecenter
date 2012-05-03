@@ -1,6 +1,10 @@
 <%= provide(:title, 'Games') %>
 
 		<h1 class="left">Games</h1>
+		<p>
+			<%= link_to "Filter by subject", subjects_path %> | 
+			<%= link_to "Filter by platform", platforms_path %>
+		</p>
 
 		<% if !params[:platform].blank? || !params[:subject].blank? %>
 		<ul class="breadcrumb">
