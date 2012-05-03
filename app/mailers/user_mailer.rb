@@ -54,4 +54,5 @@ class UserMailer < ActionMailer::Base
       to:  "#{user.name} <#{user.email}>", 
       subject: "Your password at the Science Game Center has been changed"
     )
+  end
 end
