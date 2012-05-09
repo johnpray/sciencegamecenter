@@ -11,22 +11,22 @@ module ApplicationHelper
   end
 
   def markdown(text)
-		markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-          :space_after_headers => true, :hard_wrap => true, :with_toc_data => true)
     if !text.nil?
-		  sanitize(markdown.render(text))
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+          :space_after_headers => true, :hard_wrap => true, :with_toc_data => true)
+      sanitize(markdown.render(text))
     else
-      ""
+      ''
     end
-	end
+  end
 
   def markdown_inline(text)
-    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
-          :space_after_headers => true, :hard_wrap => true, :with_toc_data => true)
     if !text.nil?
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+          :space_after_headers => true, :hard_wrap => false, :with_toc_data => true)
       sanitize(markdown.render(text), tags: %w(a span b strong i em))
     else
-      ""
+      ''
     end
   end
 
@@ -35,7 +35,7 @@ module ApplicationHelper
     if block_given?
       options      = args.first || {}
       html_options = args.second
-      link_to(capture(&block), options, html_options)
+      tracked_link_to(capture(&block), options, html_options)
     else
       name         = args[0]
       options      = args[1] || {}

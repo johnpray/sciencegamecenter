@@ -6,14 +6,7 @@
     <%= render 'layouts/header' %>
     <div class="container" id="content-container">
       <%= render 'layouts/ie6_warning' %>
-    	<% flash.each do |key, value| %>
-        <% if !value.nil? && !value.empty? && key != :recaptcha_error %>
-        <div class="alert alert-<%= key %>">
-          <%= value %>
-          <a class='close' data-dismiss='alert' href='#'>&times;</a>
-        </div>
-        <% end %>
-      <% end %>
+      <%= render 'layouts/flash', flash: flash %>
 
       <div class="row-fluid">
         <div class="span10">
