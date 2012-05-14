@@ -310,6 +310,12 @@ table.game_info {
     clear: both;
   }
 }
+.next_previous_links {
+  font-size: 21px;
+  .next {
+    float: right;
+  }
+}
 
 /* admin tools */
 .admin_tools {

@@ -24,5 +24,13 @@ class Screenshot < ActiveRecord::Base
   										 content_type: ['image/jpeg', 'image/png', 'image/gif'] },
   										 presence: true
 
+  def next
+  	game.screenshots.where('id > ?', id).first
+  end
+
+  def previous
+		game.screenshots.where('id < ?', id).last
+  end
+
   #validates :description, presence: true
 end

@@ -183,7 +183,6 @@ DEPENDENCIES
   bootstrap-will_paginate (= 0.0.7)
   capybara (= 1.1.2)
   coffee-rails (~> 3.2.2)
-  eventmachine (= 1.0.0.beta.4.1)
   faker (~> 1.0.1)
   friendly_id (~> 4.0.1)
   jquery-rails (~> 2.0.0)

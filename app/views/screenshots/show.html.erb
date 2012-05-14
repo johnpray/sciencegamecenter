@@ -3,7 +3,8 @@
 <div>
 	<p><%= image_tag @screenshot.image.url(:medium), style: "width: 100%;" %></p>
 	<div><%= markdown @screenshot.description %></div>
-	<p>(A screenshot of <i><%= link_to @game.title, @game %></i>)</p>
+	<p class="next_previous_links"><%= link_to "« Previous", @screenshot.previous, class: "previous" if @screenshot.previous %> &nbsp; <%= link_to "Next »", @screenshot.next, class: "next" if @screenshot.next %></p>
+	<p>Back to <i><%= link_to @game.title, @game %></i></p>
 	<% if admin? %>
 	<p>
 		<b><%= link_to "Edit screenshot", edit_screenshot_path(@screenshot) %></b> | 

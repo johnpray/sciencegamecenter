@@ -1,0 +1,16 @@
+---
+:Game:
+  :boxart:
+  - :banner
+  - :large
+  - :medium
+  - :small
+  - :thumb
+:Screenshot:
+  :image:
+  - :banner
+  - :carousel
+  - :large
+  - :medium
+  - :small
+  - :thumb
