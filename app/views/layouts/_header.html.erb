@@ -1,7 +1,7 @@
 <header class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "#{image_tag('navlogo_slice01.png', alt: 'Science', title: '')}#{image_tag('navlogo_slice02.png', alt: 'Game', title: '')}#{image_tag('navlogo_slice03.png', alt: 'Center', title: '')} beta".html_safe, root_path, class: "brand", style: 'padding-bottom: 0' %>
+      <%= link_to "#{image_tag('navlogo_slice01.png', alt: 'Science', title: '')}#{image_tag('navlogo_slice02.png', alt: 'Game', title: '')}#{image_tag('navlogo_slice03.png', alt: 'Center', title: '')} #{Rails.env.staging? ? 'staging' : 'beta'}".html_safe, root_path, class: "brand", style: 'padding-bottom: 0' %>
 
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>

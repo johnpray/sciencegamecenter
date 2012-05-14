@@ -26,7 +26,7 @@ class ScreenshotsController < ApplicationController
       flash[:success] = "Screenshot uploaded."
       redirect_to game_screenshots_path(@game)
     else
-      flash[:error] = "Screenshot could not be saved. See error messages below and try again."
+      flash.now[:error] = "Screenshot could not be saved. See error messages below and try again."
       render 'new'
     end
   end
@@ -42,7 +42,7 @@ class ScreenshotsController < ApplicationController
       flash[:success] = "Screenshot uploaded."
       redirect_to game_screenshots_path(@screenshot.game)
     else
-      flash[:error] = "Screenshot could not be saved. See error messages below and try again."
+      flash.now[:error] = "Screenshot could not be saved. See error messages below and try again."
       render 'edit'
     end
   end

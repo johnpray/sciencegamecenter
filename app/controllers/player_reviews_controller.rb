@@ -28,7 +28,7 @@ class PlayerReviewsController < ApplicationController
         PlayerReviewMailer.notify_for_approval(@player_review).deliver
         flash[:success] = "Your review has been submitted and will show up on the site once it is approved. Thank you!"
       end
-      redirect_to @game
+      redirect_to game_path(@game, anchor: :new_player_review)
     else
       render 'new'
     end
