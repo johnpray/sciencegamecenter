@@ -290,7 +290,7 @@ table.game_info {
 .game-info {
   background: $grayLighter;
   padding: 10px 0;
-  @include border-radius();
+  @include border-radius(5px);
   @media (max-width: 767px) {
     margin-bottom: 20px !important;
   }
