@@ -4,7 +4,7 @@
 
 <% @screenshots.each do |s| %>
 	<div>
-		<p><%= image_tag s.image.url(:medium), style: "width: 100%;" %></p>
+		<p><%= link_to image_tag(s.image.url(:medium), style: "width: 100%;"), s %></p>
 		<div><%= markdown s.description %></div>
 		<p>
 			<b><%= link_to "Edit screenshot", edit_screenshot_path(s) %></b> | 
