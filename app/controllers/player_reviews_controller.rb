@@ -29,6 +29,8 @@ class PlayerReviewsController < ApplicationController
         flash[:success] = "Your review has been submitted and will show up on the site once it is approved. Thank you!"
       end
       redirect_to @game
+    else
+      render 'new'
     end
   end
 
