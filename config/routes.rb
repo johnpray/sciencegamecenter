@@ -23,6 +23,8 @@ SciencegamereviewsOrg::Application.routes.draw do
   resources :player_reviews
   resources :comments
 
+  post "versions/:id/revert" => "versions#revert", as: 'revert_version'
+
   match '/signup',  to: 'users#new'
   match '/login',   to: 'sessions#new'
   match '/logout',  to: 'sessions#destroy', via: :delete

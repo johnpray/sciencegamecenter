@@ -41,7 +41,7 @@ class PlayerReviewsController < ApplicationController
     if @player_review.update_attributes(params[:player_review])
       if current_user.is_admin?
         @player_review.approve!
-        flash[:success] = "Player review updated."
+        flash[:success] = "Player review updated. #{undo_link}".html_safe
       else
         @player_review.make_pending!
         PlayerReviewMailer.notify_for_approval(@player_review).deliver
@@ -54,16 +54,19 @@ class PlayerReviewsController < ApplicationController
   end
 
   def destroy
-    player_review = PlayerReview.find(params[:id])
+    @player_review = PlayerReview.find(params[:id])
     PlayerReview.find(params[:id]).destroy
-    flash[:success] = "Player review #{@player_review.title} for #{@player_review.game.title} and all its reviews and comments have been destroyed now and forever."
-    redirect_to game_path(player_review.game)
+    flash[:success] = "Player review destroyed. #{undo_link}".html_safe
+    redirect_to game_path(@player_review.game)
   end
-
 
   private
     def correct_user
       @player_review = PlayerReview.find(params[:id])
       redirect_to(root_path) unless current_user?(@player_review.user) || current_user.is_admin?
+    end
+
+    def undo_link
+      view_context.link_to("Undo", revert_version_path(@player_review.versions.scoped.last), method: :post)
     end
 end

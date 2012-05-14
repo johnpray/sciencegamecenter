@@ -32,5 +32,4 @@ class Screenshot < ActiveRecord::Base
 		game.screenshots.where('id < ?', id).last
   end
 
-  #validates :description, presence: true
 end

@@ -8,6 +8,8 @@ class PlayerReview < ActiveRecord::Base
   belongs_to :user
   has_many :comments, as: :commentable
 
+  has_paper_trail
+
   validates :title,		presence: true
   validates :content, presence: true
 
