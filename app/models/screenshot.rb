@@ -5,6 +5,8 @@ class Screenshot < ActiveRecord::Base
 
   belongs_to :game
 
+  has_paper_trail
+
   has_attached_file :image,
 									styles: {
 										large: '1000x1000>',

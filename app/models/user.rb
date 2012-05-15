@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 	has_many :player_reviews, dependent: :nullify
 	has_many :comments, dependent: :nullify
 
+	has_paper_trail
+
 	validates :name,	presence: true,
 										length: { maximum: 50 },
 										exclusion: { in: %w(admin superuser administrator fasadmin) },

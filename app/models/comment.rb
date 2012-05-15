@@ -6,6 +6,8 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true
   belongs_to :user
 
+  has_paper_trail
+
   validates :content, presence: true
   validates :commentable_id, presence: true
   validates :commentable_type, presence: true

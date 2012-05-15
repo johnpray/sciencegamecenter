@@ -5,5 +5,7 @@ class YoutubeVideo < ActiveRecord::Base
 
   belongs_to :game
 
+  has_paper_trail
+
   validates :youtube_vi, presence: true
 end
