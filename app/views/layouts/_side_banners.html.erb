@@ -1,6 +1,12 @@
         <hr class="hidden-desktop" />
         <div class="span2" id="side_ads_container">
-          <h3 style="margin-top: 0;">SGC Sponsors</h3>
+        	<h3 style="margin-top: 0;">Get News</h3>
+        	<%= render 'layouts/subscribe' %>
+
+        	<a href="https://twitter.com/SciGame" class="twitter-follow-button" data-show-count="false" data-width="140px" >Follow @SciGame</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+          <h3>SGC Sponsors</h3>
           <% 3.times do %>
           <%= link_to image_tag('side_banner_advertise.png', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: ''), contact_path %>
           <% end %>
