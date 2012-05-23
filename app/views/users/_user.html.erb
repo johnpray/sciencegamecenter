@@ -4,11 +4,7 @@
   <%= link_to user.name, user %>
 
   <br />
-	<% if user.is_admin? %>
-	Administrator
-	<% else %>
-	Player
-	<% end %>
+	<%= user.roles %>
 	<% if user.disabled? %> (Disabled)<% end %>
 
   <% if signed_in? && current_user.is_admin? %>

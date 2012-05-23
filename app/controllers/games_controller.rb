@@ -14,7 +14,9 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @player_reviews = @game.player_reviews
+    @player_reviews = @game.actual_player_reviews
+    @expert_reviews = @game.expert_reviews
+    @authoritative_reviews = @game.authoritative_reviews
     @player_review = PlayerReview.new
 
     if request.path != game_path(@game)

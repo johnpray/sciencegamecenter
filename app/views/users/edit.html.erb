@@ -23,8 +23,19 @@
       <p class="form-help">If you'd like to change your password, enter the new one here. Else, leave it blank. It must be at least 6 characters long.</p>
 
       <% if @current_user.is_admin? %>
+
+      <%= f.label :is_teacher, "#{f.check_box :is_teacher} Teacher".html_safe %>
+      <p class="form-help">Is this user a teacher? (This affects where their reviews show up.)</p>
+
+      <%= f.label :is_scientist, "#{f.check_box :is_scientist} Scientist".html_safe %>
+      <p class="form-help">Is this user a scientist? (This affects where their reviews show up.)</p>
+
+      <%= f.label :is_authoritative, "#{f.check_box :is_authoritative} Authoritative".html_safe %>
+      <p class="form-help">Is this user authoratative, writing "official" reviews for SGC? (This affects where their reviews show up.)</p>
+
       <%= f.label :disabled, "#{f.check_box :disabled} Account disabled".html_safe %>
       <p class="form-help">Whether this account is disabled, preventing the user from logging in. If this is an underage user waiting on parental confirmation, their account will be disabled until approved. Only admins can see and change this value directly.</p>
+
       <% end %>
 
       <div class="date">
@@ -32,6 +43,10 @@
         <%= f.date_select :birth_date, start_year: Time.now.year-150, end_year: Time.now.year %>
         <p class="form-help">The day you were born. We required this when signing up to check if we needed parental consent to activate your account.</p>
       </div>
+
+      <%= f.label :description, "Description" %>
+      <%= f.text_field :description %>
+      <p class="form-help">A short description of yourself to appear below your name. What are you a teacher of and for how long? Or what kind of games are you a player of?</p>
 
       <p class="form-help" id="submit-help"></p>
       <%= f.submit "Save changes", :class => "btn btn-large btn-primary" %>

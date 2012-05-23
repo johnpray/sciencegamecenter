@@ -1,26 +1,36 @@
 <div class="player_review" id="<%= current_user?(review.user) ? 'new_player_review' : '' %>">
-	<% if review.user %>
-	<%= gravatar_for review.user %>
-	<% end %>
+	<div class="row">
+		<div class="span7">
+			<h3 style="margin-top: 0;"><%= link_to review.title, review %></h3>
+			<p>
+				<%= review.created_at.to_date.to_formatted_s(:long) %>
+						<% if signed_in? && admin? %>
+					 - 
+					<%= render 'player_reviews/admin_tools', player_review: review %>
+				<% end %>
+				<% if signed_in? && current_user?(review.user) && !admin? %>
+				 - 
+				 <%= link_to "Edit your review", edit_player_review_path(review) %>
+				<% end %>
+			</p>
+		</div>
+		<div class="span3">
+				<% if review.user %>
+				<%= gravatar_for review.user %>
+				<% end %>
+				<p>
+					<%= review.user ? review.user.name : "Someone" %>
+				<br />
+				<b><%= review.user ? review.user.roles : "a player whose account has been deleted" %></b>
+				</p>
 
-	<h3><%= link_to review.title, review %></h3>
-	<p>
-		<i>by <%= review.user ? review.user.name : "someone" %> on <%= review.created_at.to_date.to_formatted_s(:long) %></i>
-		<% if signed_in? && admin? %>
-			 - 
-			<%= render 'player_reviews/admin_tools', player_review: review %>
-		<% end %>
-		<% if signed_in? && current_user?(review.user) && !admin? %>
-		 - 
-		 <%= link_to "Edit your review", edit_player_review_path(review) %>
-	<% end %>
-	</p>
-
-	<% if (current_user?(review.user) || admin?) && review.pending? %>
-	<div class="alert">
-		<strong>Pending.</strong> This review is awaiting administrator approval before it appears to other site visitors.
+				<% if (current_user?(review.user) || admin?) && review.pending? %>
+				<div class="alert">
+					<strong>Pending.</strong> This review is awaiting administrator approval before it appears to other site visitors.
+				</div>
+				<% end %>
+		</div>
 	</div>
-	<% end %>
 
 	<div><%= markdown review.content %></div>
 	<% if review.fun_rating %>

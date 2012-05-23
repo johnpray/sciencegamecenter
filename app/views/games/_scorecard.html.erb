@@ -9,7 +9,7 @@
 <div class="span3"><table class="table table-bordered">
 <thead>
 <tr>
-	<th colspan="2"><strong>Authoritative Reviews</strong><br/>
+	<th colspan="2"><strong><%= link_to "Authoritative Reviews", game_path(@game, anchor: 'authoritative_reviews') %></strong><br/>
 		Our official reviews</th>
 	<th>&mdash;</th>
 </tr>
@@ -27,7 +27,7 @@
 <div class="span3"><table class="table table-bordered">
 <thead>
 <tr>
-	<th colspan="2"><strong>Expert Reviews</strong><br/>
+	<th colspan="2"><strong><%= link_to "Expert Reviews", game_path(@game, anchor: 'expert_reviews') %></strong><br/>
 		By scientists and teachers</th>
 	<th>&mdash;</th>
 </tr>

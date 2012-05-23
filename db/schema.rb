@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514181229) do
+ActiveRecord::Schema.define(:version => 20120523192344) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -108,6 +108,10 @@ ActiveRecord::Schema.define(:version => 20120514181229) do
     t.string   "parent_email"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.boolean  "is_teacher",             :default => false
+    t.boolean  "is_scientist",           :default => false
+    t.boolean  "is_authoritative",       :default => false
+    t.string   "description"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

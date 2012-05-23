@@ -12,7 +12,7 @@
 
 class User < ActiveRecord::Base
 	attr_accessible :name, :email, :is_admin, :password, :birth_date,
-									:disabled, :parent_email
+									:disabled, :parent_email, :is_teacher, :is_scientist, :is_authoritative, :description
 	before_save :create_remember_token
 
 	default_scope order: 'name ASC'
@@ -21,6 +21,11 @@ class User < ActiveRecord::Base
 	has_many :comments, dependent: :nullify
 
 	has_paper_trail
+
+	alias_attribute :admin, :is_admin
+	alias_attribute :teacher, :is_teacher
+	alias_attribute :scientist, :is_scientist
+	alias_attribute :authoritative, :is_authoritative
 
 	validates :name,	presence: true,
 										length: { maximum: 50 },
@@ -41,6 +46,28 @@ class User < ActiveRecord::Base
 
 	def is_under_thirteen?
 		13.years.ago < self.birth_date
+	end
+
+	def is_expert?
+		is_teacher? || is_scientist?
+	end
+
+	def roles
+		return description if description && !description.empty?
+		roles = []
+		if is_admin
+			roles += ["Administrator"]
+		end
+		if is_authoritative
+			roles += ["Authoritative"]
+		end
+		if is_teacher
+			roles += ["Teacher"]
+		end
+		if is_scientist
+			roles += ["Scientist"]
+		end
+		roles = roles.count > 0 ? roles.join(", ") : "Player"
 	end
 
 	def send_password_reset

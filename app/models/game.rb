@@ -34,6 +34,30 @@ class Game < ActiveRecord::Base
   validates_attachment :boxart, content_type: {
   										 content_type: ['image/jpeg', 'image/png', 'image/gif'] }
 
+  def actual_player_reviews
+  	reviews = []
+  	self.player_reviews.each do |r|
+  		reviews += [r] if !r.user.is_expert? && !r.user.is_authoritative?
+  	end
+  	reviews
+  end
+
+  def authoritative_reviews
+  	reviews = []
+  	self.player_reviews.each do |r|
+  		reviews += [r] if r.user.is_authoritative?
+  	end
+  	reviews
+  end
+
+  def expert_reviews
+  	reviews = []
+  	self.player_reviews.each do |r|
+  		reviews += [r] if r.user.is_expert?
+  	end
+  	reviews
+  end
+
 	def player_fun_average(round = true)
 		if self.approved_player_reviews_count < 1
 			-1

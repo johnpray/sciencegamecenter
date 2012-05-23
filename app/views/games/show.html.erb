@@ -40,11 +40,31 @@
 
 <%= render 'games/scorecard', game: @game %>
 
-<div id="player_reviews">
-
+<div id="authoritative_reviews">
 <hr />
-<h2 class="left">Player Reviews of <i><%= @game.title %></i></h2>
+<h2 class="left">Authoritative Reviews</h2>
+<% @authoritative_reviews.each do |review| %>
+	<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && admin? %>
+	<%= render 'player_reviews/player_review', review: review %>
+	<hr />
+	<% end %>
+<% end %>
+</div>
 
+<div id="expert_reviews">
+<hr />
+<h2 class="left">Expert Reviews</h2>
+<% @expert_reviews.each do |review| %>
+	<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && admin? %>
+	<%= render 'player_reviews/player_review', review: review %>
+	<hr />
+	<% end %>
+<% end %>
+</div>
+
+<div id="player_reviews">
+<hr />
+<h2 class="left">Player Reviews</h2>
 <% @player_reviews.each do |review| %>
 	<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && admin? %>
 	<%= render 'player_reviews/player_review', review: review %>
@@ -54,7 +74,7 @@
 </div>
 
 <h3>Leave a review</h3>
-<% if signed_in? && @player_reviews.where(user_id: @current_user.id).count < 1 %>
+<% if signed_in? && @game.player_reviews.where(user_id: @current_user.id).count < 1 %>
 <div class="row" id="new_player_review">
   <div class="span10">
 
