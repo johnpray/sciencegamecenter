@@ -3,7 +3,7 @@
 		<div class="span7">
 			<h3 style="margin-top: 0;"><%= link_to review.title, review %></h3>
 			<p>
-				<%= review.created_at.to_date.to_formatted_s(:long) %>
+				<i><%= review.created_at.to_date.to_formatted_s(:long) %></i>
 						<% if signed_in? && admin? %>
 					 - 
 					<%= render 'player_reviews/admin_tools', player_review: review %>
@@ -23,14 +23,14 @@
 				<br />
 				<b><%= review.user ? review.user.roles : "a player whose account has been deleted" %></b>
 				</p>
-
-				<% if (current_user?(review.user) || admin?) && review.pending? %>
-				<div class="alert">
-					<strong>Pending.</strong> This review is awaiting administrator approval before it appears to other site visitors.
-				</div>
-				<% end %>
 		</div>
 	</div>
+
+	<% if (current_user?(review.user) || admin?) && review.pending? %>
+	<div class="alert">
+		<strong>Pending.</strong> This review is awaiting administrator approval before it appears to other site visitors.
+	</div>
+	<% end %>
 
 	<div><%= markdown review.content %></div>
 	<% if review.fun_rating %>

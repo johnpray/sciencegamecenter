@@ -85,7 +85,7 @@
     <%= gravatar_for @current_user %>
     <p>
 	    <b><%= @current_user.name %></b><br />
-	    <%= Time.zone.now.to_date.to_formatted_s(:long) %>
+	    <%= @current_user.roles %>
   	</p>
   	<br />
 
