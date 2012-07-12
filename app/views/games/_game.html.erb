@@ -1,14 +1,14 @@
 <li class="row">
 	<div class="game span10">
 		<div class="row">
-			<div class="span2">
+			<div class="span3">
 				<%= link_to image_tag(game.boxart.url(:medium), class: :boxart), game %>
 				<br />
 				<% if signed_in? && current_user.is_admin? %>
 				<%= render 'games/admin_tools', game: game %>
 				<% end %>
 			</div>
-			<div class="span8">
+			<div class="span7">
 			  <p class="title"><i><%= link_to game.title, game %></i> <small><%= link_to "View this game's profile", game, class: 'btn', style: 'margin: 5px; margin-top: 0; font-weight: normal;' %></small></p>
 			  <%= render 'games/game_info', game: game, hide_title: true %>
 			  <%= link_to 'Play this game!', game.website_url, class: "btn btn-success", style: "margin: 5px; font-weight: bold;" %>
