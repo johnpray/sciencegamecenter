@@ -5,4 +5,16 @@ en:
   activerecord:
     attributes:
       user:
-        password_digest: "Password"
+        password_digest: Password
+      review:
+        fun_rating: Fun rating
+        effectiveness_rating: Learning rating
+        accuracy_rating: Science rating
+  review:
+    fun_rating: Fun rating
+    effectiveness_rating: Learning rating
+    accuracy_rating: Science rating
+    fun: Fun
+    effectiveness: Learning
+    accuracy: Science
+

@@ -27,17 +27,17 @@
 		  <%= f.text_area :content %>
 		  <p class="form-help">Tell us all about this game and what you think of it.<br/>Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
 
-		  <%= f.label :fun_rating %>
+		  <%= f.label :fun_rating, t('review.fun_rating') %>
 		  <%= f.text_field :fun_rating %>
 		  <p class="form-help">A number out of five, where 5 is the most fun.</p>
 
-		  <%= f.label :accuracy_rating %>
-		  <%= f.text_field :accuracy_rating %>
-		  <p class="form-help">A number out of five, where 5 is the most scientifically accurate.</p>
-
-		  <%= f.label :effectiveness_rating %>
+		  <%= f.label :effectiveness_rating, t('review.effectiveness_rating') %>
 		  <%= f.text_field :effectiveness_rating %>
 		  <p class="form-help">A number out of five, where 5 is the most effective at teaching.</p>
+
+		  <%= f.label :accuracy_rating, t('review.accuracy_rating') %>
+		  <%= f.text_field :accuracy_rating %>
+		  <p class="form-help">A number out of five, where 5 is the most scientifically accurate.</p>
 
 		  <% if @current_user.is_admin? %>
 		  <%= f.label :status, "Approval status" %>

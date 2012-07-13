@@ -36,21 +36,21 @@
 	<% if review.fun_rating %>
 	<div class="row">
 		<div class="span3">
-			<p><b>Fun</b> rating: <b><%= review.fun_rating %></b> out of 5</p>
+			<p><b><%= t('review.fun') %></b> rating: <b><%= review.fun_rating %></b> out of 5</p>
 			<div class="progress <%= progress_color(review.fun_rating) %>">
 				<div class="bar" style="width: <%= review.fun_rating * 20 %>%;"></div>
 			</div>
 		</div>
 		<div class="span3">
-			<p><b>Accuracy</b> rating: <b><%= review.accuracy_rating %></b> out of 5</h4>
-			<div class="progress <%= progress_color(review.accuracy_rating) %>">
-				<div class="bar" style="width: <%= review.accuracy_rating * 20 %>%;"></div>
+			<p><b><%= t('review.effectiveness') %></b> rating: <b><%= review.effectiveness_rating %></b> out of 5</h4>
+			<div class="progress <%= progress_color(review.effectiveness_rating) %>">
+				<div class="bar" style="width: <%= review.effectiveness_rating * 20 %>%;"></div>
 			</div>
 		</div>
 		<div class="span3">
-			<p><b>Effectiveness</b> rating: <b><%= review.effectiveness_rating %></b> out of 5</h4>
-			<div class="progress <%= progress_color(review.effectiveness_rating) %>">
-				<div class="bar" style="width: <%= review.effectiveness_rating * 20 %>%;"></div>
+			<p><b><%= t('review.accuracy') %></b> rating: <b><%= review.accuracy_rating %></b> out of 5</h4>
+			<div class="progress <%= progress_color(review.accuracy_rating) %>">
+				<div class="bar" style="width: <%= review.accuracy_rating * 20 %>%;"></div>
 			</div>
 		</div>
 		<div class="span1">

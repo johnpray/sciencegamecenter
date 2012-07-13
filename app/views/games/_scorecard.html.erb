@@ -62,7 +62,7 @@
 <% if game.player_averages_total >= 0 %>
 <tbody>
 <tr>
-	<td width="50px">Fun?</td>
+	<th width="50px"><%= t('review.fun') %></th>
 	<td width="*%">
 		<div class="progress <%= progress_color(game.player_fun_average) %>">
 			<div class="bar" style="width: <%= game.player_fun_average * 20 %>%;"></div>
@@ -73,18 +73,7 @@
 	</td>
 </tr>
 <tr>
-	<td>Accurate?</td>
-	<td width="*%">
-		<div class="progress <%= progress_color(game.player_accuracy_average) %>">
-			<div class="bar" style="width: <%= game.player_accuracy_average * 20 %>%;"></div>
-		</div>
-	</td>
-	<td>
-		<%= game.player_accuracy_average %>
-	</td>
-</tr>
-<tr>
-	<td>Effective?</td>
+	<th><%= t('review.learning') %></th>
 	<td width="*%">
 		<div class="progress <%= progress_color(game.player_effectiveness_average) %>">
 			<div class="bar" style="width: <%= game.player_effectiveness_average * 20 %>%;"></div>
@@ -92,6 +81,17 @@
 	</td>
 	<td>
 		<%= game.player_effectiveness_average %>
+	</td>
+</tr>
+<tr>
+	<th><%= t('review.science') %></th>
+	<td width="*%">
+		<div class="progress <%= progress_color(game.player_accuracy_average) %>">
+			<div class="bar" style="width: <%= game.player_accuracy_average * 20 %>%;"></div>
+		</div>
+	</td>
+	<td>
+		<%= game.player_accuracy_average %>
 	</td>
 </tr>
 </tbody>
@@ -106,7 +106,10 @@
 </tbody>
 <% end %>
 
-</table></div>
+</table>
+
+
+</div>
 
 </div>
 
