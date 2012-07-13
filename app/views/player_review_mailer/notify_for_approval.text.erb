@@ -12,9 +12,9 @@ Title: <%= @player_review.title %>
 
 <%= @player_review.content %>
 
-Fun rating: <%= @player_review.fun_rating %> / 5
-Accuracy rating: <%= @player_review.accuracy_rating %> / 5
-Effectiveness rating: <%= @player_review.effectiveness_rating %> / 5
+<%= t('review.fun_rating') %>: <%= @player_review.fun_rating %> / 5
+<%= t('review.effectiveness_rating') %>: <%= @player_review.effectiveness_rating %> / 5
+<%= t('review.accuracy_rating') %>: <%= @player_review.accuracy_rating %> / 5
 Total Score: <%= @player_review.ratings_total_percentage %>%
 ===
 
