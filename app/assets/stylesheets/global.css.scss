@@ -40,6 +40,10 @@ h1.center {
   max-width: 940px;
 }
 
+img.shot {
+  @include box-shadow(3px 3px 3px #aaa);
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {

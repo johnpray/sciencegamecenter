@@ -4,6 +4,7 @@ SciencegamereviewsOrg::Application.routes.draw do
   match '/about', to: 'static_pages#about'
   match '/contact', to: 'static_pages#contact'
   match '/privacy', to: 'static_pages#privacy'
+  match '/review', to: 'static_pages#review'
   match '/robots.txt', to: 'static_pages#robots'
 
   resources :users do

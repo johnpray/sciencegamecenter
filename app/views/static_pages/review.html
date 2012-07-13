@@ -1,0 +1,89 @@
+<% provide(:title, 'Review Games') %>
+
+<h1 class='left'>Why Review Games?</h1>
+<p>
+	First of all, reviewing games means that you get to <i>play</i> games. That's fun! As the games showcased on the Science Game Center demonstrate, a game that teaches you stuff can be just as fun as one that doesn't&mdash;and often even more fun!
+</p>
+<p>
+	By reviewing games on the Science Game Center, you help other people decide which games will help them learn or teach.  Additionally, by reading your review, game makers can see what they can do to make their games more fun and more effective.
+</p>
+<p>
+	Anyone can post reviews, so read about it below, then <%= link_to 'find a game and get started', games_path %>!
+<br />
+<br />
+<h1 class='left'>How to Review Games</h1>
+<h2>1. Find a Game</h2>
+<p>
+	Check out our <%= link_to 'full list of games', games_path %> or <%= link_to 'find something more specific', subjects_path %>.
+</p>
+
+<h2>2. Play the Game</h2>
+<p>
+	Once you've found a game, click the green "Play this game!" button to go to the game's website. Then play it online or download and play, depending on the game. This is the fun part, so enjoy yourself!
+</p>
+<p>
+	<%= image_tag 'how-playthisgame.jpg', class: 'shot' %> 
+</p>	
+<h2>3. Review the Game</h2>
+<p>
+	Once you've given the game a good playing, return to its profile here on the Science Game Center. Click "Review this game!" to scroll to the review form. You'll need to <%= link_to 'make a free account', signup_path %> or <%= link_to 'log in to an existing one', login_path %>, if you haven't already. Then tell us and the rest of the 'net just how this game made you feel!
+</p>
+<p>
+	<%= image_tag 'how-reviewthisgame.jpg', class: 'shot' %> 
+
+</p>
+<p>
+	Your review will have a short title and then some text, as much or as little as you'd like. Then you'll get the rate the game on a scale of 1 to 5 for each of three categories: <b>Fun</b>, <b>Learning</b>, and <b>Science</b>.
+</p>
+
+<table class="criteria">
+<tr>
+	<th>Fun</th>
+	<td>Do I want to play again?  Did I try to beat my friends' high scores?  Is it clear how to play, how to get a high score?  A game that makes you want to play again is especially good for a learning game, since we all learn more the second time around!  Is the idea of the game fun, but the execution of the game still confusing, buggy or not timed right?  Perhaps the game needs polish?</td>
+</tr>
+<tr>
+	<th>Learning</th>
+	<td>Do I need to learn the science to master the game, or can I beat the game and ignore the science?  Does the game mechanic (what you do to win) match well with the concepts being taught?  For example, checkers is a game mechanic, and you could make one side Earth and the other side Pollution and call it a environment learning game.  But what have you learned?</td>
+</tr>
+<tr>
+	<th>Science</th>
+	<td>Is the science presented accurately and is there a good amount of real science presented?  Are there metaphors used and are they useful metaphors for thinking about the concepts?  What have I learned and can I apply it to new situations?  If the game presents basic concepts of science that can be applied to new situations, that is excellent!</td>
+</tr>
+</table>
+
+<style>
+table.criteria {
+	vertical-align: top;
+	font-size: 1.1em;
+	border: 1px solid black;
+}
+table.criteria td, table.criteria th {
+	padding: 1em;
+	border: 1px solid black;
+}
+h2 {
+	clear: both;
+}
+</style>
+
+<br />
+<p>
+	Once you're done, click "Submit review", wait a short time for us to look over and approve your review, and rest easy in the knowledge that you're helping people to discover the science games best for their needs!
+</p>
+<br />
+
+<h1 class="left">Are You an Expert?</h1>
+<p>
+	Then you get special privileges (sort of)! <%= link_to 'Sign up for a free account', signup_path %> and then <%= link_to 'email us', 'mailto:sciencegamecenter@fas.org' %> with some information about yourself (see below), and we'll grant you special <b>Teacher</b> or <b>Scientist</b> status (or both!). This means your reviews will show up as <b>Expert Reviews</b> on game profiles, so that your authoritative knowledge on the subject can better help out readers by standing out as they should.
+</p>
+<p>
+	<b>Teachers</b> should be K-12 teachers or college professors. Tell us what subject you teach and what ages you teach to.
+</p>
+<p>
+	<b>Scientists</b> should have an advanced degree in their field. List the areas you specialize in.
+</p>
+<style>
+h2 {
+	margin-top: 15px;
+}
+</style>

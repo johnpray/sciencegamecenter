@@ -12,8 +12,11 @@ class StaticPagesController < ApplicationController
   def privacy
   end
 
+  def review
+  end
+
   def robots
-  	if Rails.env.production? && request.host.include?("sciencegamecenter.org")
+  	if Rails.env.production? && request.host.include?("www.sciencegamecenter.org")
 	  	filename = "config/robots.production.txt"
 	  else
   		filename = "config/robots.development.txt"
