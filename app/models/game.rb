@@ -53,7 +53,7 @@ class Game < ActiveRecord::Base
   def expert_reviews
   	reviews = []
   	self.player_reviews.each do |r|
-  		reviews += [r] if r.user.is_expert?
+  		reviews += [r] if r.user.is_expert? && !r.user.is_authoritative?
   	end
   	reviews
   end
@@ -204,6 +204,82 @@ class Game < ActiveRecord::Base
 		count = 0
 		unless self.expert_reviews.nil?
 			self.expert_reviews.each do |r|
+				count += 1 if r.approved?
+			end
+		end
+		count
+	end
+
+# AUTHORITATIVE AVERAGES
+	def authoritative_fun_average(round = true)
+		if self.approved_authoritative_reviews_count < 1
+			-1
+		elsif @authoritative_fun_rating_average
+			round ? @authoritative_fun_rating_average.round(1) : @authoritative_fun_rating_average
+		else
+			total = 0
+			count = 0
+			self.authoritative_reviews.each do |r|
+				total += r.fun_rating.to_f if r.approved?
+				count += 1 if r.approved?
+			end
+			@authoritative_fun_rating_average = total / count
+			round ? @authoritative_fun_rating_average.round(1) : @authoritative_fun_rating_average
+		end
+	end
+
+	def authoritative_accuracy_average(round = true)
+		if self.approved_authoritative_reviews_count < 1
+			-1
+		elsif @authoritative_accuracy_rating_average
+			round ? @authoritative_accuracy_rating_average.round(1) : @authoritative_accuracy_rating_average
+		else
+			total = 0
+			count = 0
+			self.authoritative_reviews.each do |r|
+				total += r.accuracy_rating.to_f if r.approved?
+				count += 1 if r.approved?
+			end
+			@authoritative_accuracy_rating_average = total / count
+			round ? @authoritative_accuracy_rating_average.round(1) : @authoritative_accuracy_rating_average
+		end
+	end
+
+	def authoritative_effectiveness_average(round = true)
+		if self.approved_authoritative_reviews_count < 1
+			-1
+		elsif @authoritative_effectiveness_rating_average
+			round ? @authoritative_effectiveness_rating_average.round(1) : @authoritative_effectiveness_rating_average
+		else
+			total = 0
+			count = 0
+			self.authoritative_reviews.each do |r|
+				total += r.effectiveness_rating.to_f if r.approved?
+				count += 1 if r.approved?
+			end
+			@authoritative_effectiveness_rating_average = total / count
+			round ? @authoritative_effectiveness_rating_average.round(1) : @authoritative_effectiveness_rating_average
+		end
+	end
+
+	def authoritative_averages_total
+		if self.approved_authoritative_reviews_count < 1
+			-1
+		elsif @authoritative_rating_averages_total
+			@authoritative_rating_averages_total.round(1)
+		else
+			@authoritative_rating_averages_total =
+				authoritative_fun_average(false) +
+				authoritative_accuracy_average(false) +
+				authoritative_effectiveness_average(false)
+			@authoritative_rating_averages_total.round(1)
+		end
+	end
+
+	def approved_authoritative_reviews_count
+		count = 0
+		unless self.authoritative_reviews.nil?
+			self.authoritative_reviews.each do |r|
 				count += 1 if r.approved?
 			end
 		end

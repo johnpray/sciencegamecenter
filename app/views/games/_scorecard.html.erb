@@ -11,9 +11,54 @@
 <tr>
 	<th colspan="2"><strong><%= link_to "Authoritative Reviews", game_path(@game, anchor: 'authoritative_reviews') %></strong><br/>
 		Our official reviews</th>
+
+	<% if game.authoritative_averages_total >= 0 %>
+	<th class="score_total_cell">
+		<span class="score_total"><%= ((game.authoritative_averages_total / 15) * 100).to_i %></span><span class="percent_sign">%</span>
+	</th>
+	<% else %>
 	<th>&mdash;</th>
+	<% end %>
+
 </tr>
 </thead>
+<% if game.authoritative_averages_total >= 0 %>
+<tbody>
+<tr>
+	<th width="30px"><%= t('review.fun') %></th>
+	<td width="*%">
+		<div class="progress <%= progress_color(game.authoritative_fun_average) %>">
+			<div class="bar" style="width: <%= game.authoritative_fun_average * 20 %>%;"></div>
+		</div>
+	</td>
+	<td width="30px">
+		<%= game.authoritative_fun_average %>
+	</td>
+</tr>
+<tr>
+	<th><%= t('review.learning') %></th>
+	<td width="*%">
+		<div class="progress <%= progress_color(game.authoritative_effectiveness_average) %>">
+			<div class="bar" style="width: <%= game.authoritative_effectiveness_average * 20 %>%;"></div>
+		</div>
+	</td>
+	<td>
+		<%= game.authoritative_effectiveness_average %>
+	</td>
+</tr>
+<tr>
+	<th><%= t('review.science') %></th>
+	<td width="*%">
+		<div class="progress <%= progress_color(game.authoritative_accuracy_average) %>">
+			<div class="bar" style="width: <%= game.authoritative_accuracy_average * 20 %>%;"></div>
+		</div>
+	</td>
+	<td>
+		<%= game.authoritative_accuracy_average %>
+	</td>
+</tr>
+</tbody>
+<% else %>
 <tbody>
 <tr>
 	<td colspan="3" rowspan="3">
@@ -21,7 +66,10 @@
 	</td>
 </tr>
 </tbody>
-</table></div>
+<% end %>
+
+</table>
+</div>
 
 <!-- EXPERT -->
 <div class="span3"><table class="table table-bordered">
