@@ -29,9 +29,54 @@
 <tr>
 	<th colspan="2"><strong><%= link_to "Expert Reviews", game_path(@game, anchor: 'expert_reviews') %></strong><br/>
 		By scientists and teachers</th>
+
+	<% if game.expert_averages_total >= 0 %>
+	<th class="score_total_cell">
+		<span class="score_total"><%= ((game.expert_averages_total / 15) * 100).to_i %></span><span class="percent_sign">%</span>
+	</th>
+	<% else %>
 	<th>&mdash;</th>
+	<% end %>
+
 </tr>
 </thead>
+<% if game.expert_averages_total >= 0 %>
+<tbody>
+<tr>
+	<th width="30px"><%= t('review.fun') %></th>
+	<td width="*%">
+		<div class="progress <%= progress_color(game.expert_fun_average) %>">
+			<div class="bar" style="width: <%= game.expert_fun_average * 20 %>%;"></div>
+		</div>
+	</td>
+	<td width="30px">
+		<%= game.expert_fun_average %>
+	</td>
+</tr>
+<tr>
+	<th><%= t('review.learning') %></th>
+	<td width="*%">
+		<div class="progress <%= progress_color(game.expert_effectiveness_average) %>">
+			<div class="bar" style="width: <%= game.expert_effectiveness_average * 20 %>%;"></div>
+		</div>
+	</td>
+	<td>
+		<%= game.expert_effectiveness_average %>
+	</td>
+</tr>
+<tr>
+	<th><%= t('review.science') %></th>
+	<td width="*%">
+		<div class="progress <%= progress_color(game.expert_accuracy_average) %>">
+			<div class="bar" style="width: <%= game.expert_accuracy_average * 20 %>%;"></div>
+		</div>
+	</td>
+	<td>
+		<%= game.expert_accuracy_average %>
+	</td>
+</tr>
+</tbody>
+<% else %>
 <tbody>
 <tr>
 	<td colspan="3" rowspan="3">
@@ -40,7 +85,10 @@
 	</td>
 </tr>
 </tbody>
-</table></div>
+<% end %>
+
+</table>
+</div>
 
 <!-- PLAYER -->
 <div class="span4"><table class="table table-bordered">

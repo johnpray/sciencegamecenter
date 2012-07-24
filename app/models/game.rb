@@ -58,6 +58,7 @@ class Game < ActiveRecord::Base
   	reviews
   end
 
+# PLAYER AVERAGES
 	def player_fun_average(round = true)
 		if self.approved_player_reviews_count < 1
 			-1
@@ -132,4 +133,81 @@ class Game < ActiveRecord::Base
 		end
 		count
 	end
+
+# EXPERT AVERAGES
+	def expert_fun_average(round = true)
+		if self.approved_expert_reviews_count < 1
+			-1
+		elsif @expert_fun_rating_average
+			round ? @expert_fun_rating_average.round(1) : @expert_fun_rating_average
+		else
+			total = 0
+			count = 0
+			self.expert_reviews.each do |r|
+				total += r.fun_rating.to_f if r.approved?
+				count += 1 if r.approved?
+			end
+			@expert_fun_rating_average = total / count
+			round ? @expert_fun_rating_average.round(1) : @expert_fun_rating_average
+		end
+	end
+
+	def expert_accuracy_average(round = true)
+		if self.approved_expert_reviews_count < 1
+			-1
+		elsif @expert_accuracy_rating_average
+			round ? @expert_accuracy_rating_average.round(1) : @expert_accuracy_rating_average
+		else
+			total = 0
+			count = 0
+			self.expert_reviews.each do |r|
+				total += r.accuracy_rating.to_f if r.approved?
+				count += 1 if r.approved?
+			end
+			@expert_accuracy_rating_average = total / count
+			round ? @expert_accuracy_rating_average.round(1) : @expert_accuracy_rating_average
+		end
+	end
+
+	def expert_effectiveness_average(round = true)
+		if self.approved_expert_reviews_count < 1
+			-1
+		elsif @expert_effectiveness_rating_average
+			round ? @expert_effectiveness_rating_average.round(1) : @expert_effectiveness_rating_average
+		else
+			total = 0
+			count = 0
+			self.expert_reviews.each do |r|
+				total += r.effectiveness_rating.to_f if r.approved?
+				count += 1 if r.approved?
+			end
+			@expert_effectiveness_rating_average = total / count
+			round ? @expert_effectiveness_rating_average.round(1) : @expert_effectiveness_rating_average
+		end
+	end
+
+	def expert_averages_total
+		if self.approved_expert_reviews_count < 1
+			-1
+		elsif @expert_rating_averages_total
+			@expert_rating_averages_total.round(1)
+		else
+			@expert_rating_averages_total =
+				expert_fun_average(false) +
+				expert_accuracy_average(false) +
+				expert_effectiveness_average(false)
+			@expert_rating_averages_total.round(1)
+		end
+	end
+
+	def approved_expert_reviews_count
+		count = 0
+		unless self.expert_reviews.nil?
+			self.expert_reviews.each do |r|
+				count += 1 if r.approved?
+			end
+		end
+		count
+	end
+
 end
