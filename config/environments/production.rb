@@ -80,7 +80,7 @@ SciencegamereviewsOrg::Application.configure do
   }
 
   config.action_mailer.default_url_options = {
-    :host => "beta.sciencegamecenter.org" # "www.sciencegamecenter.org"
+    :host => "www.sciencegamecenter.org"
   }
 
 
