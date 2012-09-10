@@ -33,18 +33,21 @@
                   <%= f.label :fun_rating, t('review.fun_rating') %>
                   <%= f.text_field :fun_rating, class: 'rating_input', type: "number", min: 0, max: 5 %>
                   <p class="form-help">A number out of five, where 5 is the most fun.</p>
+                  <p class="form-help">Do I want to play again? Did I try to beat my friends' high scores? Is it clear how to play, how to get a high score? A game that makes you want to play again is especially good for a learning game, since we all learn more the second time around! Is the idea of the game fun, but the execution of the game still confusing, buggy or not timed right? Perhaps the game needs polish?</p>
             </div>
 
             <div class="span3">
                   <%= f.label :effectiveness_rating, t('review.effectiveness_rating') %>
                   <%= f.text_field :effectiveness_rating, class: 'rating_input', type: "number", min: 0, max: 5 %>
                   <p class="form-help">A number out of five, where 5 is the most effective at teaching.</p>
+                  <p class="form-help">Do I need to learn the science to master the game, or can I beat the game and ignore the science? Does the game mechanic (what you do to win) match well with the concepts being taught? For example, checkers is a game mechanic, and you could make one side Earth and the other side Pollution and call it a environment learning game. But what have you learned?</p>
             </div>
 
             <div class="span3">
                   <%= f.label :accuracy_rating, t('review.accuracy_rating') %>
                   <%= f.text_field :accuracy_rating, class: 'rating_input', type: "number", min: 0, max: 5 %>
                   <p class="form-help">A number out of five, where 5 is the most scientifically accurate.</p>
+                  <p class="form-help">Is the science presented accurately and is there a good amount of real science presented? Are there metaphors used and are they useful metaphors for thinking about the concepts? What have I learned and can I apply it to new situations? If the game presents basic concepts of science that can be applied to new situations, that is excellent!</p>
             </div>           
 
       </div>
