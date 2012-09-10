@@ -14,7 +14,7 @@
 
 	<% if game.authoritative_averages_total >= 0 %>
 	<th class="score_total_cell">
-		<span class="score_total"><%= ((game.authoritative_averages_total / 15) * 100).to_i %></span><span class="percent_sign">%</span>
+		<span class="score_total"><%= game.authoritative_averages_total.to_i %></span><small> / 15</small></span>
 	</th>
 	<% else %>
 	<th>&mdash;</th>
@@ -32,7 +32,7 @@
 		</div>
 	</td>
 	<td width="30px">
-		<%= game.authoritative_fun_average %>
+		<b><%= game.authoritative_fun_average.to_i %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -43,7 +43,7 @@
 		</div>
 	</td>
 	<td>
-		<%= game.authoritative_effectiveness_average %>
+		<b><%= game.authoritative_effectiveness_average.to_i %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -54,7 +54,7 @@
 		</div>
 	</td>
 	<td>
-		<%= game.authoritative_accuracy_average %>
+		<b><%= game.authoritative_accuracy_average.to_i %></b> <small> / 5</small>
 	</td>
 </tr>
 </tbody>
@@ -80,7 +80,7 @@
 
 	<% if game.expert_averages_total >= 0 %>
 	<th class="score_total_cell">
-		<span class="score_total"><%= ((game.expert_averages_total / 15) * 100).to_i %></span><span class="percent_sign">%</span>
+		<span class="score_total"><%= game.expert_averages_total %></span><small> / 15</small></span>
 	</th>
 	<% else %>
 	<th>&mdash;</th>
@@ -88,7 +88,7 @@
 
 </tr>
 </thead>
-<% if game.expert_averages_total >= 0 %>
+<% if game.expert_averages_total.to_i >= 0 %>
 <tbody>
 <tr>
 	<th width="30px"><%= t('review.fun') %></th>
@@ -98,7 +98,7 @@
 		</div>
 	</td>
 	<td width="30px">
-		<%= game.expert_fun_average %>
+		<b><%= game.expert_fun_average.to_i %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -109,7 +109,7 @@
 		</div>
 	</td>
 	<td>
-		<%= game.expert_effectiveness_average %>
+		<b><%= game.expert_effectiveness_average.to_i %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -120,7 +120,7 @@
 		</div>
 	</td>
 	<td>
-		<%= game.expert_accuracy_average %>
+		<b><%= game.expert_accuracy_average.to_i %></b> <small> / 5</small>
 	</td>
 </tr>
 </tbody>
@@ -147,7 +147,7 @@
 
 	<% if game.player_averages_total >= 0 %>
 	<th class="score_total_cell">
-		<span class="score_total"><%= ((game.player_averages_total / 15) * 100).to_i %></span><span class="percent_sign">%</span>
+		<span class="score_total"><%= game.player_averages_total.to_i %></span><small> / 15</small></span>
 	</th>
 	<% else %>
 	<th>&mdash;</th>
@@ -165,7 +165,7 @@
 		</div>
 	</td>
 	<td width="30px">
-		<%= game.player_fun_average %>
+		<b><%= game.player_fun_average.to_i %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -176,7 +176,7 @@
 		</div>
 	</td>
 	<td>
-		<%= game.player_effectiveness_average %>
+		<b><%= game.player_effectiveness_average.to_i %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -187,7 +187,7 @@
 		</div>
 	</td>
 	<td>
-		<%= game.player_accuracy_average %>
+		<b><%= game.player_accuracy_average.to_i %></b> <small> / 5</small>
 	</td>
 </tr>
 </tbody>
