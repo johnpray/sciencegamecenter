@@ -12,7 +12,7 @@ gem 'bootstrap-will_paginate', '0.0.7' # use bootstrap styling for paging
 gem 'redcarpet', '~> 2.1.1' # markdown
 gem 'paperclip', '3.0.3' # uploads
 gem 'aws-sdk', '~> 1.3.4' # storage
-gem 'acts-as-taggable-on', '~> 2.2.2' # tags
+gem 'acts-as-taggable-on', '~> 2.3.3' # tags
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'thin', '~> 1.4.1' # faster server
 gem 'friendly_id', '~> 4.0.1' # friendly urls
