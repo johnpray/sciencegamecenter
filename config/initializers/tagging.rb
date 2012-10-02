@@ -1,1 +1,1 @@
-ActsAsTaggableOn::Tag.remove_unused = true # remove empty tags (subjects and platforms)
+ActsAsTaggableOn.remove_unused_tags = true # remove empty tags (subjects and platforms)
