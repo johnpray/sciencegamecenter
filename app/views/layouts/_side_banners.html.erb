@@ -8,11 +8,15 @@
           <% end %>
 
           <h3>SGC Sponsors</h3>
-          <%= tracked_link_to image_tag('cell_image_library-140.png', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: ''), 'http://www.cellimagelibrary.org/' %>
-          <%= tracked_link_to image_tag('leica_science_lab_banner_140x140_v2.jpg', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: ''), 'http://www.leica-microsystems.com/science-lab/' %>
+          <%= tracked_link_to image_tag('cell_image_library-140.png', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: 'The CELL: an image library'), 'http://www.cellimagelibrary.org/' %>
+          <%= tracked_link_to image_tag('leica_science_lab_banner_140x140_v2.jpg', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: 'Leica Science Lab. Learn. Share. Contribute.'), 'http://www.leica-microsystems.com/science-lab/' %>
+          <%= tracked_link_to image_tag('esa_foundation-140.png', height: 53, width: 140, style: "margin-bottom: 10px;" , alt: 'ESA Foundation - Entertainment Software Association Foundation'), 'http://www.esafoundation.org/' %>
+
+          <!--
           <% 1.times do %>
           <%= link_to image_tag('side_banner_advertise.png', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: ''), contact_path %>
           <% end %>
+          -->
 
           <h3 style="margin-top: 0;">Get News</h3>
           <%= render 'layouts/subscribe' %>
