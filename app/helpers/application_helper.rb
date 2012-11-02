@@ -79,4 +79,8 @@ module ApplicationHelper
   def external_link_icon
     image_tag("external-link-icon.png", alt: "(external)", title: "This link leads to an external website.", style: "display: inline; vertical-align: text-top;").html_safe
   end
+
+  def capitalize_first(string)
+    string.slice(0,1).capitalize + string.slice(1..-1)
+  end
 end

@@ -5,7 +5,7 @@
 
 <ul class="taggings">
 	<% @tags.each do |t| %>
-	<li><%= link_to t.name, games_path(subject: t.name) %></li>
+	<li><%= link_to capitalize_first(t.name), games_path(subject: t.name) %></li>
 	<% end %>
 </ul>
 
