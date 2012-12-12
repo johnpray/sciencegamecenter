@@ -15,7 +15,7 @@ class UserMailer < ActionMailer::Base
   	@user = user
   	mail(
       to: user.parent_email,
-      bcc: 'administrator@fas.org',
+      bcc: 'sciencegamecenter@fas.org',
       subject: "Please confirm your child's account at the Science Game Center"
     )
   end
@@ -25,7 +25,7 @@ class UserMailer < ActionMailer::Base
   	mail(
       to: "#{user.name} <#{user.email}>", 
       cc: user.parent_email,
-      bcc: 'administrator@fas.org',
+      bcc: 'sciencegamecenter@fas.org',
       subject: "Your Science Game Center account has been activated!"
     )
   end
@@ -44,6 +44,7 @@ class UserMailer < ActionMailer::Base
     mail(
       to: "#{user.name} <#{old_email}>",
       cc: "#{user.name} <#{user.email}>",
+      bcc: 'sciencegamecenter@fas.org',
       subject: "Your email address at the Science Game Center has been changed"
     )
   end
