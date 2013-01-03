@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523192344) do
+ActiveRecord::Schema.define(:version => 20130102202536) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(:version => 20120523192344) do
     t.string   "title"
     t.text     "description"
     t.string   "website_url"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
     t.string   "boxart_file_name"
     t.string   "boxart_content_type"
     t.integer  "boxart_file_size"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20120523192344) do
     t.string   "intended_audience"
     t.string   "concepts"
     t.string   "slug"
+    t.boolean  "disabled",            :default => true
   end
 
   add_index "games", ["slug"], :name => "index_games_on_slug", :unique => true

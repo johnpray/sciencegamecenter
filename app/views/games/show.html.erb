@@ -25,6 +25,11 @@
 
 	<div class="span6" style="max-width: 459px;">
 		<h1 class="left"><i><%= @game.title %></i></h1>
+		<% if admin? && @game.disabled? %>
+			<div class="alert">
+				<strong>Disabled.</strong> This game is hidden from public view. Edit it to enable.
+			</div>
+		<% end %>
 		<div class="description">
 			<%= markdown @game.description %>
 		</div>

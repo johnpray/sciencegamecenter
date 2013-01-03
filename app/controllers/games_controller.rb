@@ -6,14 +6,28 @@ class GamesController < ApplicationController
 
   def index
     if !params[:platform].blank? || !params[:subject].blank?
-      @games = Game.tagged_with("#{params[:platform]}, #{params[:subject]}").paginate(page: params[:page], per_page: 10)
+      if admin?
+        @games = Game.tagged_with("#{params[:platform]}, #{params[:subject]}").paginate(page: params[:page], per_page: 10)
+      else
+        @games = Game.enabled.tagged_with("#{params[:platform]}, #{params[:subject]}").paginate(page: params[:page], per_page: 10)
+      end
     else
-      @games = Game.paginate(page: params[:page], per_page: 10)
+      if admin?
+        @games = Game.paginate(page: params[:page], per_page: 10)
+      else
+        @games = Game.enabled.paginate(page: params[:page], per_page: 10)
+      end
     end
   end
 
   def show
     @game = Game.find(params[:id])
+
+    if @game.disabled? && !admin?
+      flash[:failure] = "Swiper, no swiping! Sorry, you aren't able to view that page unless you're a site administrator."
+      redirect_to root_path
+    end
+
     @player_reviews = @game.actual_player_reviews
     @expert_reviews = @game.expert_reviews
     @authoritative_reviews = @game.authoritative_reviews

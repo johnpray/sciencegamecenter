@@ -2,6 +2,9 @@
 <%= f.text_field :title %>
 <p class="form-help">The game's full title.</p>
 
+<%= f.label :disabled, "#{f.check_box :disabled} Disabled".html_safe %>
+<p class="form-help">Uncheck this box to make this game appear to all site visitors. Keep it checked while it's not yet ready for the public eye.</p>
+
 <%= f.label :subject_list, "Deals with" %>
 <%= f.text_field :subject_list %>
 <p class="form-help">The general subjects or topics this game deals with, separated by commas. (e.g. biology, chemistry, Pokémon battling). Games can be sorted by these.</p>

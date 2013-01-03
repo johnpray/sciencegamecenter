@@ -1,9 +1,11 @@
 class Game < ActiveRecord::Base
   attr_accessible :title, :description, :website_url, :developer,
-  								:intended_audience, :concepts,
+  								:intended_audience, :concepts, :disabled,
   								:boxart, :platform_list, :subject_list
 
   default_scope order: 'title ASC'
+  scope :enabled, where(disabled: false)
+  scope :disabled, where(disabled: true)
 
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]
