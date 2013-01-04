@@ -10,7 +10,7 @@
 
       <%= render 'games/fields', f: f %>
 
-      <p class="form-help" id="submit-help"><b>Be aware:</b> Upon saving, this game will immediately be visible on the site.</p>
+      <p class="form-help" id="submit-help"><b>Be aware:</b> Upon saving, any changes will immediately be visible on the site unless <b>Disabled</b> is checked above (in which the game won't be visible at all).</p>
       <%= f.submit "Update game", :class => "btn btn-large btn-primary" %>
       
     <% end %>
