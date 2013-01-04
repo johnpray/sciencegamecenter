@@ -12,7 +12,8 @@
 
 class User < ActiveRecord::Base
 	attr_accessible :name, :email, :is_admin, :password, :birth_date,
-									:disabled, :parent_email, :is_teacher, :is_scientist, :is_authoritative, :description
+									:disabled, :parent_email, :is_teacher, :is_scientist,
+									:is_authoritative, :is_game_developer, :description
 	before_save :create_remember_token
 
 	default_scope order: 'name ASC'
@@ -26,6 +27,9 @@ class User < ActiveRecord::Base
 	alias_attribute :teacher, :is_teacher
 	alias_attribute :scientist, :is_scientist
 	alias_attribute :authoritative, :is_authoritative
+	alias_attribute :game_developer, :is_game_developer
+	alias_attribute :developer, :is_game_developer
+	alias_attribute :is_developer, :is_game_developer
 
 	validates :name,	presence: true,
 										length: { maximum: 50 },
@@ -49,14 +53,14 @@ class User < ActiveRecord::Base
 	end
 
 	def is_expert?
-		is_teacher? || is_scientist?
+		is_teacher? || is_scientist? || is_game_developer?
 	end
 
 	def roles
 		return description if description && !description.empty?
 		roles = []
 		if is_admin
-			roles += ["Administrator"]
+			roles += ["ScienceGameCenter Team"]
 		end
 		if is_authoritative
 			roles += ["Authoritative"]
@@ -66,6 +70,9 @@ class User < ActiveRecord::Base
 		end
 		if is_scientist
 			roles += ["Scientist"]
+		end
+		if is_game_developer
+			roles += ["Game Developer"]
 		end
 		roles = roles.count > 0 ? roles.join(", ") : "Player"
 	end
