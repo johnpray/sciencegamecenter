@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
 		return description if description && !description.empty?
 		roles = []
 		if is_admin
-			roles += ["ScienceGameCenter Team"]
+			roles += ["SGC Admin"]
 		end
 		if is_authoritative
 			roles += ["Authoritative"]
