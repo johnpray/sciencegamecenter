@@ -1,0 +1,23 @@
+<h2>Categories</h2>
+
+<div id="subject_dropdown">
+<%= select :game, :subject, Game.tag_counts_on('subjects').order('name ASC').collect {|c| [ c.name, "subject=#{c.name}" ] }, {include_blank: 'All Subjects'} %>
+</div>
+
+<!--
+<%= select :game, :platform, Game.tag_counts_on('platforms').order('name ASC').collect {|c| [ c.name, c.name ] }, {include_blank: 'All Platforms'} %>
+-->
+
+<script>
+$(document).ready(function() {
+  $('#subject_dropdown').children('select').bind('change', function(event) {
+    if (event.target.value) {
+    	if(window.location.href.indexOf("?") !== -1) {
+    		window.location.href = window.location.href+"&"+event.target.value;
+    	} else {
+    		window.location.href = window.location.href+"?"+event.target.value;
+    	}
+    }
+  });
+});
+</script>

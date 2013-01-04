@@ -12,7 +12,14 @@
         <div class="span10">
           <%= yield %>
         </div>
-        <%= render 'layouts/side_banners' %>
+        <hr class="hidden-desktop" />
+        <div class="span2" id="side_ads_container">
+          <% if @games %>
+            <%= render 'games/categories_bar' %>
+            <hr />
+          <% end %>
+          <%= render 'layouts/side_banners' %>
+        </div>
       </div>
 
       <%= render 'layouts/footer' %>
