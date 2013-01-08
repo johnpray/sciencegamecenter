@@ -14,7 +14,7 @@
         </div>
         <hr class="hidden-desktop" />
         <div class="span2" id="side_ads_container">
-          <% if @games %>
+          <% if current_page?(games_path) %>
             <%= render 'games/categories_bar' %>
             <hr />
           <% end %>

@@ -1,22 +1,48 @@
-<h2>Categories</h2>
+<h2 id="categories_top">Categories</h2>
 
 <div id="subject_dropdown">
-<%= select :game, :subject, Game.tag_counts_on('subjects').order('name ASC').collect {|c| [ c.name, "subject=#{c.name}" ] }, {include_blank: 'All Subjects'} %>
+<%= select :game, :subject, Game.tag_counts_on('subjects').order('name ASC').collect {|c| [ c.name, c.name ] }, {include_blank: 'All Subjects'} %>
 </div>
 
-<!--
+<div id="platform_dropdown">
 <%= select :game, :platform, Game.tag_counts_on('platforms').order('name ASC').collect {|c| [ c.name, c.name ] }, {include_blank: 'All Platforms'} %>
--->
+</div>
 
 <script>
 $(document).ready(function() {
-  $('#subject_dropdown').children('select').bind('change', function(event) {
+  // SUBJECT
+  // PRE-SELECT CURRENT
+  <% if params[:subject] %>
+  	$('#game_subject').val("<%= params[:subject] %>");
+  <% end %>
+  // HOOK UP THE DROPDOWN
+  $('#game_subject').bind('change', function(event) {
     if (event.target.value) {
-    	if(window.location.href.indexOf("?") !== -1) {
-    		window.location.href = window.location.href+"&"+event.target.value;
-    	} else {
-    		window.location.href = window.location.href+"?"+event.target.value;
-    	}
+    	<% if params.count > 2 %>
+			window.location.href = "<%= raw (!params[:subject].blank? && params.count == 3) ? url_for(params.merge(subject: nil))+'?subject=' : url_for(params.merge(subject: nil))+'&subject=' %>"+event.target.value;
+		<% else %>	
+			window.location.href = "<%= raw url_for()+'?subject=' %>"+event.target.value;
+		<% end %>
+    } else {
+    	window.location.href = "<%= raw url_for(params.merge(subject: nil)) %>";
+    }
+  });
+
+  // PLATFORM
+  // PRE-SELECT CURRENT
+  <% if params[:platform] %>
+  	$('#game_platform').val("<%= params[:platform] %>");
+  <% end %>
+  // HOOK UP THE DROPDOWN
+  $('#game_platform').bind('change', function(event) {
+    if (event.target.value) {
+    	<% if params.count > 2 %>
+			window.location.href = "<%= raw (!params[:platform].blank? && params.count == 3) ? url_for(params.merge(platform: nil))+'?platform=' : url_for(params.merge(platform: nil))+'&platform=' %>"+event.target.value;
+		<% else %>	
+			window.location.href = "<%= raw url_for()+'?platform=' %>"+event.target.value;
+		<% end %>
+    } else {
+    	window.location.href = "<%= raw url_for(params.merge(platform: nil)) %>";
     }
   });
 });

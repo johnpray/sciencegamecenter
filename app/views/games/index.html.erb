@@ -1,11 +1,11 @@
 <%= provide(:title, 'Games') %>
 
 		<h1 class="left">Games</h1>
-		<p style="float: right;" class="hidden-phone"><%= link_to "Suggest a game", contact_path %></p>
 		<p>
-			<%= link_to "Filter by subject", subjects_path %> | 
-			<%= link_to "Filter by platform", platforms_path %>
-			<span class="visible-phone"> | <%= link_to "Suggest a game", contact_path %></span>
+			<% if params[:platform].blank? && params[:subject].blank? %>
+				<span class="visible-phone"><strong>Get specific!</strong> Use the Catergories dropdowns <a href="#categories_top">below (&#8595;)</a> to filter.</span>
+				<span class="hidden-phone"><strong>Get specific!</strong> Use the Catergories dropdowns to the right (&#8594;) to filter.</span>
+			<% end %>
 		</p>
 		<%= will_paginate if params[:page] %>
 		<% if !params[:platform].blank? || !params[:subject].blank? %>
@@ -16,14 +16,17 @@
 			<% if !params[:subject].blank? %>
 			<li>
 				<span class="divider">&raquo;</span>dealing with <strong><%= params[:subject] %></strong>
+				<%= link_to "×", params.merge(subject: nil) %>
 			</li>
 			<% end %>
 			<% if !params[:platform].blank? %>
 			<li>
 				<span class="divider">&raquo;</span>available on <strong><%= params[:platform] %></strong>
+				<%= link_to "×", params.merge(platform: nil) %>
 			</li>
 			<% end %>
 		</ul>
+		<p class="visible-phone"><a href="#categories_top">Filter more (&#8595;)</a></p>
 		<% end %>
 
 		<ul class="games">
@@ -37,4 +40,6 @@
 
 		<% if signed_in? && @current_user.is_admin? %>
 		<p><%= link_to "Create a new game", new_game_path %></p>
+		<% else %>
+		<p><%= link_to "Suggest a game", contact_path %></p>
 		<% end %>
