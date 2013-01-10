@@ -5,11 +5,12 @@ class GamesController < ApplicationController
   before_filter :admin_user,      except: [:index, :show]
 
   def index
-    if !params[:platform].blank? || !params[:subject].blank?
+    category_types = [:subject, :platform, :cost, :intended_for, :developer_type]
+    if any_category_defined?
       if admin?
-        @games = Game.tagged_with("#{params[:platform]}, #{params[:subject]}").paginate(page: params[:page], per_page: 10)
+        @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: 10)
       else
-        @games = Game.enabled.tagged_with("#{params[:platform]}, #{params[:subject]}").paginate(page: params[:page], per_page: 10)
+        @games = Game.enabled.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: 10)
       end
     else
       if admin?
@@ -71,5 +72,11 @@ class GamesController < ApplicationController
     Game.find(params[:id]).destroy
     flash[:success] = view_context.sanitize "Game <i>#{game.title}</i> and all its reviews and comments have been destroyed now and forever."
     redirect_to games_path
+  end
+
+  private
+
+  def any_category_defined?
+    !params[:platform].blank? || !params[:subject].blank? || !params[:cost].blank? || !params[:intended_for].blank? || !params[:developer_type].blank?
   end
 end

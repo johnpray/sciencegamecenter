@@ -5,6 +5,18 @@
 <%= f.label :disabled, "#{f.check_box :disabled} Disabled".html_safe %>
 <p class="form-help">Uncheck this box to make this game appear to all site visitors. Keep it checked while it's not yet ready for the public eye.</p>
 
+<%= f.label :website_url, "Website URL" %>
+<%= f.text_field :website_url %>
+<p class="form-help">The full address (including <i>http://</i>) for the game's official web site.</p>
+
+<%= f.label :developer, "Developer" %>
+<%= f.text_field :developer %>
+<p class="form-help">Name and link to developer's website<br />using Markdown, something like [FAS](http://www.fas.org/)</p>
+
+<%= f.label :description %>
+<%= f.text_area :description, rows: 10 %>
+<p class="form-help">A description of the game. Facts only. Save opinions for the reviews.<br/>Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
+
 <%= f.label :subject_list, "Deals with" %>
 <%= f.text_field :subject_list %>
 <p class="form-help">The general subjects or topics this game deals with, separated by commas. (e.g. biology, chemistry, Pokémon battling). Games can be sorted by these.</p>
@@ -17,21 +29,21 @@
 <%= f.text_field :platform_list %>
 <p class="form-help">The platforms this game has been released for, separated by commas. (e.g. World Wide Web, Microsoft Windows, Mac OS X, Game Boy Color). Games can be sorted by these.</p>
 
-<%= f.label :intended_audience, "Intended for" %>
+<%= f.label :cost_list, "Cost" %>
+<%= f.text_field :cost_list %>
+<p class="form-help"><b>Free</b>, <b>Paid</b>, and/or <b>Free Demo</b>, separated by commas. List all that apply (for example, Free Demo should always also have Paid listed).</p>
+
+<%= f.label :intended_for_list, "Intended for (age groups)" %>
+<%= f.text_field :intended_for_list %>
+<p class="form-help">The age group(s) this game was <b>intended</b> (by the developer) to be played by, separated by commas. Acceptable ranges to be determined.</p>
+
+<%= f.label :intended_audience, "Intended for [OLD]" %>
 <%= f.text_field :intended_audience %>
-<p class="form-help">The grade levels, age group, or other group(s) this game was intended to be played by, separated by ' // '. This will show up in the description but cannot be sorted by.</p>
+<p class="form-help">[This field has been replaced by the Intended For category type. Transfer all information into that field.] The grade levels, age group, or other group(s) this game was intended to be played by, separated by ' // '. This will show up in the description but cannot be sorted by.</p>
 
-<%= f.label :website_url, "Website URL" %>
-<%= f.text_field :website_url %>
-<p class="form-help">The full address (including <i>http://</i>) for the game's official web site.</p>
-
-<%= f.label :developer, "Developer" %>
-<%= f.text_field :developer %>
-<p class="form-help">Name and link to developer's website<br />using Markdown, something like [FAS](http://www.fas.org/)</p>
-
-<%= f.label :description %>
-<%= f.text_area :description, rows: 10 %>
-<p class="form-help">A description of the game. Facts only. Save opinions for the reviews.<br/>Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
+<%= f.label :developer_type_list, "Developer Type" %>
+<%= f.text_field :developer_type_list %>
+<p class="form-help"><b>Professional</b>, <b>Teacher</b>, or <b>Student</b>, etc.</p>
 
 <%= f.label :boxart, "Box art / logo" %>
 <% if f.object.boxart.file? %>

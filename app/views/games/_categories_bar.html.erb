@@ -1,49 +1,31 @@
 <h2 id="categories_top">Categories</h2>
 
-<div id="subject_dropdown">
-<%= select :game, :subject, Game.tag_counts_on('subjects').order('name ASC').collect {|c| [ c.name, c.name ] }, {include_blank: 'All Subjects'} %>
+<% [["subject", "Subjects"], ["platform", "Platforms"], ["cost", "Costs"], ["intended_for", "Intended Ages"], ["developer_type","Developer Types"]].each do |s, f| %>
+<div id="<%=s%>_dropdown">
+<%= select :game, s, Game.tag_counts_on(s.pluralize).order('name ASC').collect {|c| [ c.name, c.name ] }, {include_blank: "All #{f}"} %>
 </div>
+<% end %>
 
-<div id="platform_dropdown">
-<%= select :game, :platform, Game.tag_counts_on('platforms').order('name ASC').collect {|c| [ c.name, c.name ] }, {include_blank: 'All Platforms'} %>
-</div>
+
 
 <script>
 $(document).ready(function() {
-  // SUBJECT
-  // PRE-SELECT CURRENT
-  <% if params[:subject] %>
-  	$('#game_subject').val("<%= params[:subject] %>");
-  <% end %>
-  // HOOK UP THE DROPDOWN
-  $('#game_subject').bind('change', function(event) {
-    if (event.target.value) {
-    	<% if params.count > 2 %>
-			window.location.href = "<%= raw (!params[:subject].blank? && params.count == 3) ? url_for(params.merge(subject: nil))+'?subject=' : url_for(params.merge(subject: nil))+'&subject=' %>"+event.target.value;
-		<% else %>	
-			window.location.href = "<%= raw url_for()+'?subject=' %>"+event.target.value;
-		<% end %>
-    } else {
-    	window.location.href = "<%= raw url_for(params.merge(subject: nil)) %>";
-    }
-  });
+<% [["subject", "Subjects"], ["platform", "Platforms"], ["cost", "Costs"], ["intended_for", "Intended Ages"], ["developer_type","Developer Types"]].each do |s, f| %>
 
-  // PLATFORM
-  // PRE-SELECT CURRENT
-  <% if params[:platform] %>
-  	$('#game_platform').val("<%= params[:platform] %>");
+  <% if params[s] %>
+  	$('#game_<%=s%>').val("<%= params[s] %>");
   <% end %>
-  // HOOK UP THE DROPDOWN
-  $('#game_platform').bind('change', function(event) {
+  $('#game_<%=s%>').bind('change', function(event) {
     if (event.target.value) {
     	<% if params.count > 2 %>
-			window.location.href = "<%= raw (!params[:platform].blank? && params.count == 3) ? url_for(params.merge(platform: nil))+'?platform=' : url_for(params.merge(platform: nil))+'&platform=' %>"+event.target.value;
+			window.location.href = "<%= raw (!params[s].blank? && params.count == 3) ? url_for(params.merge(s => nil))+"?#{s}=" : url_for(params.merge(s => nil))+"&#{s}=" %>"+event.target.value;
 		<% else %>	
-			window.location.href = "<%= raw url_for()+'?platform=' %>"+event.target.value;
+			window.location.href = "<%= raw url_for()+"?#{s}=" %>"+event.target.value;
 		<% end %>
     } else {
-    	window.location.href = "<%= raw url_for(params.merge(platform: nil)) %>";
+    	window.location.href = "<%= raw url_for(params.merge(s => nil)) %>";
     }
   });
+<% end %>
 });
 </script>

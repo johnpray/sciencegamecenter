@@ -1,7 +1,8 @@
 class Game < ActiveRecord::Base
   attr_accessible :title, :description, :website_url, :developer,
   								:intended_audience, :concepts, :disabled,
-  								:boxart, :platform_list, :subject_list
+  								:boxart, :platform_list, :subject_list,
+  								:cost_list, :intended_for_list, :developer_type_list
 
   default_scope order: 'title ASC'
   scope :enabled, where(disabled: false)
@@ -16,7 +17,7 @@ class Game < ActiveRecord::Base
 
   has_paper_trail
 
-  acts_as_taggable_on :subjects, :platforms
+  acts_as_taggable_on :subjects, :platforms, :costs, :intended_fors, :developer_types
 
   has_attached_file :boxart,
   									styles: {
