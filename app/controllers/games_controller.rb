@@ -6,7 +6,8 @@ class GamesController < ApplicationController
 
   def index
     category_types = [:subject, :platform, :cost, :intended_for, :developer_type]
-    if any_category_defined?
+    @any_category_defined = any_category_defined?
+    if @any_category_defined
       if admin?
         @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: 10)
       else

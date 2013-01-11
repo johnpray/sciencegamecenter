@@ -1,0 +1,36 @@
+		<ul class="breadcrumb" style="font-size: 18px;">
+			<li>
+				<%= link_to "All games", games_path %>
+			</li>
+			<% if !params[:subject].blank? %>
+			<li>
+				<span class="divider">&raquo;</span>dealing with <strong><%= params[:subject] %></strong>
+				<%= link_to "×", params.merge(subject: nil) %>
+			</li>
+			<% end %>
+			<% if !params[:platform].blank? %>
+			<li>
+				<span class="divider">&raquo;</span>available on <strong><%= params[:platform] %></strong>
+				<%= link_to "×", params.merge(platform: nil) %>
+			</li>
+			<% end %>
+			<% if !params[:cost].blank? %>
+			<li>
+				<span class="divider">&raquo;</span>cost is <strong><%= params[:cost] %></strong>
+				<%= link_to "×", params.merge(cost: nil) %>
+			</li>
+			<% end %>
+			<% if !params[:intended_for].blank? %>
+			<li>
+				<span class="divider">&raquo;</span>intended for <strong><%= params[:intended_for] %></strong>
+				<%= link_to "×", params.merge(intended_for: nil) %>
+			</li>
+			<% end %>
+			<% if !params[:developer_type].blank? %>
+			<li>
+				<span class="divider">&raquo;</span>developed by a <strong><%= params[:developer_type] %></strong>
+				<%= link_to "×", params.merge(developer_type: nil) %>
+			</li>
+			<% end %>
+		</ul>
+		<p class="visible-phone"><a href="#categories_top">Filter more (&#8595;)</a></p>

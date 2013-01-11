@@ -2,31 +2,14 @@
 
 		<h1 class="left">Games</h1>
 		<p>
-			<% if params[:platform].blank? && params[:subject].blank? %>
+			<% if !@any_category_defined %>
 				<span class="visible-phone"><strong>Get specific!</strong> Use the Catergories dropdowns <a href="#categories_top">below (&#8595;)</a> to filter.</span>
 				<span class="hidden-phone"><strong>Get specific!</strong> Use the Catergories dropdowns to the right (&#8594;) to filter.</span>
 			<% end %>
 		</p>
 		<%= will_paginate if params[:page] %>
-		<% if !params[:platform].blank? || !params[:subject].blank? %>
-		<ul class="breadcrumb" style="font-size: 18px;">
-			<li>
-				<%= link_to "All games", games_path %>
-			</li>
-			<% if !params[:subject].blank? %>
-			<li>
-				<span class="divider">&raquo;</span>dealing with <strong><%= params[:subject] %></strong>
-				<%= link_to "×", params.merge(subject: nil) %>
-			</li>
-			<% end %>
-			<% if !params[:platform].blank? %>
-			<li>
-				<span class="divider">&raquo;</span>available on <strong><%= params[:platform] %></strong>
-				<%= link_to "×", params.merge(platform: nil) %>
-			</li>
-			<% end %>
-		</ul>
-		<p class="visible-phone"><a href="#categories_top">Filter more (&#8595;)</a></p>
+		<% if @any_category_defined %>
+		<%= render 'games/category_breadcrumbs' %>
 		<% end %>
 
 		<ul class="games">

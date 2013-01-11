@@ -27,7 +27,7 @@
 
 <%= f.label :platform_list, "Available on" %>
 <%= f.text_field :platform_list %>
-<p class="form-help">The platforms this game has been released for, separated by commas. (e.g. World Wide Web, Microsoft Windows, Mac OS X, Game Boy Color). Games can be sorted by these.</p>
+<p class="form-help">The platforms this game has been released for, separated by commas. (e.g. <b>Web (PC/Mac)</b>, <b>Web (iPad/Tablet)</b>, <b>Microsoft Windows</b>, <b>Mac OS X</b>, <b>Game Boy Color></b>). Games can be sorted by these.</p>
 
 <%= f.label :cost_list, "Cost" %>
 <%= f.text_field :cost_list %>
@@ -43,7 +43,7 @@
 
 <%= f.label :developer_type_list, "Developer Type" %>
 <%= f.text_field :developer_type_list %>
-<p class="form-help"><b>Professional</b>, <b>Teacher</b>, or <b>Student</b>, etc.</p>
+<p class="form-help"><b>Professional Developer</b>, <b>Teacher</b>, or <b>Student</b>, etc.</p>
 
 <%= f.label :boxart, "Box art / logo" %>
 <% if f.object.boxart.file? %>
