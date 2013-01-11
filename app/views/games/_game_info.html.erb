@@ -24,15 +24,24 @@
 				<b>Intended for</b>
 			</td>
 			<td class="info-value">
-				<%= game.intended_audience %>
+				<%= !intended_for_links_list(game).blank? ? intended_for_links_list(game) : game.intended_audience %>
 			</td>
 		</tr>
+		<tr>
 		<tr>
 			<td class="info-key">
 				<b>Available on</b>
 			</td>
 			<td class="info-value">
 				<%= platform_links_list(game) %>
+			</td>
+		</tr>
+		<tr>
+			<td class="info-key">
+				<b>Cost</b>
+			</td>
+			<td class="info-value">
+				<%= cost_links_list(game) %>
 			</td>
 		</tr>
 		<tr>
@@ -48,7 +57,7 @@
 				<b>Developed by</b>
 			</td>
 			<td class="info-value">
-				<%= "#{markdown_inline game.developer} #{external_link_icon}".html_safe %>
+				<%= "#{markdown_inline game.developer} #{external_link_icon}".html_safe %> <%= "(a #{developer_type_links_list(game)})".html_safe if !developer_type_links_list(game).blank? %>
 			</td>
 		</tr>
 		<tr>
