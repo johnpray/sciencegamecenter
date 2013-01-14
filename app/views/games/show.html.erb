@@ -50,7 +50,7 @@
 
 <div id="authoritative_reviews">
 <hr />
-<h2 class="left">Authoritative Reviews</h2>
+<h2 class="left">Official SGC Reviews</h2>
 <% @authoritative_reviews.each do |review| %>
 	<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && admin? %>
 	<%= render 'player_reviews/player_review', review: review %>

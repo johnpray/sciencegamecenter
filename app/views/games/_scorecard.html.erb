@@ -9,7 +9,7 @@
 <div class="span3"><table class="table table-bordered">
 <thead>
 <tr>
-	<th colspan="2"><strong><%= link_to "Authoritative Reviews", game_path(@game, anchor: 'authoritative_reviews') %></strong><br/>
+	<th colspan="2"><strong><%= link_to "SGC Reviews", game_path(@game, anchor: 'authoritative_reviews') %></strong><br/>
 		Our official reviews</th>
 
 	<% if game.authoritative_averages_total >= 0 %>
@@ -62,7 +62,7 @@
 <tbody>
 <tr>
 	<td colspan="3" rowspan="3">
-		We haven't published our authoritative reviews of <i><%= @game.title %></i> quite yet. Rest assured that we'll have them up shortly!
+		We haven't published our official SGC review(s) of <i><%= @game.title %></i> quite yet.
 	</td>
 </tr>
 </tbody>
@@ -80,7 +80,7 @@
 
 	<% if game.expert_averages_total >= 0 %>
 	<th class="score_total_cell">
-		<span class="score_total"><%= game.expert_averages_total %></span><small> / 15</small></span>
+		<span class="score_total"><%= game.expert_averages_total.to_i %></span><small> / 15</small></span>
 	</th>
 	<% else %>
 	<th>&mdash;</th>
