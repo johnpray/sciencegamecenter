@@ -6,18 +6,35 @@ class GamesController < ApplicationController
 
   def index
     category_types = [:subject, :platform, :cost, :intended_for, :developer_type]
+    per_page_number = 10
     @any_category_defined = any_category_defined?
     if @any_category_defined
       if admin?
-        @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: 10)
+        @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: per_page_number)
+        if @games.count < per_page_number+1
+          params.delete :page
+          @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: per_page_number)
+        end
       else
-        @games = Game.enabled.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: 10)
+        @games = Game.enabled.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: per_page_number)
+        if @games.count < per_page_number+1
+          params.delete :page
+          @games = Game.enabled.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: per_page_number)
+        end
       end
     else
       if admin?
-        @games = Game.paginate(page: params[:page], per_page: 10)
+        @games = Game.paginate(page: params[:page], per_page: per_page_number)
+        if @games.count < per_page_number+1
+          params.delete :page
+          @games = Game.paginate(page: params[:page], per_page: per_page_number)
+        end
       else
-        @games = Game.enabled.paginate(page: params[:page], per_page: 10)
+        @games = Game.enabled.paginate(page: params[:page], per_page: per_page_number)
+        if @games.count < per_page_number+1
+          params.delete :page
+          @games = Game.enabled.paginate(page: params[:page], per_page: per_page_number)
+        end
       end
     end
   end
