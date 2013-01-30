@@ -2,7 +2,7 @@
 
 <% [["subject", "Subjects"], ["platform", "Platforms"], ["cost", "Costs"], ["intended_for", "Intended Ages"], ["developer_type","Developer Types"]].each do |s, f| %>
 <div id="<%=s%>_dropdown">
-<%= select :game, s, Game.tag_counts_on(s.pluralize).order('name ASC').collect {|c| [ capitalize_first(c.name), c.name ] }, {include_blank: "All #{f}"} %>
+<%= select :game, s, @games.tag_counts_on(s.pluralize).order('name ASC').collect {|c| [ capitalize_first(c.name), c.name ] }, {include_blank: "All #{f}"} %>
 </div>
 <% end %>
 
