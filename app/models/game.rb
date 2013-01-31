@@ -61,6 +61,30 @@ class Game < ActiveRecord::Base
   	reviews
   end
 
+  def teacher_reviews
+  	reviews = []
+  	self.player_reviews.each do |r|
+  		reviews += [r] if r.user.is_teacher?
+  	end
+  	reviews
+  end
+
+  def scientist_reviews
+  	reviews = []
+  	self.player_reviews.each do |r|
+  		reviews += [r] if r.user.is_scientist?
+  	end
+  	reviews
+  end
+
+  def game_developer_reviews
+  	reviews = []
+  	self.player_reviews.each do |r|
+  		reviews += [r] if r.user.is_game_developer?
+  	end
+  	reviews
+  end
+
 # PLAYER AVERAGES
 	def player_fun_average(round = true)
 		if self.approved_player_reviews_count < 1
