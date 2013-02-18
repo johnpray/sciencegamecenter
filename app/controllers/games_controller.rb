@@ -70,7 +70,7 @@ class GamesController < ApplicationController
         redirect_to @game
       else
         GameMailer.notify_of_new_game(@game).deliver
-        flash[:success] = view_context.sanitize "Your game <i>#{@game.title}</i> has been submitted and will be reviewed by the SGC Team. Thanks!"
+        flash[:success] = view_context.sanitize "Your game <i>#{@game.title}</i> has been submitted and will be considered by the SGC Team. Thanks!"
         redirect_to games_path
       end
     else
