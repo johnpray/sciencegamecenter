@@ -21,8 +21,10 @@
 
 		<%= will_paginate %>
 
-		<% if signed_in? && @current_user.is_admin? %>
+		<% if admin? %>
 		<p><%= link_to "Create a new game", new_game_path %></p>
+		<% elsif signed_in? %>
+		<p><%= link_to "Submit a game", new_game_path %></p>
 		<% else %>
 		<p><%= link_to "Suggest a game", contact_path %></p>
 		<% end %>

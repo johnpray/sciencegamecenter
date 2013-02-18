@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
   #force_ssl                       except: [:index, :show]
   before_filter :signed_in_user,  except: [:index, :show]
-  before_filter :admin_user,      except: [:index, :show]
+  before_filter :admin_user,      except: [:index, :show, :new, :create]
 
   def index
     category_types = [:subject, :platform, :cost, :intended_for, :developer_type]
@@ -65,9 +65,14 @@ class GamesController < ApplicationController
     @game = Game.new(params[:game])
     @game.user = current_user
     if @game.save
-      GameMailer.notify_of_new_game(@game).deliver
-      flash[:success] = "Game #{@game.title} created."
-      redirect_to @game
+      if admin?
+        flash[:success] = "Game #{@game.title} created."
+        redirect_to @game
+      else
+        GameMailer.notify_of_new_game(@game).deliver
+        flash[:success] = view_context.sanitize "Your game <i>#{@game.title}</i> has been submitted and will be reviewed by the SGC Team. Thanks!"
+        redirect_to games_path
+      end
     else
       render 'new'
     end

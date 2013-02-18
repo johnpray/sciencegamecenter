@@ -1,11 +1,19 @@
 <%= provide(:title, 'New game') %>
+<% if admin? %>
 <h1>New game</h1>
+<% else %>
+<h1>Suggest a game</h1>
+<% end %>
 
 <div class="row">
   <div class="span6 offset2">
 
     <div class="form-description">
+      <% if admin? %>
       <p>Use this form to add a new game to our authoritative list.</p>
+      <% else %>
+      <p>Use this form to suggest a new game for our authoritative list.</p>
+      <% end %>
     </div>
 
     <%= form_for(@game) do |f| %>
@@ -14,8 +22,12 @@
 
       <%= render 'games/fields', f: f %>
 
+      <% if admin? %>
       <p class="form-help" id="submit-help"><b>Be aware:</b> Upon saving, this game will immediately be visible on the site unless <b>Disabled</b> is checked above.</p>
       <%= f.submit "Create game", :class => "btn btn-large btn-primary" %>
+      <% else %>
+      <%= f.submit "Submit game suggestion", :class => "btn btn-large btn-primary" %>
+      <% end %>
       
     <% end %>
   </div>
