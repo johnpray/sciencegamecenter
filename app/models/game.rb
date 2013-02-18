@@ -15,6 +15,8 @@ class Game < ActiveRecord::Base
   has_many :screenshots,		dependent: :destroy
   has_many :youtube_videos,	dependent: :destroy
 
+  belongs_to :user
+
   has_paper_trail
 
   acts_as_taggable_on :subjects, :platforms, :costs, :intended_fors, :developer_types

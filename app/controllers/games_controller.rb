@@ -63,7 +63,9 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(params[:game])
+    @game.user = current_user
     if @game.save
+      GameMailer.notify_of_new_game(@game).deliver
       flash[:success] = "Game #{@game.title} created."
       redirect_to @game
     else

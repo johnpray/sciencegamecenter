@@ -1,0 +1,32 @@
+Hello, Science Game Center Admins!
+
+A new game has been posted and needs your approval before it shows up on the site.
+
+Here's the game:
+
+===
+Game: <%= @game.title %>
+Created by: "<%= @game.user.name %>" <<%= @game.user.email} %>>
+
+Title: <%= @game.title %>
+Disabled: <%= @game.disabled %>
+
+Website URL: <%= @game.website_url %>
+Developer: <%= @game.developer %>
+Developer type: <%= @game.developer_type_list %>
+Deals with: <%= @game.subject_list %>
+Deeper concepts: <%= @game.concepts %>
+Available on: <%= @game.platform_list %>
+Cost: <%= @game.cost_list %>
+Intended for: <%= @game.intended_for_list %>
+
+Description:
+<%= @game.description %>
+
+===
+
+To enable or delete this game, visit this link:
+<%= edit_game_url(@game) %>
+
+Very sincerely,
+SGCBot
