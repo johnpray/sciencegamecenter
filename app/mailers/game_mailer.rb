@@ -9,7 +9,7 @@ class GameMailer < ActionMailer::Base
     admin = "SGC Admins <sciencegamecenter@fas.org>"
     mail(
       to: admin,
-      subject: "A game is awaiting approval"
+      subject: "A game has been suggested"
     )
   end
 
