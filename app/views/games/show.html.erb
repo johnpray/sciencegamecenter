@@ -30,6 +30,11 @@
 				<strong>Disabled.</strong> This game is hidden from public view. Edit it to enable.
 			</div>
 		<% end %>
+		<% if @game.entertainment? %>
+		<div class="entertainment">
+			<p><i><b>Primarily for entertainment:</b> This game is not intended to teach, but rather to simply raise awareness and interest in a scientific concept.</i>
+		</div>
+		<% end %>
 		<div class="description">
 			<%= markdown @game.description %>
 		</div>

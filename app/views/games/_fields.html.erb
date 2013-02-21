@@ -49,6 +49,9 @@
 <%= f.hidden_field :intended_audience %>
 <% end %>
 
+<%= f.label :entertainment, "#{f.check_box :entertainment} Primarily for Entertainment".html_safe %>
+<p class="form-help">Is this game primarily for entertinment rather than learning? If this game is not intended to teach, but rather to simply raise awareness and interest in a scientific concept, check this box.</p>
+
 <%= f.label :description %>
 <%= f.text_area :description, rows: 10 %>
 <p class="form-help">A description of the game. Facts only. Save opinions for the reviews.<br/>Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221171536) do
+ActiveRecord::Schema.define(:version => 20130221181450) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130221171536) do
     t.string   "slug"
     t.boolean  "disabled",            :default => true
     t.text     "teacher_info"
+    t.boolean  "entertainment"
   end
 
   add_index "games", ["slug"], :name => "index_games_on_slug", :unique => true

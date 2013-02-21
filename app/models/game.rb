@@ -3,7 +3,7 @@ class Game < ActiveRecord::Base
   								:intended_audience, :concepts, :disabled,
   								:boxart, :platform_list, :subject_list,
   								:cost_list, :intended_for_list, :developer_type_list,
-                                :teacher_info
+                                :teacher_info, :entertainment
 
   default_scope order: 'title ASC'
   scope :enabled, where(disabled: false)
