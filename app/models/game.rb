@@ -2,7 +2,8 @@ class Game < ActiveRecord::Base
   attr_accessible :title, :description, :website_url, :developer,
   								:intended_audience, :concepts, :disabled,
   								:boxart, :platform_list, :subject_list,
-  								:cost_list, :intended_for_list, :developer_type_list
+  								:cost_list, :intended_for_list, :developer_type_list,
+                                :teacher_info
 
   default_scope order: 'title ASC'
   scope :enabled, where(disabled: false)
