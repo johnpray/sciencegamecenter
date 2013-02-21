@@ -53,6 +53,16 @@
 <%= f.text_area :description, rows: 10 %>
 <p class="form-help">A description of the game. Facts only. Save opinions for the reviews.<br/>Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
 
+<% if !admin? %>
+<p>Please address the following within or below your description to help us evaluate your submission. All text will be edited to standard SGC style by the SGC Team before the game is posted, and any sensitive info will be removed.</p>
+<ul>
+    <li>Which concepts does this game present?
+    <li>Which standards does this game address?
+    <li>Have you used it to teach any of these standards or concepts?
+    <li>What concepts and standards was this game intended to teach, if any?
+</ul>
+<% end %>
+
 <%= f.label :boxart, "Box art / logo" %>
 <% if f.object.boxart.file? %>
 <%= image_tag f.object.boxart.url(:large) %>
