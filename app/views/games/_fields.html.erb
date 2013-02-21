@@ -57,11 +57,10 @@
 <p class="form-help">A description of the game. Facts only. Save opinions for the reviews.<br/>Format using HTML tags or <a href="http://daringfireball.net/projects/markdown/basics">Markdown</a>: **bold** _italics_ [link](http://example.com)</p>
 
 <% if !admin? %>
-<p>Please address the following within or below your description to help us evaluate your submission. All text will be edited to standard SGC style by the SGC Team before the game is posted, and any sensitive info will be removed.</p>
+<p>Please address the following within or below your description to help us evaluate your submission. All text will be edited to standard SGC style by the SGC Team before the game is posted.</p>
 <ul>
     <li>Which concepts does this game present?
     <li>Which standards does this game address?
-    <li>Have you used it to teach any of these standards or concepts?
     <li>What concepts and standards was this game intended to teach, if any?
 </ul>
 <p>Also, below, please enter the information requested on a teacher who is familiar with and will be willing to review this game.</p>
@@ -69,7 +68,7 @@
 
 <%= f.label :teacher_info %>
 <%= f.text_area :teacher_info, rows: 6 %>
-<p class="form-help">Please enter the <b>contact info (name, email address, and phone number) for a teacher</b> who has played and will be willing to post a review of this game. Please also include the <b>name of the teacher's school, the subjects he or she teaches, and the grades or age groups he or she teaches</b>. This information will be kept private.</p>
+<p class="form-help">Please enter the <b>contact info (name, email address, and phone number) for a teacher</b> who has played and will be willing to post a review of this game. The teacher's review can be negative, but it must agree at least that the game teaches concepts or standards related to their curriculum. Please also include the <b>name of the teacher's school, the subjects he or she teaches, and the grades or age groups he or she teaches</b>. This information will be kept private and only used by the SGC Team to contact the teacher and evalutate the game.</p>
 
 <%= f.label :boxart, "Box art / logo" %>
 <% if f.object.boxart.file? %>
