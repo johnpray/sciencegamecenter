@@ -84,6 +84,29 @@ class User < ActiveRecord::Base
   	UserMailer.password_reset(self).deliver
   end
 
+  def self.from_omniauth(auth)
+  	existing_password_user = where(email: auth.info.email).first
+  	if existing_password_user && (existing_password_user.uid.blank? || existing_password_user.provider != auth.provider)
+  		existing_password_user.provider = auth.provider
+  		existing_password_user.uid = auth.uid
+  		existing_password_user.oauth_token = auth.credentials.token
+		  existing_password_user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+		  existing_password_user.save!(validate: false)
+		  existing_password_user
+  	else
+	  	where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+		  	user.provider = auth.provider
+		    user.uid = auth.uid
+		    user.oauth_token = auth.credentials.token
+		    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+		    user.name ||= auth.info.name
+		    user.email ||= auth.info.email
+		    #user.birth_date = Date.strptime(auth.info.birthday)
+		  	user.save!(validate: false)
+		  end
+		end
+  end
+
 	private
 
 		def create_remember_token

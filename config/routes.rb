@@ -30,6 +30,9 @@ SciencegamereviewsOrg::Application.routes.draw do
   match '/login',   to: 'sessions#new'
   match '/logout',  to: 'sessions#destroy', via: :delete
 
+  match 'auth/:provider/callback', to: 'sessions#create'
+  match 'auth/failure', to: redirect('/')
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
