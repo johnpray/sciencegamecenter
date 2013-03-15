@@ -7,12 +7,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:error].present?
-      if params[:error_reason] != 'user_denied'
-        flash[:error] = "There was a problem logging you in."
-      end
-      redirect_to root_path
-    end
     if env['omniauth.auth'].present? # Logging in with Facebook
       user = User.from_omniauth(env['omniauth.auth'])
       authenticated = true if user
