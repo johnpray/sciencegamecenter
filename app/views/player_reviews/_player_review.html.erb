@@ -16,7 +16,7 @@
 		</div>
 		<div class="span3">
 				<% if review.user %>
-				<%= gravatar_for review.user %>
+				<%= avatar_for review.user %>
 				<% end %>
 				<p>
 					<%= review.user ? review.user.name : "Someone" %>

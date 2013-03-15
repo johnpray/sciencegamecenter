@@ -39,9 +39,6 @@ class UsersController < ApplicationController
   	end
   end
 
-  def edit
-  end
-
   def update
     old_email = @user.email
     flash_message = "Profile and password updated."

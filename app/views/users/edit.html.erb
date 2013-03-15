@@ -65,13 +65,31 @@
       <%= f.text_field :description %>
       <p class="form-help">A short description of yourself to appear below your name. What are you a teacher of and for how long? Or what kind of games are you a player of?</p>
 
+      <% if @user.is_facebook? %>
+        <%= facebook_pic_for @user %>
+        <p class="form-help">Since your SGC account is connected to your Facebook account, the SGC shows your Facebook profile picture unless you check the box below.</p>
+
+        <%= f.label :prefers_gravatar, "#{f.check_box :prefers_gravatar} Show my Gravatar instead".html_safe %>
+        <p class="form-help">Would you prefer us to use your Gravatar (below) instead of your Facebook profile picture (above)?</p>
+      <% end %>
+
       <p class="form-help" id="submit-help"></p>
       <%= f.submit "Save changes", :class => "btn btn-large btn-primary" %>
     <% end %>
 
     <hr />
+
     <a href="http://gravatar.com/emails" target="_blank"><%= gravatar_for @user %>
     Change your Gravatar</a>
     <p class="form-help">We use external service <%= link_to "Gravatar", 'http://gravatar.com' %> to provide your picture based on your email address. If you'd like to change it, do so at the link above. You'll need to sign up for a free Gravatar account and associate it with the email address you're using here, if you don't already have one.</p>
+
+    <% if @user.is_facebook? %>
+      <hr />
+      <a href='<%= "http://www.facebook.com/#{@user.uid}" %>' target="_blank"><%= facebook_pic_for @user %>
+      View my Facebook profile</a>
+      <p class="form-help">This Science Game Center account is connected to the Facebook profile linked here.</p>
+      <!--<p><a href="#">Disconnect this Facebook profile from this Science Game Center account.</a></p>-->
+      <% end %>
+
   </div>
 </div>

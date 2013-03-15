@@ -3,7 +3,7 @@
 <h1 class="left">Editing a review for <%= @player_review.game.title %></h1>
 <% if @player_review.user %>
 	<div class="user_info">
-		<%= gravatar_for @player_review.user %>
+		<%= avatar_for @player_review.user %>
 		<h2>by <%= @player_review.user.name %></h2>
 		<% if @current_user.is_admin? %>
 		<p>Email this user: <%= link_to @player_review.user.email, @player_review.user.email %></p>

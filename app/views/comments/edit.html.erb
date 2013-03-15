@@ -4,7 +4,7 @@
 
 <% if @comment.user %>
 	<div class="user_info">
-		<%= gravatar_for @comment.user %>
+		<%= avatar_for @comment.user %>
 		<h3>by <%= @comment.user.name %></h3>
 		<% if @current_user.is_admin? %>
 		<p>Email this user: <%= link_to @comment.user.email, @comment.user.email %></p>

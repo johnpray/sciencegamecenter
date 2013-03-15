@@ -11,7 +11,7 @@
 	<p><%= link_to "Sign up", signup_path %> or <%= link_to "log in", login_path %> to leave a comment.</p>
 <% else %>
 
-	<%= gravatar_for @current_user %>
+	<%= avatar_for @current_user %>
   <p>
     <b><%= @current_user.name %></b><br />
     <%= Time.zone.now.to_formatted_s(:long) %>

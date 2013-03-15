@@ -1,6 +1,6 @@
 <div class="comment row">
 	<div class="span1">
-		<%= gravatar_for comment.user, size: 60 %>
+		<%= avatar_for comment.user, size: 60 %>
 	</div>
 	<div class="span9">
 		<p class="comment_user"><b><%= comment.user ? comment.user.name : "Someone" %></b> on <%= comment.created_at.to_formatted_s(:long) %> said

@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	attr_accessible :name, :email, :is_admin, :password, :birth_date,
 									:disabled, :parent_email, :is_teacher, :is_scientist,
 									:is_authoritative, :is_game_developer, :description,
-									:dummy_password
+									:dummy_password, :prefers_gravatar
 	before_save :create_remember_token
 	before_validation :set_dummy_password_if_needed
 
@@ -59,6 +59,10 @@ class User < ActiveRecord::Base
 
 	def is_not_oauth?
 		!is_oauth?
+	end
+
+	def is_facebook?
+		self.uid.present? && self.provider == 'facebook'
 	end
 
 	def has_password?
