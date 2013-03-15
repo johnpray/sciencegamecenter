@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       authenticated = true if user
       remember_me = true
       omniauth = true
-      raise env['omniauth.auth'].to_yaml
+      #raise env['omniauth.auth'].to_yaml
     else # Logging in with email and password
       user = User.find_by_email(params[:session][:email])
       authenticated = user && user.authenticate(params[:session][:password])

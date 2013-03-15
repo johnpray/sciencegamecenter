@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
 		    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
 		    user.name ||= auth.info.name
 		    user.email ||= auth.info.email
-		    #user.birth_date = Date.strptime(auth.info.birthday)
+		    user.birth_date ||= DateTime.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y')
 		  	user.save!(validate: false)
 		  end
 		end
