@@ -22,7 +22,7 @@
 
       <%= f.label :name, "Screen name" %>
       <%= f.text_field :name %>
-      <p class="form-help">A name to represent you to other site visitors. If you are under 18, please <b>DO NOT</b> use your real name.</p>
+      <p class="form-help">A name to represent you to other site visitors. If you are under 13, please <b>DO NOT</b> use your real name. That's not only unsafe; it's boring, too!</p>
 
       <%= f.label :email %>
       <%= f.text_field :email %>
@@ -45,7 +45,7 @@
       </div>
 
       <%= recaptcha_tags ssl: Rails.env.production? %>
-      <p class="form-help">Finally, help us fight spam by demonstrating that you're human.</p>
+      <p class="form-help">Finally, help us fight spam by demonstrating that you're not a robot!</p>
 
       <p class="form-help" id="submit-help">By signing up, you agree to our <%= link_to "privacy policy", privacy_path, target: '_blank' %>.</p>
       <%= f.submit "Create my account", :class => "btn btn-large btn-primary" %>
