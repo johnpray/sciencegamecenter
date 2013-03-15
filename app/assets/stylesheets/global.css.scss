@@ -463,6 +463,12 @@ table.game_info {
   max-width: 70%;
   margin-bottom: 8px;
 }
+/* Facebook buttons */
+.btn-facebook {
+  @include buttonBackground(lighten(#4c66a4, 10%), #4c66a4);
+  font-family: Tahoma, sans-serif;
+}
+
 
 /* print styles */
 @media print {

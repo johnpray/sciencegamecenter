@@ -1,5 +1,11 @@
 <% provide(:title, "Log in") %>
 <h1>Log in</h1>
+<div class="row">
+  <div class="span6 offset2 well" style="text-align: center;">
+    <%= link_to 'Log in with Facebook', '/auth/facebook', class: 'btn btn-large btn-primary btn-facebook' %>
+    <br /><br />or log in with your email address and password below.
+  </div>
+</div>
 
 <div class="row">
   <div class="span6 offset2">
