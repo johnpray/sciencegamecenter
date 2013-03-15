@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
     if env['omniauth.auth'].present? # Logging in with Facebook
       user = User.from_omniauth(env['omniauth.auth'])
       authenticated = true if user
-      remember_me = true
       omniauth = true
       #raise env['omniauth.auth'].to_yaml
     else # Logging in with email and password
@@ -20,7 +19,7 @@ class SessionsController < ApplicationController
     end
     if authenticated
       if !user.disabled?
-        sign_in user, remember_me
+        sign_in user, remember_me, omniauth
         flash[:success] = "You've logged in as #{user.name}."
         redirect_back_or root_path
       else
