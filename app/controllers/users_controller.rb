@@ -45,11 +45,17 @@ class UsersController < ApplicationController
   def update
     old_email = @user.email
     flash_message = "Profile and password updated."
-    if params[:user][:password].empty?
-      params[:user][:password] = params[:current][:password]
+    if params[:user][:password].blank?
+      if params[:current].present? && params[:current][:password].present?
+        params[:user][:password] = params[:current][:password]
+      elsif @user.is_oauth?
+        @user.dummy_password = true unless current_user.is_admin?
+      end
       flash_message = "Profile updated."
+    else
+      @user.dummy_password = false unless current_user.is_admin?
     end
-    if @user.authenticate(params[:current][:password]) || current_user.is_admin?
+    if @user.is_oauth? || current_user.is_admin? || @user.authenticate(params[:current][:password])
       if current_user.is_admin?
         @user.attributes = params[:user]
         result = @user.save(validate: false)

@@ -13,8 +13,10 @@
 class User < ActiveRecord::Base
 	attr_accessible :name, :email, :is_admin, :password, :birth_date,
 									:disabled, :parent_email, :is_teacher, :is_scientist,
-									:is_authoritative, :is_game_developer, :description
+									:is_authoritative, :is_game_developer, :description,
+									:dummy_password
 	before_save :create_remember_token
+	before_validation :set_dummy_password_if_needed
 
 	default_scope order: 'name ASC'
 
@@ -33,15 +35,14 @@ class User < ActiveRecord::Base
 
 	validates :name,	presence: true,
 										length: { maximum: 50 },
-										exclusion: { in: %w(admin superuser administrator fasadmin) },
-										uniqueness: { case_sensitive: false }
+										exclusion: { in: %w(admin superuser administrator fasadmin) }
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email,	format: { with: VALID_EMAIL_REGEX },
 										uniqueness: { case_sensitive: false }
 
 	has_secure_password
-	validates :password,	length: { minimum: 6 }
+	validates :password,	length: { minimum: 6 }, if: :validate_password?
 
 	validates :birth_date, presence: true
 	validates :parent_email, format: { with: VALID_EMAIL_REGEX },
@@ -50,6 +51,22 @@ class User < ActiveRecord::Base
 
 	def is_under_thirteen?
 		13.years.ago < self.birth_date
+	end
+
+	def is_oauth?
+		self.oauth_token.present?
+	end
+
+	def is_not_oauth?
+		!is_oauth?
+	end
+
+	def has_password?
+		self.password_digest.present? && !self.dummy_password?
+	end
+
+	def validate_password?
+		has_password? || new_record?
 	end
 
 	def is_expert?
@@ -102,6 +119,10 @@ class User < ActiveRecord::Base
 		    user.name ||= auth.info.name
 		    user.email ||= auth.info.email
 		    user.birth_date ||= DateTime.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y')
+		    if user.password_digest.blank?
+			    user.password_digest = SecureRandom.urlsafe_base64
+			    user.dummy_password = true
+			  end
 		  	user.save!(validate: false)
 		  end
 		end
@@ -123,5 +144,11 @@ class User < ActiveRecord::Base
     if email == parent_email
       errors.add(:parent_email, "must be different from your own.") 
 	    end
+	  end
+
+	  def set_dummy_password_if_needed
+	  	if self.password.blank? && self.dummy_password
+	  		self.password_digest = SecureRandom.urlsafe_base64
+	  	end
 	  end
 end

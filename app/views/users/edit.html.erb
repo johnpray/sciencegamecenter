@@ -14,13 +14,27 @@
       <%= f.text_field :email %>
       <p class="form-help">Your email address. You’ll use this to log in, but it won’t appear on the site. It'll also be used if you forget your password, so make sure it's real.</p>
 
-      <%= label_tag :current_password, "Current password" %>
-      <%= password_field :current, :password %>
-      <p class="form-help">Please enter your current password. This helps to keep your account safe.</p>
+      <% if @user == @current_user %>
 
-      <%= f.label :password, "New password (if desired)" %>
-      <%= f.password_field :password %>
-      <p class="form-help">If you'd like to change your password, enter the new one here. Else, leave it blank. It must be at least 6 characters long.</p>
+        <% if @user.has_password? %>
+
+        <%= label_tag :current_password, "Current password" %>
+        <%= password_field :current, :password %>
+        <p class="form-help">Please enter your current password. It's required to keep your account safe.</p>
+
+        <%= f.label :password, "New password (if desired)" %>
+        <%= f.password_field :password %>
+        <p class="form-help">If you'd like to change your password, enter the new one here. Else, leave it blank. It must be at least 6 characters long.</p>
+
+        <% else %>
+
+        <%= f.label :password, "Password (if desired)" %>
+        <%= f.password_field :password %>
+        <p class="form-help">If you'd like to set a password so you can log in with just your email address, enter one here. Else, leave it blank. It must be at least 6 characters long.</p>
+
+        <% end %>
+
+      <% end %>
 
       <% if @current_user.is_admin? %>
 
