@@ -25,6 +25,8 @@ SciencegamereviewsOrg::Application.routes.draw do
   resources :player_reviews
   resources :comments
 
+  resources :stats, only: :index
+
   post "versions/:id/revert" => "versions#revert", as: 'revert_version'
 
   match '/signup',  to: 'users#new'

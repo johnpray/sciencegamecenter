@@ -142,6 +142,27 @@ class User < ActiveRecord::Base
     self.save(validate: false)
   end
 
+  def self.chart_data(start = 3.weeks.ago)
+  	total_count = count_by_day(start)
+  	facebook_count = where(provider: 'facebook').count_by_day(start)
+  	(start.to_date..Date.today).map do |date|
+  		{
+  			created_at: date,
+  			count: total_count[date] || 0,
+  			facebook_count: facebook_count[date] || 0
+  		} 
+  	end
+  end
+
+  def self.count_by_day(start)
+  	users = where(created_at: start.beginning_of_day..Time.zone.now)
+  	users = users.group('date(created_at)')
+  	users = users.select('created_at, count(*) as count')
+  	users.each_with_object({}) do |user, counts|
+  		counts[user.created_at.to_date] = user.count
+  	end
+  end
+
 	private
 
 		def create_remember_token
