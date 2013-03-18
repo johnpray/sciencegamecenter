@@ -467,6 +467,7 @@ table.game_info {
 .btn-facebook {
   @include buttonBackground(lighten(#4c66a4, 10%), #4c66a4);
   font-family: Tahoma, sans-serif;
+  color: white;
 }
 small {
   font-size: 75%;

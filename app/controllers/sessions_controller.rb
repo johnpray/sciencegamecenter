@@ -8,10 +8,10 @@ class SessionsController < ApplicationController
 
   def create
     if env['omniauth.auth'].present? # Logging in with Facebook
-      user = User.from_omniauth(env['omniauth.auth'])
+      user = User.from_omniauth(env['omniauth.auth'], @current_user)
       authenticated = true if user
       omniauth = true
-      #raise env['omniauth.auth'].to_yaml
+      #raise env['omniauth.auth'].to_yaml # uncomment this to see facebook's raw response
     else # Logging in with email and password
       user = User.find_by_email(params[:session][:email])
       authenticated = user && user.authenticate(params[:session][:password])
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     if authenticated
       if !user.disabled?
         sign_in user, remember_me, omniauth
-        flash[:success] = "You've logged in as #{user.name}."
+        flash[:success] = "You've logged in as #{view_context.link_to user.name, user}.".html_safe
         redirect_back_or root_path
       else
         if !user.parent_email.blank?

@@ -88,8 +88,12 @@
       <a href='<%= "http://www.facebook.com/#{@user.uid}" %>' target="_blank"><%= facebook_pic_for @user %>
       View my Facebook profile</a>
       <p class="form-help">This Science Game Center account is connected to the Facebook profile linked here.</p>
-      <!--<p><a href="#">Disconnect this Facebook profile from this Science Game Center account.</a></p>-->
-      <% end %>
+      <p><%= link_to 'Disconnect this account from my Facebook profile', disassociate_omniauth_user_path(@user), confirm: "Are you sure you want to disconnect your Facebook profile from this account?" %></a></p>
+    <% elsif @user == @current_user %>
+      <hr />
+      <%= link_to 'Connect to my Facebook profile', '/auth/facebook', class: 'btn btn-primary btn-facebook' %>
+      <p class="form-help">Click the button above to be able to log in to this account with your Facebook profile.</p>
+    <% end %>
 
   </div>
 </div>

@@ -11,6 +11,7 @@ SciencegamereviewsOrg::Application.routes.draw do
     member do
       get 'resend_parent_email'
       get 'confirm_child_account'
+      get 'disassociate_omniauth'
     end
   end
 

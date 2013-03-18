@@ -14,7 +14,7 @@ module UsersHelper
   		facebook_pic_url = "//graph.facebook.com/#{user.uid}/picture?type=square"
   		image_tag(facebook_pic_url, alt: user ? user.name : "someone", class: "gravatar facebook-pic", height: options[:size], width: options[:size])
   	else
-  		gravatar_for(user)
+  		gravatar_for(user, options)
   	end
   end
 

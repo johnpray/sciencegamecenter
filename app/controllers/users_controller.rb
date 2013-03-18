@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 
 	#force_ssl except: :show
-  before_filter :signed_in_user,        only: [:edit, :update]
+  before_filter :signed_in_user,        only: [:edit, :update, :disassociate_omniauth]
   before_filter :block_signed_in_user,  only: [:new, :create]
-  before_filter :correct_user,          only: [:edit, :update]
+  before_filter :correct_user,          only: [:edit, :update, :disassociate_omniauth]
   before_filter :admin_user,            only: [:index, :destroy]
 
   def index
@@ -84,6 +84,18 @@ class UsersController < ApplicationController
       User.find(params[:id]).destroy
       flash[:success] = "User #{user.name} (#{user.email}) has been destroyed now and forever...unless they sign up again."
       redirect_to users_path
+    end
+  end
+
+  # Disassociate any external account
+  def disassociate_omniauth
+    user = User.find(params[:id])
+    if user.remove_omniauth!
+      flash[:success] = "That external account has been disassociated from this Science Game Center account. If you didn't have a password, you may need to reset it using 'Forgot Password' the next time you log in."
+      redirect_to root_path
+    else
+      flash[:error] = "There was a problem dissassociating from that external account. Please contact us if this continues to happen and we can sort things out."
+      redirect_to root_path
     end
   end
 
