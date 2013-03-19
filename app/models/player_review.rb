@@ -80,7 +80,7 @@ class PlayerReview < ActiveRecord::Base
     total_count = 0
     reviews.each_with_object({}) do |review, counts|
       total_count += review.count
-      counts[review.created_at.to_date] = total_count.to_int
+      counts[review.created_at.to_date] = total_count.to_i
     end
   end
 end

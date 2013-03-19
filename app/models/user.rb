@@ -167,7 +167,7 @@ class User < ActiveRecord::Base
   	users = users.order('date(created_at)')
   	users = users.select('date(created_at) as created_at, count(*) as count')
   	users.each_with_object({}) do |user, counts|
-  		counts[user.created_at.to_date] = user.count.to_int
+  		counts[user.created_at.to_date] = user.count.to_i
   	end
   end
 
