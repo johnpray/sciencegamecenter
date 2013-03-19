@@ -147,11 +147,13 @@ class User < ActiveRecord::Base
   def self.chart_data(start = 3.weeks.ago)
   	total_count = unscoped.count_by_day(start)
   	facebook_count = unscoped.where(original_provider: 'facebook').count_by_day(start)
+  	max_total_count = 0
+  	max_facebook_count = 0
   	(start.to_date..Date.today).map do |date|
   		{
   			created_at: date,
-  			count: total_count[date] || 0,
-  			facebook_count: facebook_count[date] || 0
+  			count: max_total_count += (total_count[date] || 0),
+  			facebook_count: max_facebook_count += (facebook_count[date] || 0)
   		} 
   	end
   end

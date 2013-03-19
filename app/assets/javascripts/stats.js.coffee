@@ -4,11 +4,11 @@ jQuery ->
 		data: $('#users_chart').data('users')
 		xkey: 'created_at'
 		ykeys: ['count', 'facebook_count']
-		labels: ['New Users (Total)', 'New Facebook-Connected Users']
+		labels: ['Users (Total)', 'Facebook Signup Users']
 
 	Morris.Line
 		element: 'reviews_chart'
 		data: $('#reviews_chart').data('reviews')
 		xkey: 'created_at'
 		ykeys: ['count']
-		labels: ['New Reviews (Total)']
+		labels: ['Reviews (Total)']

@@ -10,10 +10,10 @@
 	<%= submit_tag 'Go', class: 'btn btn-primary' %>
 <% end %>
 <hr />
-<h2>New users in the past <%= "#{@number} #{@unit}" %></h2>
+<h2>Users in the past <%= "#{@number} #{@unit}" %></h2>
 <%= content_tag :div, "", id: 'users_chart', data: {users: @users_chart_data} %>
 <hr />
-<h2>New reviews in the past <%= "#{@number} #{@unit}" %></h2>
+<h2>Reviews in the past <%= "#{@number} #{@unit}" %></h2>
 <%= content_tag :div, "", id: 'reviews_chart', data: {reviews: @reviews_chart_data} %>
 
 

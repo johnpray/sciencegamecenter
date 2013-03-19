@@ -63,10 +63,11 @@ class PlayerReview < ActiveRecord::Base
     total_count = unscoped.count_by_day(start)
 #    expert_count = unscoped.count_by_day(start)
 #    authoritative_count = 
+    max_total_count = 0
     (start.to_date..Date.today).map do |date|
       {
         created_at: date,
-        count: total_count[date] || 0,
+        count: max_total_count += (total_count[date] || 0),
       } 
     end
   end
@@ -76,8 +77,10 @@ class PlayerReview < ActiveRecord::Base
     reviews = reviews.group('date(created_at)')
     reviews = reviews.order('date(created_at)')
     reviews = reviews.select('date(created_at) as created_at, count(*) as count')
-    reviews.each_with_object({}) do |user, counts|
-      counts[user.created_at.to_date] = user.count
+    total_count = 0
+    reviews.each_with_object({}) do |review, counts|
+      total_count += review.count
+      counts[review.created_at.to_date] = total_count
     end
   end
 end
