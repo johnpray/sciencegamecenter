@@ -145,29 +145,12 @@ class User < ActiveRecord::Base
   end
 
   def self.chart_data(start = 3.weeks.ago)
-  	total_count = unscoped.count_by_day(start)
-  	facebook_count = unscoped.where(original_provider: 'facebook').count_by_day(start)
-  	max_total_count = 0
-  	max_facebook_count = 0
   	(start.to_date..Date.today).map do |date|
   		{
   			created_at: date,
-  			count: max_total_count += (total_count[date] || 0),
-  			facebook_count: max_facebook_count += (facebook_count[date] || 0)
+  			count: User.where(["created_at <= ?", date]).count,
+  			facebook_count: User.where(original_provider: 'facebook').where(["created_at <= ?", date]).count
   		} 
-  	end
-  end
-	# User.where(provider: nil).update_all(provider: 'password')
-  # User.where(provider: 'password').where(original_provider: nil).update_all(original_provider: 'password')
-  # User.where(provider: 'facebook').where(original_provider: nil).update_all(original_provider: 'facebook')
-
-  def self.count_by_day(start)
-  	users = where(created_at: start.beginning_of_day..Time.zone.now)
-  	users = users.group('date(created_at)')
-  	users = users.order('date(created_at)')
-  	users = users.select('date(created_at) as created_at, count(*) as count')
-  	users.each_with_object({}) do |user, counts|
-  		counts[user.created_at.to_date] = user.count.to_i
   	end
   end
 

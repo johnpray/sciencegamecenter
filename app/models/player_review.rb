@@ -60,26 +60,11 @@ class PlayerReview < ActiveRecord::Base
   end
 
   def self.chart_data(start = 3.weeks.ago)
-    total_count = unscoped.count_by_day(start)
-#    expert_count = unscoped.count_by_day(start)
-#    authoritative_count = 
-    max_total_count = 0
     (start.to_date..Date.today).map do |date|
       {
         created_at: date,
-        count: max_total_count += (total_count[date] || 0),
+        count: PlayerReview.where(["created_at <= ?", date]).count,
       } 
-    end
-  end
-
-  def self.count_by_day(start)
-    reviews = where(created_at: start.beginning_of_day..Time.zone.now)
-    reviews = reviews.group('date(created_at)')
-    reviews = reviews.order('date(created_at)')
-    reviews = reviews.select('date(created_at) as created_at, count(*) as count')
-    total_count = 0
-    reviews.each_with_object({}) do |review, counts|
-      counts[review.created_at.to_date] = review.count.to_i
     end
   end
 end
