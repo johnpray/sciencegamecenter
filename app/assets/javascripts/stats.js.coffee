@@ -11,4 +11,5 @@ jQuery ->
 		data: $('#reviews_chart').data('reviews')
 		xkey: 'created_at'
 		ykeys: ['count']
-		labels: ['Reviews (Total)']
+		labels: ['Reviews (Total)'],
+		lineColors: ['#51a351']

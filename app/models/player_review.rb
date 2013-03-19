@@ -67,7 +67,7 @@ class PlayerReview < ActiveRecord::Base
     (start.to_date..Date.today).map do |date|
       {
         created_at: date,
-        count: max_total_count += (total_count[date] || 0),
+        count: max_total_count += (total_count[date] || 0).to_int,
       } 
     end
   end

@@ -152,8 +152,8 @@ class User < ActiveRecord::Base
   	(start.to_date..Date.today).map do |date|
   		{
   			created_at: date,
-  			count: max_total_count += (total_count[date] || 0),
-  			facebook_count: max_facebook_count += (facebook_count[date] || 0)
+  			count: max_total_count += (total_count[date] || 0).to_int,
+  			facebook_count: max_facebook_count += (facebook_count[date] || 0).to_int
   		} 
   	end
   end
