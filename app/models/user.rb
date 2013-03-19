@@ -144,7 +144,7 @@ class User < ActiveRecord::Base
     self.save(validate: false)
   end
 
-  def self.chart_data(start = 3.weeks.ago)
+  def self.chart_data(start = 3.weeks.ago) #TODO: Make this not run a query for each date
   	(start.to_date..Date.today).map do |date|
   		{
   			created_at: date,

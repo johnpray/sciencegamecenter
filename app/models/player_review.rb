@@ -59,11 +59,11 @@ class PlayerReview < ActiveRecord::Base
     ((self.ratings_total.to_f / 15) * 100).to_i
   end
 
-  def self.chart_data(start = 3.weeks.ago)
+  def self.chart_data(start = 3.weeks.ago) #TODO: Make this not run a query for each date
     (start.to_date..Date.today).map do |date|
       {
         created_at: date,
-        count: PlayerReview.where(["created_at <= ?", date]).count,
+        count: PlayerReview.where(status: "Approved").where(["created_at <= ?", date]).count,
       } 
     end
   end
