@@ -110,6 +110,7 @@ class User < ActiveRecord::Base
   	if existing_password_user && (existing_password_user.uid.blank? || existing_password_user.provider != auth.provider)
   		unless where(auth.slice(:provider, :uid)).count > 0
 	  		existing_password_user.provider = auth.provider
+	  		existing_password_user.original_provider = auth.provider if existing_password_user.original_provider.blank?
 	  		existing_password_user.uid = auth.uid
 	  		existing_password_user.oauth_token = auth.credentials.token
 			  existing_password_user.oauth_expires_at = Time.at(auth.credentials.expires_at)
@@ -119,6 +120,7 @@ class User < ActiveRecord::Base
   	else
 	  	where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
 		  	user.provider = auth.provider
+		  	user.original_provider = auth.provider if user.original_provider.blank?
 		    user.uid = auth.uid
 		    user.oauth_token = auth.credentials.token
 		    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
@@ -143,8 +145,8 @@ class User < ActiveRecord::Base
   end
 
   def self.chart_data(start = 3.weeks.ago)
-  	total_count = count_by_day(start)
-  	facebook_count = where(provider: 'facebook').count_by_day(start)
+  	total_count = unscoped.count_by_day(start)
+  	facebook_count = unscoped.where(original_provider: 'facebook').count_by_day(start)
   	(start.to_date..Date.today).map do |date|
   		{
   			created_at: date,
@@ -153,9 +155,12 @@ class User < ActiveRecord::Base
   		} 
   	end
   end
+	# User.where(provider: nil).update_all(provider: 'password')
+  # User.where(provider: 'password').where(original_provider: nil).update_all(original_provider: 'password')
+  # User.where(provider: 'facebook').where(original_provider: nil).update_all(original_provider: 'facebook')
 
   def self.count_by_day(start)
-  	users = unscoped.where(created_at: start.beginning_of_day..Time.zone.now)
+  	users = where(created_at: start.beginning_of_day..Time.zone.now)
   	users = users.group('date(created_at)')
   	users = users.order('date(created_at)')
   	users = users.select('date(created_at) as created_at, count(*) as count')
@@ -163,8 +168,6 @@ class User < ActiveRecord::Base
   		counts[user.created_at.to_date] = user.count
   	end
   end
-
-  # users = User.unscoped.where(created_at: 2.years.ago.beginning_of_day..Time.zone.now).group('date(created_at)').order('date(created_at)').select('date(created_at) as created_at, count(*) as count')
 
 	private
 
