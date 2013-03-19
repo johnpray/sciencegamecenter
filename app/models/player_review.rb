@@ -61,10 +61,16 @@ class PlayerReview < ActiveRecord::Base
 
   def self.chart_data(start = 3.weeks.ago) #TODO: Make this not run a query for each date
     (start.to_date..Date.today).map do |date|
+      if (date == start.to_date) || (date == Date.today) || (PlayerReview.where(status: "Approved").where(["date(created_at) = ?", date]).count > 0)
       {
         created_at: date,
-        count: PlayerReview.where(status: "Approved").where(["created_at <= ?", date]).count,
-      } 
+        count: PlayerReview.where(status: "Approved").where(["date(created_at) <= ?", date]).count
+      }
+      else
+      {
+        created_at: date
+      }
+      end
     end
   end
 end

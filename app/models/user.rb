@@ -146,11 +146,17 @@ class User < ActiveRecord::Base
 
   def self.chart_data(start = 3.weeks.ago) #TODO: Make this not run a query for each date
   	(start.to_date..Date.today).map do |date|
+  		if (date == start.to_date) || (date == Date.today) || (User.where(["date(created_at) = ?", date]).count > 0)
   		{
   			created_at: date,
   			count: User.where(["created_at <= ?", date]).count,
-  			facebook_count: User.where(original_provider: 'facebook').where(["created_at <= ?", date]).count
-  		} 
+  			facebook_count: User.where(original_provider: 'facebook').where(["date(created_at) <= ?", date]).count
+  		}
+  		else
+  		{
+  			created_at: date
+  		}
+  		end
   	end
   end
 

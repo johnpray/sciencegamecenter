@@ -42,11 +42,17 @@ class Game < ActiveRecord::Base
 
   def self.chart_data(start = 3.weeks.ago) #TODO: Make this not run a query for each date
     (start.to_date..Date.today).map do |date|
+    	if (date == start.to_date) || (date == Date.today) || (Game.where(["date(created_at) = ?", date]).count > 0)
       {
         created_at: date,
-        enabled_count: Game.enabled.where(["created_at <= ?", date]).count,
-        disabled_count: Game.disabled.where(["created_at <= ?", date]).count
-      } 
+        enabled_count: Game.enabled.where(["date(created_at) <= ?", date]).count,
+        disabled_count: Game.disabled.where(["date(created_at) <= ?", date]).count
+      }
+    	else
+    	{
+        created_at: date,
+      }
+   		end
     end
   end
 
