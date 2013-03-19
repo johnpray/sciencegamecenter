@@ -67,7 +67,7 @@ class PlayerReview < ActiveRecord::Base
     (start.to_date..Date.today).map do |date|
       {
         created_at: date,
-        count: max_total_count += (total_count[date] || 0).to_int,
+        count: max_total_count += (total_count[date] || 0),
       } 
     end
   end
@@ -80,7 +80,7 @@ class PlayerReview < ActiveRecord::Base
     total_count = 0
     reviews.each_with_object({}) do |review, counts|
       total_count += review.count
-      counts[review.created_at.to_date] = total_count
+      counts[review.created_at.to_date] = total_count.to_int
     end
   end
 end
