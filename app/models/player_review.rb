@@ -58,4 +58,26 @@ class PlayerReview < ActiveRecord::Base
   def ratings_total_percentage
     ((self.ratings_total.to_f / 15) * 100).to_i
   end
+
+  def self.chart_data(start = 3.weeks.ago)
+    total_count = unscoped.count_by_day(start)
+#    expert_count = unscoped.count_by_day(start)
+#    authoritative_count = 
+    (start.to_date..Date.today).map do |date|
+      {
+        created_at: date,
+        count: total_count[date] || 0,
+      } 
+    end
+  end
+
+  def self.count_by_day(start)
+    reviews = where(created_at: start.beginning_of_day..Time.zone.now)
+    reviews = reviews.group('date(created_at)')
+    reviews = reviews.order('date(created_at)')
+    reviews = reviews.select('date(created_at) as created_at, count(*) as count')
+    reviews.each_with_object({}) do |user, counts|
+      counts[user.created_at.to_date] = user.count
+    end
+  end
 end
