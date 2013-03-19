@@ -43,7 +43,7 @@ class Game < ActiveRecord::Base
   def actual_player_reviews
   	reviews = []
   	self.player_reviews.each do |r|
-  		reviews += [r] if !r.user.is_expert? && !r.user.is_authoritative?
+  		reviews += [r] if r.user && !r.user.is_expert? && !r.user.is_authoritative?
   	end
   	reviews
   end
@@ -51,7 +51,7 @@ class Game < ActiveRecord::Base
   def authoritative_reviews
   	reviews = []
   	self.player_reviews.each do |r|
-  		reviews += [r] if r.user.is_authoritative?
+  		reviews += [r] if r.user && r.user.is_authoritative?
   	end
   	reviews
   end
@@ -59,7 +59,7 @@ class Game < ActiveRecord::Base
   def expert_reviews
   	reviews = []
   	self.player_reviews.each do |r|
-  		reviews += [r] if r.user.is_expert? && !r.user.is_authoritative?
+  		reviews += [r] if r.user && r.user.is_expert? && !r.user.is_authoritative?
   	end
   	reviews
   end
@@ -67,7 +67,7 @@ class Game < ActiveRecord::Base
   def teacher_reviews
   	reviews = []
   	self.player_reviews.each do |r|
-  		reviews += [r] if r.user.is_teacher?
+  		reviews += [r] if r.user && r.user.is_teacher?
   	end
   	reviews
   end
