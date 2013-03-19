@@ -40,6 +40,16 @@ class Game < ActiveRecord::Base
   validates_attachment :boxart, content_type: {
   										 content_type: ['image/jpeg', 'image/png', 'image/gif'] }
 
+  def self.chart_data(start = 3.weeks.ago) #TODO: Make this not run a query for each date
+    (start.to_date..Date.today).map do |date|
+      {
+        created_at: date,
+        enabled_count: Game.enabled.where(["created_at <= ?", date]).count,
+        disabled_count: Game.disabled.where(["created_at <= ?", date]).count
+      } 
+    end
+  end
+
   def actual_player_reviews
   	reviews = []
   	self.player_reviews.each do |r|
