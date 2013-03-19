@@ -1,2 +1,4 @@
+<%= provide(:title, "Stats") %>
+<h1>Stats</h1>
 <h2>New users in the past three weeks</h2>
 <%= content_tag :div, "", id: 'users_chart', data: {users: User.chart_data} %>

@@ -155,13 +155,16 @@ class User < ActiveRecord::Base
   end
 
   def self.count_by_day(start)
-  	users = where(created_at: start.beginning_of_day..Time.zone.now)
+  	users = unscoped.where(created_at: start.beginning_of_day..Time.zone.now)
   	users = users.group('date(created_at)')
-  	users = users.select('created_at, count(*) as count')
+  	users = users.order('date(created_at)')
+  	users = users.select('date(created_at) as created_at, count(*) as count')
   	users.each_with_object({}) do |user, counts|
   		counts[user.created_at.to_date] = user.count
   	end
   end
+
+  # users = User.unscoped.where(created_at: 2.years.ago.beginning_of_day..Time.zone.now).group('date(created_at)').order('date(created_at)').select('date(created_at) as created_at, count(*) as count')
 
 	private
 
