@@ -8,7 +8,7 @@
   	<% @games.each do |game| %>
   	<% if game.screenshots.count > 0 %>
 	    <div class="item" id="item<%= i %>">
-	    	<%= link_to image_tag(game.screenshots.first.image.url(:carousel), width: '100%'), game_path(game) %>
+	    	<%= link_to image_tag(game.screenshots.first.image.url(:carousel), style: "width: 100%;"), game_path(game) %>
 	    	<div class="carousel-caption">
 	    		<p class="visible-phone" style="font-size: 1em; line-height: 1.2">
 	    			<a href="#games_carousel" data-slide="prev">&lsaquo; Previous</a>
