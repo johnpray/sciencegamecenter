@@ -160,6 +160,31 @@ class User < ActiveRecord::Base
   	end
   end
 
+  def self.ages_chart_data
+  	ages = Array.new
+  	User.all.each do |user|
+  		ages[user.age] = (ages[user.age].present? ? ages[user.age]+1 : 0)
+  	end
+  	groups = {"0-7" => 0, "8-10" => 0, "11-13" => 0, "14-15" => 0, "16-17" => 0, "18+" => 0}
+  	(0..7).each 		{ |n| groups["0-7"] += (ages[n] || 0) }
+  	(8..10).each 		{ |n| groups["8-10"] += (ages[n] || 0) }
+  	(11..13).each 	{ |n| groups["11-13"] += (ages[n] || 0) }
+  	(14..15).each 	{ |n| groups["14-15"] += (ages[n] || 0) }
+  	(16..17).each 	{ |n| groups["16-17"] += (ages[n] || 0) }
+  	(18..150).each 	{ |n| groups["18+"] += (ages[n] || 0) }
+  	groups.map do |group|
+  		{
+  			age_group: group[0],
+  			count: group[1]
+  		}
+  	end
+  end
+
+  def age(dob = birth_date) # from http://stackoverflow.com/a/2357790/560089
+	  now = Time.now.utc.to_date
+	  now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+	end
+
 	private
 
 		def create_remember_token

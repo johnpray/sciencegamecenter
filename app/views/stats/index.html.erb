@@ -18,3 +18,6 @@
 <hr />
 <h2>Games in the past <%= "#{@number} #{@unit}" %></h2>
 <%= content_tag :div, "", id: 'games_chart', data: {games: @games_chart_data} %>
+<hr />
+<h2>User age group demographics for <i>all</i> users</h2>
+<%= content_tag :div, "", id: 'ages_chart', data: {ages: @ages_chart_data} %>

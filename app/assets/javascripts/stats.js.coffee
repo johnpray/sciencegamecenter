@@ -24,3 +24,11 @@ jQuery ->
 			ykeys: ['enabled_count', 'disabled_count']
 			labels: ['Published Games', 'Pending/Disabled Games'],
 			lineColors: ['#2f96b4', '#c09853']
+
+	if $('#ages_chart').length
+		Morris.Bar
+			element: 'ages_chart'
+			data: $('#ages_chart').data('ages')
+			xkey: 'age_group'
+			ykeys: ['count']
+			labels: ['Users']

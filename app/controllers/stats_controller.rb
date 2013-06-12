@@ -8,5 +8,7 @@ class StatsController < ApplicationController
 		@users_chart_data = User.chart_data(@number.send(@unit).ago)
 		@reviews_chart_data = PlayerReview.chart_data(@number.send(@unit).ago)
 		@games_chart_data = Game.chart_data(@number.send(@unit).ago)
+
+		@ages_chart_data = User.ages_chart_data
 	end
 end
