@@ -36,6 +36,7 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
+    bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (2.0.2)
     bootstrap-will_paginate (0.0.7)
@@ -61,6 +62,7 @@ GEM
     daemons (1.1.9)
     diff-lcs (1.1.3)
     erubis (2.7.0)
+    eventmachine (1.0.0)
     eventmachine (1.0.0-x86-mingw32)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -68,6 +70,7 @@ GEM
       i18n (~> 0.4)
     faraday (0.8.6)
       multipart-post (~> 1.1)
+    ffi (1.4.0)
     ffi (1.4.0-x86-mingw32)
     friendly_id (4.0.9)
     hashie (1.2.0)
@@ -92,6 +95,7 @@ GEM
     multi_json (1.6.1)
     multi_xml (0.5.3)
     multipart-post (1.2.0)
+    nokogiri (1.5.6)
     nokogiri (1.5.6-x86-mingw32)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -116,6 +120,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (>= 0.0.2)
       mime-types
+    pg (0.12.2)
     pg (0.12.2-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -174,6 +179,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.7)
     sqlite3 (1.3.7-x86-mingw32)
     thin (1.4.1)
       daemons (>= 1.0.9)
@@ -195,6 +201,7 @@ GEM
       nokogiri (~> 1.3)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES

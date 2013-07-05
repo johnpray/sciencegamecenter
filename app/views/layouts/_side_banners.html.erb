@@ -7,6 +7,9 @@
           <% end %>
 
           <h3>SGC Sponsors</h3>
+          <% if Date.current < Date.new(2013,10,8) %>
+          <%= tracked_link_to image_tag('http://s3.amazonaws.com/production.sciencegamereviews.org/static/ads/2013-07-labroots-195x195.gif', height: 140, width: 140, style: "margin-bottom: 10px;", alt: "LabRoots.com: professional networking website for the scientific community"), 'http://labroots.com/' %>
+          <% end %>
           <%= tracked_link_to image_tag('cell_image_library-140.png', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: 'The CELL: an image library'), 'http://www.cellimagelibrary.org/' %>
           <%= tracked_link_to image_tag('leica_science_lab_banner_140x140_v2.jpg', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: 'Leica Science Lab. Learn. Share. Contribute.'), 'http://www.leica-microsystems.com/science-lab/' %>
           <%= tracked_link_to image_tag('esa_foundation-140.png', height: 53, width: 140, style: "margin-bottom: 20px;" , alt: 'ESA Foundation - Entertainment Software Association Foundation'), 'http://www.esafoundation.org/' %>
