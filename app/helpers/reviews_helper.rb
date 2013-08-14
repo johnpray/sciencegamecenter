@@ -13,6 +13,7 @@ module ReviewsHelper
 			"progress-danger"
 		else
 			""
+		end
 	end
 			
 end
