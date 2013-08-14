@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319174635) do
+ActiveRecord::Schema.define(:version => 20130814011419) do
 
   create_table "comments", :force => true do |t|
     t.text     "content"
@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(:version => 20130319174635) do
     t.integer  "user_id"
     t.string   "title"
     t.text     "content"
-    t.integer  "fun_rating"
-    t.integer  "accuracy_rating"
-    t.integer  "effectiveness_rating"
+    t.float    "fun_rating"
+    t.float    "accuracy_rating"
+    t.float    "effectiveness_rating"
     t.string   "status"
     t.datetime "created_at",           :null => false
     t.datetime "updated_at",           :null => false

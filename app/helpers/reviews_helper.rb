@@ -11,7 +11,8 @@ module ReviewsHelper
 			"progress-warning"
 		elsif rating < 2
 			"progress-danger"
-		end
+		else
+			""
 	end
 			
 end

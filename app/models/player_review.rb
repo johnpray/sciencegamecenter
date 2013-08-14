@@ -15,19 +15,16 @@ class PlayerReview < ActiveRecord::Base
 
   validates :fun_rating,
 	  numericality: {
-	  	only_integer: true,
 	  	greater_than_or_equal_to: 0,
 	  	less_than_or_equal_to: 5
 	  }
 	  validates :accuracy_rating,
 	  numericality: {
-	  	only_integer: true,
 	  	greater_than_or_equal_to: 0,
 	  	less_than_or_equal_to: 5
 	  }
 	  validates :effectiveness_rating,
 	  numericality: {
-	  	only_integer: true,
 	  	greater_than_or_equal_to: 0,
 	  	less_than_or_equal_to: 5
 	  }
