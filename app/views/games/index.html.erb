@@ -8,7 +8,7 @@
 			<% end %>
 		</p>
 		<%= will_paginate if params[:page] %>
-		<% if @any_category_defined %>
+		<% if @any_category_defined || params[:title].present? %>
 		<%= render 'games/category_breadcrumbs' %>
 		<% end %>
 

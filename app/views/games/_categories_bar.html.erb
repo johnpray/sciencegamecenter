@@ -1,6 +1,16 @@
+<% categories_array = [["subject", "Subjects"], ["platform", "Platforms"], ["cost", "Costs"], ["intended_for", "Intended Ages"], ["developer_type","Developer Types"]] %>
+
+<%= form_tag(url_for(params), method: "get") do %>
+  <%= search_field_tag(:title, params[:title], placeholder: "Search by title", class: 'span2') %>
+  <% categories_array.each do |s, f| %>
+  <%= hidden_field_tag(s, params[s]) if params[s].present? %>
+  <% end %>
+<% end %>
+
+
 <h2 id="categories_top">Categories</h2>
 
-<% [["subject", "Subjects"], ["platform", "Platforms"], ["cost", "Costs"], ["intended_for", "Intended Ages"], ["developer_type","Developer Types"]].each do |s, f| %>
+<% categories_array.each do |s, f| %>
 <div id="<%=s%>_dropdown">
 <%= select :game, s, Game.enabled.tag_counts_on(s.pluralize).order('name ASC').collect {|c| [ capitalize_first(c.name), c.name ] }, {include_blank: "All #{f}"} %>
 </div>
@@ -10,7 +20,7 @@
 
 <script>
 $(document).ready(function() {
-<% [["subject", "Subjects"], ["platform", "Platforms"], ["cost", "Costs"], ["intended_for", "Intended Ages"], ["developer_type","Developer Types"]].each do |s, f| %>
+<% categories_array.each do |s, f| %>
 
   <% if params[s] %>
   	$('#game_<%=s%>').val("<%= params[s] %>");

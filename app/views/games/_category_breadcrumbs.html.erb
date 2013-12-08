@@ -2,31 +2,37 @@
 			<li>
 				<%= link_to "All games", games_path %>
 			</li>
-			<% if !params[:subject].blank? %>
+			<% if params[:title].present? %>
+			<li>
+				<span class="divider">&raquo;</span>with a title containing &ldquo;<strong><%= params[:title] %>&rdquo;</strong>
+				<%= link_to "×", params.merge(title: nil) %>
+			</li>
+			<% end %>
+			<% if params[:subject].present? %>
 			<li>
 				<span class="divider">&raquo;</span>dealing with <strong><%= params[:subject] %></strong>
 				<%= link_to "×", params.merge(subject: nil) %>
 			</li>
 			<% end %>
-			<% if !params[:platform].blank? %>
+			<% if params[:platform].present? %>
 			<li>
 				<span class="divider">&raquo;</span>available on <strong><%= params[:platform] %></strong>
 				<%= link_to "×", params.merge(platform: nil) %>
 			</li>
 			<% end %>
-			<% if !params[:cost].blank? %>
+			<% if params[:cost].present? %>
 			<li>
 				<span class="divider">&raquo;</span>cost is <strong><%= params[:cost] %></strong>
 				<%= link_to "×", params.merge(cost: nil) %>
 			</li>
 			<% end %>
-			<% if !params[:intended_for].blank? %>
+			<% if params[:intended_for].present? %>
 			<li>
 				<span class="divider">&raquo;</span>intended for <strong><%= params[:intended_for] %></strong>
 				<%= link_to "×", params.merge(intended_for: nil) %>
 			</li>
 			<% end %>
-			<% if !params[:developer_type].blank? %>
+			<% if params[:developer_type].present? %>
 			<li>
 				<span class="divider">&raquo;</span>developed by a <strong><%= params[:developer_type] %></strong>
 				<%= link_to "×", params.merge(developer_type: nil) %>

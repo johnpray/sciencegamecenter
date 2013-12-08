@@ -10,33 +10,36 @@ class GamesController < ApplicationController
     @any_category_defined = any_category_defined?
     if @any_category_defined
       if admin?
-        @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: per_page_number)
+        @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", "))
         if @games.count < per_page_number+1
           params.delete :page
-          @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: per_page_number)
+          @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", "))
         end
       else
-        @games = Game.enabled.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: per_page_number)
+        @games = Game.enabled.tagged_with(category_types.map {|c| params[c]}.join(", "))
         if @games.count < per_page_number+1
           params.delete :page
-          @games = Game.enabled.tagged_with(category_types.map {|c| params[c]}.join(", ")).paginate(page: params[:page], per_page: per_page_number)
+          @games = Game.enabled.tagged_with(category_types.map {|c| params[c]}.join(", "))
         end
       end
     else
       if admin?
-        @games = Game.paginate(page: params[:page], per_page: per_page_number)
+        @games = Game
         if @games.count < per_page_number+1
           params.delete :page
-          @games = Game.paginate(page: params[:page], per_page: per_page_number)
+          @games = Game
         end
       else
-        @games = Game.enabled.paginate(page: params[:page], per_page: per_page_number)
+        @games = Game.enabled
         if @games.count < per_page_number+1
           params.delete :page
-          @games = Game.enabled.paginate(page: params[:page], per_page: per_page_number)
+          @games = Game.enabled
         end
       end
     end
+    verb = Rails.env.development? ? "LIKE" : "ILIKE"
+    @games = @games.where("title #{verb} ?", "%#{params[:title]}%") if params[:title].present?
+    @games = @games.paginate(page: params[:page], per_page: per_page_number)
   end
 
   def show
@@ -102,6 +105,6 @@ class GamesController < ApplicationController
   private
 
   def any_category_defined?
-    !params[:platform].blank? || !params[:subject].blank? || !params[:cost].blank? || !params[:intended_for].blank? || !params[:developer_type].blank?
+    params[:platform].present? || params[:subject].present? || params[:cost].present? || params[:intended_for].present? || params[:developer_type].present?
   end
 end
