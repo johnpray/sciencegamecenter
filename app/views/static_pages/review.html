@@ -74,7 +74,7 @@ h2 {
 
 <h1 class="left">Are You an Expert?</h1>
 <p>
-	Then you get special privileges (sort of)! <%= link_to 'Sign up for a free account', signup_path %> and then <%= link_to 'email us', 'mailto:<%= ENV['ADMINS_EMAIL'] %>' %> with some information about yourself (see below), and we'll grant you special <b>Teacher</b> or <b>Scientist</b> status (or both!). This means your reviews will show up as <b>Expert Reviews</b> on game profiles, so that your authoritative knowledge on the subject can better help out readers by standing out as they should.
+	Then you get special privileges (sort of)! <%= link_to 'Sign up for a free account', signup_path %> and then <%= link_to 'email us', "mailto:#{ENV['ADMINS_EMAIL']}" %> with some information about yourself (see below), and we'll grant you special <b>Teacher</b> or <b>Scientist</b> status (or both!). This means your reviews will show up as <b>Expert Reviews</b> on game profiles, so that your authoritative knowledge on the subject can better help out readers by standing out as they should.
 </p>
 <p>
 	<b>Teachers</b> should be K-12 teachers or college professors. Tell us what subject you teach and what ages you teach to.
