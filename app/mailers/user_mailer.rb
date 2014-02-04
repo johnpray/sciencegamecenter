@@ -1,12 +1,12 @@
 class UserMailer < ActionMailer::Base
-  default from: "ScienceGameCenter.org@fas.org",
-          reply_to: 'sciencegamecenter@fas.org'
+  default from: "SGC Admins <#{ENV['ADMINS_EMAIL']}>",
+          reply_to: ENV['ADMINS_EMAIL']
 
   def inform_of_signup(user)
     @user = user
     mail(
       to: "#{user.name} <#{user.email}>",
-      bcc: 'sciencegamecenter@fas.org',
+      bcc: ENV['ADMINS_EMAIL'],
       subject: "Your Science Game Center account has been created!"
     )
   end
@@ -15,7 +15,7 @@ class UserMailer < ActionMailer::Base
   	@user = user
   	mail(
       to: user.parent_email,
-      bcc: 'sciencegamecenter@fas.org',
+      bcc: ENV['ADMINS_EMAIL'],
       subject: "Please confirm your child's account at the Science Game Center"
     )
   end
@@ -25,7 +25,7 @@ class UserMailer < ActionMailer::Base
   	mail(
       to: "#{user.name} <#{user.email}>", 
       cc: user.parent_email,
-      bcc: 'sciencegamecenter@fas.org',
+      bcc: ENV['ADMINS_EMAIL'],
       subject: "Your Science Game Center account has been activated!"
     )
   end
@@ -44,7 +44,7 @@ class UserMailer < ActionMailer::Base
     mail(
       to: "#{user.name} <#{old_email}>",
       cc: "#{user.name} <#{user.email}>",
-      bcc: 'sciencegamecenter@fas.org',
+      bcc: ENV['ADMINS_EMAIL'],
       subject: "Your email address at the Science Game Center has been changed"
     )
   end

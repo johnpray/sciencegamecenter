@@ -2,24 +2,24 @@ namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
     admin = User.create!(name: "John Pray",
-                 email: "jpray@fas.org",
+                 email: "jpray@example.com",
                  password: "pikachu",
                  birth_date: Date.new(1989, 01, 30),
                  disabled: false)
     admin.toggle!(:is_admin)
     melanie = User.create!(name: "Melanie Stegman",
-                 email: "mstegman@fas.org",
+                 email: "mstegman@example.com",
                  password: "fas@20036",
                  birth_date: Date.new(1989, 01, 30),
                  disabled: false,
                  is_admin: true)
     User.create!(name: "Mickey Mouse",
-                 email: "jpray+mickey@fas.org",
+                 email: "jpray+mickey@example.com",
                  password: "pikachu",
                  birth_date: Date.new(1989, 01, 30),
                  disabled: false)
     User.create!(name: "Bugs Bunny",
-                 email: "jpray+bugs@fas.org",
+                 email: "jpray+bugs@example.com",
                  password: "pikachu",
                  birth_date: Date.new(1989, 01, 30),
                  disabled: false)

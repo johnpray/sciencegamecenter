@@ -5,7 +5,7 @@ This email is just to let you know that you've changed your email address at the
 Old email address: <%= @old_email %>
 New email address: <%= @user.email %>
 
-If you didn't make this change, or you believe there's been a mistake, please contact us immediately at sciencegamecenter@fas.org.
+If you didn't make this change, or you believe there's been a mistake, please contact us immediately at <%= ENV['ADMINS_EMAIL'] %>.
 
 Happy gaming!
 

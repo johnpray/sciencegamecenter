@@ -2,4 +2,4 @@
 
 This is the source code for the website at [sciencegamecenter.org](http://sciencegamecenter.org) by [FAS Learning Technologies](http://blogs.fas.org/learningtech/). The Science Game Center runs on [Ruby on Rails](http://rubyonrails.org/) 3.2.
 
-Please direct any inquiries to [sciencegamecenter@fas.org](mailto:sciencegamecenter@fas.org).
+Please direct any inquiries to [admins@sciencegamecenter.org](mailto:admins@sciencegamecenter.org).

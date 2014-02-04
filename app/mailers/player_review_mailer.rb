@@ -1,12 +1,10 @@
 class PlayerReviewMailer < ActionMailer::Base
-  default from: "ScienceGameCenter.org@fas.org",
-          reply_to: 'sciencegamecenter@fas.org'
-
-  
+  default from: "SGC Admins <#{ENV['ADMINS_EMAIL']}>",
+          reply_to: ENV['ADMINS_EMAIL']
 
   def notify_for_approval(player_review)
     @player_review = player_review
-    admin = "SGC Admins <sciencegamecenter@fas.org>"
+    admin = "SGC Admins <#{ENV['ADMINS_EMAIL']}>"
     mail(
       to: admin,
       subject: "A player review is awaiting approval"

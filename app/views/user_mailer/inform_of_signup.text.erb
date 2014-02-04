@@ -7,10 +7,10 @@ Your account needs to be confirmed by your parent or guardian (<%= @user.parent_
 <% else %>
 You can start posting player reviews and comments immediately! We look forward to seeing what you have to say!
 
-If you are a teacher or a scientist, you can also leave Expert Reviews evaluating the games in the context of your knowledge and experience. Contact us today at sciencegamecenter@fas.org to get started.
+If you are a teacher or a scientist, you can also leave Expert Reviews evaluating the games in the context of your knowledge and experience. Contact us today at <%= ENV['ADMINS_EMAIL'] %> to get started.
 <% end %>
 
-If you didn't sign up for an account, please email sciencegamecenter@fas.org immediately.
+If you didn't sign up for an account, please email <%= ENV['ADMINS_EMAIL'] %> immediately.
 
 Thanks,
 
