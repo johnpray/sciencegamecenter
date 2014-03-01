@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+ruby '2.1.0'
 
 gem 'dotenv-rails', '~> 0.9.0', groups: [:development, :test] # store environment variables in .env like SECRET_TOKEN=something
 
-gem 'rails', '~> 3.2.16'
+gem 'rails', '~> 3.2.17'
 gem 'jquery-rails', '~> 2.0.0'
 gem 'sass-rails',   '~> 3.2.4'
 gem 'bcrypt-ruby', '~> 3.0.1'
