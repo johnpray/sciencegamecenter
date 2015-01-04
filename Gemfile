@@ -18,7 +18,7 @@ gem 'cocaine', '~> 0.3.0' # paperclip dependency
 gem 'aws-sdk', '~> 1.3.4' # storage
 gem 'acts-as-taggable-on', '~> 2.3.3' # tags (used for Game Category Types)
 gem 'recaptcha', require: 'recaptcha/rails'
-gem 'thin', '~> 1.4.1' # faster server
+gem 'unicorn', '~> 4.8.3' # faster, multi-threaded server
 gem 'friendly_id', '~> 4.0.1' # friendly urls
 gem 'paper_trail', '~> 2.6.3' # track changes and allow undo
 gem 'omniauth-facebook', '~> 1.4.1' # allow registration and login via Facebook
