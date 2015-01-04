@@ -1,26 +1,8 @@
-Hi <%= @user.name %>,
+Dear <%= @user.name %>,
 
 Congratulations! Your parent has confirmed your account at the Science Game Center (http://sciencegamecenter.org) and it is now active.
 
-You can start posting player reviews and comments immediately! We look forward to seeing what you have to say!
-
-To get started posting reviews and comments, log in at <%= login_url %> using the email address and password you entered when signing up.
-
-If you have any questions, send them to <%= ENV['ADMINS_EMAIL'] %> and we'll do our best to answer them!
-
-Thanks,
-
-The Science Game Center Team
-
-===
-
-The Science Game Center
-Helping to bring science games to the classroom, one review at a time
-http://sciencegamecenter.org/
-
-brought to you by FAS Learning Technologies
-1725 DeSales St NW, Suite 600, Washington, DC 20036
-202-546-3300
-http://www.faslearningtech.org/
+<%= render 'user_mailer/welcome_message' %>
+---
 
 You received this one-time email because you signed up for a Science Game Center account and your parent approved it. Nonetheless, to request to no longer receive emails from the SGC, please reply to this email and say so.
