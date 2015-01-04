@@ -3,7 +3,7 @@ ruby '2.1.0'
 
 gem 'dotenv-rails', '~> 0.9.0', groups: [:development, :test] # store environment variables in .env like SECRET_TOKEN=something
 
-gem 'rails', '~> 3.2.17'
+gem 'rails', '~> 3.2.21'
 gem 'jquery-rails', '~> 2.0.0'
 gem 'sass-rails',   '~> 3.2.4'
 gem 'bcrypt-ruby', '~> 3.0.1'
@@ -21,7 +21,9 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'unicorn', '~> 4.8.3' # faster, multi-threaded server
 gem 'friendly_id', '~> 4.0.1' # friendly urls
 gem 'paper_trail', '~> 2.6.3' # track changes and allow undo
-gem 'omniauth-facebook', '~> 1.4.1' # allow registration and login via Facebook
+gem 'omniauth-facebook', '~> 1.5.1' # allow registration and login via Facebook
+
+gem 'nokogiri', '~> 1.6.2'
 
 group :development, :test do
 	gem 'sqlite3'
@@ -36,5 +38,5 @@ group :assets do
 end
 
 group :production do
-	gem 'pg', '~> 0.12.2'
+	gem 'pg', '~> 0.18.0'
 end
