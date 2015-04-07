@@ -5,7 +5,7 @@ class Game < ActiveRecord::Base
   								:cost_list, :intended_for_list, :developer_type_list,
                                 :teacher_info, :entertainment
 
-  default_scope order: 'title ASC'
+  default_scope order: 'games.updated_at DESC, games.title ASC'
   scope :enabled, where(disabled: false)
   scope :disabled, where(disabled: true)
 

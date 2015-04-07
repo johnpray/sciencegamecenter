@@ -40,7 +40,6 @@ class PlayerReviewsController < ApplicationController
   def update
     if @player_review.update_attributes(params[:player_review])
       if current_user.is_admin?
-        @player_review.approve!
         flash[:success] = "Player review updated. #{undo_link}".html_safe
       else
         @player_review.make_pending!

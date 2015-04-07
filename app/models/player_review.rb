@@ -10,6 +10,8 @@ class PlayerReview < ActiveRecord::Base
 
   has_paper_trail
 
+  after_save :touch_game_if_approved
+
   validates :title,		presence: true
   validates :content, presence: true
 
@@ -46,6 +48,13 @@ class PlayerReview < ActiveRecord::Base
 
   def make_pending!
   	self.update_attribute(:status, 'Pending')
+  end
+
+  def touch_game_if_approved
+    # so that the game will jump to the top of any "most recently updated" lists
+    if status == 'Approved'
+      game.touch
+    end
   end
 
   def ratings_total
