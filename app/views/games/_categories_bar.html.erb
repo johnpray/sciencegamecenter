@@ -19,7 +19,7 @@
 
 <h2 id="order_by_top">Order by</h2>
 <div id="orber_by_dropdown">
-<%= select :game, "order_by", [["Most recently reviewed or updated first", "updated_at"], ["Newest first", "created_at"], ["Title A-Z", "title"]], selected: "updated_at" %>
+<%= select :game, "order_by", [["Last reviewed or updated", "updated_at"], ["Most reviews", "reviews_count"], ["Last added", "created_at"], ["Title A-Z", "title"]] %>
 </div>
 
 

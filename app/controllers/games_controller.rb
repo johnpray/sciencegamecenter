@@ -24,14 +24,16 @@ class GamesController < ApplicationController
 
     # Order
     case params[:order_by]
-    when "title"
-      @games = @games.reorder("title ASC")
     when "updated_at"
       @games = @games.reorder("updated_at DESC")
+    when "reviews_count"
+      @games = @games.reorder("approved_reviews_count DESC")
     when "created_at"
       @games = @games.reorder("created_at DESC")
+    when "title"
+      @games = @games.reorder("title ASC")
     else
-      params.delete :order_by
+      @games = @games.reorder("updated_at DESC")
     end
 
     # Paginate

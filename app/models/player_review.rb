@@ -13,6 +13,7 @@ class PlayerReview < ActiveRecord::Base
   has_paper_trail
 
   after_save :touch_game_if_approved
+  after_save :update_game_approved_reviews_count
 
   validates :title,		presence: true
   validates :content, presence: true
@@ -56,6 +57,12 @@ class PlayerReview < ActiveRecord::Base
     # so that the game will jump to the top of any "most recently updated" lists
     if status == 'Approved'
       game.touch
+    end
+  end
+
+  def update_game_approved_reviews_count
+    unless game.approved_reviews_count == game.player_reviews.approved.count
+      game.update_column(:approved_reviews_count, game.player_reviews.approved.count)
     end
   end
 
