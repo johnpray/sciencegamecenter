@@ -4,41 +4,41 @@ class GamesController < ApplicationController
   before_filter :signed_in_user,  except: [:index, :show]
   before_filter :admin_user,      except: [:index, :show, :new, :create]
 
-  def index
+  def index    
+    @games = Game
+
+    # Only admins can see disabled games
+    @games = @games.enabled unless admin?
+
+    # Filter by category
     category_types = [:subject, :platform, :cost, :intended_for, :developer_type]
-    per_page_number = 10
-    @any_category_defined = any_category_defined?
-    if @any_category_defined
-      if admin?
-        @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", "))
-        if @games.count < per_page_number+1
-          params.delete :page
-          @games = Game.tagged_with(category_types.map {|c| params[c]}.join(", "))
-        end
-      else
-        @games = Game.enabled.tagged_with(category_types.map {|c| params[c]}.join(", "))
-        if @games.count < per_page_number+1
-          params.delete :page
-          @games = Game.enabled.tagged_with(category_types.map {|c| params[c]}.join(", "))
-        end
-      end
-    else
-      if admin?
-        @games = Game
-        if @games.count < per_page_number+1
-          params.delete :page
-          @games = Game
-        end
-      else
-        @games = Game.enabled
-        if @games.count < per_page_number+1
-          params.delete :page
-          @games = Game.enabled
-        end
-      end
+    if @any_category_defined = any_category_defined?
+      @games = @games.tagged_with(category_types.map {|c| params[c]}.join(", "))
     end
-    verb = Rails.env.development? ? "LIKE" : "ILIKE"
-    @games = @games.where("title #{verb} ?", "%#{params[:title]}%") if params[:title].present?
+
+    # Filter by title
+    if params[:title].present?
+      verb = Rails.env.development? ? "LIKE" : "ILIKE"
+      @games = @games.where("title #{verb} ?", "%#{params[:title]}%")
+    end
+
+    # Order
+    case params[:order_by]
+    when "title"
+      @games = @games.reorder("title ASC")
+    when "updated_at"
+      @games = @games.reorder("updated_at DESC")
+    when "created_at"
+      @games = @games.reorder("created_at DESC")
+    else
+      params.delete :order_by
+    end
+
+    # Paginate
+    per_page_number = 10
+    if @games.count < per_page_number+1
+      params.delete :page
+    end
     @games = @games.paginate(page: params[:page], per_page: per_page_number)
   end
 
