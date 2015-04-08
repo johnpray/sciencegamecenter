@@ -17,7 +17,7 @@
 					<% end %>
 			  <%= render 'games/game_info', game: game, hide_title: true %>
 			  <%= tracked_link_to "Play on this game's site!", game.website_url, class: "btn btn-success", style: "margin: 5px; font-weight: bold;", target: "_blank" %>
-				<%= link_to 'See Scorecards', "#{game_path(game)}#scorecards", class: "btn btn-info", style: "margin: 5px; font-weight: bold;" %>
+				<%= link_to "Read #{game.approved_reviews_count > 0 ? pluralize(game.approved_reviews_count, 'Review') : "Reviews"}", "#{game_path(game)}#scorecards", class: "btn btn-info", style: "margin: 5px; font-weight: bold;" %>
 				<%= link_to 'Review this game!', "#{game_path(game)}#new_player_review", class: "btn btn-primary", style: "margin: 5px; font-weight: bold;" %>
 			</div>
 		</div>

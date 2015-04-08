@@ -4,11 +4,16 @@ class PlayerReview < ActiveRecord::Base
 
   default_scope order: 'created_at DESC'
 
+  scope :approved, -> { where(status: "Approved") }
+
   belongs_to :game
   belongs_to :user
   has_many :comments, as: :commentable
 
   has_paper_trail
+
+  after_save :touch_game_if_approved
+  after_save :update_game_approved_reviews_count
 
   validates :title,		presence: true
   validates :content, presence: true
@@ -46,6 +51,19 @@ class PlayerReview < ActiveRecord::Base
 
   def make_pending!
   	self.update_attribute(:status, 'Pending')
+  end
+
+  def touch_game_if_approved
+    # so that the game will jump to the top of any "most recently updated" lists
+    if status == 'Approved'
+      game.touch
+    end
+  end
+
+  def update_game_approved_reviews_count
+    unless game.approved_reviews_count == game.player_reviews.approved.count
+      game.update_column(:approved_reviews_count, game.player_reviews.approved.count)
+    end
   end
 
   def ratings_total
