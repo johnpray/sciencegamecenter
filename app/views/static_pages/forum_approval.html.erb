@@ -1,0 +1,10 @@
+<% provide(:title, 'Request Forum Approval') %>
+
+<h1 class="left">Request Forum Approval</h1>
+<h3>You're close to posting on the Science Game Center forum!</h3>
+<p>Since you're under thirteen and you created your account before the forum opened, your parent/guardian needs to specifically approve your forum access.</p>
+<p>Click this button to send an email to your parent/guardian at <b><%= current_user.parent_email %></b> with a link for them to re-approve you:</p>
+
+<p><%= link_to "Request forum approval", resend_parent_email_user_path(current_user), :class => "btn btn-large btn-primary" %></p>
+
+<p>If you need to update your parent/guardian's email address, <%= link_to "do so here", edit_user_path(current_user) %>.</p>

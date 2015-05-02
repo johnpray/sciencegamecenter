@@ -23,6 +23,8 @@ gem 'friendly_id', '~> 4.0.1' # friendly urls
 gem 'paper_trail', '~> 2.6.3' # track changes and allow undo
 gem 'omniauth-facebook', '~> 1.5.1' # allow registration and login via Facebook
 
+gem 'rest-client', '~> 1.8.0'
+
 gem 'nokogiri', '~> 1.6.2'
 
 group :development, :test do

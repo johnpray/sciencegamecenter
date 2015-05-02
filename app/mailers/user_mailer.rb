@@ -16,7 +16,7 @@ class UserMailer < ActionMailer::Base
   	mail(
       to: user.parent_email,
       bcc: (ENV['ADMINS_EMAIL'] if Rails.env.production?),
-      subject: "Please confirm your child's account at the Science Game Center"
+      subject: "Please confirm your child's #{ user.disabled ? 'account' : 'forum access' } at the Science Game Center"
     )
   end
 

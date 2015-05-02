@@ -47,8 +47,27 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    log_out_discourse_sso
   	sign_out
     flash[:success] = "You've been logged out. #{view_context.link_to "Log in.", login_path}".html_safe
   	redirect_to root_path
+  end
+
+  private
+
+  def log_out_discourse_sso
+    discourse_endpoint = RestClient::Resource.new("http://forum.sciencegamecenter.org")
+    discourse_user_json = discourse_endpoint["/users/by-external/#{current_user.id}.json"].get
+    discourse_user_id = JSON.parse(discourse_user_json)["user"]["id"]
+    discourse_endpoint["/admin/users/#{discourse_user_id}/log_out"].post(nil)
+    # TODO: This currently doesn't work, I think due to a Discourse bug with csrf tokens.
+    # Try modifying Discourse later, and submit a pull request.
+  rescue => e
+    if e.is_a? RestClient::ResourceNotFound
+      # User doesn't exist on Discourse
+    else
+      raise unless Rails.env.production?
+      Rails.logger.error "Couldn't log out Discourse account for SGC user #{current_user.id}:\n  #{e.class}: #{e.message}"
+    end
   end
 end

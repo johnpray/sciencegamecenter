@@ -61,6 +61,12 @@
         <p class="form-help">The day you were born. We required this when signing up to check if we needed parental consent to activate your account.</p>
       </div>
 
+      <div id="parent_email_fields">
+        <%= f.label :parent_email, "Parent's email" %>
+        <%= f.text_field :parent_email %>
+        <p class="form-help">If you're under thirteen, please provide your parent or guardian's email address (different from your own). It'll be used if we need approval for site or forum access. (We'll tell you first before sending emails to them.)</p>
+      </div>
+
       <%= f.label :description, "Description" %>
       <%= f.text_field :description %>
       <p class="form-help">A short description of yourself to appear below your name. What are you a teacher of and for how long? Or what kind of games are you a player of?</p>

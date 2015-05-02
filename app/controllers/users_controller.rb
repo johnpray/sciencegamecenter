@@ -104,7 +104,7 @@ class UsersController < ApplicationController
   # Action for sending the parental confirmation email again
   def resend_parent_email
     user = User.find(params[:id])
-    if user.disabled?
+    if user.disabled? || user.needs_forum_approval?
       UserMailer.parent_confirmation(user).deliver
       flash[:success] = "The confirmation email has been re-sent to your parent or guardian at
         #{user.parent_email}.
@@ -119,8 +119,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     user_code = Digest::MD5::hexdigest(@user.email.downcase)
     url_code = params[:code]
-    if @user.disabled? && user_code == url_code
-      if @user.update_attribute(:disabled, false)
+    if (@user.disabled? || @user.needs_forum_approval?) && user_code == url_code
+      if @user.update_attribute(:disabled, false) && @user.update_attribute(:forum_approved, true)
         flash[:success] = "Thank you! Your child's account has been
           activated. They can now log in with the Email and Password they chose
           when signing up."
@@ -128,7 +128,7 @@ class UsersController < ApplicationController
         redirect_to login_path
       else
         flash[:failure] = "There was a problem activating this account.
-          Please contact us at <a href='mailto:sciencegamereviews@fas.org'>sciencegamereviews@fas.org</a>".html_safe
+          Please contact us at <a href='mailto:#{ENV['ADMINS_EMAIL']}'>#{ENV['ADMINS_EMAIL']}</a>".html_safe
         redirect_to root_path
       end
     else

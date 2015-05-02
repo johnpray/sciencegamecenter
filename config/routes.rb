@@ -5,6 +5,7 @@ SciencegamereviewsOrg::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   match '/privacy', to: 'static_pages#privacy'
   match '/review', to: 'static_pages#review'
+  match '/forum_approval', to: 'static_pages#forum_approval'
   match '/robots.txt', to: 'static_pages#robots'
 
   resources :users do
@@ -35,6 +36,8 @@ SciencegamereviewsOrg::Application.routes.draw do
 
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
+
+  match '/sso/discourse', to: 'sso#discourse'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
