@@ -36,6 +36,8 @@ SciencegamereviewsOrg::Application.routes.draw do
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')
 
+  match '/sso/discourse', to: 'sso#discourse'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
