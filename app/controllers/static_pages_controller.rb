@@ -15,6 +15,12 @@ class StaticPagesController < ApplicationController
   def review
   end
 
+  def forum_approval
+    unless current_user && current_user.needs_forum_approval?
+      redirect_to root_path
+    end
+  end
+
   def robots
   	if Rails.env.production? && request.host.include?("www.sciencegamecenter.org")
 	  	filename = "config/robots.production.txt"

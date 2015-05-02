@@ -1,0 +1,39 @@
+Hello,
+
+You're receiving this email because your child has would like to access the new Science Game Center Forum (http://forum.sciencegamecenter.org) with their existing Science Game Center account:
+
+Username: <%= @user.name %>
+Email: <%= @user.email %>
+Birth date: <%= @user.birth_date %>
+Parent's email: <%= @user.parent_email %>
+
+Your child indicated that they are under thirteen years of age, and thus federal law requires that we get your consent as parent or guardian before their information is used in our new forum system.
+
+When activated, your child can use their forum access to
+- participate in text-based discussions at http://forum.sciencegamecenter.org.
+
+You've already approved them to use their SGC account to
+- post reviews of science games that they've played, and to
+- comment on reviews posted by other players and experts.
+
+The only information shown about your child will be their chosen Username as shown above (which can be changed) and the Gravatar image (http://gravatar.com) associated with their email address or Facebook profile picture, if logged in with their Facebook account.
+
+We will send occasional emails to your child only about the Science Game Center, and they're welcome to opt-out of those at any time. We will never sell or share any of your child's information.
+
+To activate your child's forum access, please visit this URL: <%= confirm_child_account_user_url @user, code: Digest::MD5::hexdigest(@user.email.downcase), only_path: false %>
+
+If you have any questions, please contact us at <%= ENV['ADMINS_EMAIL'] %>.
+
+Regards,
+
+The Science Game Center Team
+
+===
+
+The Science Game Center
+Helping to bring science games to the classroom, one review at a time
+http://sciencegamecenter.org/
+
+---
+
+You received this one-time email because your child requested forum access for a Science Game Center account. Nonetheless, to request to no longer receive emails from the SGC, please reply to this email and say so.

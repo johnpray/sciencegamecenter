@@ -1,0 +1,39 @@
+Hello,
+
+You're receiving this email because your child has registered an account at the Science Game Center (http://sciencegamecenter.org) with the following information:
+
+Username: <%= @user.name %>
+Email: <%= @user.email %>
+Birth date: <%= @user.birth_date %>
+Parent's email: <%= @user.parent_email %>
+
+Your child indicated that they are under thirteen years of age, and thus federal law requires that we get your consent as parent or guardian before their information is used in our system.
+
+When activated, your child can use their account to
+- post reviews of science games that they've played, to
+- comment on reviews posted by other players and experts, and to
+- participate in text-based discussions at http://forum.sciencegamecenter.org.
+
+The only information shown about your child will be their chosen Username as shown above (which can be changed) and the Gravatar image (http://gravatar.com) associated with their email address or Facebook profile picture, if logged in with their Facebook account.
+
+We will send occasional emails to your child only about the Science Game Center, and they're welcome to opt-out of those at any time. We will never sell or share any of your child's information.
+
+To activate your child's account, please visit this URL: <%= confirm_child_account_user_url @user, code: Digest::MD5::hexdigest(@user.email.downcase), only_path: false %>
+
+If you do not activate your child's account within the next 30 days, their information will automatically be deleted from our system and they will need to sign up again.
+
+If you have any questions, please contact us at <%= ENV['ADMINS_EMAIL'] %>.
+
+Regards,
+
+The Science Game Center Team
+
+===
+
+The Science Game Center
+Helping to bring science games to the classroom, one review at a time
+http://sciencegamecenter.org/
+
+---
+
+You received this one-time email because your child signed up for a Science Game Center account. Nonetheless, to request to no longer receive emails from the SGC, please reply to this email and say so.

@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 	attr_accessible :name, :email, :is_admin, :password, :birth_date,
 									:disabled, :parent_email, :is_teacher, :is_scientist,
 									:is_authoritative, :is_game_developer, :description,
-									:dummy_password, :prefers_gravatar
+									:dummy_password, :prefers_gravatar, :forum_approved
 	before_save :create_remember_token
 	before_validation :set_dummy_password_if_needed
 
@@ -52,6 +52,10 @@ class User < ActiveRecord::Base
 	def is_under_thirteen?
 		13.years.ago < self.birth_date
 	end
+
+  def needs_forum_approval?
+    is_under_thirteen? && !forum_approved
+  end
 
 	def is_oauth?
 		self.oauth_token.present?
