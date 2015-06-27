@@ -1,7 +1,7 @@
         <% if admin? %>
         <hr />
         <p><%= link_to "New game", new_game_path, class: 'btn btn-info'  %></p>
-        <% elsif signed_in? %>
+        <% else %>
         <hr />
         <p><%= link_to "Suggest a game", new_game_path, class: 'btn btn-info' %></p>
         <% end %>
