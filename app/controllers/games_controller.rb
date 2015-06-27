@@ -37,11 +37,13 @@ class GamesController < ApplicationController
     end
 
     # Paginate
-    per_page_number = 10
-    if @games.count < per_page_number+1
-      params.delete :page
+    unless request.format.csv?
+      per_page_number = 10
+      if @games.count < per_page_number+1
+        params.delete :page
+      end
+      @games = @games.paginate(page: params[:page], per_page: per_page_number)
     end
-    @games = @games.paginate(page: params[:page], per_page: per_page_number)
 
     respond_to do |format|
       format.html
