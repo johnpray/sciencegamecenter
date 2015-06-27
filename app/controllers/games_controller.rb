@@ -42,6 +42,11 @@ class GamesController < ApplicationController
       params.delete :page
     end
     @games = @games.paginate(page: params[:page], per_page: per_page_number)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @games.to_csv }
+    end
   end
 
   def show

@@ -1,3 +1,5 @@
+require 'csv'
+
 class Game < ActiveRecord::Base
   attr_accessible :title, :description, :website_url, :developer,
   								:intended_audience, :concepts, :disabled,
@@ -331,5 +333,15 @@ class Game < ActiveRecord::Base
 		end
 		count
 	end
+
+  def self.to_csv(options = {})
+    CSV.generate(options) do |csv|
+      attrs = %w( title website_url developer subject_list concepts )
+      csv << attrs
+      all.each do |game|
+        csv << attrs.map{|a| game.send(a)}
+      end
+    end
+  end
 
 end
