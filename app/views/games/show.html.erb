@@ -17,7 +17,7 @@
 		<center><%= tracked_link_to 'Play this game!<br /><small>on its own website</small>'.html_safe, @game.website_url, class: "btn btn-large btn-success", style: "margin: 5px", target: "_blank" %></center>
 		<center><%= link_to 'See Scorecards', '#scorecards', class: "btn btn-large btn-info", style: "margin: 5px;" %></center>
 		<center><%= link_to 'Review this game!', '#new_player_review', class: "btn btn-large btn-primary", style: "margin: 5px;" %></center>
-		<center><%= link_to 'Discuss this game!', "http://forum.sciencegamecenter.org/", class: "btn btn-large btn-warning", style: "margin: 5px;", target: "_blank" %></center>
+		<center><%= link_to 'Discuss this game!', "http://forum.sciencegamecenter.org/", class: "btn btn-large btn-warning", style: "margin: 5px;", target: '_blank' %></center>
 		<% if signed_in? && current_user.is_admin? %>
 		<hr />
 		<div style="margin-left: 5px; margin-top: 10px;"><%= render 'games/admin_tools', game: @game %></div>
