@@ -13,6 +13,7 @@
         <ul class="nav pull-right">
           <li><%= link_to "Find Games", games_path %></li>
           <li><%= link_to "Review Games", review_path %></li>
+          <li><%= tracked_link_to "Discuss Games", "http://forum.sciencegamecenter.org/", target: "_blank" %></li>
           <li><%= link_to "About SGC", about_path %></li>
           <li class="divider-vertical"></li>
         <% if signed_in? %>
