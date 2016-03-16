@@ -32,24 +32,27 @@ module ApplicationHelper
 
   # Creates a link that gets tracked in Google Analytics
   def tracked_link_to(*args, &block)
-    if block_given?
-      options      = args.first || {}
-      html_options = args.second
-      tracked_link_to(capture(&block), options, html_options)
-    else
-      name         = args[0]
-      options      = args[1] || {}
-      html_options = args[2]
+    # Turns out this triggers Chrome's pop-up blocker
+    # if block_given?
+    #   options      = args.first || {}
+    #   html_options = args.second
+    #   tracked_link_to(capture(&block), options, html_options)
+    # else
+    #   name         = args[0]
+    #   options      = args[1] || {}
+    #   html_options = args[2]
 
-      html_options = convert_options_to_data_attributes(options, html_options)
-      url = url_for(options)
+    #   html_options = convert_options_to_data_attributes(options, html_options)
+    #   url = url_for(options)
 
-      href = html_options['href']
-      tag_options = tag_options(html_options)
+    #   href = html_options['href']
+    #   tag_options = tag_options(html_options)
 
-      href_attr = "href=\"#{ERB::Util.html_escape(url)}\"" unless href
-      "<a #{href_attr}#{tag_options} onClick=\"recordOutboundLink(this, 'Tracked Links', '#{href || ERB::Util.html_escape(url)}');return false;\">#{ERB::Util.html_escape(name || url)}</a>".html_safe
-    end
+    #   href_attr = "href=\"#{ERB::Util.html_escape(url)}\"" unless href
+    #   "<a #{href_attr}#{tag_options} onClick=\"recordOutboundLink(this, 'Tracked Links', '#{href || ERB::Util.html_escape(url)}');return false;\">#{ERB::Util.html_escape(name || url)}</a>".html_safe
+    # end
+
+    link_to(*args, &block)
   end
 
   # Creates a link that gets tracked in Google Analytics
