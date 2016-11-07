@@ -8,7 +8,7 @@ gem 'jquery-rails', '~> 3.1.3'
 gem 'sass-rails',   '~> 3.2.4'
 gem 'bcrypt-ruby', '~> 3.0.1'
 
-gem 'bootstrap-sass', '2.3.2' # twitter bootstrap framework
+gem 'bootstrap-sass', '2.0.2' # twitter bootstrap framework
 gem 'faker', '~> 1.0.1' # generate test data
 gem 'will_paginate', '~> 3.0.3' # multiple pages for indexes
 gem 'bootstrap-will_paginate', '0.0.7' # use bootstrap styling for paging
