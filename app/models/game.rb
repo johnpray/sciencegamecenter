@@ -3,7 +3,8 @@ require 'csv'
 class Game < ActiveRecord::Base
   attr_accessible :title, :description, :website_url, :developer,
   								:intended_audience, :concepts, :disabled,
-  								:boxart, :platform_list, :subject_list,
+  								:boxart, :youtube_video_url,
+                  :platform_list, :subject_list,
   								:cost_list, :intended_for_list, :developer_type_list,
                                 :teacher_info, :entertainment
 

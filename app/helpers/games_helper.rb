@@ -37,4 +37,12 @@ module GamesHelper
     	game.boxart
     end
 	end
+
+	def youtube_embed_iframe(url)
+		if url.present?
+			url_params = Rack::Utils.parse_nested_query(url.split('?').last)
+	    youtube_id = url_params["v"]
+	    content_tag(:iframe, nil, src: "//www.youtube.com/embed/#{youtube_id}", frameBorder: 0)
+	  end
+	end
 end

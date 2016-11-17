@@ -28,7 +28,9 @@ gem 'rest-client', '~> 1.8.0'
 
 gem 'nokogiri', '~> 1.6.2'
 
-  gem 'pg', '~> 0.18.0'
+gem 'pg', '~> 0.18.0'
+
+gem 'test-unit', '~> 3.0'
 
 group :development, :test do
 	gem 'sqlite3'
