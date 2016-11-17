@@ -13,10 +13,6 @@
 <%= f.text_field :website_url %>
 <p class="form-help">The full address (including <i>http://</i>) for the game's official web site.</p>
 
-<%= f.label :youtube_video_url, "YouTube Video URL" %>
-<%= f.text_field :youtube_video_url %>
-<p class="form-help">URL of a YouTube video of a trailer or gameplay of this game, if available.</p>
-
 <%= f.label :developer, "Developer" %>
 <%= f.text_field :developer %>
 <p class="form-help">Name and link to developer's website<br />using Markdown, something like [Molecular Jig Games](http://www.molecularjig.com/)</p>
@@ -80,3 +76,7 @@
 <% end %>
 <%= f.file_field :boxart %>
 <p class="form-help">The box art, logo, or (if all that's available) screenshot of this game's title screen, in jpg, gif, or png format. Use as high a resolution as is available; smaller versions will be created automatically.</p>
+
+<%= f.label :youtube_video_url, "YouTube Video URL" %>
+<%= f.text_field :youtube_video_url %>
+<p class="form-help">URL of a YouTube video of a trailer or gameplay of this game, if available.</p>
