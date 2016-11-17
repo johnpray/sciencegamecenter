@@ -17,7 +17,6 @@ class Game < ActiveRecord::Base
 
   has_many :player_reviews, dependent: :destroy
   has_many :screenshots,		dependent: :destroy
-  has_many :youtube_videos,	dependent: :destroy
 
   belongs_to :user
 
