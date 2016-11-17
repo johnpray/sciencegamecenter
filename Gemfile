@@ -28,6 +28,8 @@ gem 'rest-client', '~> 1.8.0'
 
 gem 'nokogiri', '~> 1.6.2'
 
+  gem 'pg', '~> 0.18.0'
+
 group :development, :test do
 	gem 'sqlite3'
 	gem 'rspec-rails', '~> 2.9.0'
@@ -40,6 +42,3 @@ group :assets do
   gem 'uglifier', '>= 1.2.3'
 end
 
-group :production do
-	gem 'pg', '~> 0.18.0'
-end
