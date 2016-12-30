@@ -27,15 +27,15 @@
 
 <%= f.label :concepts, "Deeper concepts" %>
 <%= f.text_field :concepts %>
-<p class="form-help">The deeper concepts this game deals with, separated by ' // '. This will show up in the description but <strong>cannot be used for sorting</strong>.</p>
+<p class="form-help">The deeper concepts this game deals with. This will show up in the description but <strong>cannot be used for filtering</strong>.</p>
 
 <%= f.label :platform_list, "Available on" %>
 <%= select :game, :platform_list, GAME_PLATFORMS, { selected: f.object.platforms.map(&:name) }, { multiple: true } %>
 <p class="form-help">The platforms this game has been released for. Select multiple by holding Ctrl/Command. Games can be filtered by these.</p>
 
 <%= f.label :cost_list, "Cost" %>
-<%= f.text_field :cost_list %>
-<p class="form-help"><b>Free</b>, <b>Paid</b>, and/or <b>Free Demo</b>, separated by commas. List all that apply (for example, Free Demo should always also have Paid listed).</p>
+<%= select :game, :cost_list, GAME_COSTS, { selected: f.object.costs.map(&:name) }, { multiple: true } %>
+<p class="form-help">Does this game cost money to play? Select all that apply (for example, Free Demo should always also have Paid listed). Games can be filtered by these.</p>
 
 <%= f.label :intended_for_list, "Intended for (age groups)" %>
 <%= select :game, :intended_for_list, GAME_INTENDED_FORS, { selected: f.object.intended_fors.map(&:name) }, { multiple: true } %>
