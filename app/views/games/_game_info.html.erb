@@ -57,7 +57,7 @@
 				<b>Developed by</b>
 			</td>
 			<td class="info-value">
-				<%= "#{markdown_inline game.developer} #{external_link_icon}".html_safe %> <%= "(a #{developer_type_links_list(game)})".html_safe if !developer_type_links_list(game).blank? %>
+				<%= "#{markdown_inline game.developer} #{external_link_icon}".html_safe %> <%= "(#{developer_type_links_list(game)})".html_safe if !developer_type_links_list(game).blank? %>
 			</td>
 		</tr>
 		<tr>

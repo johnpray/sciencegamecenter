@@ -1,24 +1,14 @@
 # encoding: UTF-8
 
-INTENDED_FOR_MAPPINGS = {
-  "5 and up" => "elementary school",
-  "10+" => "middle school",
-  "10-13" => "middle school",
-  "10-15" => "middle school, high school",
-  "10 - 16" => "middle school, high school",
-  "13-16" => "high school",
-  "14" => "high school",
-  "15" => "high school",
-  "16" => "high school",
-  "17" => "high school",
-  "16-18" => "high school",
-  "16-19" => "high school",
-  "18+" => "university",
-  "8-10" => "elementary school",
-  "everyone" => "elementary school, middle school, high school, university",
-  "all ages" => "elementary school, middle school, high school, university",
-  "High School" => "high school",
-  "Middle School" => "middle school"
+DEVELOPER_TYPE_MAPPINGS = {
+  "Academic" => "academic developer",
+  "Academic Developer" => "academic developer",
+  "Open Access Community" => "open source community",
+  "Professional" => "professional developer",
+  "Professional Developer" => "professional developer",
+  "scientist" => "academic developer",
+  "Student" => "academic developer",
+  "Teacher" => "academic developer"
 }
 
 
@@ -35,14 +25,14 @@ class CategoryMapper
       
       puts "Processing #{game.title}..."
 
-      categories = game.intended_fors
+      categories = game.developer_types
       
       puts "  -- Old list: #{categories.map(&:name).join(", ")}"
       
       new_category_names = []
       
       categories.each do |category|
-        new_category_name = INTENDED_FOR_MAPPINGS[category.name]
+        new_category_name = DEVELOPER_TYPE_MAPPINGS[category.name]
         
         if new_category_name.present?
           new_category_names << new_category_name
@@ -55,18 +45,18 @@ class CategoryMapper
       
       new_category_names = new_category_names.join(",").split(",").map(&:strip)
       new_category_names.uniq!
-      new_category_names.sort_by! { |name| GAME_INTENDED_FORS.index(name) }
+      new_category_names.sort_by! { |name| GAME_DEVELOPER_TYPES.index(name) }
       
       puts "  -- New list: #{new_category_names.join(", ")}"
       
-      game.intended_for_list = ""
+      game.developer_type_list = ""
       game.save
-      game.intended_for_list = new_category_names.join(", ")
+      game.developer_type_list = new_category_names.join(", ")
       game.save
     end
     
     # downcase all tags
-    GAME_INTENDED_FORS.each do |subject|
+    GAME_DEVELOPER_TYPES.each do |subject|
       ActsAsTaggableOn::Tag.where("name ILIKE '#{subject}'").first.update_attribute(:name, subject)
     end
   end

@@ -18,8 +18,8 @@
 <p class="form-help">Name and link to developer's website<br />using Markdown, something like [Molecular Jig Games](http://www.molecularjig.com/)</p>
 
 <%= f.label :developer_type_list, "Developer Type" %>
-<%= f.text_field :developer_type_list %>
-<p class="form-help"><b>Professional Developer</b>, <b>Teacher</b>, or <b>Student</b>, etc.</p>
+<%= select :game, :developer_type_list, GAME_DEVELOPER_TYPES, { selected: f.object.developer_types.map(&:name) } %>
+<p class="form-help">The type of developer that made this game. For example, a game made by an experienced developer is by a "professional developer", while one made by someone whi's primarily a student or teacher is an "academic developer".</p>
 
 <%= f.label :subject_list, "Deals with" %>
 <%= select :game, :subject_list, GAME_SUBJECTS, { selected: f.object.subjects.map(&:name) }, { multiple: true } %>
