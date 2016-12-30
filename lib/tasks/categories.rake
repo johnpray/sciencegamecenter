@@ -1,29 +1,45 @@
-PLATFORM_MAPPINGS = {
-  "and iPad Pro" => "iOS",
-  "Amazon App Store" => "Android",
-  "Android" => "Android",
-  "Android Tablet" => "Android",
-  "App Store" => "iOS",
-  "Board Game" => "Tabletop",
-  "Browser (still in development)" => "Web",
-  "Card Game" => "Tabletop",
-  "Google Play" => "Android",
-  "i phone" => "iOS",
-  "iOS" => "iOS",
-  "iPad" => "iOS",
-  "iPad Air" => "iOS",
-  "iPad/iPod" => "iOS",
-  "iPad Mini 2+" => "iOS",
-  "iPhone" => "iOS",
-  "iPhone/iPod" => "iOS",
-  "Live Action Game" => "Tabletop",
-  "Mac" => "Mac",
-  "Mac OS" => "Mac",
-  "Microsoft Windows" => "Windows",
-  "Microsoft Window" => "Windows",
-  "PC" => "Windows",
-  "Web" => "Web",
-  "Web (PC/Mac)" => "Web"
+# encoding: UTF-8
+
+SUBJECT_MAPPINGS = {
+  "astrophysics" => "astrophysics",
+  "Biodiversity" => "biodiversity",
+  "biology" => "biology",
+  "body systems" => "body systems",
+  "botany" => "botany",
+  "careers in science" => "careers in science",
+  "Cell Biology" => "cells",
+  "Cells" => "cells",
+  "cellular automata" => "cells",
+  "Chemistry" => "chemistry",
+  "Computer Science" => "computer science",
+  "Design and Development of Technology" => "technology development",
+  "Disease" => "disease",
+  "Drugs" => "drugs",
+  "ecology" => "ecology",
+  "Entertainment" => "",
+  "Evolution" => "evolution",
+  "Experimental Design" => "experimental design",
+  "Experimental Methods" => "experimental methods",
+  "Fittness" => "fitness",
+  "Fungal microbiology" => "biology",
+  "Game Development Tool" => "game development",
+  "Genetics" => "genetics",
+  "Geography" => "geography",
+  "Geology" => "geology",
+  "High School" => "",
+  "History" => "history",
+  "Math" => "math",
+  "mathematics" => "math",
+  "Medicine" => "medicine",
+  "Middle School" => "",
+  "Molecular Science" => "molecular science",
+  "physics" => "physics",
+  "plants" => "plants",
+  "Pokémon battling" => "",
+  "Programming" => "programming",
+  "Science" => "science",
+  "technology development" => "technology development",
+  "zoology" => "zoology"
 }
 
 
@@ -40,14 +56,14 @@ class CategoryMapper
       
       puts "Processing #{game.title}..."
 
-      categories = game.platforms
+      categories = game.subjects
       
       puts "  -- Old list: #{categories.map(&:name).join(", ")}"
       
       new_category_names = []
       
       categories.each do |category|
-        new_category_name = PLATFORM_MAPPINGS[category.name]
+        new_category_name = SUBJECT_MAPPINGS[category.name]
         
         if new_category_name.present?
           new_category_names << new_category_name
@@ -59,14 +75,19 @@ class CategoryMapper
       end
       
       new_category_names.uniq!
-      new_category_names.sort_by! { |name| GAME_PLATFORMS.index(name) }
+      new_category_names.sort_by! { |name| GAME_SUBJECTS.index(name) }
       
       puts "  -- New list: #{new_category_names.join(", ")}"
       
-      game.platform_list = ""
+      game.subject_list = ""
       game.save
-      game.platform_list = new_category_names.join(", ")
+      game.subject_list = new_category_names.join(", ")
       game.save
+    end
+    
+    # downcase all tags
+    GAME_SUBJECTS.each do |subject|
+      ActsAsTaggableOn::Tag.where("name ILIKE '#{subject}'").first.update_attribute(:name, subject)
     end
   end
 end

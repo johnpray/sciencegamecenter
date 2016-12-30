@@ -8,10 +8,14 @@ GAME_PLATFORMS = [
 ]
 
 GAME_SUBJECTS = [
+  "astrophysics",
+  "biodiversity",
   "biology",
   "body systems",
   "botany",
   "careers in science",
+  "cells",
+  "cells",
   "cells",
   "chemistry",
   "computer science",
@@ -28,6 +32,7 @@ GAME_SUBJECTS = [
   "geology",
   "history",
   "math",
+  "math",
   "medicine",
   "molecular science",
   "physics",
@@ -38,7 +43,7 @@ GAME_SUBJECTS = [
   "zoology"
 ]
 
-GAME_INTENDED_AGES = [
+GAME_INTENDED_FORS = [
   "elementary school",
   "middle school",
   "high school",
@@ -49,4 +54,10 @@ GAME_DEVELOPER_TYPES = [
   "academic developer",
   "professional developer",
   "open source community"
+]
+
+GAME_COSTS = [
+  "paid",
+  "free demo",
+  "free"
 ]
