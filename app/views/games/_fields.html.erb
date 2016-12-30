@@ -38,8 +38,8 @@
 <p class="form-help"><b>Free</b>, <b>Paid</b>, and/or <b>Free Demo</b>, separated by commas. List all that apply (for example, Free Demo should always also have Paid listed).</p>
 
 <%= f.label :intended_for_list, "Intended for (age groups)" %>
-<%= f.text_field :intended_for_list %>
-<p class="form-help">The age group(s) this game was <b>intended</b> (by the developer) to be played by, separated by commas. Acceptable ranges to be determined.</p>
+<%= select :game, :intended_for_list, GAME_INTENDED_FORS, { selected: f.object.intended_fors.map(&:name) }, { multiple: true } %>
+<p class="form-help">The age group(s) this game was <b>intended</b> (by the developer) to be played by. Select multiple by holding Ctrl/Command. Games can be sorted by these.</p>
 
 <% if admin? %>
 <%= f.label :intended_audience, "Intended audience [OLD]" %>
