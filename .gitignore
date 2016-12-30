@@ -20,3 +20,5 @@
 .env.bak
 
 /config/database.yml
+
+~$*
