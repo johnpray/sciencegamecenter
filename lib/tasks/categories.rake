@@ -31,7 +31,7 @@ class CategoryMapper
   def perform
     # category_types = [:subject, :platform, :cost, :intended_for, :developer_type]
 
-    games = Game.all
+    games = Game.reorder("updated_at ASC").all
     
     puts "Processing #{games.size} games in 5 seconds..."
     sleep 5
@@ -63,6 +63,8 @@ class CategoryMapper
       
       puts "  -- New list: #{new_category_names.join(", ")}"
       
+      game.platform_list = ""
+      game.save
       game.platform_list = new_category_names.join(", ")
       game.save
     end
