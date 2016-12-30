@@ -22,8 +22,8 @@
 <p class="form-help"><b>Professional Developer</b>, <b>Teacher</b>, or <b>Student</b>, etc.</p>
 
 <%= f.label :subject_list, "Deals with" %>
-<%= f.text_field :subject_list %>
-<p class="form-help">The general subjects or topics this game deals with, separated by commas. (e.g. biology, chemistry, Pokémon battling). Games can be sorted by these.</p>
+<%= select :game, :subject_list, GAME_SUBJECTS, { selected: f.object.subjects.map(&:name) }, { multiple: true } %>
+<p class="form-help">The general subjects or topics this game deals with. Select multiple by holding Ctrl/Command. Games can be sorted by these.</p>
 
 <%= f.label :concepts, "Deeper concepts" %>
 <%= f.text_field :concepts %>
