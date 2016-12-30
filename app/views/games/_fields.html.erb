@@ -30,8 +30,8 @@
 <p class="form-help">The deeper concepts this game deals with, separated by ' // '. This will show up in the description but <strong>cannot be used for sorting</strong>.</p>
 
 <%= f.label :platform_list, "Available on" %>
-<%= f.text_field :platform_list %>
-<p class="form-help">The platforms this game has been released for, separated by commas. (e.g. <b>Web (PC/Mac)</b>, <b>Web (iPad/Tablet)</b>, <b>Microsoft Windows</b>, <b>Mac OS X</b>, <b>Game Boy Color></b>). Games can be sorted by these.</p>
+<%= select :game, :platform_list, GAME_PLATFORMS, { selected: f.object.platforms.map(&:name) }, { multiple: true } %>
+<p class="form-help">The platforms this game has been released for. Select multiple by holding Ctrl/Command. Games can be sorted by these.</p>
 
 <%= f.label :cost_list, "Cost" %>
 <%= f.text_field :cost_list %>
