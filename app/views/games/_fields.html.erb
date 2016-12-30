@@ -18,12 +18,12 @@
 <p class="form-help">Name and link to developer's website<br />using Markdown, something like [Molecular Jig Games](http://www.molecularjig.com/)</p>
 
 <%= f.label :developer_type_list, "Developer Type" %>
-<%= select :game, :developer_type_list, GAME_DEVELOPER_TYPES, { selected: f.object.developer_types.map(&:name) } %>
-<p class="form-help">The type of developer that made this game. For example, a game made by an experienced developer is by a "professional developer", while one made by someone whi's primarily a student or teacher is an "academic developer".</p>
+<%= select :game, :developer_type_list, GAME_DEVELOPER_TYPES, { selected: f.object.developer_types.map(&:name) }, { multiple: true } %>
+<p class="form-help">The type of developer that made this game. For example, a game made by an experienced developer is by a "professional developer", while one made by someone who's primarily a student or teacher is an "academic developer". Games can be filtered by this.</p>
 
 <%= f.label :subject_list, "Deals with" %>
 <%= select :game, :subject_list, GAME_SUBJECTS, { selected: f.object.subjects.map(&:name) }, { multiple: true } %>
-<p class="form-help">The general subjects or topics this game deals with. Select multiple by holding Ctrl/Command. Games can be sorted by these.</p>
+<p class="form-help">The general subjects or topics this game deals with. Select multiple by holding Ctrl/Command. Games can be filtered by these.</p>
 
 <%= f.label :concepts, "Deeper concepts" %>
 <%= f.text_field :concepts %>
@@ -31,7 +31,7 @@
 
 <%= f.label :platform_list, "Available on" %>
 <%= select :game, :platform_list, GAME_PLATFORMS, { selected: f.object.platforms.map(&:name) }, { multiple: true } %>
-<p class="form-help">The platforms this game has been released for. Select multiple by holding Ctrl/Command. Games can be sorted by these.</p>
+<p class="form-help">The platforms this game has been released for. Select multiple by holding Ctrl/Command. Games can be filtered by these.</p>
 
 <%= f.label :cost_list, "Cost" %>
 <%= f.text_field :cost_list %>
@@ -39,7 +39,7 @@
 
 <%= f.label :intended_for_list, "Intended for (age groups)" %>
 <%= select :game, :intended_for_list, GAME_INTENDED_FORS, { selected: f.object.intended_fors.map(&:name) }, { multiple: true } %>
-<p class="form-help">The age group(s) this game was <b>intended</b> (by the developer) to be played by. Select multiple by holding Ctrl/Command. Games can be sorted by these.</p>
+<p class="form-help">The age group(s) this game was <b>intended</b> (by the developer) to be played by. Select multiple by holding Ctrl/Command. Games can be filtered by these.</p>
 
 <% if admin? %>
 <%= f.label :intended_audience, "Intended audience [OLD]" %>
