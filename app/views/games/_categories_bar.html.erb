@@ -13,7 +13,7 @@
 
 <% categories_array.each do |s, f| %>
 <div id="<%=s%>_dropdown">
-<%= select :game, s, Game.enabled.tag_counts_on(s.pluralize).order('name ASC').collect {|c| [ capitalize_first(c.name), c.name ] }, {include_blank: "All #{f}"} %>
+<%= select :game, s, "GAME_#{s.pluralize.upcase}".constantize, {include_blank: "All #{f}"} %>
 </div>
 <% end %>
 
