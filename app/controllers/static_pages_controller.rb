@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @games = Game.enabled.order('updated_at DESC')
+    get_page_of_games
   end
 
   def about
