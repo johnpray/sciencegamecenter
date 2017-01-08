@@ -1,24 +1,22 @@
 <li class="row">
 	<div class="game span10">
 		<div class="row">
-			<div class="span3">
+			<div class="span5">
 				<%= link_to image_tag(game.boxart.url(:medium), class: :boxart, alt: ''), game %>
 				<br />
 				<% if signed_in? && current_user.is_admin? %>
 				<%= render 'games/admin_tools', game: game %>
 				<% end %>
 			</div>
-			<div class="span7">
-			  <p class="title"><i><%= link_to game.title, game %></i> <small><%= link_to "View this game's profile", game, class: 'btn', style: 'margin: 5px; margin-top: 0; font-weight: normal;' %></small></p>
+			<div class="span5">
+			  <p class="title" style="line-height: 1.3;"><i><%= link_to game.title, game %></i></p>
 			  	<% if admin? && game.disabled? %>
 						<div class="alert">
 							<strong>Disabled.</strong> This game is hidden from public view. Edit it to enable.
 						</div>
 					<% end %>
-			  <%= render 'games/game_info', game: game, hide_title: true %>
-			  <%= tracked_link_to "Play on this game's site!", game.website_url, class: "btn btn-success", style: "margin: 5px; font-weight: bold;", target: "_blank" %>
-				<%= link_to "Read #{game.approved_reviews_count > 0 ? pluralize(game.approved_reviews_count, 'Review') : "Reviews"}", "#{game_path(game)}#scorecards", class: "btn btn-info", style: "margin: 5px; font-weight: bold;" %>
-				<%= link_to 'Review this game!', "#{game_path(game)}#new_player_review", class: "btn btn-primary", style: "margin: 5px; font-weight: bold;" %>
+			  <%= render 'games/game_info_condensed', game: game, hide_title: true %>
+				<small><%= link_to "View this game's profile", game, class: 'btn', style: 'margin: 5px; margin-left: 0; font-weight: normal;' %></small>
 			</div>
 		</div>
 	</div>

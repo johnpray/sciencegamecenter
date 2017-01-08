@@ -1,0 +1,38 @@
+<table class="table table-condensed game_info">
+
+	<tbody>
+		<tr>
+			<td class="info-key">
+				<b>Deals with</b>
+			</td>
+			<td class="info-value">
+				<%= subject_links_list(game) %>
+			</td>
+		</tr>
+		<tr>
+			<td class="info-key">
+				<b>Intended for</b>
+			</td>
+			<td class="info-value">
+				<%= !intended_for_links_list(game).blank? ? intended_for_links_list(game) : game.intended_audience %>
+			</td>
+		</tr>
+		<tr>
+		<tr>
+			<td class="info-key">
+				<b>Available on</b>
+			</td>
+			<td class="info-value">
+				<%= platform_links_list(game) %>
+			</td>
+		</tr>
+		<tr>
+			<td class="info-key">
+				<b>Cost</b>
+			</td>
+			<td class="info-value">
+				<%= cost_links_list(game) %>
+			</td>
+		</tr>
+	</tbody>
+</table>
