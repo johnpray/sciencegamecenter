@@ -14,7 +14,7 @@
 
 	<% if game.authoritative_averages_total >= 0 %>
 	<th class="score_total_cell">
-		<span class="score_total"><%= game.authoritative_averages_total.round(1) %></span><small> / 15</small></span>
+		<span class="score_total"><%= game.authoritative_averages_total.round(0) %></span><small> / 15</small></span>
 	</th>
 	<% else %>
 	<th>&mdash;</th>
@@ -32,7 +32,7 @@
 		</div>
 	</td>
 	<td width="30px">
-		<b><%= game.authoritative_fun_average.round(1) %></b> <small> / 5</small>
+		<b><%= game.authoritative_fun_average.round(0) %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -43,7 +43,7 @@
 		</div>
 	</td>
 	<td>
-		<b><%= game.authoritative_effectiveness_average.round(1) %></b> <small> / 5</small>
+		<b><%= game.authoritative_effectiveness_average.round(0) %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -54,7 +54,7 @@
 		</div>
 	</td>
 	<td>
-		<b><%= game.authoritative_accuracy_average.round(1) %></b> <small> / 5</small>
+		<b><%= game.authoritative_accuracy_average.round(0) %></b> <small> / 5</small>
 	</td>
 </tr>
 </tbody>
@@ -80,7 +80,7 @@
 
 	<% if game.expert_averages_total >= 0 %>
 	<th class="score_total_cell">
-		<span class="score_total"><%= game.expert_averages_total.round(1) %></span><small> / 15</small></span>
+		<span class="score_total"><%= game.expert_averages_total.round(0) %></span><small> / 15</small></span>
 	</th>
 	<% else %>
 	<th>&mdash;</th>
@@ -88,7 +88,7 @@
 
 </tr>
 </thead>
-<% if game.expert_averages_total.round(1) >= 0 %>
+<% if game.expert_averages_total.round(0) >= 0 %>
 <tbody>
 <tr>
 	<th width="30px"><%= t('review.fun') %></th>
@@ -98,7 +98,7 @@
 		</div>
 	</td>
 	<td width="30px">
-		<b><%= game.expert_fun_average.round(1) %></b> <small> / 5</small>
+		<b><%= game.expert_fun_average.round(0) %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -109,7 +109,7 @@
 		</div>
 	</td>
 	<td>
-		<b><%= game.expert_effectiveness_average.round(1) %></b> <small> / 5</small>
+		<b><%= game.expert_effectiveness_average.round(0) %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -120,7 +120,7 @@
 		</div>
 	</td>
 	<td>
-		<b><%= game.expert_accuracy_average.round(1) %></b> <small> / 5</small>
+		<b><%= game.expert_accuracy_average.round(0) %></b> <small> / 5</small>
 	</td>
 </tr>
 </tbody>
@@ -147,7 +147,7 @@
 
 	<% if game.player_averages_total >= 0 %>
 	<th class="score_total_cell">
-		<span class="score_total"><%= game.player_averages_total.round(1) %></span><small> / 15</small></span>
+		<span class="score_total"><%= game.player_averages_total.round(0) %></span><small> / 15</small></span>
 	</th>
 	<% else %>
 	<th>&mdash;</th>
@@ -165,7 +165,7 @@
 		</div>
 	</td>
 	<td width="30px">
-		<b><%= game.player_fun_average.round(1) %></b> <small> / 5</small>
+		<b><%= game.player_fun_average.round(0) %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -176,7 +176,7 @@
 		</div>
 	</td>
 	<td>
-		<b><%= game.player_effectiveness_average.round(1) %></b> <small> / 5</small>
+		<b><%= game.player_effectiveness_average.round(0) %></b> <small> / 5</small>
 	</td>
 </tr>
 <tr>
@@ -187,7 +187,7 @@
 		</div>
 	</td>
 	<td>
-		<b><%= game.player_accuracy_average.round(1) %></b> <small> / 5</small>
+		<b><%= game.player_accuracy_average.round(0) %></b> <small> / 5</small>
 	</td>
 </tr>
 </tbody>
