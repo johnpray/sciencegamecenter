@@ -1,41 +1,43 @@
+<% params_without_page = params.except(:page) %>
+
 		<ul class="breadcrumb" style="font-size: 18px;">
 			<li>
 				<%= link_to "All games", games_path %>
 			</li>
-			<% if params[:title].present? %>
+			<% if params_without_page[:title].present? %>
 			<li>
-				<span class="divider">&raquo;</span>with a title containing &ldquo;<strong><%= params[:title] %>&rdquo;</strong>
-				<%= link_to "×", params.merge(title: nil) %>
+				<span class="divider">&raquo;</span>with a title containing &ldquo;<strong><%= params_without_page[:title] %>&rdquo;</strong>
+				<%= link_to "×", params_without_page.merge(title: nil) %>
 			</li>
 			<% end %>
-			<% if params[:subject].present? %>
+			<% if params_without_page[:subject].present? %>
 			<li>
-				<span class="divider">&raquo;</span>dealing with <strong><%= params[:subject] %></strong>
-				<%= link_to "×", params.merge(subject: nil) %>
+				<span class="divider">&raquo;</span>dealing with <strong><%= params_without_page[:subject] %></strong>
+				<%= link_to "×", params_without_page.merge(subject: nil) %>
 			</li>
 			<% end %>
-			<% if params[:platform].present? %>
+			<% if params_without_page[:platform].present? %>
 			<li>
-				<span class="divider">&raquo;</span>available on <strong><%= params[:platform] %></strong>
-				<%= link_to "×", params.merge(platform: nil) %>
+				<span class="divider">&raquo;</span>available on <strong><%= params_without_page[:platform] %></strong>
+				<%= link_to "×", params_without_page.merge(platform: nil) %>
 			</li>
 			<% end %>
-			<% if params[:cost].present? %>
+			<% if params_without_page[:cost].present? %>
 			<li>
-				<span class="divider">&raquo;</span>cost is <strong><%= params[:cost] %></strong>
-				<%= link_to "×", params.merge(cost: nil) %>
+				<span class="divider">&raquo;</span>cost is <strong><%= params_without_page[:cost] %></strong>
+				<%= link_to "×", params_without_page.merge(cost: nil) %>
 			</li>
 			<% end %>
-			<% if params[:intended_for].present? %>
+			<% if params_without_page[:intended_for].present? %>
 			<li>
-				<span class="divider">&raquo;</span>intended for <strong><%= params[:intended_for] %></strong>
-				<%= link_to "×", params.merge(intended_for: nil) %>
+				<span class="divider">&raquo;</span>intended for <strong><%= params_without_page[:intended_for] %></strong>
+				<%= link_to "×", params_without_page.merge(intended_for: nil) %>
 			</li>
 			<% end %>
-			<% if params[:developer_type].present? %>
+			<% if params_without_page[:developer_type].present? %>
 			<li>
-				<span class="divider">&raquo;</span>developed by a <strong><%= params[:developer_type] %></strong>
-				<%= link_to "×", params.merge(developer_type: nil) %>
+				<span class="divider">&raquo;</span>developed by a <strong><%= params_without_page[:developer_type] %></strong>
+				<%= link_to "×", params_without_page.merge(developer_type: nil) %>
 			</li>
 			<% end %>
 		</ul>

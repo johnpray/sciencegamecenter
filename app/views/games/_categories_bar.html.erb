@@ -25,22 +25,22 @@
 
 <script>
 $(document).ready(function() {
-<% (order_array+categories_array).each do |s, f| %>
-
-  <% if params[s] %>
-  	$('#game_<%=s%>').val("<%= params[s] %>");
+  <% params_without_page = params.except(:page) %>
+  <% (order_array+categories_array).each do |s, f| %>
+    <% if params_without_page[s] %>
+    	$('#game_<%=s%>').val("<%= params_without_page[s] %>");
+    <% end %>
+    $('#game_<%=s%>').bind('change', function(event) {
+      if (event.target.value) {
+      	<% if params_without_page.count > 2 %>
+    			window.location.href = "<%= raw (!params_without_page[s].blank? && params_without_page.count == 3) ? url_for(params_without_page.merge(s => nil))+"?#{s}=" : url_for(params_without_page.merge(s => nil))+"&#{s}=" %>"+event.target.value;
+    		<% else %>	
+    			window.location.href = "<%= raw url_for()+"?#{s}=" %>"+event.target.value;
+    		<% end %>
+      } else {
+      	window.location.href = "<%= raw url_for(params_without_page.merge(s => nil)) %>";
+      }
+    });
   <% end %>
-  $('#game_<%=s%>').bind('change', function(event) {
-    if (event.target.value) {
-    	<% if params.count > 2 %>
-			window.location.href = "<%= raw (!params[s].blank? && params.count == 3) ? url_for(params.merge(s => nil))+"?#{s}=" : url_for(params.merge(s => nil))+"&#{s}=" %>"+event.target.value;
-		<% else %>	
-			window.location.href = "<%= raw url_for()+"?#{s}=" %>"+event.target.value;
-		<% end %>
-    } else {
-    	window.location.href = "<%= raw url_for(params.merge(s => nil)) %>";
-    }
-  });
-<% end %>
 });
 </script>
