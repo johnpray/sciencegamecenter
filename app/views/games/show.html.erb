@@ -11,7 +11,7 @@
 -->
 <div class="row">
 	<div class="span4 game-info">
-		<%= tracked_link_to image_tag(@game.boxart.url(:medium), class: :boxart, alt: "Visit this game's website"), @game.website_url, title: "Visit this game's website", target: '_blank' %>
+		<%= tracked_link_to image_tag(@game.boxart.url(:medium), class: :boxart, alt: @game.title), @game.website_url, title: "Visit this game's website", target: '_blank' %>
 		<br />
 		<%= render 'games/game_info', game: @game %>
 		<center><%= tracked_link_to 'Play this game!<br /><small>on its own website</small>'.html_safe, @game.website_url, class: "btn btn-large btn-success", style: "margin: 5px", target: "_blank" %></center>

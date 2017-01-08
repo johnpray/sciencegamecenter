@@ -2,7 +2,7 @@
 	<div class="game span10">
 		<div class="row">
 			<div class="span3">
-				<%= link_to image_tag(game.boxart.url(:medium), class: :boxart), game %>
+				<%= link_to image_tag(game.boxart.url(:medium), class: :boxart, alt: ''), game %>
 				<br />
 				<% if signed_in? && current_user.is_admin? %>
 				<%= render 'games/admin_tools', game: game %>
