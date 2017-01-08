@@ -57,54 +57,42 @@
 
 <%= render 'games/scorecard', game: @game %>
 
-<div id="authoritative_reviews">
-<hr />
-<h2 class="left">Official SGC Reviews</h2>
-<% @authoritative_reviews.each do |review| %>
-	<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && admin? %>
-	<%= render 'player_reviews/player_review', review: review %>
-	<hr />
-	<% end %>
+<% if @authoritative_reviews.present? %>
+	<div id="authoritative_reviews">
+		<hr />
+		<h2 class="left">Official SGC Reviews</h2>
+		<% @authoritative_reviews.each do |review| %>
+			<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && admin? %>
+				<%= render 'player_reviews/player_review', review: review %>
+				<hr />
+			<% end %>
+		<% end %>
+	</div>
 <% end %>
 
-<% if @authoritative_reviews.count <= 0 %>
-	<p>None yet.</p>
-	<hr />
+<% if @expert_reviews.present? %>
+	<div id="expert_reviews">
+		<h2 class="left">Expert Reviews</h2>
+		<% @expert_reviews.each do |review| %>
+			<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && admin? %>
+				<%= render 'player_reviews/player_review', review: review %>
+				<hr />
+			<% end %>
+		<% end %>
+	</div>
 <% end %>
 
-</div>
-
-<div id="expert_reviews">
-<h2 class="left">Expert Reviews</h2>
-<% @expert_reviews.each do |review| %>
-	<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && admin? %>
-	<%= render 'player_reviews/player_review', review: review %>
-	<hr />
-	<% end %>
+<% if @player_reviews.present? %>
+	<div id="player_reviews">
+		<h2 class="left">Player Reviews</h2>
+		<% @player_reviews.each do |review| %>
+			<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && admin? %>
+				<%= render 'player_reviews/player_review', review: review %>
+				<hr />
+			<% end %>
+		<% end %>
+	</div>
 <% end %>
-
-<% if @expert_reviews.count <= 0 %>
-	<p>None yet.</p>
-	<hr />
-<% end %>
-
-</div>
-
-<div id="player_reviews">
-<h2 class="left">Player Reviews</h2>
-<% @player_reviews.each do |review| %>
-	<% if review.approved? || (review.pending? && signed_in? && current_user?(review.user)) || signed_in? && admin? %>
-	<%= render 'player_reviews/player_review', review: review %>
-	<hr />
-	<% end %>
-<% end %>
-
-<% if @player_reviews.count <= 0 %>
-	<p>None yet. Leave your review below!</p>
-	<hr />
-<% end %>
-
-</div>
 
 <h3>Leave a review</h3>
 <% if signed_in? && @game.player_reviews.where(user_id: @current_user.id).count < 1 %>
