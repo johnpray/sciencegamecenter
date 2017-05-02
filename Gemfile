@@ -21,7 +21,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'unicorn', '~> 4.8.3' # faster, multi-threaded server
 gem 'friendly_id', '~> 4.0.1' # friendly urls
 gem 'paper_trail', '~> 2.6.3' # track changes and allow undo
-gem 'omniauth-facebook', '~> 1.5.1' # allow registration and login via Facebook
+gem 'omniauth-facebook' # allow registration and login via Facebook
 gem 'postmark-rails', '~> 0.12.0'
 
 gem 'rest-client', '~> 1.8.0'
@@ -43,4 +43,3 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.2.3'
 end
-
