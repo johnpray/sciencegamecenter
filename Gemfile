@@ -26,7 +26,7 @@ gem 'postmark-rails', '~> 0.12.0'
 
 gem 'rest-client', '~> 1.8.0'
 
-gem 'nokogiri', '~> 1.6.2'
+gem 'nokogiri', '~> 1.8.3'
 
 gem 'pg', '~> 0.18.0'
 
