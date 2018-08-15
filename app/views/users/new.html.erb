@@ -44,12 +44,12 @@
         <p class="form-help">If you're under thirteen, please provide your parent or guardian's email address (different from your own). They'll just have to click a link to confirm your account.</p>
       </div>
 
-      <%= recaptcha_tags ssl: Rails.env.production? %>
+      <%= recaptcha_tags %>
       <p class="form-help">Finally, help us fight spam by demonstrating that you're not a robot!</p>
 
       <p class="form-help" id="submit-help">By signing up, you agree to our <%= link_to "terms and conditions", privacy_path, target: '_blank' %>.</p>
       <%= f.submit "Create my account", :class => "btn btn-large btn-primary" %>
-      
+
     <% end %>
   </div>
 </div>

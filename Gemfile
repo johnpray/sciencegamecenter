@@ -17,7 +17,7 @@ gem 'paperclip', '3.0.3' # uploads
 gem 'cocaine', '~> 0.3.0' # paperclip dependency
 gem 'aws-sdk', '~> 1.3.4' # storage
 gem 'acts-as-taggable-on', '~> 2.3.3' # tags (used for Game Category Types)
-gem 'recaptcha', require: 'recaptcha/rails'
+gem 'recaptcha'
 gem 'unicorn', '~> 4.8.3' # faster, multi-threaded server
 gem 'friendly_id', '~> 4.0.1' # friendly urls
 gem 'paper_trail', '~> 2.6.3' # track changes and allow undo
