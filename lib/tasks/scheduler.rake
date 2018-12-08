@@ -10,3 +10,8 @@ task :delete_disabled_underage_users => :environment do
   end
   puts "Finished delete_disabled_underage_users"
 end
+
+desc "This task is also called by the Heroku scheduler add-on"
+task :delete_old_paper_trail_versions => :environment do
+  versions = Version.where("created_at < ?", 1.day.ago).delete_all
+end
