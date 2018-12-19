@@ -19,7 +19,7 @@ class Screenshot < ActiveRecord::Base
 									convert_options: { banner: "-blur 0x8" },
 									storage: :s3,
 									s3_credentials: S3_CREDENTIALS,
-									s3_protocol: :http,
+									s3_protocol: :https,
 									default_url: 'no_box.png'
 
   validates_attachment :image, content_type: {
