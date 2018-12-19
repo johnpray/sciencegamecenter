@@ -1,12 +1,11 @@
 class GamesController < ApplicationController
 
-  #force_ssl                       except: [:index, :show]
   before_filter :signed_in_user,  except: [:index, :show]
   before_filter :admin_user,      except: [:index, :show, :new, :create]
 
-  def index    
+  def index
     get_page_of_games
-    
+
     respond_to do |format|
       format.html
       format.csv { send_data @games.to_csv }

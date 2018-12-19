@@ -38,7 +38,7 @@ module UsersHelper
     else
       facebook_pic_url_for(user, options)
     end
-    url.gsub!(/\A\/\//, "http://") if options[:with_protocol]
+    url.gsub!(/\A\/\//, "https://") if options[:with_protocol]
     if options[:resolve_redirects]
       url = Net::HTTP.get_response(URI(url))['location']
     end

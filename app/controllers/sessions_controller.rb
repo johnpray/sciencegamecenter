@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
 
-	#force_ssl
-
 	def new
     location_stored? || store_previous_location
   end
