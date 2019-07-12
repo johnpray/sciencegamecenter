@@ -6,7 +6,6 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(
       to: "#{user.name} <#{user.email}>",
-      bcc: (ENV['ADMINS_EMAIL'] if Rails.env.production?),
       subject: "Your Science Game Center account has been created!"
     )
   end
@@ -15,7 +14,6 @@ class UserMailer < ActionMailer::Base
   	@user = user
   	mail(
       to: user.parent_email,
-      bcc: (ENV['ADMINS_EMAIL'] if Rails.env.production?),
       subject: "Please confirm your child's #{ user.disabled ? 'account' : 'forum access' } at the Science Game Center"
     )
   end
@@ -23,9 +21,8 @@ class UserMailer < ActionMailer::Base
   def inform_of_activation(user)
   	@user = user
   	mail(
-      to: "#{user.name} <#{user.email}>", 
+      to: "#{user.name} <#{user.email}>",
       cc: user.parent_email,
-      bcc: (ENV['ADMINS_EMAIL'] if Rails.env.production?),
       subject: "Your Science Game Center account has been activated!"
     )
   end
@@ -33,7 +30,7 @@ class UserMailer < ActionMailer::Base
   def password_reset(user)
   	@user = user
   	mail(
-      to: "#{user.name} <#{user.email}>", 
+      to: "#{user.name} <#{user.email}>",
       subject: "Password reset instructions for your Science Game Center account"
     )
   end
@@ -44,7 +41,6 @@ class UserMailer < ActionMailer::Base
     mail(
       to: "#{user.name} <#{old_email}>",
       cc: "#{user.name} <#{user.email}>",
-      bcc: (ENV['ADMINS_EMAIL'] if Rails.env.production?),
       subject: "Your email address at the Science Game Center has been changed"
     )
   end
@@ -52,7 +48,7 @@ class UserMailer < ActionMailer::Base
   def inform_of_password_change(user)
     @user = user
     mail(
-      to:  "#{user.name} <#{user.email}>", 
+      to:  "#{user.name} <#{user.email}>",
       subject: "Your password at the Science Game Center has been changed"
     )
   end
