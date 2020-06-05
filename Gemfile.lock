@@ -126,12 +126,6 @@ GEM
       mime-types
     pg (0.18.0)
     polyglot (0.3.5)
-    postmark (1.7.1)
-      json
-      rake
-    postmark-rails (0.12.0)
-      actionmailer (>= 3.0.0)
-      postmark (~> 1.7.0)
     power_assert (0.2.6)
     rack (1.4.7)
     rack-cache (1.8.0)
@@ -244,7 +238,6 @@ DEPENDENCIES
   paper_trail (~> 2.6.3)
   paperclip (= 3.0.3)
   pg (~> 0.18.0)
-  postmark-rails (~> 0.12.0)
   rails (~> 3.2.22)
   recaptcha
   redcarpet (~> 3.2.3)
