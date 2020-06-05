@@ -5,11 +5,19 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if env['omniauth.auth'].present? # Logging in with Facebook
-      user = User.from_omniauth(env['omniauth.auth'], @current_user)
+    if (auth = env['omniauth.auth']).present? # Logging in with Facebook
+      # raise env['omniauth.auth'].to_yaml # uncomment this to see facebook's raw response
+
+      unless auth.info.email.present? && auth.extra.raw_info.birthday.present?
+        flash[:error] = "You must grant permission for
+          your email address and birth date in order to register using Facebook."
+        redirect_to new_session_path
+        return
+      end
+
+      user = User.from_omniauth(auth, @current_user)
       authenticated = true if user
       omniauth = true
-      #raise env['omniauth.auth'].to_yaml # uncomment this to see facebook's raw response
     else # Logging in with email and password
       user = User.find_by_email(params[:session][:email])
       authenticated = user && user.authenticate(params[:session][:password])
@@ -64,7 +72,7 @@ class SessionsController < ApplicationController
     if e.is_a? RestClient::ResourceNotFound
       # User doesn't exist on Discourse
     else
-      raise unless Rails.env.production?
+      # raise unless Rails.env.production?
       Rails.logger.error "Couldn't log out Discourse account for SGC user #{current_user.id}:\n  #{e.class}: #{e.message}"
     end
   end
