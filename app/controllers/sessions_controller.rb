@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
       unless auth.info.email.present? && auth.extra.raw_info.birthday.present?
         flash[:error] = "You must grant permission for
-          your email address and birth date in order to register using Facebook."
+          your email address and birth date in order to log in using Facebook."
         redirect_to new_session_path
         return
       end
