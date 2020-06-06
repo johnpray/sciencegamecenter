@@ -3,7 +3,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-  	if user = User.find_by_email(params[:email])
+  	if params[:email].present? && (user = User.where("lower(email) = ?", params[:email].downcase).first)
   		user.send_password_reset
   		flash[:success] = "Check your email for instructions on resetting your password."
   		redirect_to root_path

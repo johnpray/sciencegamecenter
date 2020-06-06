@@ -19,7 +19,8 @@ class SessionsController < ApplicationController
       authenticated = true if user
       omniauth = true
     else # Logging in with email and password
-      user = User.find_by_email(params[:session][:email])
+      email = params[:session][:email]
+      user = !!email.present? && User.where("lower(email) = ?", email.downcase).first
       authenticated = user && user.authenticate(params[:session][:password])
       remember_me = params[:remember_me]
     end
