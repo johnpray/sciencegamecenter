@@ -1,4 +1,4 @@
-<% if @game.youtube_video_url %>
+<% if @game.youtube_video_url.present? %>
   <hr />
   <div class="video_wrapper">
     <h2>Video of <i><%= @game.title %></i></h2>
@@ -6,5 +6,5 @@
     <div class="embed-container">
       <%= youtube_embed_iframe(@game.youtube_video_url) %>
     </div>
-  </div> 
+  </div>
 <% end %>
