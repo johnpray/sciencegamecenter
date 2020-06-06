@@ -21,7 +21,6 @@ gem 'recaptcha'
 gem 'unicorn', '~> 4.8.3' # faster, multi-threaded server
 gem 'friendly_id', '~> 4.0.1' # friendly urls
 gem 'paper_trail', '~> 2.6.3' # track changes and allow undo
-gem 'omniauth-facebook' # allow registration and login via Facebook
 
 gem 'rest-client', '~> 1.8.0'
 

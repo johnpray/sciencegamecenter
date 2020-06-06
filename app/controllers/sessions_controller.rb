@@ -5,28 +5,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if (auth = env['omniauth.auth']).present? # Logging in with Facebook
-      # raise env['omniauth.auth'].to_yaml # uncomment this to see facebook's raw response
+    email = params[:session][:email]
+    user = !!email.present? && User.where("lower(email) = ?", email.downcase).first
+    authenticated = user && user.authenticate(params[:session][:password]) rescue nil
+    remember_me = params[:remember_me]
 
-      unless auth.info.email.present? && auth.extra.raw_info.birthday.present?
-        flash[:error] = "You must grant permission for
-          your email address and birth date in order to log in using Facebook."
-        redirect_to new_session_path
-        return
-      end
-
-      user = User.from_omniauth(auth, @current_user)
-      authenticated = true if user
-      omniauth = true
-    else # Logging in with email and password
-      email = params[:session][:email]
-      user = !!email.present? && User.where("lower(email) = ?", email.downcase).first
-      authenticated = user && user.authenticate(params[:session][:password])
-      remember_me = params[:remember_me]
-    end
     if authenticated
       if !user.disabled?
-        sign_in user, remember_me, omniauth
+        sign_in user, remember_me
         flash[:success] = "You've logged in as #{view_context.link_to user.name, user}.".html_safe
         redirect_back_or root_path
       else
@@ -42,14 +28,9 @@ class SessionsController < ApplicationController
         render 'new'
       end
     else
-      if omniauth
-        flash[:error] = "There was a problem logging you in."
-        redirect_to root_path
-      else
-        flash.now[:error] = "That email/password combination isn't quite right.
-        #{view_context.link_to "Forget your password?", new_password_reset_path}".html_safe
-        render 'new'
-      end
+      flash.now[:error] = "That email/password combination isn't quite right.
+      #{view_context.link_to "Forget your password?", new_password_reset_path}".html_safe
+      render 'new'
     end
   end
 

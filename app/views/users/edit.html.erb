@@ -1,4 +1,4 @@
-<% provide(:title, "Edit user") %> 
+<% provide(:title, "Edit user") %>
 <h1>Update your profile</h1>
 
 <div class="row">
@@ -16,8 +16,6 @@
 
       <% if @user == @current_user %>
 
-        <% if @user.has_password? %>
-
         <%= label_tag :current_password, "Current password" %>
         <%= password_field :current, :password %>
         <p class="form-help">Please enter your current password. It's required to keep your account safe.</p>
@@ -25,14 +23,6 @@
         <%= f.label :password, "New password (if desired)" %>
         <%= f.password_field :password %>
         <p class="form-help">If you'd like to change your password, enter the new one here. Else, leave it blank. It must be at least 6 characters long.</p>
-
-        <% else %>
-
-        <%= f.label :password, "Password (if desired)" %>
-        <%= f.password_field :password %>
-        <p class="form-help">If you'd like to set a password so you can log in with just your email address, enter one here. Else, leave it blank. It must be at least 6 characters long.</p>
-
-        <% end %>
 
       <% end %>
 
@@ -71,14 +61,6 @@
       <%= f.text_field :description %>
       <p class="form-help">A short description of yourself to appear below your name. What are you a teacher of and for how long? Or what kind of games are you a player of?</p>
 
-      <% if @user.is_facebook? %>
-        <%= facebook_pic_for @user %>
-        <p class="form-help">Since your SGC account is connected to your Facebook account, the SGC shows your Facebook profile picture unless you check the box below.</p>
-
-        <%= f.label :prefers_gravatar, "#{f.check_box :prefers_gravatar} Show my Gravatar instead".html_safe %>
-        <p class="form-help">Would you prefer us to use your Gravatar (below) instead of your Facebook profile picture (above)?</p>
-      <% end %>
-
       <p class="form-help" id="submit-help"></p>
       <%= f.submit "Save changes", :class => "btn btn-large btn-primary" %>
     <% end %>
@@ -88,18 +70,6 @@
     <a href="http://gravatar.com/emails" target="_blank"><%= gravatar_for @user %>
     Change your Gravatar</a>
     <p class="form-help">We use external service <%= link_to "Gravatar", 'http://gravatar.com' %> to provide your picture based on your email address. If you'd like to change it, do so at the link above. You'll need to sign up for a free Gravatar account and associate it with the email address you're using here, if you don't already have one.</p>
-
-    <% if @user.is_facebook? %>
-      <hr />
-      <a href='<%= "http://www.facebook.com/#{@user.uid}" %>' target="_blank"><%= facebook_pic_for @user %>
-      View my Facebook profile</a>
-      <p class="form-help">This Science Game Center account is connected to the Facebook profile linked here.</p>
-      <p><%= link_to 'Disconnect this account from my Facebook profile', disassociate_omniauth_user_path(@user), confirm: "Are you sure you want to disconnect your Facebook profile from this account?" %></a></p>
-    <% elsif @user == @current_user %>
-      <hr />
-      <%= link_to 'Connect to my Facebook profile', '/auth/facebook', class: 'btn btn-primary btn-facebook' %>
-      <p class="form-help">Click the button above to be able to log in to this account with your Facebook profile.</p>
-    <% end %>
 
   </div>
 </div>

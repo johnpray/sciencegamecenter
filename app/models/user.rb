@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
 									:is_authoritative, :is_game_developer, :description,
 									:dummy_password, :prefers_gravatar, :forum_approved
 	before_save :create_remember_token
-	before_validation :set_dummy_password_if_needed
 
 	default_scope order: 'name ASC'
 
@@ -42,7 +41,7 @@ class User < ActiveRecord::Base
 										uniqueness: { case_sensitive: false }
 
 	has_secure_password
-	validates :password,	length: { minimum: 6 }, if: :validate_password?
+	validates :password,	length: { minimum: 6 }
 
 	validates :birth_date, presence: true
 	validates :parent_email, format: { with: VALID_EMAIL_REGEX },
@@ -56,26 +55,6 @@ class User < ActiveRecord::Base
   def needs_forum_approval?
     is_under_thirteen? && !forum_approved
   end
-
-	def is_oauth?
-		self.oauth_token.present?
-	end
-
-	def is_not_oauth?
-		!is_oauth?
-	end
-
-	def is_facebook?
-		self.uid.present? && self.provider == 'facebook'
-	end
-
-	def has_password?
-		self.password_digest.present? && !self.dummy_password?
-	end
-
-	def validate_password?
-		has_password? || new_record?
-	end
 
 	def is_expert?
 		is_teacher? || is_scientist? || is_game_developer?
@@ -109,52 +88,12 @@ class User < ActiveRecord::Base
   	UserMailer.password_reset(self).deliver
   end
 
-  def self.from_omniauth(auth, user = nil)
-  	existing_password_user = user || where(email: auth.info.email).first
-  	if existing_password_user && (existing_password_user.uid.blank? || existing_password_user.provider != auth.provider)
-  		unless where(auth.slice(:provider, :uid)).count > 0
-	  		existing_password_user.provider = auth.provider
-	  		existing_password_user.original_provider = auth.provider if existing_password_user.original_provider.blank?
-	  		existing_password_user.uid = auth.uid
-	  		existing_password_user.oauth_token = auth.credentials.token
-			  existing_password_user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-			  existing_password_user.save!(validate: false)
-			  existing_password_user
-			end
-  	else
-	  	where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-		  	user.provider = auth.provider
-		  	user.original_provider = auth.provider if user.original_provider.blank?
-		    user.uid = auth.uid
-		    user.oauth_token = auth.credentials.token
-		    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-		    user.name ||= auth.info.name
-		    user.email ||= auth.info.email
-		    user.birth_date ||= DateTime.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y')
-		    if user.password_digest.blank?
-			    user.password_digest = SecureRandom.urlsafe_base64
-			    user.dummy_password = true
-			  end
-		  	user.save!(validate: false)
-		  end
-		end
-  end
-
-  def remove_omniauth!
-  	self.provider = nil
-    self.uid = nil
-    self.oauth_token = nil
-    self.oauth_expires_at = nil
-    self.save(validate: false)
-  end
-
   def self.chart_data(start = 3.weeks.ago) #TODO: Make this not run a query for each date
   	(start.to_date..Date.today).map do |date|
   		if (date == start.to_date) || (date == Date.today) || (User.where(["date(created_at) = ?", date]).count > 0)
   		{
   			created_at: date,
   			count: User.where(["created_at <= ?", date]).count,
-  			facebook_count: User.where(original_provider: 'facebook').where(["date(created_at) <= ?", date]).count
   		}
   		else
   		{
@@ -203,14 +142,8 @@ class User < ActiveRecord::Base
 		end
 
 		def parent_email_differs_from_email
-    if email == parent_email
-      errors.add(:parent_email, "must be different from your own.") 
+      if email == parent_email
+        errors.add(:parent_email, "must be different from your own.")
 	    end
-	  end
-
-	  def set_dummy_password_if_needed
-	  	if self.password.blank? && self.dummy_password
-	  		self.password_digest = SecureRandom.urlsafe_base64
-	  	end
 	  end
 end

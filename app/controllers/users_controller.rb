@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-  before_filter :signed_in_user,        only: [:edit, :update, :disassociate_omniauth]
+  before_filter :signed_in_user,        only: [:edit, :update]
   before_filter :block_signed_in_user,  only: [:new, :create]
-  before_filter :correct_user,          only: [:edit, :update, :disassociate_omniauth]
+  before_filter :correct_user,          only: [:edit, :update]
   before_filter :admin_user,            only: [:index, :destroy]
 
   def index
@@ -19,8 +19,6 @@ class UsersController < ApplicationController
 
   def create
   	@user = User.new(params[:user])
-    @user.provider = 'password'
-    @user.original_provider = @user.provider
     @user.disabled = true if @user.is_under_thirteen?
   	if verify_recaptcha(model: @user) && @user.save
       UserMailer.inform_of_signup(@user).deliver
@@ -46,14 +44,12 @@ class UsersController < ApplicationController
     if params[:user][:password].blank?
       if params[:current].present? && params[:current][:password].present?
         params[:user][:password] = params[:current][:password]
-      elsif @user.is_oauth?
-        @user.dummy_password = true unless current_user.is_admin?
       end
       flash_message = "Profile updated."
     else
       @user.dummy_password = false unless current_user.is_admin?
     end
-    if @user.is_oauth? || current_user.is_admin? || @user.authenticate(params[:current][:password])
+    if current_user.is_admin? || @user.authenticate(params[:current][:password])
       if current_user.is_admin?
         @user.attributes = params[:user]
         result = @user.save(validate: false)
@@ -85,18 +81,6 @@ class UsersController < ApplicationController
       User.find(params[:id]).destroy
       flash[:success] = "User #{user.name} (#{user.email}) has been destroyed now and forever...unless they sign up again."
       redirect_to users_path
-    end
-  end
-
-  # Disassociate any external account
-  def disassociate_omniauth
-    user = User.find(params[:id])
-    if user.remove_omniauth!
-      flash[:success] = "That external account has been disassociated from this Science Game Center account. If you didn't have a password, you may need to reset it using 'Forgot Password' the next time you log in."
-      redirect_to root_path
-    else
-      flash[:error] = "There was a problem dissassociating from that external account. Please contact us if this continues to happen and we can sort things out."
-      redirect_to root_path
     end
   end
 

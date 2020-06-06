@@ -12,7 +12,6 @@ SciencegamereviewsOrg::Application.routes.draw do
     member do
       get 'resend_parent_email'
       get 'confirm_child_account'
-      get 'disassociate_omniauth'
     end
   end
 
@@ -33,9 +32,6 @@ SciencegamereviewsOrg::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/login',   to: 'sessions#new'
   match '/logout',  to: 'sessions#destroy', via: :delete
-
-  match 'auth/:provider/callback', to: 'sessions#create'
-  match 'auth/failure', to: redirect('/')
 
   match '/sso/discourse', to: 'sso#discourse'
 

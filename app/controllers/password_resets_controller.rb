@@ -22,7 +22,7 @@ class PasswordResetsController < ApplicationController
   	if @user.password_reset_sent_at < 2.hours.ago
   		flash[:failure] = "That password reset link has expired. Try again."
   		redirect_to new_password_reset_path
-  	elsif @user.update_attributes(params[:user])
+  	elsif @user.update_attributes(params[:user].merge({ dummy_password: false }))
   		flash[:success] = "New password created successfully. Now use it to log in."
   		redirect_to login_path
 		else

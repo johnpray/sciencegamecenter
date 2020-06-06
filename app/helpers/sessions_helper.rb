@@ -1,10 +1,8 @@
 module SessionsHelper
-	
-	def sign_in(user, remember_me = false, omniauth = false)
+
+	def sign_in(user, remember_me = false)
     if remember_me
       cookies.permanent[:remember_token] = user.remember_token
-    elsif omniauth && user.oauth_expires_at.present?
-      cookies[:remember_token] = {value: user.remember_token, expires: user.oauth_expires_at}
     else
       cookies[:remember_token] = user.remember_token
     end

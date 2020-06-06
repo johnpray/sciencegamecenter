@@ -4,8 +4,8 @@ jQuery ->
 			element: 'users_chart'
 			data: $('#users_chart').data('users')
 			xkey: 'created_at'
-			ykeys: ['count', 'facebook_count']
-			labels: ['Users (Total)', 'Facebook Signup Users']
+			ykeys: ['count']
+			labels: ['Users (Total)']
 
 	if $('#reviews_chart').length
 		Morris.Line
