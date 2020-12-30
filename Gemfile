@@ -24,7 +24,7 @@ gem 'paper_trail', '~> 2.6.3' # track changes and allow undo
 
 gem 'rest-client', '~> 1.8.0'
 
-gem 'nokogiri', '~> 1.8.3'
+gem 'nokogiri', '~> 1.10.10'
 
 gem 'pg', '~> 0.18.0'
 
