@@ -12,7 +12,7 @@ gem 'bootstrap-sass', '2.0.2' # twitter bootstrap framework
 gem 'faker', '~> 1.0.1' # generate test data
 gem 'will_paginate', '~> 3.0.3' # multiple pages for indexes
 gem 'bootstrap-will_paginate', '0.0.7' # use bootstrap styling for paging
-gem 'redcarpet', '~> 3.2.3' # markdown
+gem 'redcarpet', '~> 3.5.1' # markdown
 gem 'paperclip', '3.0.3' # uploads
 gem 'cocaine', '~> 0.3.0' # paperclip dependency
 gem 'aws-sdk', '~> 1.3.4' # storage
