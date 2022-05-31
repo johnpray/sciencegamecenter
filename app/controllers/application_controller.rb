@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_pinned_blog_posts
-    if params[:page].blank? || params[:page] == "1"
+    if (params[:page].blank? || params[:page] == "1") && params[:topic].blank?
       @pinned_blog_posts = BlogPost.where(pinned: true)
 
       # Only admins can see unpublished blog_posts

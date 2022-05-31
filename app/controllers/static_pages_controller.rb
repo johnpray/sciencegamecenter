@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
     get_pinned_blog_posts
-    get_page_of_blog_posts(exclude_pinned: true)
+    get_page_of_blog_posts(exclude_pinned: params[:topic].blank?)
   end
 
   def about

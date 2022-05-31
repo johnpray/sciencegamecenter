@@ -19,6 +19,10 @@
             <%= render 'games/new_game_button' %>
             <hr />
           <% end %>
+          <% if current_page?(blog_posts_path) || current_page?(root_path) %>
+            <%= render 'blog_posts/topics_filter' %>
+            <br />
+          <% end %>
           <%= render 'layouts/side_banners' %>
           <%= render 'layouts/share_buttons' %>
           <%= render 'layouts/subscribe_follow' %>

@@ -1,0 +1,32 @@
+<%# based on games filters with minimal changes %>
+<% categories_array = [["topic", "Topics"]] %>
+
+<% topic_names = BlogPost.topic_counts.select { |t| t.taggings_count > 0 }.map(&:name) %>
+
+<% categories_array.each do |s, f| %>
+<div id="<%=s%>_dropdown">
+<%= select :blog_post, s, topic_names, {include_blank: "All Post #{f}"} %>
+</div>
+<% end %>
+
+<script>
+$(document).ready(function() {
+  <% params_without_page = params.except(:page, :action, :controller) %>
+  <% (categories_array).each do |s, f| %>
+    <% if params_without_page[s] %>
+      $('#blog_post_<%=s%>').val("<%= params_without_page[s] %>");
+    <% end %>
+    $('#blog_post_<%=s%>').bind('change', function(event) {
+      if (event.target.value) {
+        <% if params_without_page.count > 2 %>
+          window.location.href = "<%= raw (!params_without_page[s].blank? && params_without_page.count == 3) ? blog_posts_path(params_without_page.merge(s => nil))+"?#{s}=" : blog_posts_path(params_without_page.merge(s => nil))+"&#{s}=" %>"+event.target.value;
+        <% else %>
+          window.location.href = "<%= raw blog_posts_path()+"?#{s}=" %>"+event.target.value;
+        <% end %>
+      } else {
+        window.location.href = "<%= raw blog_posts_path(params_without_page.merge(s => nil)) %>";
+      }
+    });
+  <% end %>
+});
+</script>
