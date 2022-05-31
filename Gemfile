@@ -3,7 +3,7 @@ ruby '2.7.6'
 
 gem 'dotenv-rails', '~> 0.9.0', groups: [:development, :test] # store environment variables in .env like SECRET_TOKEN=something
 
-gem 'rails', '~> 4.0.13'
+gem 'rails', '~> 4.1.16'
 gem 'protected_attributes'
 
 gem 'jquery-rails', '~> 3.1.3'
