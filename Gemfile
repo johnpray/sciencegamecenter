@@ -20,7 +20,7 @@ gem 'redcarpet', '~> 3.5.1' # markdown
 gem 'paperclip', '3.0.3' # uploads
 gem 'cocaine', '~> 0.3.0' # paperclip dependency
 gem 'aws-sdk', '~> 1.3.4' # storage
-gem 'acts-as-taggable-on', '~> 2.4.1' # tags (used for Game Category Types)
+gem 'acts-as-taggable-on', '~> 4.0.0' # tags (used for Game Category Types)
 gem 'recaptcha'
 gem 'unicorn', '~> 4.8.3' # faster, multi-threaded server
 gem 'friendly_id', '~> 5.4.2' # friendly urls
@@ -36,7 +36,7 @@ gem 'test-unit', '~> 3.0'
 
 group :development, :test do
 	gem 'sqlite3'
-	gem 'rspec-rails', '~> 2.9.0'
+	# gem 'rspec-rails', '~> 2.9.0'
 	gem 'capybara', '1.1.2'
 	gem 'seed_dump'
 end
