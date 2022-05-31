@@ -36,6 +36,7 @@ gem 'test-unit', '~> 3.0'
 
 group :production do
   gem 'rails_12factor' # for Heroku asset and log config
+  gem 'sprockets-redirect' # allow accessing assets at their digest-free URLs
 end
 
 group :development, :test do
