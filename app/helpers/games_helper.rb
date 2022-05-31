@@ -32,7 +32,7 @@ module GamesHelper
 
 	def random_screenshot_image(game = @game)
 		if (c = game.screenshots.count) != 0
-      game.screenshots.find(:first, :offset =>rand(c)).image
+      game.screenshots.offset(rand(c)).first.image
     else
     	game.boxart
 		end

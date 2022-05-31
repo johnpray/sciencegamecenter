@@ -1,7 +1,7 @@
 class Screenshot < ActiveRecord::Base
   attr_accessible :game_id, :image, :description
 
-  default_scope order: 'created_at ASC'
+  default_scope { order(created_at: :asc) }
 
   belongs_to :game
 

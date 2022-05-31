@@ -21,9 +21,9 @@ class UsersController < ApplicationController
   	@user = User.new(params[:user])
     @user.disabled = true if @user.is_under_thirteen?
   	if verify_recaptcha(model: @user) && @user.save
-      UserMailer.inform_of_signup(@user).deliver
+      UserMailer.inform_of_signup(@user).deliver_now
       if @user.disabled? && @user.parent_email
-        UserMailer.parent_confirmation(@user).deliver
+        UserMailer.parent_confirmation(@user).deliver_now
         flash[:success] = "Your account has been created.
           Please have your parent confirm your account by
           clicking the link in the email they receive from us."
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
         flash[:success] = flash_message
         sign_in @user unless current_user.is_admin? && !current_user?(@user)
         if @user.email != old_email
-          UserMailer.inform_of_email_change(@user, old_email).deliver
+          UserMailer.inform_of_email_change(@user, old_email).deliver_now
         end
         redirect_to @user
       else
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
   def resend_parent_email
     user = User.find(params[:id])
     if user.disabled? || user.needs_forum_approval?
-      UserMailer.parent_confirmation(user).deliver
+      UserMailer.parent_confirmation(user).deliver_now
       flash[:success] = "The confirmation email has been re-sent to your parent or guardian at
         #{user.parent_email}.
         Please have them confirm your account by
@@ -107,7 +107,7 @@ class UsersController < ApplicationController
         flash[:success] = "Thank you! Your child's account has been
           activated. They can now log in with the Email and Password they chose
           when signing up."
-          UserMailer.inform_of_activation(@user).deliver
+          UserMailer.inform_of_activation(@user).deliver_now
         redirect_to login_path
       else
         flash[:failure] = "There was a problem activating this account.

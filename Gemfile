@@ -3,12 +3,14 @@ ruby '2.7.6'
 
 gem 'dotenv-rails', '~> 0.9.0', groups: [:development, :test] # store environment variables in .env like SECRET_TOKEN=something
 
-gem 'rails', '~> 4.1.16'
+gem 'rails', '~> 4.2.11'
 gem 'protected_attributes'
 
+gem 'bigdecimal', '1.4.2' # https://github.com/ruby/bigdecimal/issues/127
+
 gem 'jquery-rails', '~> 3.1.3'
-gem 'sass-rails',   '~> 6.0.0'
-gem 'bcrypt-ruby', '~> 3.0.1'
+gem 'sass-rails',   '~> 4.0.5'
+gem 'bcrypt', '~> 3.1.2' # https://stackoverflow.com/questions/21853579/rails-nomethoderror-undefined-method-cost-for-bcryptengineclass
 
 gem 'bootstrap-sass', '2.0.2' # twitter bootstrap framework
 gem 'faker', '~> 1.0.1' # generate test data

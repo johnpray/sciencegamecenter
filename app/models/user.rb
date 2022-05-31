@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 									:dummy_password, :prefers_gravatar, :forum_approved
 	before_save :create_remember_token
 
-	default_scope order: 'name ASC'
+	default_scope { order(name: :asc) }
 
 	has_many :player_reviews, dependent: :nullify
 	has_many :comments, dependent: :nullify
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
 										uniqueness: { case_sensitive: false }
 
 	has_secure_password
-	validates :password,	length: { minimum: 6 }
+	validates :password, length: { minimum: 6 }, on: :create
 
 	validates :birth_date, presence: true
 	validates :parent_email, format: { with: VALID_EMAIL_REGEX },
@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
   	generate_token(:password_reset_token)
   	self.password_reset_sent_at = Time.zone.now
   	save!(validate: false)
-  	UserMailer.password_reset(self).deliver
+  	UserMailer.password_reset(self).deliver_now
   end
 
   def self.chart_data(start = 3.weeks.ago) #TODO: Make this not run a query for each date

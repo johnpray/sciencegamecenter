@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
         flash[:success] = "Comment created and published."
       else
         @comment.make_pending!
-        CommentMailer.notify_for_approval(@comment).deliver
+        CommentMailer.notify_for_approval(@comment).deliver_now
         flash[:success] = "Your comment has been submitted and will show up on the site once it is approved. Thank you!"
       end
       redirect_to @comment.commentable
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
         flash[:success] = "Comment updated."
       else
         @comment.make_pending!
-        CommentMailer.notify_for_approval(@comment).deliver
+        CommentMailer.notify_for_approval(@comment).deliver_now
         flash[:success] = "Your revised comment has been submitted and will show up on the site once it is approved. Thank you!"
       end
       redirect_to @comment.commentable

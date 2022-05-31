@@ -2,7 +2,7 @@ class PlayerReview < ActiveRecord::Base
   attr_accessible :accuracy_rating, :content, :effectiveness_rating,
   								:fun_rating, :game_id, :title, :status
 
-  default_scope order: 'created_at DESC'
+  default_scope { order(created_at: :desc) }
 
   scope :approved, -> { where(status: "Approved") }
 
@@ -36,7 +36,7 @@ class PlayerReview < ActiveRecord::Base
 
   validates :user_id, presence: true
   validates :game_id, presence: true
-  
+
   def approved?
   	self.status == 'Approved'
   end

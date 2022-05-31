@@ -42,7 +42,7 @@ class GamesController < ApplicationController
         flash[:success] = "Game #{@game.title} created."
         redirect_to @game
       else
-        GameMailer.notify_of_new_game(@game).deliver
+        GameMailer.notify_of_new_game(@game).deliver_now
         flash[:success] = view_context.sanitize "Your game <i>#{@game.title}</i> has been submitted and will be considered by the SGC Team. Thanks!"
         redirect_to games_path
       end

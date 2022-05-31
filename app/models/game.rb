@@ -8,12 +8,12 @@ class Game < ActiveRecord::Base
   								:cost_list, :intended_for_list, :developer_type_list,
                                 :teacher_info, :entertainment
 
-  default_scope order: 'games.updated_at DESC, games.title ASC'
+  default_scope { order('games.updated_at DESC, games.title ASC') }
   scope :enabled, -> { where(disabled: false) }
   scope :disabled, -> { where(disabled: true) }
 
   extend FriendlyId
-  friendly_id :title, use: [:slugged, :history]
+  friendly_id :title, use: [:slugged, :history, :finders]
 
   has_many :player_reviews, dependent: :destroy
   has_many :screenshots,		dependent: :destroy
