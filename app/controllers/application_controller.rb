@@ -54,11 +54,31 @@ class ApplicationController < ActionController::Base
     params[:platform].present? || params[:subject].present? || params[:cost].present? || params[:intended_for].present? || params[:developer_type].present?
   end
 
+  def get_pinned_blog_posts
+    if params[:page].blank? || params[:page] == "1"
+      @pinned_blog_posts = BlogPost.where(pinned: true)
+
+      # Only admins can see unpublished blog_posts
+      if !admin?
+        @pinned_blog_posts = @pinned_blog_posts.published
+      else
+        @pinned_blog_posts = @pinned_blog_posts.order("published_at DESC NULLS FIRST, updated_at DESC")
+      end
+
+    else
+      @pinned_blog_posts = []
+    end
+  end
+
   def get_page_of_blog_posts(exclude_pinned: false)
     @blog_posts = BlogPost
 
     # Only admins can see unpublished blog_posts
-    @blog_posts = @blog_posts.published unless admin?
+    if !admin?
+      @blog_posts = @blog_posts.published
+    else
+      @blog_posts = @blog_posts.order("published_at DESC NULLS FIRST, updated_at DESC")
+    end
 
     # Filter by topic
     @topic = view_context.sanitize(params[:topic])

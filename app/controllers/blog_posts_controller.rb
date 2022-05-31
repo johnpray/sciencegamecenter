@@ -3,7 +3,8 @@ class BlogPostsController < ApplicationController
   before_filter :admin_user,      except: [:index, :show]
 
   def index
-    get_page_of_blog_posts
+    get_pinned_blog_posts
+    get_page_of_blog_posts(exclude_pinned: true)
   end
 
   def show

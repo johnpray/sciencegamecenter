@@ -15,10 +15,11 @@
   <br />
 <% end %>
 
-<ul class="blog_posts">
-  <%= render partial: 'blog_posts/blog_post', collection: @blog_posts, locals: { truncated: true } %>
-</ul>
-<% if @blog_posts.size < 1 %>
+<div class="blog_posts">
+  <%= render partial: 'blog_posts/pinned_and_unpinned_posts' %>
+</div>
+
+<% if @pinned_blog_posts.size < 1 && @blog_posts.size < 1 %>
   <p>No blog posts matching that criteria were found. <%= link_to "View all blog posts.", blog_posts_path %></p>
 <% end %>
 
