@@ -3,8 +3,8 @@
 <p class="form-help">The blog post's title. (The URL slug will be auto-generated from it.)</p>
 
 <%= f.label :content %>
-<%= f.text_area :content, rows: 50 %>
-<p class="form-help">Content/body of the post. Format using HTML tags.</p>
+<%= f.text_area :content, id: 'blog_post_content' %>
+<p class="form-help">Content/body of the post.</p>
 
 <%= f.label :topic_list, "Topics" %>
 <%= f.text_field :topic_list, value: f.object.topic_list.join(", ") %>
@@ -16,3 +16,15 @@
 
 <%= f.label :pinned, "#{f.check_box :pinned} Pinned".html_safe %>
 <p class="form-help">Check this to pin this post to the top of the homepage.</p>
+
+<%# Set up WYSIWYG editor, TinyMCE %>
+<script src="/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+  console.log("Setting up TinyMCE editor...")
+  tinymce.init({
+    selector: '#blog_post_content',
+    plugins: 'lists code link hr codesample image',
+    menubar: false,
+    toolbar: 'undo redo | styles | bold italic | link image | blockquote codesample hr | bullist numlist | code'
+  });
+</script>
