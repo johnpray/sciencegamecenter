@@ -25,6 +25,7 @@ SciencegamereviewsOrg::Application.routes.draw do
   resources :platforms, only: :index
   resources :player_reviews
   resources :comments
+  resources :blog_posts
 
   resources :stats, only: :index
 

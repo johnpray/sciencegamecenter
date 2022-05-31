@@ -1,0 +1,18 @@
+<%= f.label :title %>
+<%= f.text_field :title %>
+<p class="form-help">The blog post's title. (The URL slug will be auto-generated from it.)</p>
+
+<%= f.label :content %>
+<%= f.text_area :content, rows: 50 %>
+<p class="form-help">Content/body of the post. Format using HTML tags.</p>
+
+<%= f.label :topic_list, "Topics" %>
+<%= f.text_field :topic_list, value: f.object.topic_list.join(", ") %>
+<p class="form-help">Topics that this post deals with, comma-separated.</p>
+
+<%= f.label :published_at %>
+<%= f.datetime_local_field :published_at %>
+<p class="form-help">When this post was/will be published, in Eastern Time (US & Canada). Set it to now or the past to make it visible to all site visitors. Set it to the future to schedule future publishing. Make it blank to keep it hidden to regular site visitors.</p>
+
+<%= f.label :pinned, "#{f.check_box :pinned} Pinned".html_safe %>
+<p class="form-help">Check this to pin this post to the top of the homepage.</p>

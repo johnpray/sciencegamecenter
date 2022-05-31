@@ -1,0 +1,25 @@
+<%
+  if @topic.present?
+    title = "#{@topic.titleize} Blog Posts"
+  else
+    title = "All Blog Posts"
+  end
+%>
+
+<% provide(:title, title) %>
+
+<h1><%= title %></h1>
+
+<% if admin? %>
+  <p style="text-align: center;"><%= link_to "New blog post", new_blog_post_path, class: 'btn btn-info'  %></p>
+  <br />
+<% end %>
+
+<ul class="blog_posts">
+  <%= render @blog_posts %>
+</ul>
+<% if @blog_posts.size < 1 %>
+  <p>No blog posts matching that criteria were found. <%= link_to "View all blog posts.", blog_posts_path %></p>
+<% end %>
+
+<%= will_paginate %>

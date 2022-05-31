@@ -1,0 +1,19 @@
+<%= provide(:title, 'Edit blog post') %>
+
+<h1>Edit blog post</h1>
+
+<div class="row">
+  <div class="span8 offset1">
+
+    <%= form_for(@blog_post) do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= render 'blog_posts/fields', f: f %>
+
+      <p class="form-help" id="submit-help"><b>Be aware:</b> Upon saving, this blog post will immediately be visible if "Published at" is set to now or the past above.</p>
+      <%= f.submit "Update blog post", :class => "btn btn-large btn-primary" %>
+
+    <% end %>
+  </div>
+</div>
