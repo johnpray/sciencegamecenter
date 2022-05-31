@@ -57,15 +57,15 @@
 				<b>Developed by</b>
 			</td>
 			<td class="info-value">
-				<%= "#{markdown_inline game.developer} #{external_link_icon}".html_safe %> <%= "(#{developer_type_links_list(game)})".html_safe if !developer_type_links_list(game).blank? %>
+				<%= "#{markdown_inline game.developer} #{external_link_icon}".html_safe %>
 			</td>
 		</tr>
 		<tr>
 			<td class="info-key">
 				<b>Website at</b>
 			</td>
-			<td class="info-value">
-				<%= tracked_link_to "Visit game website".html_safe, game.website_url, title: game.website_url, target: '_blank' %> <%= external_link_icon %>
+			<td class="info-value" style="word-break: break-word;">
+				<%= tracked_link_to game.website_url, game.website_url, title: game.website_url, target: '_blank', rel: 'noopener' %>&nbsp;<%= external_link_icon %>
 			</td>
 		</tr>
 	</tbody>
