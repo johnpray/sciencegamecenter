@@ -15,6 +15,9 @@ class StaticPagesController < ApplicationController
   def review
   end
 
+  def jam
+  end
+
   def forum_approval
     unless current_user && current_user.needs_forum_approval?
       redirect_to root_path

@@ -5,6 +5,7 @@ SciencegamereviewsOrg::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   match '/privacy', to: 'static_pages#privacy'
   match '/review', to: 'static_pages#review'
+  match '/jam', to: 'static_pages#jam'
   match '/forum_approval', to: 'static_pages#forum_approval'
   match '/robots.txt', to: 'static_pages#robots'
 
