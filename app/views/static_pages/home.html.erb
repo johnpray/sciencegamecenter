@@ -13,8 +13,17 @@
   </p>
 </div>
 
-<ul class="games" style="margin-top: 10px;">
-  <%= render @games %>
+<ul class="blog_posts" style="margin-top: 10px;">
+  <div class="pinned-blog-post" style="padding: 20px 20px 5px; border: 1px solid #eee; border-radius: 5px;">
+    <%= render partial: 'blog_posts/blog_post', collection: @pinned_blog_posts, locals: { truncated: true } %>
+  </div>
+  <br />
+  <%= render partial: 'blog_posts/blog_post', collection: @blog_posts, locals: { truncated: true } %>
 </ul>
 
-<%= will_paginate(@games, params: { controller: :games, action: :index }) %>
+<%= will_paginate(@blog_posts, params: { controller: :blog_posts, action: :index }) %>
+
+<% if admin? %>
+  <p><%= link_to "New blog post", new_blog_post_path, class: 'btn btn-info'  %></p>
+  <br />
+<% end %>

@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
-    get_page_of_games
+    @pinned_blog_posts = BlogPost.published.where(pinned: true)
+    get_page_of_blog_posts(exclude_pinned: true)
   end
 
   def about

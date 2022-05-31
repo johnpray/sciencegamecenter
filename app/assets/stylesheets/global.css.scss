@@ -6,8 +6,8 @@
 $grayMediumLight: #eaeaea;
 
 @mixin box_sizing {
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -116,12 +116,12 @@ footer {
   color: $grayLight;
   a {
     color: $gray;
-    &:hover { 
+    &:hover {
       color: $grayDarker;
     }
-  }  
-  small { 
-    float: right; 
+  }
+  small {
+    float: right;
   }
   ul {
     float: left;
@@ -258,7 +258,7 @@ ul.games {
     &:hover {
       background-color: $grayLighter;
     }
-    
+
     .boxart a {
       display: block;
       background-size: 100%;
@@ -424,7 +424,7 @@ table.game_info {
     color: white;
     line-height: 1.2;
     margin: 5px 0;
-    
+
     a {
       color: white;
     }
@@ -491,7 +491,7 @@ small {
   width: 100%;
   height: auto;
   margin-bottom: 12px;
-} 
+}
 .embed-container iframe,
 .embed-container object,
 .embed-container embed {
@@ -541,3 +541,8 @@ small {
   .atm-i * {
     box-sizing: content-box;
   }
+
+/* blog posts */
+ul.blog_posts {
+  margin-left: 0;
+}

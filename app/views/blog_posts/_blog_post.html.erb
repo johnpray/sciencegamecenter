@@ -1,24 +1,37 @@
+<% truncated = false if local_assigns[:truncated].nil? %>
+
 <%= link_to blog_post do %>
-  <h1 style="text-align: left; color: black;"><%= sanitize blog_post.title %></h1>
+  <h1 style="text-align: left; color: black; margin-bottom: 10px; font-size: 2.2em;">
+    <%= sanitize blog_post.title %>
+  </h1>
 <% end %>
 
 <p style="opacity: 0.8; font-size: 90%;">
   <%= blog_post.published_at_string %>
+
+  <% if admin? %>
+    - <%= link_to "Edit post", edit_blog_post_path(blog_post) %>
+    / <%= link_to "Delete post", blog_post_path(blog_post), method: :delete,
+      data: { confirm: "Really delete this blog post now and forever?" }
+    %>
+  <% end %>
+
   <% if blog_post.topic_list.present? %>
     <br />
     Topics: <%= blog_post.topic_list %>
   <% end %>
 </p>
 
-<% if admin? %>
-  <p>
-    <%= link_to "Edit post", edit_blog_post_path(blog_post) %> /
-    <%= link_to "Delete post", blog_post_path(blog_post), method: :delete,
-      data: { confirm: "Really delete this blog post now and forever?" }
-    %>
-  </p>
-<% end %>
+
 
 <div class="blog-post-content">
-  <%= sanitize blog_post.content %>
+  <% if truncated %>
+    <%= truncate(strip_tags(blog_post.content), length: 450) do %>
+      <%= link_to "Keep reading", blog_post %>
+    <% end %>
+  <% else %>
+    <%= sanitize blog_post.content %>
+  <% end %>
 </div>
+
+<br />

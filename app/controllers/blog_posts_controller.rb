@@ -57,26 +57,6 @@ class BlogPostsController < ApplicationController
     end
   end
 
-  def get_page_of_blog_posts
-    @blog_posts = BlogPost
-
-    # Only admins can see unpublished blog_posts
-    @blog_posts = @blog_posts.published unless admin?
-
-    # Filter by topic
-    @topic = view_context.sanitize(params[:topic])
-    if @topic.present?
-      @blog_posts = @blog_posts.tagged_with(@topic)
-    end
-
-    # Paginate
-    per_page_number = 10
-    if @blog_posts.count < per_page_number+1
-      params.delete :page
-    end
-    @blog_posts = @blog_posts.paginate(page: params[:page], per_page: per_page_number)
-  end
-
   def fix_published_at_timezone
     Rails.logger.debug "params[:blog_post][:published_at]: #{params[:blog_post][:published_at]}"
     if params[:blog_post][:published_at].present?

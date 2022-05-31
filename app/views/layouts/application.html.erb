@@ -11,8 +11,8 @@
       <div class="row-fluid">
         <div class="span10">
           <%= yield %>
+          <hr class="hidden-desktop" />
         </div>
-        <hr class="hidden-desktop" />
         <div class="span2" id="side_ads_container">
           <% if current_page?(games_path) %>
             <%= render 'games/categories_bar' %>

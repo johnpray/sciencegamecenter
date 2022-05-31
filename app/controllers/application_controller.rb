@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
   def user_for_paper_trail
     current_user ? current_user.id : nil
   end
-  
+
   private
-  
+
   def get_page_of_games
     @games = Game
 
@@ -49,8 +49,33 @@ class ApplicationController < ActionController::Base
       @games = @games.paginate(page: params[:page], per_page: per_page_number)
     end
   end
-  
+
   def any_category_defined?
     params[:platform].present? || params[:subject].present? || params[:cost].present? || params[:intended_for].present? || params[:developer_type].present?
+  end
+
+  def get_page_of_blog_posts(exclude_pinned: false)
+    @blog_posts = BlogPost
+
+    # Only admins can see unpublished blog_posts
+    @blog_posts = @blog_posts.published unless admin?
+
+    # Filter by topic
+    @topic = view_context.sanitize(params[:topic])
+    if @topic.present?
+      @blog_posts = @blog_posts.tagged_with(@topic)
+    end
+
+    # Filter by pinned
+    if exclude_pinned
+      @blog_posts = @blog_posts.where(pinned: false)
+    end
+
+    # Paginate
+    per_page_number = 10
+    if @blog_posts.count < per_page_number+1
+      params.delete :page
+    end
+    @blog_posts = @blog_posts.paginate(page: params[:page], per_page: per_page_number)
   end
 end
