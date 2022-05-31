@@ -3,6 +3,8 @@ SciencegamereviewsOrg::Application.configure do
 
   config.eager_load = true
 
+  config.log_level = :debug
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
