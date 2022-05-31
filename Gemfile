@@ -34,6 +34,10 @@ gem 'pg', '~> 0.18.0'
 
 gem 'test-unit', '~> 3.0'
 
+group :production do
+  gem 'rails_12factor' # for Heroku asset and log config
+end
+
 group :development, :test do
 	gem 'sqlite3'
 	# gem 'rspec-rails', '~> 2.9.0'
