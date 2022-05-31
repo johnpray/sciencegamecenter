@@ -17,6 +17,11 @@ class StaticPagesController < ApplicationController
   end
 
   def jam
+    # If there's a Game Jam blog post, redirect to it instead of using the hardcoded content.
+    blog_post = BlogPost.published.where(use_as_game_jam_page: true).reorder(published_at: :desc).first
+    if blog_post
+      redirect_to blog_post
+    end
   end
 
   def forum_approval

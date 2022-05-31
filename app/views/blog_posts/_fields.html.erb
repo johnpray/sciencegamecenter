@@ -17,6 +17,9 @@
 <%= f.label :pinned, "#{f.check_box :pinned} Pinned".html_safe %>
 <p class="form-help">Check this to pin this post to the top of the homepage.</p>
 
+<%= f.label :use_as_game_jam_page, "#{f.check_box :use_as_game_jam_page} Use as Game Jam page".html_safe %>
+<p class="form-help">If checked, the Game Jam links and the /jam URL will redirect to this post. If enabled for multiple posts, it will use the most recently published one.</p>
+
 <%# Set up WYSIWYG editor, TinyMCE %>
 <script src="/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 <script>

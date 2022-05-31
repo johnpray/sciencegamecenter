@@ -1,5 +1,5 @@
 class BlogPost < ActiveRecord::Base
-  attr_accessible :title, :content, :published_at, :pinned, :topic_list
+  attr_accessible :title, :content, :published_at, :pinned, :topic_list, :use_as_game_jam_page
 
   scope :published, -> { where("published_at <= ?", Time.now).order(published_at: :desc) }
 
