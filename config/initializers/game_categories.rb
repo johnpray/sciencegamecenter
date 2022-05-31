@@ -8,14 +8,13 @@ GAME_PLATFORMS = [
 ]
 
 GAME_SUBJECTS = [
+  "#SGJ2022",
   "astrophysics",
   "biodiversity",
   "biology",
   "body systems",
   "botany",
   "careers in science",
-  "cells",
-  "cells",
   "cells",
   "chemistry",
   "computer science",
@@ -31,7 +30,6 @@ GAME_SUBJECTS = [
   "geography",
   "geology",
   "history",
-  "math",
   "math",
   "medicine",
   "molecular science",
