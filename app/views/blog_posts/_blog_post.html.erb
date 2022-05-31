@@ -22,10 +22,10 @@
   <% end %>
 </p>
 
-
-
 <div class="blog-post-content">
   <% if truncated %>
+    <%= blog_post_preview_image_tag(blog_post) %>
+
     <%= truncate(strip_tags(blog_post.content), length: 450) do %>
       <%= link_to "Keep reading", blog_post %>
     <% end %>
