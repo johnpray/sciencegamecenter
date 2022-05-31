@@ -26,8 +26,10 @@
   <% if truncated %>
     <%= blog_post_preview_image_tag(blog_post) %>
 
-    <%= truncate(strip_tags(blog_post.content), length: 450) do %>
-      <%= link_to "Keep reading", blog_post %>
+    <%= link_to blog_post, style: "color: black; text-decoration: none;" do %>
+      <%= truncate(strip_tags(blog_post.content), length: 450) do %>
+        <%= link_to "Keep reading", blog_post %>
+      <% end %>
     <% end %>
   <% else %>
     <%= sanitize blog_post.content %>
