@@ -1,4 +1,4 @@
-<% provide(:title, "Edit game") %> 
+<% provide(:title, "Edit game") %>
 <h1>Edit game</h1>
 
 <div class="row">
@@ -12,11 +12,11 @@
 
       <p class="form-help" id="submit-help"><b>Be aware:</b> Upon saving, any changes will immediately be visible on the site unless <b>Disabled</b> is checked above (in which the game won't be visible at all).</p>
       <%= f.submit "Update game", :class => "btn btn-large btn-primary" %>
-      
+
     <% end %>
 
     <p>
-      <%= link_to "Delete game", @game, method: :delete, confirm: "Are you sure you want to destroy this game now and for the rest of time, with no going back?" %>
+      <%= link_to "Delete game", @game, method: :delete, data: { confirm: "Are you sure you want to destroy this game now and for the rest of time, with no going back?" } %>
     </p>
 
     <p><%= link_to "Manage this game's screenshots", game_screenshots_path(@game) %></p>

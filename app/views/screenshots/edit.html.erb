@@ -18,9 +18,9 @@
 
   <p class="form-help" id="submit-help"><b>Be aware:</b> Upon saving, this screenshot will immediately be visible on the site.</p>
   <%= f.submit "Update screenshot", :class => "btn btn-large btn-primary" %>
-  
+
 <% end %>
 
 <p>
-  <%= link_to "Delete screenshot", @screenshot, method: :delete, confirm: "Are you sure you want to delete this screenshot?" %>
+  <%= link_to "Delete screenshot", @screenshot, method: :delete, data: { confirm: "Are you sure you want to delete this screenshot?" } %>
 </p>

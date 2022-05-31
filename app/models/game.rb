@@ -9,8 +9,8 @@ class Game < ActiveRecord::Base
                                 :teacher_info, :entertainment
 
   default_scope order: 'games.updated_at DESC, games.title ASC'
-  scope :enabled, where(disabled: false)
-  scope :disabled, where(disabled: true)
+  scope :enabled, -> { where(disabled: false) }
+  scope :disabled, -> { where(disabled: true) }
 
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history]

@@ -3,9 +3,11 @@ ruby '2.7.6'
 
 gem 'dotenv-rails', '~> 0.9.0', groups: [:development, :test] # store environment variables in .env like SECRET_TOKEN=something
 
-gem 'rails', '~> 3.2.22'
+gem 'rails', '~> 4.0.13'
+gem 'protected_attributes'
+
 gem 'jquery-rails', '~> 3.1.3'
-gem 'sass-rails',   '~> 3.2.4'
+gem 'sass-rails',   '~> 6.0.0'
 gem 'bcrypt-ruby', '~> 3.0.1'
 
 gem 'bootstrap-sass', '2.0.2' # twitter bootstrap framework
@@ -16,11 +18,11 @@ gem 'redcarpet', '~> 3.5.1' # markdown
 gem 'paperclip', '3.0.3' # uploads
 gem 'cocaine', '~> 0.3.0' # paperclip dependency
 gem 'aws-sdk', '~> 1.3.4' # storage
-gem 'acts-as-taggable-on', '~> 2.3.3' # tags (used for Game Category Types)
+gem 'acts-as-taggable-on', '~> 2.4.1' # tags (used for Game Category Types)
 gem 'recaptcha'
 gem 'unicorn', '~> 4.8.3' # faster, multi-threaded server
-gem 'friendly_id', '~> 4.0.1' # friendly urls
-gem 'paper_trail', '~> 2.6.3' # track changes and allow undo
+gem 'friendly_id', '~> 5.4.2' # friendly urls
+gem 'paper_trail', '~> 3.0.9' # track changes and allow undo
 
 gem 'rest-client', '~> 1.8.0'
 
@@ -38,6 +40,5 @@ group :development, :test do
 end
 
 group :assets do
-  gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier', '>= 1.2.3'
 end

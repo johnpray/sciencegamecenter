@@ -1,13 +1,13 @@
 SciencegamereviewsOrg::Application.routes.draw do
 
   root :to => 'static_pages#home'
-  match '/about', to: 'static_pages#about'
-  match '/contact', to: 'static_pages#contact'
-  match '/privacy', to: 'static_pages#privacy'
-  match '/review', to: 'static_pages#review'
-  match '/jam', to: 'static_pages#jam'
-  match '/forum_approval', to: 'static_pages#forum_approval'
-  match '/robots.txt', to: 'static_pages#robots'
+  get '/about', to: 'static_pages#about'
+  get '/contact', to: 'static_pages#contact'
+  get '/privacy', to: 'static_pages#privacy'
+  get '/review', to: 'static_pages#review'
+  get '/jam', to: 'static_pages#jam'
+  get '/forum_approval', to: 'static_pages#forum_approval'
+  get '/robots.txt', to: 'static_pages#robots'
 
   resources :users do
     member do
@@ -30,11 +30,11 @@ SciencegamereviewsOrg::Application.routes.draw do
 
   post "versions/:id/revert" => "versions#revert", as: 'revert_version'
 
-  match '/signup',  to: 'users#new'
-  match '/login',   to: 'sessions#new'
-  match '/logout',  to: 'sessions#destroy', via: :delete
+  get '/signup',  to: 'users#new'
+  get '/login',   to: 'sessions#new'
+  delete '/logout',  to: 'sessions#destroy'
 
-  match '/sso/discourse', to: 'sso#discourse'
+  get '/sso/discourse', to: 'sso#discourse'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
