@@ -4,7 +4,7 @@ module UsersHelper
 
 	# Returns the Gravatar (http://gravatar.com/) for the given user.
   def gravatar_url_for(user, options = { size: DEFAULT_SIZE })
-    email = user ? user.email.downcase : "someone"
+    email = user&.email.present? ? user.email.downcase : "someone"
     gravatar_id = Digest::MD5::hexdigest(email)
     size = options[:size]
     gravatar_url = "//gravatar.com/avatar/#{gravatar_id}.png?s=#{size}&d=retro"
