@@ -36,13 +36,12 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(params[:game])
-    @game.user = current_user
     if @game.save
       if admin?
         flash[:success] = "Game #{@game.title} created."
         redirect_to @game
       else
-        GameMailer.notify_of_new_game(@game).deliver_now
+        GameMailer.notify_of_new_game(@game, current_user).deliver_now
         flash[:success] = view_context.sanitize "Your game <i>#{@game.title}</i> has been submitted and will be considered by the SGC Team. Thanks!"
         redirect_to games_path
       end

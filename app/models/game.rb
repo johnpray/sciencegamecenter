@@ -18,8 +18,6 @@ class Game < ActiveRecord::Base
   has_many :player_reviews, dependent: :destroy
   has_many :screenshots,		dependent: :destroy
 
-  belongs_to :user
-
   has_paper_trail
 
   acts_as_taggable_on :subjects, :platforms, :costs, :intended_fors, :developer_types
