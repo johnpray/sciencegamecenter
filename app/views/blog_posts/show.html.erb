@@ -1,3 +1,5 @@
 <% provide(:title, @blog_post.title) %>
 
 <%= render 'blog_posts/blog_post', blog_post: @blog_post %>
+
+<%= link_to "Back to Blog", blog_posts_path %>
