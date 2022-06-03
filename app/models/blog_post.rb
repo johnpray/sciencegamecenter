@@ -16,13 +16,20 @@ class BlogPost < ActiveRecord::Base
     if published_at.blank?
       "Unpublished"
     else
-      datetime_string = published_at.
-        in_time_zone('Eastern Time (US & Canada)').
-        strftime('%B %-d, %Y at %-l:%M %p %Z')
+
       if published_at.future?
+        datetime_string = published_at.
+          in_time_zone('Eastern Time (US & Canada)').
+          strftime('%B %-d, %Y at %-l:%M %p %Z')
+
         "Will publish on #{datetime_string}"
+
       else
-        "Published on #{datetime_string}"
+        datetime_string = published_at.
+          in_time_zone('Eastern Time (US & Canada)').
+          strftime('%B %-d, %Y')
+
+        datetime_string
       end
     end
   end
