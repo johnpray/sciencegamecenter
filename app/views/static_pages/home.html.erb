@@ -1,19 +1,6 @@
 <% provide(:title, 'Video games that teach science') %>
 
-<div class="center hero-unit" style="padding: 20px 10px">
-  <%= image_tag "dr-mascot.png", alt: "", style: "float: left; width: 125px;", class: "hidden-phone" %>
-  <h1>
-  	<%= image_tag 'sgc-logo-600_01.png', alt: "Science", style: 'max-width: 100%;' %><%= image_tag 'sgc-logo-600_02.png', alt: "Game", style: 'max-width: 100%;' %><%= image_tag 'sgc-logo-600_03.png', alt: "Center", style: 'max-width: 100%;' %>
-  </h1>
-  <br />
-  <p>
-    <%= link_to "Find/Review Games", games_path, class: "btn btn-large btn-success", style: 'margin-bottom: 5px;' %>
-    <%= link_to "Add a Game", new_game_path, class: "btn btn-large btn-warning", style: 'margin-bottom: 5px;' %>
-    <%= link_to "Science Game Jam!", jam_path, class: "btn btn-large btn-primary", style: 'margin-bottom: 5px;', target: "_blank" %>
-  </p>
-</div>
-
-<div class="blog_posts" style="margin-top: 10px;">
+<div class="blog_posts" style="margin-top: -10px;">
   <%= render partial: 'blog_posts/pinned_and_unpinned_posts' %>
 </div>
 

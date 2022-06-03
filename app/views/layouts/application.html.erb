@@ -10,7 +10,12 @@
 
       <div class="row-fluid">
         <div class="span10">
+          <% unless params[:controller] == 'games' && params[:action] == 'show' %>
+            <%= render partial: 'layouts/site_name_and_big_nav_buttons' %>
+          <% end %>
+
           <%= yield %>
+
           <hr class="hidden-desktop" />
         </div>
         <div class="span2" id="side_ads_container">
