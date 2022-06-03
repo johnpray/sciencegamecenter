@@ -6,16 +6,8 @@
           </p>
           <% end %>
 
-          <h3>SGC Sponsors</h3>
-          <% if Date.current < Date.new(2013,10,8) %>
-          <%= tracked_link_to image_tag('http://s3.amazonaws.com/production.sciencegamereviews.org/static/ads/2013-07-labroots-195x195.gif', height: 140, width: 140, style: "margin-bottom: 10px;", alt: "LabRoots.com: professional networking website for the scientific community"), 'http://labroots.com/', target: '_blank' %>
-          <% end %>
+          <h3>SGC Sponsor</h3>
           <%= tracked_link_to image_tag('cell_image_library-140.png', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: 'The CELL: an image library'), 'http://www.cellimagelibrary.org/', target: '_blank'  %>
-          <%= tracked_link_to image_tag('leica_science_lab_banner_140x140_v2.jpg', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: 'Leica Science Lab. Learn. Share. Contribute.'), 'http://www.leica-microsystems.com/science-lab/', target: '_blank'  %>
-          <%= tracked_link_to image_tag('esa_foundation-140.png', height: 53, width: 140, style: "margin-bottom: 20px;" , alt: 'ESA Foundation - Entertainment Software Association Foundation'), 'http://www.esafoundation.org/', target: '_blank' %>
 
-          <!--
-          <% 1.times do %>
-          <%= link_to image_tag('side_banner_advertise.png', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: ''), contact_path %>
-          <% end %>
-          -->
+          <br /><br />
+          <%= link_to image_tag('dr-mascot-tabletop-ad.png', height: 140, width: 140, style: "margin-bottom: 10px;" , alt: 'Dr. Meeple says, "We have tabletop games, too!"'), '/games?platform=Tabletop' %>
