@@ -8,7 +8,7 @@
 
 <%= f.label :topic_list, "Topics" %>
 <%= f.text_field :topic_list, value: f.object.topic_list.join(", ") %>
-<p class="form-help">Topics that this post deals with, comma-separated.</p>
+<p class="form-help">Topics that this post deals with, comma-separated. The category options are: #SGJ202X, education, game development, science, playing</p>
 
 <%= f.label :published_at %>
 <%= f.datetime_local_field :published_at %>
