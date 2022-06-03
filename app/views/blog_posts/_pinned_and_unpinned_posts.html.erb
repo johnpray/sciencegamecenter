@@ -1,5 +1,5 @@
 <% if @pinned_blog_posts.present? %>
-  <div class="pinned-blog-post" style="padding: 20px 20px 5px; border: 1px solid #eee; border-radius: 5px;">
+  <div class="pinned-blog-post" style="padding: 20px 20px 5px; border: 1px solid #ddd; border-radius: 5px;">
     <%= render partial: 'blog_posts/blog_post', collection: @pinned_blog_posts, locals: { truncated: true } %>
   </div>
   <br />
