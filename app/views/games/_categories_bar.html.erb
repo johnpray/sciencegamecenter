@@ -3,7 +3,7 @@
 
 <%= form_tag(url_for(params), method: "get") do %>
   <%= search_field_tag(:title, params[:title], placeholder: "Search by title", class: 'span2') %>
-  
+
   <% (order_array+categories_array).each do |s, f| %>
   <%= hidden_field_tag(s, params[s]) if params[s].present? %>
   <% end %>
@@ -19,7 +19,13 @@
 
 <h2 id="order_by_top">Order by</h2>
 <div id="orber_by_dropdown">
-<%= select :game, "order_by", [["Last reviewed or updated", "updated_at"], ["Most reviews", "reviews_count"], ["Last added", "created_at"], ["Title A-Z", "title"]] %>
+<%= select :game, "order_by", [
+    ["Last reviewed or updated", "updated_at"],
+    ["Highest average rating", "reviews_average_total_rating"],
+    ["Most reviews", "reviews_count"],
+    ["Last added", "created_at"],
+    ["Title A-Z", "title"]
+  ] %>
 </div>
 
 
@@ -34,7 +40,7 @@ $(document).ready(function() {
       if (event.target.value) {
       	<% if params_without_page.count > 2 %>
     			window.location.href = "<%= raw (!params_without_page[s].blank? && params_without_page.count == 3) ? url_for(params_without_page.merge(s => nil))+"?#{s}=" : url_for(params_without_page.merge(s => nil))+"&#{s}=" %>"+event.target.value;
-    		<% else %>	
+    		<% else %>
     			window.location.href = "<%= raw url_for()+"?#{s}=" %>"+event.target.value;
     		<% end %>
       } else {

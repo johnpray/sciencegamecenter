@@ -30,6 +30,8 @@ class ApplicationController < ActionController::Base
     case params[:order_by]
     when "updated_at"
       @games = @games.reorder("updated_at DESC")
+    when "reviews_average_total_rating"
+      @games = @games.reorder("approved_reviews_average_total_rating DESC, approved_reviews_count DESC, updated_at DESC")
     when "reviews_count"
       @games = @games.reorder("approved_reviews_count DESC, updated_at DESC")
     when "created_at"
