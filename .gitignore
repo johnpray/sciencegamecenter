@@ -14,8 +14,6 @@
 /log/*.log
 /tmp
 
-/db/schema.rb
-
 .env
 .env.bak
 
