@@ -159,18 +159,21 @@ class Game < ActiveRecord::Base
 	end
 
 	def player_averages_total
-		if self.approved_player_reviews_count < 1
-			-1
-		elsif @player_rating_averages_total
-			@player_rating_averages_total.round(1)
-		else
-			@player_rating_averages_total =
-				player_fun_average(false) +
-				player_accuracy_average(false) +
-				player_effectiveness_average(false)
-			@player_rating_averages_total.round(1)
-		end
+    @player_rating_averages_total ||= player_averages_total_uncached
 	end
+
+  def player_averages_total_uncached
+    if self.approved_player_reviews_count < 1
+      return -1
+    else
+      player_rating_averages_total =
+        player_fun_average(false) +
+        player_accuracy_average(false) +
+        player_effectiveness_average(false)
+
+      return player_rating_averages_total.round(1)
+    end
+  end
 
 	def approved_player_reviews_count
 		count = 0

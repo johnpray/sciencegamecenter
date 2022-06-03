@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20220531182044) do
+ActiveRecord::Schema.define(version: 20220603180157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,24 +51,25 @@ ActiveRecord::Schema.define(version: 20220531182044) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
   create_table "games", force: :cascade do |t|
-    t.string   "title",                  limit: 255
+    t.string   "title",                                 limit: 255
     t.text     "description"
-    t.string   "website_url",            limit: 255
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
-    t.string   "boxart_file_name",       limit: 255
-    t.string   "boxart_content_type",    limit: 255
+    t.string   "website_url",                           limit: 255
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
+    t.string   "boxart_file_name",                      limit: 255
+    t.string   "boxart_content_type",                   limit: 255
     t.integer  "boxart_file_size"
     t.datetime "boxart_updated_at"
-    t.string   "developer",              limit: 255
-    t.string   "intended_audience",      limit: 255
-    t.string   "concepts",               limit: 255
-    t.string   "slug",                   limit: 255
-    t.boolean  "disabled",                           default: true
+    t.string   "developer",                             limit: 255
+    t.string   "intended_audience",                     limit: 255
+    t.string   "concepts",                              limit: 255
+    t.string   "slug",                                  limit: 255
+    t.boolean  "disabled",                                          default: true
     t.text     "teacher_info"
     t.boolean  "entertainment"
-    t.integer  "approved_reviews_count",             default: 0
-    t.string   "youtube_video_url",      limit: 255
+    t.integer  "approved_reviews_count",                            default: 0
+    t.string   "youtube_video_url",                     limit: 255
+    t.float    "approved_reviews_average_total_rating",             default: 0.0
   end
 
   add_index "games", ["slug"], name: "index_games_on_slug", unique: true, using: :btree

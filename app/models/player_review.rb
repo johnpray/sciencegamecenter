@@ -13,7 +13,7 @@ class PlayerReview < ActiveRecord::Base
   has_paper_trail
 
   after_save :touch_game_if_approved
-  after_save :update_game_approved_reviews_count
+  after_save :update_game_approved_reviews_count_and_average
 
   validates :title,		presence: true
   validates :content, presence: true
@@ -60,9 +60,13 @@ class PlayerReview < ActiveRecord::Base
     end
   end
 
-  def update_game_approved_reviews_count
+  def update_game_approved_reviews_count_and_average
     unless game.approved_reviews_count == game.player_reviews.approved.count
       game.update_column(:approved_reviews_count, game.player_reviews.approved.count)
+    end
+
+    unless game.approved_reviews_average_total_rating == game.player_averages_total_uncached
+      game.update_column(:approved_reviews_average_total_rating, game.player_averages_total_uncached)
     end
   end
 
