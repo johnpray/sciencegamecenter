@@ -1,5 +1,10 @@
 SciencegamereviewsOrg::Application.routes.draw do
 
+  # redirect sciencegamecenter.org to www.sciencegamecenter.org
+  constraints host: 'sciencegamecenter.org' do
+    get ':any', to: redirect(subdomain: 'www', path: '/%{any}'), any: /.*/
+  end
+
   root :to => 'static_pages#home'
   get '/about', to: 'static_pages#about'
   get '/contact', to: 'static_pages#contact'
