@@ -19,8 +19,7 @@
 	}
 	.share_buttons<%= '_not_floaty' if not_floaty %> a {
 		margin-bottom: 5px;
-    margin-right: 15px;
-
+    <%= 'margin-right: 15px;' if not_floaty %>
 	}
 	.share_buttons<%= '_not_floaty' if not_floaty %> .addthis_button_facebook_like {
 		margin-bottom: 0;
